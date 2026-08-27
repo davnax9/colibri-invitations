@@ -4,7 +4,8 @@ import { prisma } from "@/utils/prisma"
 import { requireAuth } from "@/utils/auth"
 import { CreateEventSchema } from "@/utils/validations/event"
 import { revalidatePath } from "next/cache"
-import cloudinary from "@/utils/cloudinary"
+// import cloudinary from "@/utils/cloudinary"
+import { v2 as cloudinary } from "cloudinary"
 import { extractYouTubeVideoId } from "@/utils/youtube"
 import { invitationThemePresets } from "@/utils/invitation-themes"
 import { getMaxPhotos } from "@/utils/plan-limits"
@@ -378,6 +379,65 @@ export async function createEventPhoto(data: {
   }
 }
 
+// export async function deleteEventPhoto(data: {
+//   eventId: string
+//   photoId: string
+// }) {
+//   const session = await requireAuth()
+
+//   const event = await prisma.event.findFirst({
+//     where: {
+//       id: data.eventId,
+//       userId: session.user.id,
+//     },
+//   })
+
+//   if (!event) {
+//     return {
+//       success: false as const,
+//       error: "Evento no encontrado",
+//     }
+//   }
+
+//   const photo = await prisma.eventPhoto.findFirst({
+//     where: {
+//       id: data.photoId,
+//       eventId: data.eventId,
+//     },
+//   })
+
+//   if (!photo) {
+//     return {
+//       success: false as const,
+//       error: "Fotografía no encontrada",
+//     }
+//   }
+
+//   // Eliminar de Cloudinary
+//   if (photo.publicId) {
+//     console.log("Cloudinary config:", {
+//     cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+//     api_key: process.env.CLOUDINARY_API_KEY ? "OK" : "MISSING",
+//     api_secret: process.env.CLOUDINARY_API_SECRET ? "OK" : "MISSING",
+//   })
+//     await cloudinary.uploader.destroy(photo.publicId)
+//   }
+
+//   // Eliminar de PostgreSQL
+//   await prisma.eventPhoto.delete({
+//     where: {
+//       id: photo.id,
+//     },
+//   })
+
+//   revalidatePath(`/dashboard/eventos/${data.eventId}`)
+//   revalidatePath(`/invitacion/${event.slug}`)
+
+//   return {
+//     success: true as const,
+//   }
+// }
+
 export async function deleteEventPhoto(data: {
   eventId: string
   photoId: string
@@ -411,6 +471,13 @@ export async function deleteEventPhoto(data: {
       error: "Fotografía no encontrada",
     }
   }
+
+  // Configurar Cloudinary explícitamente
+  cloudinary.config({
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  })
 
   // Eliminar de Cloudinary
   if (photo.publicId) {

@@ -23,7 +23,7 @@ export default async function EventEditorPage({ params }: Props) {
   const event = await prisma.event.findFirst({
     where: {
       id,
-      userId: session.user.id,
+      ...(session.user.role === "ADMIN" ? {} : { userId: session.user.id}),
     },
     include: {
       template: true,

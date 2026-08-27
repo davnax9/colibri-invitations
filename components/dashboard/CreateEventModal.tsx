@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react"
 import { createEvent } from "@/actions/event-actions"
+import { toast } from "react-toastify"
 
 type Template = {
   id: string
@@ -48,6 +49,7 @@ export default function CreateEventModal({ templates }: Props) {
 
     if (!result.success) {
         setError(result.error)
+        toast.error(result.error)
         setLoading(false)
         return
     }
@@ -59,6 +61,8 @@ export default function CreateEventModal({ templates }: Props) {
 
     setLoading(false)
     setOpen(false)
+
+    toast.success("¡Evento creado correctamente!")
   }
 
   return (

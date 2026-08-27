@@ -62,7 +62,7 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
         <>
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del novio</label>
-            <input type="text" value={groomName} onChange={(e) => setGroomName(e.target.value)} placeholder="Carlos" className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+            <input type="text" value={groomName} onChange={(e) => setGroomName(e.target.value)} placeholder="Carlos" className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
 
           <div>

@@ -1,5 +1,6 @@
 import { requireAuth } from "@/utils/auth"
 import DashboardNavbar from "@/components/dashboard/DashboardNavbar"
+import ToastProvider from "@/components/ui/ToastProvider"
 
 type Props = {
   children: React.ReactNode
@@ -23,6 +24,7 @@ export default async function DashboardLayout({
 
       <main>
         {children}
+        <ToastProvider />
       </main>
 
     </div>

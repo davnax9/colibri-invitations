@@ -68,12 +68,11 @@ export default async function DashboardPage() {
                 </a>
               )}
               {/* ACCIÓN CLIENTE */}
-              {isClient && activeEvent ? (
+              {isAdmin ? (<CreateEventModal templates={templates} />) : activeEvent ? (
                 <a href={`/dashboard/eventos/${activeEvent.id}`} className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#2F5D50] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
                   ✨ Editar mi invitación
                 </a>
-              ) : !isAdmin ? (<CreateEventModal templates={templates} />) : null}
-              {/* <LogoutButton /> */}
+              ) : (<CreateEventModal templates={templates} />)}
             </div>
           </div>
         </header>
@@ -82,7 +81,7 @@ export default async function DashboardPage() {
           {/* EVENTOS */}
           <div className="rounded-2xl border border-[#E5E9E5] bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-medium text-[#687A72]">Mis eventos</p>
+              <p className="text-sm font-medium text-[#687A72]">{isAdmin ? "Todos los eventos" : "Mis eventos"}</p>
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2F5D50]/10">
                 <span className="text-lg">📅</span>
               </div>
@@ -119,8 +118,8 @@ export default async function DashboardPage() {
         <section className="mt-10">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-[#263832]">Mis eventos</h2>
-              <p className="mt-1 text-sm text-[#687A72]">Administra y personaliza tus invitaciones.</p>
+              <h2 className="text-2xl font-bold tracking-tight text-[#263832]">{isAdmin ? "Todos los eventos" : "Mis eventos"}</h2>
+              <p className="mt-1 text-sm text-[#687A72]">{isAdmin ? "Administra y personaliza las invitaciones de todos los clientes." : "Administra y personaliza tus invitaciones."}</p>
             </div>
             {events.length > 0 && (<p className="text-sm text-[#687A72]">{events.length}{" "}{events.length === 1 ? "evento" : "eventos"}</p>)}
           </div>

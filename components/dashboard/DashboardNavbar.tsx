@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import LogoutButton from "./LogoutButton"
+import Image from "next/image"
 
 type Props = {
   user: {
@@ -36,10 +37,14 @@ export default function DashboardNavbar({ user }: Props) {
             href="/dashboard"
             className="flex items-center gap-3"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2F5D50] shadow-sm">
-              <span className="text-xl">
-                🐦
-              </span>
+            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl bg-[#e1f3ee] shadow-sm">
+              <Image
+                src="/logoColibri.png"
+                alt="Colibrí"
+                width={128}
+                height={48}
+                className="h-12 w-auto object-contain"
+              />
             </div>
 
             <div className="hidden sm:block">
