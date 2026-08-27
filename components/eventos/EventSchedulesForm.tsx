@@ -95,26 +95,26 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del momento</label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Ceremonia" required
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
 
           {/* Fecha */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Fecha</label>
-            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
 
           {/* Hora */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Hora</label>
-            <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+            <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
 
           {/* Ubicación */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Ubicación</label>
-            <select value={locationId} onChange={(e) => setLocationId(e.target.value)} className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
+            <select value={locationId} onChange={(e) => setLocationId(e.target.value)} className="w-full text-slate-800 rounded-lg border border-slate-300 bg-white px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200">
               <option value="">Sin ubicación</option>
               {locations.map((location) => (
                 <option key={location.id} value={location.id}>{location.name}</option>
@@ -126,7 +126,7 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Descripción</label>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={3} placeholder="Ceremonia religiosa..."
-              className="w-full resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full text-slate-800 bg-white resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
 

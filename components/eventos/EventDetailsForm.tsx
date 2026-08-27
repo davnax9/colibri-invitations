@@ -67,31 +67,31 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
 
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la novia</label>
-            <input type="text" value={brideName} onChange={(e) => setBrideName(e.target.value)} placeholder="Ana" className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+            <input type="text" value={brideName} onChange={(e) => setBrideName(e.target.value)} placeholder="Ana" className="w-full text-slate-800 bg-white  rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
         </>
       ) : (
         <div>
           <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la quinceañera</label>
-          <input type="text" value={quinceaneraName} onChange={(e) => setQuinceaneraName(e.target.value)} placeholder="María" className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+          <input type="text" value={quinceaneraName} onChange={(e) => setQuinceaneraName(e.target.value)} placeholder="María" className="w-full text-slate-800 bg-white  rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
         </div>
       )}
 
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Frase</label>
         <textarea value={phrase} onChange={(e) => setPhrase(e.target.value)} rows={3} placeholder="El amor no consiste en mirarse el uno al otro..."
-          className="w-full resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+          className="w-full text-slate-800 bg-white resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Descripción</label>
         <textarea value={description} onChange={(e) =>setDescription(e.target.value)} rows={4} placeholder="Queremos compartir este momento tan especial contigo..."
-          className="w-full resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+          className="w-full text-slate-800 bg-white resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Código de vestimenta</label>
-        <input type="text" value={dressCode} onChange={(e) => setDressCode(e.target.value)} placeholder="Formal" className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+        <input type="text" value={dressCode} onChange={(e) => setDressCode(e.target.value)} placeholder="Formal" className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
       </div>
 
       {error && (

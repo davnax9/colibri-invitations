@@ -119,7 +119,7 @@ export default async function EventEditorPage({ params }: Props) {
 
             {/* APARIENCIA */}
             <EditorSection number="02" icon="🎨" title="Apariencia" description="Elige un diseño o personaliza los colores de tu invitación." >
-              <EventThemeSelector eventId={event.id} currentPreset={event.theme} plan={session.user.plan}/>
+              <EventThemeSelector eventId={event.id} currentPreset={event.theme} plan={event.user.plan}/>
             </EditorSection>
 
             {/* UBICACIONES */}

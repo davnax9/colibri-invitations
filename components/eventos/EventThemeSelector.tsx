@@ -114,15 +114,16 @@ export default function EventThemeSelector({eventId, currentPreset, plan}: Props
 
         {/* PERSONALIZADO */}
         {plan === "PRO" && (
-          <button type="button" onClick={() => { if (!canCustomizeColors) return setSelectedPreset("CUSTOM")}} disabled={loading || !canCustomizeColors} className={`group relative overflow-hidden rounded-2xl border text-left transition ${
-            selectedPreset === "CUSTOM" ? "border-slate-800 ring-2 ring-slate-200" : "border-slate-200" } ${!canCustomizeColors? "cursor-not-allowed opacity-60": "hover:border-slate-400"}`}
+          // <button type="button" onClick={() => { if (!canCustomizeColors) return setSelectedPreset("CUSTOM")}} disabled={loading || !canCustomizeColors} className={`group relative overflow-hidden rounded-2xl border text-left transition ${
+          //   selectedPreset === "CUSTOM" ? "border-slate-800 ring-2 ring-slate-200" : "border-slate-200" } ${!canCustomizeColors? "cursor-not-allowed opacity-60": "hover:border-slate-400"}`}
+          // >
+          <button type="button" onClick={() => {
+              if (loading) return
+              setSelectedPreset("CUSTOM")
+            }}
+            disabled={loading} className={`group relative overflow-hidden rounded-2xl border text-left transition ${selectedPreset === "CUSTOM"? "border-slate-800 ring-2 ring-slate-200" : "border-slate-200 hover:border-slate-400" }`}
           >
             <div className="relative h-36 p-5" style={{background: customColors.backgroundColor}}>
-              {!canCustomizeColors && (
-                <div className="absolute right-3 top-3 z-10 rounded-full bg-slate-800 px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm">
-                  🔒 PRO
-                </div>
-              )}
               <div className="mx-auto flex h-full max-w-45 flex-col items-center justify-center rounded-xl p-4 shadow-sm" style={{backgroundColor: customColors.surfaceColor}}>
                 <div className="h-2 w-16 rounded-full" style={{backgroundColor: customColors.primaryColor}}/>
                 <div className="mt-3 h-1.5 w-24 rounded-full" style={{backgroundColor: customColors.secondaryColor}}/>

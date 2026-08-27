@@ -82,19 +82,19 @@ export default function EventLocationsForm({eventId,locations}: Props) {
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del lugar</label>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Iglesia San José" required
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Dirección</label>
             <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Av. Constitución #123"
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full text-slate-800 bg-white  rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Enlace de Google Maps</label>
             <input type="url" value={mapsUrl} onChange={(e) => setMapsUrl(e.target.value)} placeholder="https://maps.google.com/..."
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
           {error && (

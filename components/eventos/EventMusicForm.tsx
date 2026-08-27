@@ -61,7 +61,7 @@ export default function EventMusicForm({eventId, music}: Props) {
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Video de youtube</label>
         <input type="url" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="https://www.youtube.com/watch?v=..." required
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+          className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
         <p className="mt-2 text-xs text-slate-400">Pega aquí la URL del video de YouTube que deseas utilizar.</p>
       </div>
@@ -70,7 +70,7 @@ export default function EventMusicForm({eventId, music}: Props) {
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la canción</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Perfect"
-            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+            className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
 
@@ -78,7 +78,7 @@ export default function EventMusicForm({eventId, music}: Props) {
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Artista</label>
         <input type="text" value={artist} onChange={(e) => setArtist(e.target.value)} placeholder="Ed Sheeran"
-          className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+          className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
 
