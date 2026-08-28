@@ -22,11 +22,11 @@ type Props = {
 export default function SortablePhoto({photo, onDelete, onSetCover, loading}: Props) {
   const {attributes,listeners,setNodeRef,transform,transition,isDragging} = useSortable({id: photo.id})
 
-  const style = {transform: CSS.Transform.toString(transform),transition}
+  const style = {transform: CSS.Transform.toString(transform), transition, touchAction: "none"}
 
   return (
     <div ref={setNodeRef} style={style} className={`overflow-hidden rounded-xl border bg-white ${isDragging ? "z-10 border-slate-400 shadow-xl" : "border-slate-200"}`}>
-      <div className="relative aspect-square">
+      <div {...attributes} {...listeners} className="relative aspect-square cursor-grab touch-none active:cursor-grabbing">
         <Image src={photo.url} alt={photo.title ?? "Fotografía"} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover"/>
         {photo.isCover && (
           <div className="absolute bottom-2 left-2 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-slate-700 shadow">
@@ -34,11 +34,14 @@ export default function SortablePhoto({photo, onDelete, onSetCover, loading}: Pr
           </div>
         )}
         {/* Área para arrastrar */}
-        <button type="button" {...attributes} {...listeners} className="absolute left-2 top-2 rounded-lg bg-black/60 px-3 py-2 text-sm text-white backdrop-blur-sm hover:bg-black/80"
+        <div className="absolute left-2 top-2 rounded-lg bg-black/60 px-3 py-2 text-sm text-white backdrop-blur-sm">
+          ⋮⋮
+        </div>
+        {/* <button type="button" {...attributes} {...listeners} className="absolute left-2 top-2 rounded-lg bg-black/60 px-3 py-2 text-sm text-white backdrop-blur-sm hover:bg-black/80"
           title="Arrastrar fotografía"
         >
           ⋮⋮
-        </button>
+        </button> */}
       </div>
       <div className="flex items-center justify-between gap-3 p-3">
         <p className="text-xs text-slate-400">Orden: {photo.order + 1}</p>

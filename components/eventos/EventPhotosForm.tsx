@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import {closestCenter,DndContext,DragEndEvent,PointerSensor,useSensor,useSensors} from "@dnd-kit/core"
+import {closestCenter,DndContext,DragEndEvent,PointerSensor,useSensor,useSensors,TouchSensor} from "@dnd-kit/core"
 import {arrayMove,SortableContext,rectSortingStrategy} from "@dnd-kit/sortable"
 import { CldUploadWidget } from "next-cloudinary"
 import {createEventPhoto,deleteEventPhoto,reorderEventPhotos, setEventPhotoCover} from "@/actions/event-actions"
@@ -39,6 +39,12 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 8,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 150,
+        tolerance: 8,
       },
     })
   )
