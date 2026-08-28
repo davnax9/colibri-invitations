@@ -9,6 +9,7 @@ import { v2 as cloudinary } from "cloudinary"
 import { extractYouTubeVideoId } from "@/utils/youtube"
 import { invitationThemePresets } from "@/utils/invitation-themes"
 import { getMaxPhotos } from "@/utils/plan-limits"
+import { GiftData } from "@/utils/types"
 
 export async function createEvent(data: unknown) {
   const session = await requireAuth()
@@ -1580,6 +1581,192 @@ export async function deleteEvent(eventId: string) {
     return {
       success: false,
       error: "No fue posible eliminar el evento.",
+    }
+  }
+}
+
+async function getAuthorizedEvent(eventId: string) {
+  const session = await requireAuth()
+
+  return prisma.event.findFirst({
+    where: {
+      id: eventId,
+      ...(session.user.role === "ADMIN" ? {} : { userId: session.user.id}),
+    },
+    select: {
+      id: true,
+      slug: true,
+    },
+  })
+}
+
+export async function createEventGift(data: GiftData) {
+  try {
+    const event = await getAuthorizedEvent(data.eventId)
+
+    if (!event) {
+      return {
+        success: false as const,
+        error: "Evento no encontrado o no tienes permiso.",
+      }
+    }
+
+    const title = data.title.trim()
+
+    if (!title) {
+      return {
+        success: false as const,
+        error: "El título es obligatorio.",
+      }
+    }
+
+    const lastGift = await prisma.eventGift.findFirst({
+      where: {
+        eventId: data.eventId,
+      },
+      orderBy: {
+        order: "desc",
+      },
+    })
+
+    const gift = await prisma.eventGift.create({
+      data: {
+        eventId: data.eventId,
+        type: data.type,
+        title,
+        description: data.description?.trim() || null,
+        url: data.url?.trim() || null,
+        accountName: data.accountName?.trim() || null,
+        accountNumber: data.accountNumber?.trim() || null,
+        order: lastGift ? lastGift.order + 1 : 0,
+      },
+    })
+
+    revalidatePath(`/dashboard/eventos/${event.id}`)
+    revalidatePath(`/invitacion/${event.slug}`)
+
+    return {
+      success: true as const,
+      gift,
+    }
+  } catch (error) {
+    console.error("Error creando regalo:", error)
+
+    return {
+      success: false as const,
+      error: "No fue posible agregar la opción de regalo.",
+    }
+  }
+}
+
+export async function updateEventGift(data: GiftData & { id: string }) {
+  try {
+    const event = await getAuthorizedEvent(data.eventId)
+
+    if (!event) {
+      return {
+        success: false as const,
+        error: "Evento no encontrado o no tienes permiso.",
+      }
+    }
+
+    const existingGift = await prisma.eventGift.findFirst({
+      where: {
+        id: data.id,
+        eventId: data.eventId,
+      },
+    })
+
+    if (!existingGift) {
+      return {
+        success: false as const,
+        error: "Opción de regalo no encontrada.",
+      }
+    }
+
+    const title = data.title.trim()
+
+    if (!title) {
+      return {
+        success: false as const,
+        error: "El título es obligatorio.",
+      }
+    }
+
+    const gift = await prisma.eventGift.update({
+      where: {
+        id: existingGift.id,
+      },
+      data: {
+        type: data.type,
+        title,
+        description: data.description?.trim() || null,
+        url: data.url?.trim() || null,
+        accountName: data.accountName?.trim() || null,
+        accountNumber: data.accountNumber?.trim() || null,
+      },
+    })
+
+    revalidatePath(`/dashboard/eventos/${event.id}`)
+    revalidatePath(`/invitacion/${event.slug}`)
+
+    return {
+      success: true as const,
+      gift,
+    }
+  } catch (error) {
+    console.error("Error actualizando regalo:", error)
+
+    return {
+      success: false as const,
+      error: "No fue posible actualizar la opción de regalo.",
+    }
+  }
+}
+
+export async function deleteEventGift(data: {id: string, eventId: string}) {
+  try {
+    const event = await getAuthorizedEvent(data.eventId)
+
+    if (!event) {
+      return {
+        success: false as const,
+        error: "Evento no encontrado o no tienes permiso.",
+      }
+    }
+
+    const gift = await prisma.eventGift.findFirst({
+      where: {
+        id: data.id,
+        eventId: data.eventId,
+      },
+    })
+
+    if (!gift) {
+      return {
+        success: false as const,
+        error: "Opción de regalo no encontrada.",
+      }
+    }
+
+    await prisma.eventGift.delete({
+      where: {
+        id: gift.id,
+      },
+    })
+
+    revalidatePath(`/dashboard/eventos/${event.id}`)
+    revalidatePath(`/invitacion/${event.slug}`)
+
+    return {
+      success: true as const,
+    }
+  } catch (error) {
+    console.error("Error eliminando regalo:", error)
+
+    return {
+      success: false as const,
+      error: "No fue posible eliminar la opción de regalo.",
     }
   }
 }

@@ -14,6 +14,7 @@ import InvitationTheme from "./shared/InvitationTheme"
 
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 import WeddingMinimalHero from "./wedding/WeddingMinimalHero"
+import InvitationGifts from "./shared/InvitationGifts"
 
 export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -50,6 +51,8 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
         </section>
 
         <InvitationGallery event={event} />
+
+        <InvitationGifts gifts={event.gifts} />
 
         <WeddingDressCode details={details} />
 

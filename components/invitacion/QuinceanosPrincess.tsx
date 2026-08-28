@@ -12,6 +12,7 @@ import MusicPlayer from "./shared/MusicPlayer"
 import AddToCalendar from "./shared/AddToCalendar"
 import InvitationTheme from "./shared/InvitationTheme"
 import { InvitationTemplateProps } from "@/utils/types/invitation"
+import InvitationGifts from "./shared/InvitationGifts"
 
 export default function QuinceanosPrincess({event,guest}: InvitationTemplateProps) {
 
@@ -213,8 +214,9 @@ export default function QuinceanosPrincess({event,guest}: InvitationTemplateProp
         </section>
 
         {/* FOTOGRAFÍAS */}
-
         <InvitationGallery event={event} />
+
+        <InvitationGifts gifts={event.gifts} />
 
         {/* VESTIMENTA */}
 

@@ -13,6 +13,7 @@ import InvitationTheme from "./shared/InvitationTheme"
 
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 import QuinceanosElegantHero from "./quinceanos/QuinceanosElegantHero"
+import InvitationGifts from "./shared/InvitationGifts"
 
 export default function QuinceanosElegant({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -45,6 +46,8 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
         </section>
 
         <InvitationGallery event={event} />
+
+        <InvitationGifts gifts={event.gifts} />
 
         <QuinceanosDressCode details={details} />
 

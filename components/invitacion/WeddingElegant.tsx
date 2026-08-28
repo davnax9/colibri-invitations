@@ -13,70 +13,72 @@ import InvitationTheme from "./shared/InvitationTheme"
 import { EventTheme } from "@/app/generated/prisma/client"
 import WeddingElegantHero from "./wedding/WeddingElegantHero"
 import WeddingElegantEvents from "./wedding/WeddingElegantEvents"
+import InvitationGifts from "./shared/InvitationGifts"
+import { InvitationTemplateProps } from "@/utils/types/invitation"
 
-type Props = {
-  event: {
-    name: string
-    slug: string
-    eventDate: Date
-    theme: any
+// type Props = {
+//   event: {
+//     name: string
+//     slug: string
+//     eventDate: Date
+//     theme: any
 
-    details: {
-      title: string | null
-      subtitle: string | null
-      description: string | null
-      phrase: string | null
-      groomName: string | null
-      brideName: string | null
-      quinceaneraName: string | null
-      dressCode: string | null
-    } | null
+//     details: {
+//       title: string | null
+//       subtitle: string | null
+//       description: string | null
+//       phrase: string | null
+//       groomName: string | null
+//       brideName: string | null
+//       quinceaneraName: string | null
+//       dressCode: string | null
+//     } | null
 
-    locations: {
-      id: string
-      name: string
-      address: string | null
-      mapsUrl: string | null
-    }[]
+//     locations: {
+//       id: string
+//       name: string
+//       address: string | null
+//       mapsUrl: string | null
+//     }[]
 
-    schedules: {
-      id: string
-      title: string
-      date: Date
-      time: string | null
-      description: string | null
-      location: {
-        name: string
-      } | null
-    }[]
+//     schedules: {
+//       id: string
+//       title: string
+//       date: Date
+//       time: string | null
+//       description: string | null
+//       location: {
+//         name: string
+//       } | null
+//     }[]
 
-    photos: {
-      id: string
-      url: string
-      title: string | null
-      isCover: boolean
-    }[]
+//     photos: {
+//       id: string
+//       url: string
+//       title: string | null
+//       isCover: boolean
+//     }[]
 
-    music: {
-      url: string
-      title: string | null
-      artist: string | null
-      autoplay: boolean
-    } | null
-  }
+//     music: {
+//       url: string
+//       title: string | null
+//       artist: string | null
+//       autoplay: boolean
+//     } | null
+//   }
 
-  guest?: GuestInfo
-}
+//   guest?: GuestInfo
+// }
 
-type GuestInfo = {
-  name: string
-  passes: number
-  confirmedPasses: number | null
-  status: "PENDING" | "CONFIRMED" | "DECLINED"
-  token: string
-}
+// type GuestInfo = {
+//   name: string
+//   passes: number
+//   confirmedPasses: number | null
+//   status: "PENDING" | "CONFIRMED" | "DECLINED"
+//   token: string
+// }
 
-export default function WeddingElegant({event, guest}: Props) {
+export default function WeddingElegant({event, guest}: InvitationTemplateProps) {
     const details = event.details
   
     const brideName = details?.brideName ?? ""
@@ -123,6 +125,8 @@ export default function WeddingElegant({event, guest}: Props) {
 
                 {/* FOTOGRAFÍAS */}
                 <InvitationGallery event={event} />
+
+                <InvitationGifts gifts={event.gifts} />
 
                 {/* VESTIMENTA */}
                 <WeddingDressCode details={details} />

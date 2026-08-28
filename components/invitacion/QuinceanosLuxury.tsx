@@ -17,6 +17,7 @@ import QuinceanosLuxuryHero from "./quinceanos/QuinceanosLuxuryHero"
 import InvitationLuxurySchedule from "./shared/InvitationLuxurySchedule"
 import InvitationLuxuryLocations from "./shared/InvitationLuxuryLocations"
 import InvitationLuxuryGallery from "./shared/InvitationLuxuryGallery"
+import InvitationGifts from "./shared/InvitationGifts"
 
 export default function QuinceanosLuxury({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -61,6 +62,8 @@ export default function QuinceanosLuxury({event,guest}: InvitationTemplateProps)
 
         {/* <InvitationGallery event={event} /> */}
         <InvitationLuxuryGallery photos={event.photos} />
+
+        <InvitationGifts gifts={event.gifts} />
 
         <QuinceanosDressCode details={details} />
 

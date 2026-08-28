@@ -10,6 +10,7 @@ import Link from "next/link"
 import EventThemeSelector from "@/components/eventos/EventThemeSelector"
 import EventInvitationPreview from "@/components/dashboard/EventInvitationPreview"
 import LogoutButton from "@/components/dashboard/LogoutButton"
+import EventGiftsForm from "@/components/eventos/EventGiftsForm"
 
 type Props = {
   params: Promise<{ id: string }>
@@ -48,6 +49,11 @@ export default async function EventEditorPage({ params }: Props) {
           plan: true,
         },
       },
+      gifts: {
+        orderBy: {
+          order: "asc",
+        },
+      }
     },
   })
 
@@ -140,6 +146,10 @@ export default async function EventEditorPage({ params }: Props) {
             {/* MÚSICA */}
             <EditorSection number="06" icon="♫" title="Música" description="Agrega una canción para acompañar este momento especial." >
               <EventMusicForm eventId={event.id} music={event.music} />
+            </EditorSection>
+
+            <EditorSection number="07" icon="🎁" title="Mesa de regalos" description="Agrega las opciones de regalo que tus invitados podrán consultar.">
+              <EventGiftsForm eventId={event.id} gifts={event.gifts}/>
             </EditorSection>
           </section>
 

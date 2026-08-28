@@ -16,6 +16,7 @@ import { InvitationTemplateProps } from "@/utils/types/invitation"
 import WeddingLuxuryHero from "./wedding/WeddingLuxuryHero"
 import WeddingLuxuryCelebration from "./wedding/WeddingLuxuryCelebration"
 import WeddingLuxuryGallery from "./wedding/WeddingLuxuryGallery"
+import InvitationGifts from "./shared/InvitationGifts"
 
 export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -64,6 +65,8 @@ export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
         {/* <InvitationGallery event={event} /> */}
         {/* GALERÍA LUXURY */} 
         <WeddingLuxuryGallery photos={event.photos} />
+
+        <InvitationGifts gifts={event.gifts} />
 
         <WeddingDressCode details={details} />
 

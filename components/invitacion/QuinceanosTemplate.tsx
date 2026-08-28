@@ -22,7 +22,6 @@ export default function QuinceanosTemplate({event,guest}: InvitationTemplateProp
     //Caso para fiesta de Angel David
     case "principito":
       return <Principito event={event} guest={guest} />
-
     default:
       return <QuinceanosElegant event={event} guest={guest} />
   }

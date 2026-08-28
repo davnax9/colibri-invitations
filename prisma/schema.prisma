@@ -84,6 +84,7 @@ model Event {
   guests EventGuest[]
   message EventMessage?
   theme EventTheme?
+  gifts EventGift[]
 
   @@index([userId])
   @@index([templateId])
@@ -238,4 +239,34 @@ model EventTheme {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum GiftType {
+  ENVELOPE
+  PHYSICAL_GIFT
+  GIFT_TABLE
+  BANK_TRANSFER
+  CUSTOM
+}
+
+model EventGift {
+  id            String   @id @default(cuid())
+  eventId       String
+
+  type          GiftType
+  title         String
+  description   String?
+  url           String?
+
+  accountName   String?
+  accountNumber String?
+
+  order         Int      @default(0)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  event Event @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([eventId])
 }

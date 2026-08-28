@@ -36,6 +36,11 @@ export default async function InvitationPage({ params }: Props) {
         },
       },
       music: true,
+      gifts: {
+        orderBy: {
+          order: "asc",
+        },
+      },
     },
   })
 

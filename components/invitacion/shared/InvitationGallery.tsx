@@ -1,4 +1,11 @@
+"use client"
+
 import Image from "next/image"
+import { useRef, useState } from "react"
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/outline"
 
 type InvitationGalleryProps = {
   event: {
@@ -29,7 +36,6 @@ type InvitationGalleryProps = {
       date: Date
       time: string | null
       description: string | null
-
       location: {
         name: string
       } | null
@@ -51,38 +57,227 @@ type InvitationGalleryProps = {
   }
 }
 
-export default function InvitationGallery({event}: InvitationGalleryProps) {
-  if (event.photos.length === 0) return null
+export default function InvitationGallery({
+  event,
+}: InvitationGalleryProps) {
+
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  if (event.photos.length === 0) {
+    return null
+  }
+
+  function scrollToPhoto(index: number) {
+    const container = containerRef.current
+
+    if (!container) return
+
+    const photoWidth = container.clientWidth
+
+    container.scrollTo({
+      left: photoWidth * index,
+      behavior: "smooth",
+    })
+
+    setCurrentIndex(index)
+  }
+
+  function handleScroll() {
+    const container = containerRef.current
+
+    if (!container) return
+
+    const index = Math.round(
+      container.scrollLeft / container.clientWidth
+    )
+
+    setCurrentIndex(index)
+  }
+
+  function previousPhoto() {
+    const newIndex =
+      currentIndex === 0
+        ? event.photos.length - 1
+        : currentIndex - 1
+
+    scrollToPhoto(newIndex)
+  }
+
+  function nextPhoto() {
+    const newIndex =
+      currentIndex === event.photos.length - 1
+        ? 0
+        : currentIndex + 1
+
+    scrollToPhoto(newIndex)
+  }
 
   return (
-    <section className="px-6 py-24" style={{backgroundColor: "var(--theme-background)"}}>
-      <div className="mx-auto max-w-6xl">
+    <section
+      className="px-6 py-24"
+      style={{
+        backgroundColor: "var(--theme-background)",
+      }}
+    >
+      <div className="mx-auto max-w-5xl">
 
         {/* ENCABEZADO */}
+
         <div className="text-center">
-          <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Nuestros momentos</p>
-          <h2 className="mt-4 text-4xl font-serif md:text-5xl" style={{color: "var(--theme-primary)"}}>Recuerdos</h2>
-          <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
+
+          <p
+            className="text-sm uppercase tracking-[0.3em]"
+            style={{
+              color: "var(--theme-secondary)",
+            }}
+          >
+            Nuestros momentos
+          </p>
+
+          <h2
+            className="mt-4 font-serif text-4xl md:text-5xl"
+            style={{
+              color: "var(--theme-primary)",
+            }}
+          >
+            Recuerdos
+          </h2>
+
+          <div
+            className="mx-auto mt-6 h-px w-16"
+            style={{
+              backgroundColor: "var(--theme-accent)",
+            }}
+          />
+
         </div>
 
-        {/* GALERÍA */}
-        <div className="mt-14 columns-1 gap-5 sm:columns-2 lg:columns-3">
-          {event.photos.map((photo) => (
-            <div key={photo.id} className="group relative mb-5 overflow-hidden rounded-2xl border shadow-sm break-inside-avoid" style={{borderColor: "var(--theme-accent)", backgroundColor: "var(--theme-surface)"}}>
-              <Image src={photo.url} alt={photo.title ??"Fotografía de la celebración"} width={1200} height={1600} className="h-auto w-full object-cover transition duration-700 group-hover:scale-105"/>
+        {/* CARRUSEL */}
 
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-black/0 transition duration-500 group-hover:bg-black/35" />
+        <div className="relative mt-14">
 
-              {/* TÍTULO */}
-              {photo.title && (
-                <div className="absolute inset-x-0 bottom-0 translate-y-full px-5 py-4 text-center transition duration-500 group-hover:translate-y-0">
-                  <p className="text-sm font-medium text-white drop-shadow">{photo.title}</p>
+          {/* BOTÓN ANTERIOR */}
+
+          {event.photos.length > 1 && (
+            <button
+              type="button"
+              onClick={previousPhoto}
+              aria-label="Fotografía anterior"
+              className="absolute left-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur transition hover:scale-105 md:flex"
+              style={{
+                color: "var(--theme-primary)",
+              }}
+            >
+              <ChevronLeftIcon className="h-6 w-6" />
+            </button>
+          )}
+
+          {/* FOTOGRAFÍAS */}
+
+          <div
+            ref={containerRef}
+            onScroll={handleScroll}
+            className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide"
+          >
+            {event.photos.map((photo) => (
+              <div
+                key={photo.id}
+                className="w-full shrink-0 snap-center px-2"
+              >
+                <div
+                  className="relative mx-auto aspect-4/5 max-w-2xl overflow-hidden rounded-3xl border shadow-xl"
+                  style={{
+                    borderColor: "var(--theme-accent)",
+                    backgroundColor: "var(--theme-surface)",
+                  }}
+                >
+
+                  <Image
+                    src={photo.url}
+                    alt={
+                      photo.title ??
+                      "Fotografía de la celebración"
+                    }
+                    fill
+                    sizes="(max-width: 768px) 90vw, 700px"
+                    className="object-cover transition duration-700"
+                  />
+
+                  {/* OVERLAY */}
+
+                  {photo.title && (
+                    <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 via-black/20 to-transparent px-6 pb-6 pt-20">
+                      <p className="text-center text-sm font-medium text-white drop-shadow">
+                        {photo.title}
+                      </p>
+                    </div>
+                  )}
+
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
+
+          {/* BOTÓN SIGUIENTE */}
+
+          {event.photos.length > 1 && (
+            <button
+              type="button"
+              onClick={nextPhoto}
+              aria-label="Siguiente fotografía"
+              className="absolute right-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur transition hover:scale-105 md:flex"
+              style={{
+                color: "var(--theme-primary)",
+              }}
+            >
+              <ChevronRightIcon className="h-6 w-6" />
+            </button>
+          )}
+
         </div>
+
+        {/* INDICADORES */}
+
+        {event.photos.length > 1 && (
+          <div className="mt-7 flex justify-center gap-2">
+            {event.photos.map((photo, index) => (
+              <button
+                key={photo.id}
+                type="button"
+                onClick={() => scrollToPhoto(index)}
+                aria-label={`Ir a fotografía ${index + 1}`}
+                className="h-2.5 rounded-full transition-all duration-300"
+                style={{
+                  width:
+                    index === currentIndex
+                      ? "2rem"
+                      : "0.625rem",
+
+                  backgroundColor:
+                    index === currentIndex
+                      ? "var(--theme-primary)"
+                      : "var(--theme-accent)",
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* INDICACIÓN PARA CELULAR */}
+
+        {event.photos.length > 1 && (
+          <p
+            className="mt-4 text-center text-xs opacity-50 md:hidden"
+            style={{
+              color: "var(--theme-text)",
+            }}
+          >
+            Desliza para ver más fotografías
+          </p>
+        )}
+
       </div>
     </section>
   )

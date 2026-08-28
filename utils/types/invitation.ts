@@ -1,3 +1,4 @@
+import { GiftType } from "@/app/generated/prisma/enums"
 
 export type EventTheme = {
   preset: string
@@ -71,6 +72,17 @@ export type InvitationEvent = {
     artist: string | null
     autoplay: boolean
   } | null
+
+  gifts: {
+    id: string
+    type: GiftType
+    title: string | null
+    description: string | null
+    url: string | null
+    accountName: string | null
+    accountNumber: string | null
+    order: number
+  }[]
 }
 
 export type InvitationTemplateProps = {

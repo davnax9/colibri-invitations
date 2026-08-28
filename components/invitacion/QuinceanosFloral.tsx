@@ -12,6 +12,7 @@ import AddToCalendar from "./shared/AddToCalendar"
 import InvitationTheme from "./shared/InvitationTheme"
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 import QuinceanosFloralHero from "./quinceanos/QuinceanosFloralHero"
+import InvitationGifts from "./shared/InvitationGifts"
 
 export default function QuinceanosFloral({ event, guest }: InvitationTemplateProps) {
   const details = event.details
@@ -106,6 +107,8 @@ export default function QuinceanosFloral({ event, guest }: InvitationTemplatePro
             </div>
           </div>
         </section>
+
+        <InvitationGifts gifts={event.gifts} />
 
         {/* VESTIMENTA */}
         <QuinceanosDressCode details={details} />
