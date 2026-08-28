@@ -87,7 +87,7 @@ export default function CreateEventModal({ templates }: Props) {
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del evento</label>
                 <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Ana & Carlos" required
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 />
               </div>
 
@@ -103,7 +103,7 @@ export default function CreateEventModal({ templates }: Props) {
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Fecha del evento</label>
-                <input type="date" value={eventDate} onChange={(event) => setEventDate(event.target.value)} required className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+                <input type="date" value={eventDate} onChange={(event) => setEventDate(event.target.value)} required className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
               </div>
 
               <div>

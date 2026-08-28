@@ -6,14 +6,16 @@ import { invitationThemePresets } from "@/utils/invitation-themes"
 import { updateEventTheme, updateEventThemeColors} from "@/actions/event-actions"
 import { useRouter } from "next/navigation"
 import { EventTheme } from "@/utils/types/invitation"
+import { StarIcon } from "@heroicons/react/24/solid"
 
 type Props = {
   eventId: string
   currentPreset: EventTheme | null
   plan: "BASIC" | "PRO"
+  isAdmin: boolean
 }
 
-export default function EventThemeSelector({eventId, currentPreset, plan}: Props) {
+export default function EventThemeSelector({eventId, currentPreset, plan, isAdmin}: Props) {
   const router = useRouter()
   const [selectedPreset, setSelectedPreset] = useState(currentPreset?.preset ?? "ELEGANT")
   const [loading, setLoading] = useState(false)
@@ -113,7 +115,7 @@ export default function EventThemeSelector({eventId, currentPreset, plan}: Props
         )}
 
         {/* PERSONALIZADO */}
-        {plan === "PRO" && (
+        {plan === "PRO" || isAdmin && (
           // <button type="button" onClick={() => { if (!canCustomizeColors) return setSelectedPreset("CUSTOM")}} disabled={loading || !canCustomizeColors} className={`group relative overflow-hidden rounded-2xl border text-left transition ${
           //   selectedPreset === "CUSTOM" ? "border-slate-800 ring-2 ring-slate-200" : "border-slate-200" } ${!canCustomizeColors? "cursor-not-allowed opacity-60": "hover:border-slate-400"}`}
           // >
@@ -136,13 +138,15 @@ export default function EventThemeSelector({eventId, currentPreset, plan}: Props
                 {selectedPreset === "CUSTOM" && (<span className="text-sm font-medium text-green-600">✓ Seleccionado</span>)}
               </div>
               <p className="mt-1 text-xs leading-5 text-slate-500">Elige los colores de tu invitación.</p>
-              <span className="mt-2 inline-block text-xs font-semibold text-amber-600">Plan PRO</span>
+              <span className="mt-2 inline-block text-xs font-semibold text-amber-600"><StarIcon width={15} height={15}/></span>
+              <span className="mt-2 inline-block text-xs font-semibold text-amber-600"><StarIcon width={15} height={15}/></span>
+              <span className="mt-2 inline-block text-xs font-semibold text-amber-600"><StarIcon width={15} height={15}/></span>
             </div>
           </button>
         )}
 
         {/* BLOQUEO BASIC */}
-        {plan === "BASIC" && (
+        {plan === "BASIC" || !isAdmin && (
           <div className="overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-slate-50">
             <div className="flex h-36 items-center justify-center">
               <div className="text-center">

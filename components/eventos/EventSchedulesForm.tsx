@@ -1,7 +1,10 @@
 "use client"
 
-import { FormEvent, useState } from "react"
-import { createEventSchedule } from "@/actions/event-actions"
+import { FormEvent, useState, useRef } from "react"
+import { createEventSchedule, deleteEventSchedule, updateEventSchedule } from "@/actions/event-actions"
+import { useRouter } from "next/navigation"
+import { toast } from "react-toastify"
+import { MapPinIcon, PencilIcon, TrashIcon} from "@heroicons/react/24/outline"
 
 type Location = {
   id: string
@@ -25,7 +28,9 @@ type Props = {
   schedules: Schedule[]
 }
 
-export default function EventSchedulesForm({eventId,eventDate,locations, schedules}: Props) {
+export default function EventSchedulesForm({eventId, eventDate, locations, schedules}: Props) {
+  const router = useRouter()
+  
   const [title, setTitle] = useState("")
   const [date, setDate] = useState(eventDate.toISOString().split("T")[0])
   const [time, setTime] = useState("")
@@ -36,6 +41,26 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
 
+  const [editingScheduleId, setEditingScheduleId] = useState<string | null>(null)
+
+  const formRef = useRef<HTMLFormElement>(null)
+
+  function handleEdit(schedule: Schedule) {
+    setEditingScheduleId(schedule.id)
+
+    setTitle(schedule.title)
+    setDate(schedule.date.toISOString().split("T")[0])
+    setTime(schedule.time ?? "")
+    setDescription(schedule.description ?? "")
+    setLocationId(schedule.locationId ?? "")
+
+    setError("")
+    setMessage("")
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({behavior: "smooth", block: "center"})
+    }, 100)
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -43,17 +68,21 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
     setError("")
     setMessage("")
 
-    const result = await createEventSchedule({
-      eventId,
-      title,
-      date,
-      time,
-      description,
-      locationId,
-    })
+    // const result = await createEventSchedule({
+    //   eventId,
+    //   title,
+    //   date,
+    //   time,
+    //   description,
+    //   locationId,
+    // })
+    const result = editingScheduleId ? 
+      await updateEventSchedule({id: editingScheduleId, eventId, title, date, time, description,locationId}): 
+      await createEventSchedule({eventId, title, date, time, description,locationId})
 
     if (!result.success) {
       setError(result.error)
+      toast.error(result.error)
       setLoading(false)
       return
     }
@@ -62,9 +91,44 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
     setTime("")
     setDescription("")
     setLocationId("")
+    setEditingScheduleId(null)
 
-    setMessage("Horario agregado correctamente")
+    toast.success(editingScheduleId ? "Horario actualizado correctamente": "Horario agregado correctamente")
     setLoading(false)
+    router.refresh()
+  }
+
+  async function handleDelete(scheduleId: string) {
+    if (loading) return
+
+    const confirmed = window.confirm("¿Estás seguro de eliminar este horario?")
+
+    if (!confirmed) return
+
+    setLoading(true)
+    setError("")
+    setMessage("")
+
+    const result = await deleteEventSchedule({id: scheduleId, eventId})
+
+    if (!result.success) {
+      setError(result.error)
+      toast.error(result.error)
+      setLoading(false)
+      return
+    }
+
+    if (editingScheduleId === scheduleId) {
+      setEditingScheduleId(null)
+      setTitle("")
+      setTime("")
+      setDescription("")
+      setLocationId("")
+    }
+
+    toast.success("Horario eliminado correctamente")
+    setLoading(false)
+    router.refresh()
   }
 
   return (
@@ -81,6 +145,10 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
                   {schedule.location && (<p className="mt-1 text-sm text-slate-500">📍 {schedule.location.name}</p>)}
                   {schedule.description && (<p className="mt-2 text-sm text-slate-500">{schedule.description}</p>)}
                 </div>
+                <div className="flex shrink-0 items-center gap-2">
+                  <button type="button" onClick={() => handleEdit(schedule)} aria-label="Editar horario" className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"><PencilIcon className="h-5 w-5" /></button>
+                  <button type="button" onClick={() => handleDelete(schedule.id)} aria-label="Eliminar horario" className="flex h-9 w-9 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50 hover:text-red-700"><TrashIcon className="h-5 w-5" /></button>
+                </div>
               </div>
             </div>
           ))}
@@ -88,8 +156,8 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
       )}
 
       {/* Nuevo horario */}
-      <form onSubmit={handleSubmit} className="rounded-lg border border-dashed border-slate-300 p-5">
-        <h3 className="font-medium text-slate-800">Agregar horario</h3>
+      <form ref={formRef} onSubmit={handleSubmit} className="rounded-lg border border-dashed border-slate-300 p-5">
+        <h3 className="font-medium text-slate-800">{editingScheduleId ? "Editar horario" : "Agregar horario"}</h3>
         <div className="mt-4 space-y-4">
           {/* Título */}
           <div>
@@ -144,7 +212,7 @@ export default function EventSchedulesForm({eventId,eventDate,locations, schedul
 
           <div className="flex justify-end">
             <button type="submit" disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">
-              {loading ? "Agregando..." : "Agregar horario"}
+              {loading ? "Guardando..." : editingScheduleId ? "Guardar cambios": "Agregar Horario"}
             </button>
           </div>
 

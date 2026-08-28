@@ -7,6 +7,7 @@ import { CldUploadWidget } from "next-cloudinary"
 import {createEventPhoto,deleteEventPhoto,reorderEventPhotos, setEventPhotoCover} from "@/actions/event-actions"
 import SortablePhoto from "./SortablePhoto"
 import { getMaxPhotos } from "@/utils/plan-limits"
+import { StarIcon } from "@heroicons/react/24/solid"
 
 type Photo = {
   id: string
@@ -21,15 +22,16 @@ type Props = {
   eventId: string
   photos: Photo[]
   plan: "BASIC" | "PRO"
+  isAdmin: boolean
 }
 
-export default function EventPhotosForm({eventId, photos, plan}: Props) {
+export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props) {
   const [items, setItems] = useState([...photos].sort((a, b) => a.order - b.order))
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
 
-  const maxPhotos = getMaxPhotos(plan)
+  const maxPhotos = isAdmin ? 8 : getMaxPhotos(plan)
   const remainingPhotos = Math.max(maxPhotos - items.length, 0)
   const limitReached = items.length >= maxPhotos
 
@@ -188,7 +190,8 @@ export default function EventPhotosForm({eventId, photos, plan}: Props) {
           </div>
           {/* PLAN */}
           <div className={`rounded-xl border px-4 py-3 ${plan === "PRO" ? "border-[#C9A86A]/30 bg-[#C9A86A]/10": "border-[#E5E9E5] bg-[#F7F8F6]"}`}>
-            <p className="text-xs font-medium text-[#687A72]">Plan {plan}</p>
+            {isAdmin ? <p className="flex items-center gap-1 text-xs font-medium text-[#687A72]"><span>Admin</span><span className="flex items-center">{[1, 2, 3].map((star) => (<StarIcon key={star} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400"/>))}</span></p> 
+              : <p className="text-xs font-medium text-[#687A72]">Plan {plan}</p>}
             <p className="mt-1 text-sm font-bold text-[#263832]">{items.length} / {maxPhotos} fotografías</p>
           </div>
         </div>

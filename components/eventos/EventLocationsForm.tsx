@@ -1,7 +1,10 @@
 "use client"
 
-import { FormEvent, useState } from "react"
-import { createEventLocation } from "@/actions/event-actions"
+import { FormEvent, useState, useRef } from "react"
+import { createEventLocation, deleteEventLocation, updateEventLocation } from "@/actions/event-actions"
+import { useRouter } from "next/navigation"
+import { toast } from "react-toastify"
+import { MapPinIcon, PencilIcon, TrashIcon} from "@heroicons/react/24/outline"
 
 type Location = {
   id: string
@@ -16,6 +19,8 @@ type Props = {
 }
 
 export default function EventLocationsForm({eventId,locations}: Props) {
+  const router = useRouter()
+
   const [name, setName] = useState("")
   const [address, setAddress] = useState("")
   const [mapsUrl, setMapsUrl] = useState("")
@@ -24,6 +29,24 @@ export default function EventLocationsForm({eventId,locations}: Props) {
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
 
+  const [editingLocationId, setEditingLocationId] = useState<string | null>(null)
+
+  const formRef = useRef<HTMLFormElement>(null)
+
+  function handleEdit(location: Location) {
+    setEditingLocationId(location.id)
+
+    setName(location.name)
+    setAddress(location.address ?? "")
+    setMapsUrl(location.mapsUrl ?? "")
+
+    setError("")
+    setMessage("")
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({behavior: "smooth", block: "center"})
+    }, 100)
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -31,15 +54,17 @@ export default function EventLocationsForm({eventId,locations}: Props) {
     setError("")
     setMessage("")
 
-    const result = await createEventLocation({
-      eventId,
-      name,
-      address,
-      mapsUrl,
-    })
+    // const result = await createEventLocation({
+    //   eventId,
+    //   name,
+    //   address,
+    //   mapsUrl,
+    // })
+    const result = editingLocationId ? await updateEventLocation({id: editingLocationId, eventId, name, address, mapsUrl}): await createEventLocation({eventId, name, address, mapsUrl})
 
     if (!result.success) {
       setError(result.error)
+      toast.error(result.error)
       setLoading(false)
       return
     }
@@ -47,9 +72,45 @@ export default function EventLocationsForm({eventId,locations}: Props) {
     setName("")
     setAddress("")
     setMapsUrl("")
+    setEditingLocationId(null)
 
-    setMessage("Ubicación agregada correctamente")
+    // setMessage(editingLocationId ? "Ubicación actualizada correctamente": "Ubicación agregada correctamente")
+    toast.success(editingLocationId ? "Ubicación actualizada correctamente": "Ubicación agregada correctamente")
     setLoading(false)
+    router.refresh()
+  }
+
+  async function handleDelete(locationId: string) {
+    if (loading) return
+
+    const confirmed = window.confirm("¿Estás seguro de eliminar esta ubicación?")
+
+    if (!confirmed) return
+
+    setLoading(true)
+    setError("")
+    setMessage("")
+
+    const result = await deleteEventLocation({id: locationId, eventId})
+
+    if (!result.success) {
+      setError(result.error)
+      toast.error(result.error)
+      setLoading(false)
+      return
+    }
+
+    if (editingLocationId === locationId) {
+      setEditingLocationId(null)
+      setName("")
+      setAddress("")
+      setMapsUrl("")
+    }
+
+    // setMessage("Ubicación eliminada correctamente")
+    toast.success("Ubicación eliminada correctamente")
+    setLoading(false)
+    router.refresh()
   }
 
   return (
@@ -60,15 +121,17 @@ export default function EventLocationsForm({eventId,locations}: Props) {
           {locations.map((location) => (
             <div key={location.id} className="rounded-lg border border-slate-200 p-4">
               <div className="flex items-start justify-between gap-4">
-                <div>
+                <div className="min-w-0">
                   <p className="font-medium text-slate-800">{location.name}</p>
                   {location.address && (<p className="mt-1 text-sm text-slate-500">{location.address}</p>)}
                 </div>
-                {location.mapsUrl && (
-                  <a href={location.mapsUrl} target="_blank" rel="noopener noreferrer" className="shrink-0 text-sm font-medium text-blue-600 hover:text-blue-700">
-                    Ver mapa
-                  </a>
-                )}
+                <div className="flex shrink-0 items-center gap-2">
+                  {location.mapsUrl && (
+                    <a href={location.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50"><MapPinIcon className="h-5 w-5"/></a>
+                  )}
+                  <button type="button" onClick={() => handleEdit(location)} aria-label="Editar ubicación" className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"><PencilIcon className="h-5 w-5" /></button>
+                  <button type="button" onClick={() => handleDelete(location.id)} aria-label="Eliminar ubicación" className="flex h-9 w-9 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50 hover:text-red-700"><TrashIcon className="h-5 w-5" /></button>
+                </div>
               </div>
             </div>
           ))}
@@ -76,8 +139,8 @@ export default function EventLocationsForm({eventId,locations}: Props) {
       )}
 
       {/* Nueva ubicación */}
-      <form onSubmit={handleSubmit} className="rounded-lg border border-dashed border-slate-300 p-5">
-        <h3 className="font-medium text-slate-800">Agregar ubicación</h3>
+      <form ref={formRef} onSubmit={handleSubmit} className="rounded-lg border border-dashed border-slate-300 p-5">
+        <h3 className="font-medium text-slate-800">{editingLocationId ? "Editar ubicación" : "Agregar ubicación"}</h3>
         <div className="mt-4 space-y-4">
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del lugar</label>
@@ -110,7 +173,7 @@ export default function EventLocationsForm({eventId,locations}: Props) {
           )}
           <div className="flex justify-end">
             <button type="submit" disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">
-              {loading ? "Agregando..." : "Agregar ubicación"}
+              {loading ? "Guardando..." : editingLocationId ? "Guardar cambios": "Agregar ubicación"}
             </button>
           </div>
         </div>

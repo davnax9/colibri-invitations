@@ -17,7 +17,6 @@ type Props = {
 
 export default async function EventEditorPage({ params }: Props) {
   const session = await requireAuth()
-
   const { id } = await params
 
   const event = await prisma.event.findFirst({
@@ -55,6 +54,7 @@ export default async function EventEditorPage({ params }: Props) {
   if (!event) notFound()
 
   const isWedding = event.type === "WEDDING"
+  const isAdmin = session.user.role === "ADMIN"
 
   return (
     <main className="min-h-screen bg-[#FAF8F3]">
@@ -119,7 +119,7 @@ export default async function EventEditorPage({ params }: Props) {
 
             {/* APARIENCIA */}
             <EditorSection number="02" icon="🎨" title="Apariencia" description="Elige un diseño o personaliza los colores de tu invitación." >
-              <EventThemeSelector eventId={event.id} currentPreset={event.theme} plan={event.user.plan}/>
+              <EventThemeSelector eventId={event.id} currentPreset={event.theme} plan={event.user.plan} isAdmin={isAdmin}/>
             </EditorSection>
 
             {/* UBICACIONES */}
@@ -134,7 +134,7 @@ export default async function EventEditorPage({ params }: Props) {
 
             {/* FOTOGRAFÍAS */}
             <EditorSection number="05" icon="📷" title="Fotografías" description="Selecciona las fotografías que formarán parte de tu invitación.">
-              <EventPhotosForm eventId={event.id} photos={event.photos} plan={event.user.plan}/>
+              <EventPhotosForm eventId={event.id} photos={event.photos} plan={event.user.plan} isAdmin={isAdmin}/>
             </EditorSection>
 
             {/* MÚSICA */}

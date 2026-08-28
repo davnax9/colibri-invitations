@@ -1,6 +1,5 @@
 import CreateEventModal from "@/components/dashboard/CreateEventModal"
 import DeleteEventButton from "@/components/dashboard/DeleteEventButton"
-import LogoutButton from "@/components/dashboard/LogoutButton"
 import { requireAuth } from "@/utils/auth"
 import { prisma } from "@/utils/prisma"
 

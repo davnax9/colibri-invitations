@@ -4,6 +4,7 @@ import QuinceanosModern from "./QuinceanosModern"
 import QuinceanosLuxury from "./QuinceanosLuxury"
 import QuinceanosFloral from "./QuinceanosFloral"
 import QuinceanosPrincess from "./QuinceanosPrincess"
+import Principito from "./Principito"
 
 export default function QuinceanosTemplate({event,guest}: InvitationTemplateProps) {
 
@@ -18,6 +19,10 @@ export default function QuinceanosTemplate({event,guest}: InvitationTemplateProp
       return <QuinceanosLuxury event={event} guest={guest} />
     case "quince-floral":
       return <QuinceanosFloral event={event} guest={guest} />
+    //Caso para fiesta de Angel David
+    case "principito":
+      return <Principito event={event} guest={guest} />
+
     default:
       return <QuinceanosElegant event={event} guest={guest} />
   }

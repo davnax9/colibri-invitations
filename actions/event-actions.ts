@@ -226,6 +226,112 @@ export async function createEventLocation(data: {
   }
 }
 
+export async function updateEventLocation(data: {
+  id: string
+  eventId: string
+  name: string
+  address?: string
+  mapsUrl?: string
+}) {
+  const session = await requireAuth()
+
+  const location = await prisma.eventLocation.findFirst({
+    where: {
+      id: data.id,
+      eventId: data.eventId,
+      event: {
+        userId: session.user.id,
+      },
+    },
+    include: {
+      event: {
+        select: {
+          slug: true,
+        },
+      },
+    },
+  })
+
+  if (!location) {
+    return {
+      success: false as const,
+      error: "Ubicación no encontrada.",
+    }
+  }
+
+  const name = data.name.trim()
+
+  if (!name) {
+    return {
+      success: false as const,
+      error: "El nombre del lugar es obligatorio.",
+    }
+  }
+
+  const updatedLocation = await prisma.eventLocation.update({
+    where: {
+      id: location.id,
+    },
+    data: {
+      name,
+      address: data.address?.trim() || null,
+      mapsUrl: data.mapsUrl?.trim() || null,
+    },
+  })
+
+  revalidatePath(`/dashboard/eventos/${data.eventId}`)
+  revalidatePath(`/invitacion/${location.event.slug}`)
+
+  return {
+    success: true as const,
+    location: updatedLocation,
+  }
+}
+
+export async function deleteEventLocation(data: {
+  id: string
+  eventId: string
+}) {
+  const session = await requireAuth()
+
+  const location = await prisma.eventLocation.findFirst({
+    where: {
+      id: data.id,
+      eventId: data.eventId,
+      event: {
+        userId: session.user.id,
+      },
+    },
+    include: {
+      event: {
+        select: {
+          slug: true,
+        },
+      },
+    },
+  })
+
+  if (!location) {
+    return {
+      success: false as const,
+      error: "Ubicación no encontrada.",
+    }
+  }
+
+  await prisma.eventLocation.delete({
+    where: {
+      id: location.id,
+    },
+  })
+
+  revalidatePath(`/dashboard/eventos/${data.eventId}`)
+  revalidatePath(`/invitacion/${location.event.slug}`)
+
+  return {
+    success: true as const,
+  }
+}
+
 export async function createEventSchedule(data: {
   eventId: string
   title: string
@@ -287,6 +393,116 @@ export async function createEventSchedule(data: {
   return {
     success: true as const,
     schedule,
+  }
+}
+
+export async function updateEventSchedule(data: {
+  id: string
+  eventId: string
+  title: string
+  date: string
+  time?: string
+  description?: string
+  locationId?: string
+}) {
+  const session = await requireAuth()
+
+  const schedule = await prisma.eventSchedule.findFirst({
+    where: {
+      id: data.id,
+      eventId: data.eventId,
+      event: {
+        userId: session.user.id,
+      },
+    },
+    include: {
+      event: {
+        select: {
+          slug: true,
+        },
+      },
+    },
+  })
+
+  if (!schedule) {
+    return {
+      success: false as const,
+      error: "Horario no encontrado.",
+    }
+  }
+
+  const title = data.title.trim()
+
+  if (!title) {
+    return {
+      success: false as const,
+      error: "El titulo para el horario es obligatorio.",
+    }
+  }
+
+  const updatedSchedule = await prisma.eventSchedule.update({
+    where: {
+      id: schedule.id,
+    },
+    data: {
+      title,
+      date: new Date(`${data.date}T00:00:00`),
+      time: data.time || null,
+      description: data.description || null,
+      locationId: data.locationId || null
+    },
+  })
+
+  revalidatePath(`/dashboard/eventos/${data.eventId}`)
+  revalidatePath(`/invitacion/${schedule.event.slug}`)
+
+  return {
+    success: true as const,
+    schedule: updatedSchedule,
+  }
+}
+
+export async function deleteEventSchedule(data: {
+  id: string
+  eventId: string
+}) {
+  const session = await requireAuth()
+
+  const schedule = await prisma.eventSchedule.findFirst({
+    where: {
+      id: data.id,
+      eventId: data.eventId,
+      event: {
+        userId: session.user.id,
+      },
+    },
+    include: {
+      event: {
+        select: {
+          slug: true,
+        },
+      },
+    },
+  })
+
+  if (!schedule) {
+    return {
+      success: false as const,
+      error: "Horario no encontrado.",
+    }
+  }
+
+  await prisma.eventSchedule.delete({
+    where: {
+      id: schedule.id,
+    },
+  })
+
+  revalidatePath(`/dashboard/eventos/${data.eventId}`)
+  revalidatePath(`/invitacion/${schedule.event.slug}`)
+
+  return {
+    success: true as const,
   }
 }
 
@@ -1314,7 +1530,11 @@ export async function deleteEvent(eventId: string) {
     const event = await prisma.event.findFirst({
       where: {
         id: eventId,
-        userId: session.user.id,
+        ...(session.user.role === "ADMIN"
+          ? {}
+          : {
+              userId: session.user.id,
+            }),
       },
       include: {
         photos: {
