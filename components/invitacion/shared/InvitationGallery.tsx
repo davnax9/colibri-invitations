@@ -116,12 +116,12 @@ export default function InvitationGallery({
 
   return (
     <section
-      className="px-6 py-24"
+      className="w-full max-w-full overflow-hidden px-4 py-16 sm:px-6 sm:py-24"
       style={{
         backgroundColor: "var(--theme-background)",
       }}
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto w-full max-w-5xl min-w-0">
 
         {/* ENCABEZADO */}
 
@@ -156,9 +156,9 @@ export default function InvitationGallery({
 
         {/* CARRUSEL */}
 
-        <div className="relative mt-14">
+        <div className="relative mt-10 w-full min-w-0 sm:mt-14">
 
-          {/* BOTÓN ANTERIOR */}
+          {/* ANTERIOR */}
 
           {event.photos.length > 1 && (
             <button
@@ -179,15 +179,18 @@ export default function InvitationGallery({
           <div
             ref={containerRef}
             onScroll={handleScroll}
-            className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide"
+            className="flex w-full min-w-0 snap-x snap-mandatory overflow-x-auto scroll-smooth scrollbar-hide"
+            style={{
+              overscrollBehaviorX: "contain",
+            }}
           >
             {event.photos.map((photo) => (
               <div
                 key={photo.id}
-                className="w-full shrink-0 snap-center px-2"
+                className="w-full min-w-full shrink-0 snap-center px-1 sm:px-2"
               >
                 <div
-                  className="relative mx-auto aspect-4/5 max-w-2xl overflow-hidden rounded-3xl border shadow-xl"
+                  className="relative mx-auto aspect-4/5 w-full max-w-2xl overflow-hidden rounded-3xl border shadow-xl"
                   style={{
                     borderColor: "var(--theme-accent)",
                     backgroundColor: "var(--theme-surface)",
@@ -201,8 +204,8 @@ export default function InvitationGallery({
                       "Fotografía de la celebración"
                     }
                     fill
-                    sizes="(max-width: 768px) 90vw, 700px"
-                    className="object-cover transition duration-700"
+                    sizes="(max-width: 640px) 92vw, 700px"
+                    className="object-cover"
                   />
 
                   {/* OVERLAY */}
@@ -220,7 +223,7 @@ export default function InvitationGallery({
             ))}
           </div>
 
-          {/* BOTÓN SIGUIENTE */}
+          {/* SIGUIENTE */}
 
           {event.photos.length > 1 && (
             <button
@@ -254,7 +257,6 @@ export default function InvitationGallery({
                     index === currentIndex
                       ? "2rem"
                       : "0.625rem",
-
                   backgroundColor:
                     index === currentIndex
                       ? "var(--theme-primary)"
@@ -265,7 +267,7 @@ export default function InvitationGallery({
           </div>
         )}
 
-        {/* INDICACIÓN PARA CELULAR */}
+        {/* INDICACIÓN CELULAR */}
 
         {event.photos.length > 1 && (
           <p
