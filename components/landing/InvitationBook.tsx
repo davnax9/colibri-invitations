@@ -21,6 +21,7 @@ export default function InvitationBook({ designs }: Props) {
   const [currentPage, setCurrentPage] = useState(0)
   const [isTurning, setIsTurning] = useState(false)
   const [direction, setDirection] = useState<"next" | "prev">("next")
+  const [isMobileTurning, setIsMobileTurning] = useState(false)
 
   const totalPages = designs.length
   const leftPage = designs[currentPage]
@@ -70,6 +71,28 @@ export default function InvitationBook({ designs }: Props) {
       setCurrentPage((current) => current - 2)
       setIsTurning(false)
     }, 850)
+  }
+
+  function goMobileNext() {
+    if (isMobileTurning || currentPage >= designs.length - 1) return
+
+    setIsMobileTurning(true)
+
+    setTimeout(() => {
+      setCurrentPage((current) => current + 1)
+      setIsMobileTurning(false)
+    }, 500)
+  }
+
+  function goMobilePrevious() {
+    if (isMobileTurning || currentPage <= 0) return
+
+    setIsMobileTurning(true)
+
+    setTimeout(() => {
+      setCurrentPage((current) => current - 1)
+      setIsMobileTurning(false)
+    }, 500)
   }
 
   const displayLeftPage = isTurning && direction === "prev" ? previousLeftPage : leftPage
@@ -155,23 +178,151 @@ export default function InvitationBook({ designs }: Props) {
         {/* ===================================================== */}
         {/* VERSIÓN MÓVIL */}
         {/* ===================================================== */}
-        <div className="relative mx-auto max-w-sm md:hidden">
-          <div className="relative overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl">
+
+        <div className="relative mx-auto w-full max-w-sm md:hidden">
+
+          {/* =============================================== */}
+          {/* IMAGEN DE LA INVITACIÓN */}
+          {/* =============================================== */}
+
+          <div className="relative">
+
+            {/* BOTÓN ANTERIOR */}
+
+            <button
+              type="button"
+              onClick={goPrevious}
+              disabled={!canGoPrevious || isTurning}
+              className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
+              aria-label="Diseño anterior"
+            >
+              <span className="-mt-1">‹</span>
+            </button>
+
+
+            {/* IMAGEN */}
+
             {leftPage && (
-              <Link href={leftPage.href} className="block">
+              <Link
+                href={leftPage.href}
+                className="block overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl"
+              >
+
                 <div className="relative aspect-3/4">
-                  <Image src={leftPage.image} alt={leftPage.name} fill sizes="100vw" className="object-cover"/>
-                  {/* Degradado */}
-                  <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-black/70 to-transparent" />
-                  {/* Información */}
+
+                  <Image
+                    src={leftPage.image}
+                    alt={leftPage.name}
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                  />
+
+                  {/* DEGRADADO */}
+
+                  <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
+
+
+                  {/* INFORMACIÓN SOBRE LA IMAGEN */}
+
                   <div className="absolute bottom-5 left-5 right-5 text-white">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em]">{leftPage.category}</p>
-                    <h3 className="mt-1 text-2xl font-bold">{leftPage.name}</h3>
+
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+                      {leftPage.category}
+                    </p>
+
+                    <h3 className="mt-1 text-2xl font-bold">
+                      {leftPage.name}
+                    </h3>
+
                   </div>
+
                 </div>
+
               </Link>
             )}
+
+
+            {/* BOTÓN SIGUIENTE */}
+
+            <button
+              type="button"
+              onClick={() => {
+                if (canGoNext && !isTurning) {
+                  setCurrentPage((current) => current + 1)
+                }
+              }}
+              disabled={currentPage >= totalPages - 1 || isTurning}
+              className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
+              aria-label="Siguiente diseño"
+            >
+              <span className="-mt-1">›</span>
+            </button>
+
           </div>
+
+
+          {/* =============================================== */}
+          {/* INFORMACIÓN DEL DISEÑO ACTUAL */}
+          {/* =============================================== */}
+
+          {leftPage && (
+            <div className="mt-6 rounded-2xl bg-white p-5 text-center shadow-sm">
+
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">
+                {leftPage.category}
+              </p>
+
+              <h3 className="mt-2 text-xl font-bold text-[#263832]">
+                {leftPage.name}
+              </h3>
+
+              <p className="mt-3 text-sm leading-6 text-[#687A72]">
+                {leftPage.description}
+              </p>
+
+              <Link
+                href={leftPage.href}
+                className="mt-5 inline-flex rounded-xl bg-[#2F5D50] px-6 py-3 text-sm font-semibold text-white shadow-sm transition active:scale-95"
+              >
+                Ver invitación
+                <span className="ml-2">
+                  →
+                </span>
+              </Link>
+
+            </div>
+          )}
+
+
+          {/* =============================================== */}
+          {/* INDICADOR */}
+          {/* =============================================== */}
+
+          <div className="mt-5 flex items-center justify-center gap-2">
+
+            {designs.map((design, index) => (
+
+              <button
+                key={design.id}
+                type="button"
+                onClick={() => {
+                  if (!isTurning) {
+                    setCurrentPage(index)
+                  }
+                }}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentPage === index
+                    ? "w-7 bg-[#2F5D50]"
+                    : "w-2 bg-[#C9D3CD]"
+                }`}
+                aria-label={`Ver diseño ${index + 1}`}
+              />
+
+            ))}
+
+          </div>
+
         </div>
         {/* ===================================================== */}
         {/* CONTROLES LATERALES */}
