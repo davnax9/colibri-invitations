@@ -25,7 +25,7 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
   const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
   return (
-    <InvitationTheme theme={event.theme}>
+    <InvitationTheme theme={event.theme} event={event}>
       <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
         {/* HERO */}
         {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}

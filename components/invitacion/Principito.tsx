@@ -23,7 +23,7 @@ export default function Principito({
   const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
   return (
-    <InvitationTheme theme={event.theme}>
+    <InvitationTheme theme={event.theme} event={event}>
       <main className="min-h-screen overflow-hidden" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
         {/* ================================================= */}
         {/* HERO */}
