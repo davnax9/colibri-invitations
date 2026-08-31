@@ -16,68 +16,6 @@ import WeddingElegantEvents from "./wedding/WeddingElegantEvents"
 import InvitationGifts from "./shared/InvitationGifts"
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 
-// type Props = {
-//   event: {
-//     name: string
-//     slug: string
-//     eventDate: Date
-//     theme: any
-
-//     details: {
-//       title: string | null
-//       subtitle: string | null
-//       description: string | null
-//       phrase: string | null
-//       groomName: string | null
-//       brideName: string | null
-//       quinceaneraName: string | null
-//       dressCode: string | null
-//     } | null
-
-//     locations: {
-//       id: string
-//       name: string
-//       address: string | null
-//       mapsUrl: string | null
-//     }[]
-
-//     schedules: {
-//       id: string
-//       title: string
-//       date: Date
-//       time: string | null
-//       description: string | null
-//       location: {
-//         name: string
-//       } | null
-//     }[]
-
-//     photos: {
-//       id: string
-//       url: string
-//       title: string | null
-//       isCover: boolean
-//     }[]
-
-//     music: {
-//       url: string
-//       title: string | null
-//       artist: string | null
-//       autoplay: boolean
-//     } | null
-//   }
-
-//   guest?: GuestInfo
-// }
-
-// type GuestInfo = {
-//   name: string
-//   passes: number
-//   confirmedPasses: number | null
-//   status: "PENDING" | "CONFIRMED" | "DECLINED"
-//   token: string
-// }
-
 export default function WeddingElegant({event, guest}: InvitationTemplateProps) {
     const details = event.details
   
@@ -89,7 +27,7 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
     const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
     return (
-        <InvitationTheme theme={event.theme}>
+        <InvitationTheme theme={event.theme} event={event}>
             <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
                 {/* PORTADA */}
                 {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}

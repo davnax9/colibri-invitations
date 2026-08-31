@@ -11,6 +11,7 @@ import EventThemeSelector from "@/components/eventos/EventThemeSelector"
 import EventInvitationPreview from "@/components/dashboard/EventInvitationPreview"
 import LogoutButton from "@/components/dashboard/LogoutButton"
 import EventGiftsForm from "@/components/eventos/EventGiftsForm"
+import EventBackgroundForm from "@/components/eventos/EventBackgroundForm"
 
 type Props = {
   params: Promise<{ id: string }>
@@ -32,7 +33,7 @@ export default async function EventEditorPage({ params }: Props) {
       locations: true,
       schedules: {
         orderBy: {
-          date: "asc",
+          time: "asc",
         },
         include: {
           location: true,
@@ -124,8 +125,17 @@ export default async function EventEditorPage({ params }: Props) {
             </EditorSection>
 
             {/* APARIENCIA */}
-            <EditorSection number="02" icon="🎨" title="Apariencia" description="Elige un diseño o personaliza los colores de tu invitación." >
+            {/* <EditorSection number="02" icon="🎨" title="Apariencia" description="Elige un diseño o personaliza los colores de tu invitación." >
               <EventThemeSelector eventId={event.id} currentPreset={event.theme} plan={event.user.plan} isAdmin={isAdmin}/>
+            </EditorSection> */}
+            <EditorSection number="02" icon="🎨" title="Apariencia" description="Elige un diseño o personaliza los colores de tu invitación.">
+              <div className="space-y-8">
+                <EventThemeSelector eventId={event.id} currentPreset={event.theme} plan={event.user.plan} isAdmin={isAdmin} />
+                <div className="border-t border-[#E5E9E5] pt-7">
+                  <EventBackgroundForm eventId={event.id} plan={event.user.plan} backgroundEnabled={event.backgroundEnabled} backgroundTexture={ event.backgroundTexture}
+                    backgroundOpacity={event.backgroundOpacity} isAdmin={isAdmin} />
+                </div>
+              </div>
             </EditorSection>
 
             {/* UBICACIONES */}

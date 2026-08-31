@@ -1770,3 +1770,131 @@ export async function deleteEventGift(data: {id: string, eventId: string}) {
     }
   }
 }
+
+export async function updateEventBackground(data: {
+  eventId: string
+  enabled: boolean
+  texture: string | null
+  opacity: number
+}) {
+  try {
+    const session = await requireAuth()
+
+    const event = await prisma.event.findFirst({
+      where: {
+        id: data.eventId,
+        ...(session.user.role === "ADMIN" ? {} : {userId: session.user.id})
+      },
+      include: {
+        user: {
+          select: {
+            plan: true,
+          },
+        },
+      },
+    })
+
+    if (!event) {
+      return {
+        success: false,
+        error: "Evento no encontrado.",
+      }
+    }
+
+    /*
+     * Solamente PRO y ADMIN pueden utilizar
+     * fondos personalizados.
+     */
+    if (event.user.plan !== "PRO" && session.user.role !== "ADMIN") {
+      return {
+        success: false,
+        error: "El fondo personalizado está disponible únicamente en el plan PRO.",
+      }
+    }
+
+    /*
+     * Validamos la opacidad.
+     */
+    if (data.opacity < 10 || data.opacity > 40) {
+      return {
+        success: false,
+        error: "La opacidad debe estar entre 10% y 40%.",
+      }
+    }
+
+    /*
+     * Si se desactiva el fondo,
+     * eliminamos la textura seleccionada.
+     */
+    if (!data.enabled) {
+      await prisma.event.update({
+        where: {
+          id: data.eventId,
+        },
+        data: {
+          backgroundEnabled: false,
+          backgroundTexture: null,
+          backgroundOpacity: data.opacity,
+        },
+      })
+
+      return {
+        success: true,
+      }
+    }
+
+    /*
+     * Si está activado necesitamos
+     * una textura válida.
+     */
+    if (!data.texture) {
+      return {
+        success: false,
+        error: "Debes seleccionar una textura.",
+      }
+    }
+
+    const allowedTextures = [
+      "/texturas/paper.webp",
+      "/texturas/minimal.webp",
+      "/texturas/watercolor.webp",
+      "/texturas/linen.webp",
+      "/texturas/floral.webp",
+      "/texturas/marble.webp",
+      "/texturas/dots.webp",
+      "/texturas/gold.webp",
+    ]
+
+    if (!allowedTextures.includes(data.texture)) {
+      return {
+        success: false,
+        error: "La textura seleccionada no es válida.",
+      }
+    }
+
+    await prisma.event.update({
+      where: {
+        id: data.eventId,
+      },
+      data: {
+        backgroundEnabled: true,
+        backgroundTexture: data.texture,
+        backgroundOpacity: data.opacity,
+      },
+    })
+
+    return {
+      success: true,
+    }
+  } catch (error) {
+    console.error(
+      "Error actualizando fondo del evento:",
+      error
+    )
+
+    return {
+      success: false,
+      error: "No fue posible actualizar el fondo.",
+    }
+  }
+}

@@ -1,4 +1,7 @@
 import ContactButton from "@/components/landing/ContactButton"
+import FeaturedDesigns from "@/components/landing/FeaturedDesigns"
+import InvitationExamples from "@/components/landing/InvitationExamples"
+import MobileMenu from "@/components/landing/MobileMenu"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -8,7 +11,7 @@ export default function HomePage() {
       {/* ===================================================== */}
       {/* NAVBAR */}
       {/* ===================================================== */}
-      <header className="border-b border-[#E5E9E5]/80 bg-[#FAF8F3]/95 backdrop-blur">
+      <header className="relative border-b border-[#E5E9E5]/80 bg-[#FAF8F3]">
         <div className="mx-auto grid max-w-7xl grid-cols-3 items-center px-6 py-5 lg:px-8">
           {/* LOGO - IZQUIERDA */}
           <div className="flex justify-start">
@@ -22,11 +25,18 @@ export default function HomePage() {
             <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#8A9A8F]">Invitaciones digitales</p>
           </div>
           {/* BOTONES - DERECHA */}
-          <div className="flex justify-end gap-3">
-            <Link href="/login" className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#2F5D50] transition hover:bg-[#2F5D50]/5">Iniciar sesión</Link>
-            <Link href="/login" className="hidden rounded-xl bg-[#2F5D50] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#244A40] sm:inline-flex">
-              Crear mi invitación
-            </Link>
+          <div className="flex items-center justify-end gap-2 sm:gap-4">
+            {/* DESKTOP */}
+            <div className="hidden items-center gap-2 md:flex">
+              <a href="#diseños" className="rounded-xl px-3 py-2 text-sm font-semibold text-[#2F5D50] transition hover:bg-[#2F5D50]/5">Diseños</a>
+              <a href="#planes" className="rounded-xl px-3 py-2 text-sm font-semibold text-[#2F5D50] transition hover:bg-[#2F5D50]/5">Planes</a>
+              <Link href="/login" className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#2F5D50] transition hover:bg-[#2F5D50]/5">Iniciar sesión</Link>
+              <Link href="/login" className="rounded-xl bg-[#2F5D50] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#244A40] hover:shadow-md">
+                Crear mi invitación
+              </Link>
+            </div>
+            {/* MOBILE */}
+            <MobileMenu />
           </div>
         </div>
       </header>
@@ -45,7 +55,7 @@ export default function HomePage() {
                 Tu historia comienza aquí
               </span>
               <h1 className="mt-7 max-w-2xl text-5xl font-bold leading-[1.05] tracking-tight text-[#263832] sm:text-6xl lg:text-7xl">Una invitación tan especial como tu momento.</h1>
-              <p className="mt-7 max-w-xl text-lg leading-8 text-[#687A72]">Crea una invitación digital elegante, personalizada y pensada para compartir cada detalle de tu celebración.</p>
+              <p className="mt-7 max-w-xl text-lg leading-8 text-[#687A72]">Diseñamos invitaciones digitales elegantes y personalizadas para bodas y XV años. Comparte cada detalle de tu celebración de una manera única.</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/login" className="inline-flex items-center justify-center rounded-xl bg-[#2F5D50] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#2F5D50]/20 transition hover:-translate-y-0.5 hover:bg-[#244A40]">
                   Crear mi invitación<span className="ml-2">→</span>
@@ -55,7 +65,8 @@ export default function HomePage() {
                 </a>
               </div>
               <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm text-[#687A72]">
-                <span>✓ Personalizable</span>
+                <span>✓ Diseños elegantes</span>
+                <span>✓ Personalización</span>
                 <span>✓ Comparte por WhatsApp</span>
                 <span>✓ Confirmación de invitados</span>
               </div>
@@ -69,7 +80,7 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-linear-to-b from-[#2F5D50]/10 to-[#2F5D50]/40" />
                     <div className="relative text-center">
                       <p className="text-sm uppercase tracking-[0.3em] text-[#2F5D50]">Nuestra boda</p>
-                      <h2 className="mt-5 font-serif text-5xl text-[#263832]">Ana & Carlos</h2>
+                      <h2 className="mt-5 font-serif text-5xl text-[#263832]">Ana & Jose</h2>
                       <div className="mx-auto mt-6 h-px w-24 bg-[#C9A86A]" />
                       <p className="mt-6 text-sm text-[#687A72]">14 · Noviembre · 2026</p>
                     </div>
@@ -89,6 +100,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      {/* ===================================================== */}
+      {/* DISEÑOS DESTACADOS                                    */}
+      {/* ===================================================== */}
+      <FeaturedDesigns />
       {/* ===================================================== */}
       {/* COMO FUNCIONA */}
       {/* ===================================================== */}
@@ -133,6 +148,10 @@ export default function HomePage() {
         </div>
       </section>
       {/* ===================================================== */}
+      {/* EJEMPLOS DE INVITACIONES */}
+      {/* ===================================================== */}
+      {/* <InvitationExamples /> */}
+      {/* ===================================================== */}
       {/* CARACTERISTICAS */}
       {/* ===================================================== */}
       <section className="bg-[#FAF8F3]">
@@ -166,7 +185,7 @@ export default function HomePage() {
       {/* ===================================================== */}
       {/* PLANES */}
       {/* ===================================================== */}
-      <section className="border-t border-[#E5E9E5] bg-white">
+      <section id="planes" className="border-t border-[#E5E9E5] bg-white">
         <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Planes</p>

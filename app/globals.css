@@ -24,3 +24,124 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* =========================================================
+   LIBRO DE INVITACIONES
+   ========================================================= */
+
+.book-perspective {
+  perspective: 1800px;
+}
+
+.book-page {
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+
+.book-page.turning-next {
+  animation: bookPageNext 700ms ease-in-out forwards;
+}
+
+.book-page.turning-prev {
+  animation: bookPagePrev 700ms ease-in-out forwards;
+}
+
+@keyframes bookPageNext {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  45% {
+    transform: rotateY(-90deg);
+  }
+
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
+@keyframes bookPagePrev {
+  0% {
+    transform: rotateY(-180deg);
+  }
+
+  45% {
+    transform: rotateY(-90deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes page-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
+.animate-page-flip {
+  animation: page-flip 0.5s ease-in-out forwards;
+}
+
+@keyframes book-page-next {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
+.animate-book-page-next {
+  animation: book-page-next 800ms ease-in-out forwards;
+}
+
+
+@keyframes book-page-prev {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.animate-book-page-prev {
+  animation: book-page-prev 800ms ease-in-out forwards;
+}
+
+@keyframes book-page-next {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(-180deg);
+  }
+}
+
+@keyframes book-page-prev {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.animate-book-page-next {
+  animation: book-page-next 0.8s ease-in-out forwards;
+}
+
+.animate-book-page-prev {
+  animation: book-page-prev 0.8s ease-in-out forwards;
+}

@@ -3,10 +3,12 @@
 import Image from "next/image"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
+import { Dispatch, SetStateAction } from "react"
 
 type Photo = {
   id: string
   url: string
+  publicId: string | null
   title: string | null
   order: number
   isCover: boolean
@@ -14,7 +16,8 @@ type Photo = {
 
 type Props = {
   photo: Photo
-  onDelete: (photoId: string) => void
+  // onDelete: (photoId: string) => void
+  onDelete: (photoId: Photo) => void
   onSetCover: (photoId: string) => void
   loading: boolean
 }
@@ -52,7 +55,7 @@ export default function SortablePhoto({photo, onDelete, onSetCover, loading}: Pr
             </button>
           )}
 
-          <button type="button" onClick={() => onDelete(photo.id)} disabled={loading} className="text-xs font-medium text-red-600 hover:text-red-700 disabled:opacity-50">
+          <button type="button" onClick={() => onDelete(photo)} disabled={loading} className="text-xs font-medium text-red-600 hover:text-red-700 disabled:opacity-50">
             Eliminar
           </button>
         </div>

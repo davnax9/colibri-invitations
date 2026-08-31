@@ -5,6 +5,7 @@ import { createEventLocation, deleteEventLocation, updateEventLocation } from "@
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { MapPinIcon, PencilIcon, TrashIcon} from "@heroicons/react/24/outline"
+import ConfirmModal from "../ui/ConfirmModal"
 
 type Location = {
   id: string
@@ -28,6 +29,8 @@ export default function EventLocationsForm({eventId,locations}: Props) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
+
+  const [locationToDelete, setLocationToDelete] = useState<Location | null>(null)
 
   const [editingLocationId, setEditingLocationId] = useState<string | null>(null)
 
@@ -80,12 +83,41 @@ export default function EventLocationsForm({eventId,locations}: Props) {
     router.refresh()
   }
 
+  // async function handleDelete(locationId: string) {
+  //   if (loading) return
+
+  //   const confirmed = window.confirm("¿Estás seguro de eliminar esta ubicación?")
+
+  //   if (!confirmed) return
+
+  //   setLoading(true)
+  //   setError("")
+  //   setMessage("")
+
+  //   const result = await deleteEventLocation({id: locationId, eventId})
+
+  //   if (!result.success) {
+  //     setError(result.error)
+  //     toast.error(result.error)
+  //     setLoading(false)
+  //     return
+  //   }
+
+  //   if (editingLocationId === locationId) {
+  //     setEditingLocationId(null)
+  //     setName("")
+  //     setAddress("")
+  //     setMapsUrl("")
+  //   }
+
+  //   // setMessage("Ubicación eliminada correctamente")
+  //   toast.success("Ubicación eliminada correctamente")
+  //   setLoading(false)
+  //   router.refresh()
+  // }
+
   async function handleDelete(locationId: string) {
     if (loading) return
-
-    const confirmed = window.confirm("¿Estás seguro de eliminar esta ubicación?")
-
-    if (!confirmed) return
 
     setLoading(true)
     setError("")
@@ -107,9 +139,11 @@ export default function EventLocationsForm({eventId,locations}: Props) {
       setMapsUrl("")
     }
 
-    // setMessage("Ubicación eliminada correctamente")
     toast.success("Ubicación eliminada correctamente")
+
     setLoading(false)
+    setLocationToDelete(null)
+
     router.refresh()
   }
 
@@ -130,7 +164,7 @@ export default function EventLocationsForm({eventId,locations}: Props) {
                     <a href={location.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50"><MapPinIcon className="h-5 w-5"/></a>
                   )}
                   <button type="button" onClick={() => handleEdit(location)} aria-label="Editar ubicación" className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"><PencilIcon className="h-5 w-5" /></button>
-                  <button type="button" onClick={() => handleDelete(location.id)} aria-label="Eliminar ubicación" className="flex h-9 w-9 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50 hover:text-red-700"><TrashIcon className="h-5 w-5" /></button>
+                  <button type="button" onClick={() => setLocationToDelete(location)} disabled={loading} aria-label="Eliminar ubicación" className="flex h-9 w-9 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50 hover:text-red-700 disabled:opacity-50"><TrashIcon className="h-5 w-5" /></button>
                 </div>
               </div>
             </div>
@@ -178,6 +212,9 @@ export default function EventLocationsForm({eventId,locations}: Props) {
           </div>
         </div>
       </form>
+      <ConfirmModal open={locationToDelete !== null} onClose={() => setLocationToDelete(null)} onConfirm={() => { if (locationToDelete) handleDelete(locationToDelete.id)}}
+        title="Eliminar ubicación" message={locationToDelete ? `¿Estás seguro de que deseas eliminar "${locationToDelete.name}"? Esta acción no se puede deshacer.`: ""}
+        confirmText="Eliminar" cancelText="Cancelar" variant="danger" loading={loading}/>
     </div>
   )
 }

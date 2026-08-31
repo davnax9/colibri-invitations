@@ -3,11 +3,7 @@ import { prisma } from "@/utils/prisma"
 import WeddingTemplate from "@/components/invitacion/WeddingTemplate"
 import QuinceanosTemplate from "@/components/invitacion/QuinceanosTemplate"
 
-type Props = {
-  params: Promise<{
-    slug: string
-  }>
-}
+type Props = { params: Promise<{slug: string}>}
 
 export default async function InvitationPage({ params }: Props) {
 
@@ -45,6 +41,12 @@ export default async function InvitationPage({ params }: Props) {
   })
 
   if (!event) notFound()
+
+  console.log("TEXTURA INVITACIÓN:", {
+    enabled: event.backgroundEnabled,
+    texture: event.backgroundTexture,
+    opacity: event.backgroundOpacity,
+  })
 
   switch (event.template.type) {
     case "WEDDING":

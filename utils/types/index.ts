@@ -25,3 +25,20 @@ export type Gift = {
   accountNumber: string | null
   order: number
 }
+
+export type BackgroundTexture = {
+  id: string
+  name: string
+  image: string
+  description: string
+  pro: boolean
+}
+
+export type EventTheme = {
+  primaryColor: string
+  secondaryColor: string
+  accentColor: string
+  backgroundColor: string
+  surfaceColor: string
+  textColor: string
+}

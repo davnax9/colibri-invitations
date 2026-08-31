@@ -5,6 +5,7 @@ import { createEventSchedule, deleteEventSchedule, updateEventSchedule } from "@
 import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 import { MapPinIcon, PencilIcon, TrashIcon} from "@heroicons/react/24/outline"
+import ConfirmModal from "../ui/ConfirmModal"
 
 type Location = {
   id: string
@@ -40,6 +41,8 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
+
+  const [scheduleToDelete, setScheduleToDelete] = useState<Schedule | null>(null)
 
   const [editingScheduleId, setEditingScheduleId] = useState<string | null>(null)
 
@@ -101,9 +104,9 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
   async function handleDelete(scheduleId: string) {
     if (loading) return
 
-    const confirmed = window.confirm("¿Estás seguro de eliminar este horario?")
+    // const confirmed = window.confirm("¿Estás seguro de eliminar este horario?")
 
-    if (!confirmed) return
+    // if (!confirmed) return
 
     setLoading(true)
     setError("")
@@ -128,6 +131,7 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
 
     toast.success("Horario eliminado correctamente")
     setLoading(false)
+    setScheduleToDelete(null)
     router.refresh()
   }
 
@@ -147,7 +151,7 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
                   <button type="button" onClick={() => handleEdit(schedule)} aria-label="Editar horario" className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"><PencilIcon className="h-5 w-5" /></button>
-                  <button type="button" onClick={() => handleDelete(schedule.id)} aria-label="Eliminar horario" className="flex h-9 w-9 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50 hover:text-red-700"><TrashIcon className="h-5 w-5" /></button>
+                  <button type="button" onClick={() => setScheduleToDelete(schedule)} disabled={loading} aria-label="Eliminar horario" className="flex h-9 w-9 items-center justify-center rounded-lg text-red-600 transition hover:bg-red-50 hover:text-red-700"><TrashIcon className="h-5 w-5" /></button>
                 </div>
               </div>
             </div>
@@ -218,6 +222,17 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
 
         </div>
       </form>
+      <ConfirmModal
+        open={scheduleToDelete !== null}
+        onClose={() => setScheduleToDelete(null)}
+        onConfirm={() => {if (scheduleToDelete) handleDelete(scheduleToDelete.id)}}
+        title="Eliminar horario"
+        message={scheduleToDelete ? `¿Estás seguro de que deseas eliminar "${scheduleToDelete.title}"? Esta acción no se puede deshacer.` : ""}
+        confirmText="Eliminar"
+        cancelText="Cancelar"
+        variant="danger"
+        loading={loading}
+      />
     </div>
   )
 }

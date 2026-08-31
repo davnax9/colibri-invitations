@@ -1,77 +1,9 @@
-import { EventTheme, InvitationTemplateProps } from "@/utils/types/invitation"
+import { InvitationTemplateProps } from "@/utils/types/invitation"
 import WeddingElegant from "./WeddingElegant"
 import WeddingRomantic from "./WeddingRomantic"
 import WeddingModern from "./WeddingModern"
 import WeddingLuxury from "./WeddingLuxury"
 import WeddingMinimal from "./WeddingMinimal"
-
-// type Props = {
-//   event: {
-//     name: string
-//     slug: string
-//     eventDate: Date
-
-//     template: {
-//       slug: string
-//       name: string
-//     }
-
-//     theme: EventTheme | null
-
-//     details: {
-//       title: string | null
-//       subtitle: string | null
-//       description: string | null
-//       phrase: string | null
-//       groomName: string | null
-//       brideName: string | null
-//       quinceaneraName: string | null
-//       dressCode: string | null
-//     } | null
-
-//     locations: {
-//       id: string
-//       name: string
-//       address: string | null
-//       mapsUrl: string | null
-//     }[]
-
-//     schedules: {
-//       id: string
-//       title: string
-//       date: Date
-//       time: string | null
-//       description: string | null
-//       location: {
-//         name: string
-//       } | null
-//     }[]
-
-//     photos: {
-//       id: string
-//       url: string
-//       title: string | null
-//       isCover: boolean
-//     }[]
-
-//     music: {
-//       url: string
-//       title: string | null
-//       artist: string | null
-//       autoplay: boolean
-//     } | null
-//   }
-
-//   guest?: GuestInfo
-// }
-
-// type GuestInfo = {
-//   name: string
-//   passes: number
-//   confirmedPasses: number | null
-//   status: "PENDING" | "CONFIRMED" | "DECLINED"
-//   token: string
-// }
 
 export default function WeddingTemplate({ event, guest }: InvitationTemplateProps) {
   switch (event.template.slug) {

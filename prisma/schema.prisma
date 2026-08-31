@@ -86,6 +86,11 @@ model Event {
   theme EventTheme?
   gifts EventGift[]
 
+  backgroundEnabled   Boolean @default(false)
+  backgroundTexture   String?
+  backgroundOpacity   Float   @default(0.15)
+  backgroundPosition  String  @default("center")
+
   @@index([userId])
   @@index([templateId])
 }

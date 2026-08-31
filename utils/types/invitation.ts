@@ -23,6 +23,10 @@ export type InvitationEvent = {
   name: string
   slug: string
   eventDate: Date
+  backgroundEnabled: boolean
+  backgroundTexture: string | null
+  backgroundOpacity: number
+  backgroundPosition: string
 
   template: {
     slug: string
