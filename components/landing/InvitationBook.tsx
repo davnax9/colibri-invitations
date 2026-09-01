@@ -191,10 +191,9 @@ export default function InvitationBook({ designs }: Props) {
 
             <button
               type="button"
-              onClick={goPrevious}
-              disabled={!canGoPrevious || isTurning}
-              className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
-              aria-label="Diseño anterior"
+              onClick={goMobilePrevious}
+              disabled={currentPage <= 0 || isMobileTurning}
+              className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30" aria-label="Diseño anterior"
             >
               <span className="-mt-1">‹</span>
             </button>
@@ -205,7 +204,7 @@ export default function InvitationBook({ designs }: Props) {
             {leftPage && (
               <Link
                 href={leftPage.href}
-                className="block overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl"
+                className={`block overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl transition-all duration-500 ${ isMobileTurning ? "scale-[0.98] opacity-70" : "scale-100 opacity-100" }`}
               >
 
                 <div className="relative aspect-3/4">
@@ -224,105 +223,54 @@ export default function InvitationBook({ designs }: Props) {
 
 
                   {/* INFORMACIÓN SOBRE LA IMAGEN */}
-
                   <div className="absolute bottom-5 left-5 right-5 text-white">
-
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em]">
-                      {leftPage.category}
-                    </p>
-
-                    <h3 className="mt-1 text-2xl font-bold">
-                      {leftPage.name}
-                    </h3>
-
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em]">{leftPage.category}</p>
+                    <h3 className="mt-1 text-2xl font-bold">{leftPage.name}</h3>
                   </div>
-
                 </div>
-
               </Link>
             )}
-
-
             {/* BOTÓN SIGUIENTE */}
-
             <button
               type="button"
-              onClick={() => {
-                if (canGoNext && !isTurning) {
-                  setCurrentPage((current) => current + 1)
-                }
-              }}
-              disabled={currentPage >= totalPages - 1 || isTurning}
+              onClick={goMobileNext}
+              disabled={currentPage >= totalPages - 1 || isMobileTurning}
               className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
               aria-label="Siguiente diseño"
             >
               <span className="-mt-1">›</span>
             </button>
-
           </div>
-
-
           {/* =============================================== */}
           {/* INFORMACIÓN DEL DISEÑO ACTUAL */}
           {/* =============================================== */}
-
           {leftPage && (
             <div className="mt-6 rounded-2xl bg-white p-5 text-center shadow-sm">
-
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">
-                {leftPage.category}
-              </p>
-
-              <h3 className="mt-2 text-xl font-bold text-[#263832]">
-                {leftPage.name}
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-[#687A72]">
-                {leftPage.description}
-              </p>
-
-              <Link
-                href={leftPage.href}
-                className="mt-5 inline-flex rounded-xl bg-[#2F5D50] px-6 py-3 text-sm font-semibold text-white shadow-sm transition active:scale-95"
-              >
-                Ver invitación
-                <span className="ml-2">
-                  →
-                </span>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">{leftPage.category}</p>
+              <h3 className="mt-2 text-xl font-bold text-[#263832]">{leftPage.name}</h3>
+              <p className="mt-3 text-sm leading-6 text-[#687A72]">{leftPage.description}</p>
+              <Link href={leftPage.href} className="mt-5 inline-flex rounded-xl bg-[#2F5D50] px-6 py-3 text-sm font-semibold text-white shadow-sm transition active:scale-95">
+                Ver invitación<span className="ml-2">→</span>
               </Link>
-
             </div>
           )}
-
-
           {/* =============================================== */}
           {/* INDICADOR */}
           {/* =============================================== */}
-
           <div className="mt-5 flex items-center justify-center gap-2">
-
             {designs.map((design, index) => (
-
               <button
                 key={design.id}
                 type="button"
                 onClick={() => {
-                  if (!isTurning) {
+                  if (!isMobileTurning && !isTurning) {
                     setCurrentPage(index)
                   }
                 }}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentPage === index
-                    ? "w-7 bg-[#2F5D50]"
-                    : "w-2 bg-[#C9D3CD]"
-                }`}
-                aria-label={`Ver diseño ${index + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${currentPage === index ? "w-7 bg-[#2F5D50]" : "w-2 bg-[#C9D3CD]"}`} aria-label={`Ver diseño ${index + 1}`}
               />
-
             ))}
-
           </div>
-
         </div>
         {/* ===================================================== */}
         {/* CONTROLES LATERALES */}
@@ -344,23 +292,15 @@ export default function InvitationBook({ designs }: Props) {
             className="pointer-events-auto -mr-16 flex h-12 w-12 items-center justify-center rounded-full border border-[#DCE4DF] bg-white text-3xl font-light leading-none text-[#2F5D50] shadow-md transition hover:translate-x-1 hover:bg-[#F5F2EB] disabled:cursor-not-allowed disabled:opacity-30"
             aria-label="Siguientes diseños"
           >
-
-            <span className="-mt-1">
-              ›
-            </span>
-
+            <span className="-mt-1">›</span>
           </button>
-
         </div>
-
       </div>
-
-
         {/* ===================================================== */}
         {/* INFORMACIÓN DE LOS DISEÑOS */}
         {/* ===================================================== */}
         {leftPage && (
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 hidden gap-6 md:grid md:grid-cols-2">
             {/* ================================================= */}
             {/* INFORMACIÓN DISEÑO IZQUIERDO */}
             {/* ================================================= */}
@@ -390,18 +330,13 @@ export default function InvitationBook({ designs }: Props) {
       {/* ===================================================== */}
       {/* INDICADORES */}
       {/* ===================================================== */}
-
       <div className="mt-8 flex items-center justify-center gap-2">
-
         {Array.from({
           length: Math.ceil(designs.length / 2),
         }).map((_, index) => {
-
           const active =
             Math.floor(currentPage / 2) === index
-
           return (
-
             <button
               key={index}
               type="button"
@@ -410,7 +345,6 @@ export default function InvitationBook({ designs }: Props) {
                 if (!isTurning) {
                   setCurrentPage(index * 2)
                 }
-
               }}
               className={`h-2 rounded-full transition-all duration-300 ${
                 active
