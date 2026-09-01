@@ -86,7 +86,7 @@ export default function CreateEventModal({ templates }: Props) {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del evento</label>
-                <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Ana & Carlos" required
+                <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Ana & José" required
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 />
               </div>
@@ -94,26 +94,26 @@ export default function CreateEventModal({ templates }: Props) {
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Tipo de evento</label>
                 <select value={type} onChange={(event) => handleTypeChange(event.target.value as "WEDDING" | "QUINCEANOS")}
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 >
-                  <option value="WEDDING">Boda</option>
-                  <option value="QUINCEANOS">Quinceaños</option>
+                  <option value="WEDDING" className="bg-white text-slate-800">Boda</option>
+                  <option value="QUINCEANOS" className="bg-white text-slate-800">Quinceaños</option>
                 </select>
               </div>
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Fecha del evento</label>
-                <input type="date" value={eventDate} onChange={(event) => setEventDate(event.target.value)} required className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+                <input type="date" value={eventDate} onChange={(event) => setEventDate(event.target.value)} required className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"/>
               </div>
 
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Diseño</label>
                 <select value={templateId} onChange={(event) => setTemplateId(event.target.value)} required
-                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+                  className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 >
-                  <option value="">Selecciona un diseño</option>
+                  <option value="" className="bg-white text-slate-800">Selecciona un diseño</option>
                   {availableTemplates.map((template) => (
-                    <option key={template.id} value={template.id}>{template.name}</option>
+                    <option key={template.id} value={template.id} className="bg-white text-slate-800">{template.name}</option>
                   ))}
                 </select>
               </div>

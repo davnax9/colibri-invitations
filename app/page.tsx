@@ -1,6 +1,7 @@
 import ContactButton from "@/components/landing/ContactButton"
 import FeaturedDesigns from "@/components/landing/FeaturedDesigns"
 import InvitationExamples from "@/components/landing/InvitationExamples"
+import InvitationPreview from "@/components/landing/InvitationPreview"
 import MobileMenu from "@/components/landing/MobileMenu"
 import Image from "next/image"
 import Link from "next/link"
@@ -72,7 +73,7 @@ export default function HomePage() {
               </div>
             </div>
             {/* PREVIEW */}
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute -inset-6 rounded-[3rem] bg-[#2F5D50]/5 blur-2xl" />
               <div className="relative mx-auto max-w-lg">
                 <div className="overflow-hidden rounded-4xl border border-white bg-white shadow-2xl shadow-[#263832]/10">
@@ -96,7 +97,8 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <InvitationPreview slug="/xv-bianca-elegante" />
           </div>
         </div>
       </section>
@@ -147,10 +149,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* ===================================================== */}
-      {/* EJEMPLOS DE INVITACIONES */}
-      {/* ===================================================== */}
-      {/* <InvitationExamples /> */}
       {/* ===================================================== */}
       {/* CARACTERISTICAS */}
       {/* ===================================================== */}
