@@ -179,7 +179,7 @@ export default function EventGiftsForm({
   }
 
   return (
-    <div className="relative mt-5 w-0 max-w-full min-w-0 space-y-4">
+    <div className="relative mt-5 w-full max-w-full min-w-0 space-y-4">
       {/* ===================================================== */}
       {/* OPCIONES EXISTENTES */}
       {/* ===================================================== */}
