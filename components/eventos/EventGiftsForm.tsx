@@ -2,7 +2,11 @@
 
 import { FormEvent, useState } from "react"
 import { toast } from "react-toastify"
-import { createEventGift, deleteEventGift, updateEventGift} from "@/actions/event-actions"
+import {
+  createEventGift,
+  deleteEventGift,
+  updateEventGift,
+} from "@/actions/event-actions"
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { Gift, GiftType } from "@/utils/types"
 
@@ -39,7 +43,10 @@ const giftTypes = [
   },
 ] as const
 
-export default function EventGiftsForm({ eventId, gifts}: Props) {
+export default function EventGiftsForm({
+  eventId,
+  gifts,
+}: Props) {
   const [items, setItems] = useState(gifts)
 
   const [type, setType] = useState<GiftType>("ENVELOPE")
@@ -75,11 +82,18 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
     setAccountNumber(gift.accountNumber ?? "")
 
     window.setTimeout(() => {
-      document.getElementById("event-gifts-form") ?.scrollIntoView({behavior: "smooth", block: "center"})
+      document
+        .getElementById("event-gifts-form")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        })
     }, 50)
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault()
 
     setLoading(true)
@@ -94,7 +108,12 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
       accountNumber,
     }
 
-    const result = editingId ? await updateEventGift({id: editingId, ...data}) : await createEventGift(data)
+    const result = editingId
+      ? await updateEventGift({
+          id: editingId,
+          ...data,
+        })
+      : await createEventGift(data)
 
     if (!result.success) {
       toast.error(result.error)
@@ -103,10 +122,21 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
     }
 
     if (editingId) {
-      setItems((current) => current.map((gift) => gift.id === editingId ? result.gift : gift ))
+      setItems((current) =>
+        current.map((gift) =>
+          gift.id === editingId
+            ? result.gift
+            : gift
+        )
+      )
+
       toast.success("Opción de regalo actualizada")
     } else {
-      setItems((current) => [...current,result.gift])
+      setItems((current) => [
+        ...current,
+        result.gift,
+      ])
+
       toast.success("Opción de regalo agregada")
     }
 
@@ -117,7 +147,9 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
   async function handleDelete(id: string) {
     if (loading) return
 
-    const confirmed = window.confirm( "¿Seguro que deseas eliminar esta opción de regalo?")
+    const confirmed = window.confirm(
+      "¿Seguro que deseas eliminar esta opción de regalo?"
+    )
 
     if (!confirmed) return
 
@@ -134,7 +166,9 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
       return
     }
 
-    setItems((current) => current.filter((gift) => gift.id !== id))
+    setItems((current) =>
+      current.filter((gift) => gift.id !== id)
+    )
 
     if (editingId === id) {
       resetForm()
@@ -145,34 +179,187 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
   }
 
   return (
-    <div className="mt-5 min-w-0 space-y-4">
+    <div className="relative mt-5 w-0 max-w-full min-w-0 space-y-4">
       {/* ===================================================== */}
       {/* OPCIONES EXISTENTES */}
       {/* ===================================================== */}
+
       {items.length > 0 && (
-        <div className="space-y-2">
-          {items.map((gift) => { const giftType = giftTypes.find((item) => item.value === gift.type)
+        <div className="w-full max-w-full min-w-0 space-y-2">
+          {items.map((gift) => {
+            const giftType = giftTypes.find(
+              (item) => item.value === gift.type
+            )
+
             return (
-              <div key={gift.id} className="flex min-w-0 items-center gap-3 rounded-xl border border-[#E5E9E5] bg-[#FAFBF9] px-3 py-3">
+              <div
+                key={gift.id}
+                className="
+                  flex
+                  w-full
+                  max-w-full
+                  min-w-0
+                  items-center
+                  gap-3
+                  overflow-hidden
+                  rounded-xl
+                  border
+                  border-[#E5E9E5]
+                  bg-[#FAFBF9]
+                  px-3
+                  py-3
+                "
+              >
                 {/* ICONO */}
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#2F5D50]/10 text-base">
+
+                <div
+                  className="
+                    flex
+                    h-9
+                    w-9
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-lg
+                    bg-[#2F5D50]/10
+                    text-base
+                  "
+                >
                   {giftType?.icon ?? "🎁"}
                 </div>
+
                 {/* INFORMACIÓN */}
-                <div className="min-w-0 flex-1">
-                  <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
-                    <p className="truncate text-sm font-semibold text-[#263832]">{gift.title}</p>
-                    <span className="text-[11px] text-[#8A9A8F]">{giftType?.label}</span>
+
+                <div
+                  className="
+                    w-0
+                    min-w-0
+                    flex-1
+                    overflow-hidden
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      w-full
+                      min-w-0
+                      max-w-full
+                      flex-wrap
+                      items-center
+                      gap-x-2
+                      gap-y-0.5
+                    "
+                  >
+                    <p
+                      className="
+                        min-w-0
+                        max-w-full
+                        truncate
+                        text-sm
+                        font-semibold
+                        text-[#263832]
+                      "
+                    >
+                      {gift.title}
+                    </p>
+
+                    <span
+                      className="
+                        max-w-full
+                        shrink-0
+                        truncate
+                        text-[11px]
+                        text-[#8A9A8F]
+                      "
+                    >
+                      {giftType?.label}
+                    </span>
                   </div>
-                  {gift.description && (<p className="mt-0.5 truncate text-xs text-[#687A72]">{gift.description}</p>)}
-                  {gift.url && (<p className="mt-0.5 truncate text-[11px] text-blue-600">{gift.url}</p>)}
+
+                  {gift.description && (
+                    <p
+                      className="
+                        mt-0.5
+                        max-w-full
+                        truncate
+                        text-xs
+                        text-[#687A72]
+                      "
+                    >
+                      {gift.description}
+                    </p>
+                  )}
+
+                  {gift.url && (
+                    <p
+                      className="
+                        mt-0.5
+                        max-w-full
+                        truncate
+                        text-[11px]
+                        text-blue-600
+                      "
+                    >
+                      {gift.url}
+                    </p>
+                  )}
                 </div>
+
                 {/* ACCIONES */}
-                <div className="flex shrink-0 items-center gap-1">
-                  <button type="button" onClick={() => handleEdit(gift)} disabled={loading} title="Editar" className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition hover:bg-white hover:text-slate-800 disabled:opacity-50">
+
+                <div
+                  className="
+                    flex
+                    shrink-0
+                    items-center
+                    gap-1
+                  "
+                >
+                  <button
+                    type="button"
+                    onClick={() => handleEdit(gift)}
+                    disabled={loading}
+                    title="Editar"
+                    className="
+                      flex
+                      h-8
+                      w-8
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-slate-500
+                      transition
+                      hover:bg-white
+                      hover:text-slate-800
+                      disabled:opacity-50
+                    "
+                  >
                     <PencilIcon className="h-4 w-4" />
                   </button>
-                  <button type="button" onClick={() => handleDelete(gift.id)} disabled={loading} title="Eliminar" className="flex h-8 w-8 items-center justify-center rounded-lg text-red-500 transition hover:bg-red-50 hover:text-red-700 disabled:opacity-50">
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDelete(gift.id)
+                    }
+                    disabled={loading}
+                    title="Eliminar"
+                    className="
+                      flex
+                      h-8
+                      w-8
+                      shrink-0
+                      items-center
+                      justify-center
+                      rounded-lg
+                      text-red-500
+                      transition
+                      hover:bg-red-50
+                      hover:text-red-700
+                      disabled:opacity-50
+                    "
+                  >
                     <TrashIcon className="h-4 w-4" />
                   </button>
                 </div>
@@ -181,33 +368,133 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
           })}
         </div>
       )}
+
       {/* ===================================================== */}
       {/* FORMULARIO */}
       {/* ===================================================== */}
-      <form id="event-gifts-form" onSubmit={handleSubmit} className="min-w-0 overflow-hidden rounded-xl border border-dashed border-[#CBD6D0] bg-[#FAFBF9] p-4">
+
+      <form
+        id="event-gifts-form"
+        onSubmit={handleSubmit}
+        className="
+          w-full
+          max-w-full
+          min-w-0
+          overflow-hidden
+          rounded-xl
+          border
+          border-dashed
+          border-[#CBD6D0]
+          bg-[#FAFBF9]
+          p-4
+        "
+      >
         {/* HEADER */}
-        <div className="flex min-w-0 items-center justify-between gap-3">
-          <div className="min-w-0">
-            <h3 className="truncate text-sm font-semibold text-[#263832]">{editingId ? "Editar opción de regalo" : "Agregar opción de regalo"}</h3>
-            {!editingId && (<p className="mt-0.5 text-xs text-[#8A9A8F]">Elige cómo podrán obsequiarte tus invitados.</p>)}
+
+        <div
+          className="
+            flex
+            w-full
+            max-w-full
+            min-w-0
+            items-center
+            justify-between
+            gap-3
+          "
+        >
+          <div className="w-0 min-w-0 flex-1 overflow-hidden">
+            <h3
+              className="
+                truncate
+                text-sm
+                font-semibold
+                text-[#263832]
+              "
+            >
+              {editingId
+                ? "Editar opción de regalo"
+                : "Agregar opción de regalo"}
+            </h3>
+
+            {!editingId && (
+              <p
+                className="
+                  mt-0.5
+                  truncate
+                  text-xs
+                  text-[#8A9A8F]
+                "
+              >
+                Elige cómo podrán obsequiarte tus invitados.
+              </p>
+            )}
           </div>
-          {editingId && (<button type="button" onClick={resetForm} className="shrink-0 text-xs font-medium text-slate-500 hover:text-slate-800">Cancelar</button>)}
+
+          {editingId && (
+            <button
+              type="button"
+              onClick={resetForm}
+              className="
+                shrink-0
+                text-xs
+                font-medium
+                text-slate-500
+                hover:text-slate-800
+              "
+            >
+              Cancelar
+            </button>
+          )}
         </div>
+
         {/* CAMPOS */}
-        <div className="mt-4 space-y-3">
+
+        <div className="mt-4 w-full max-w-full min-w-0 space-y-3">
           {/* TIPO + TITULO */}
-          <div className="grid gap-3 sm:grid-cols-[220px_minmax(0,1fr)]">
+
+          <div
+            className="
+              grid
+              w-full
+              max-w-full
+              min-w-0
+              grid-cols-1
+              gap-3
+              sm:grid-cols-2
+            "
+          >
             {/* TIPO */}
-            <div className="min-w-0">
+
+            <div className="w-full max-w-full min-w-0">
               <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                 Tipo
               </label>
+
               <select
                 value={type}
                 onChange={(e) =>
-                  setType(e.target.value as GiftType)
+                  setType(
+                    e.target.value as GiftType
+                  )
                 }
-                className="block h-10 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
+                className="
+                  block
+                  h-10
+                  w-full
+                  max-w-full
+                  min-w-0
+                  rounded-lg
+                  border
+                  border-slate-300
+                  bg-white
+                  px-3
+                  text-sm
+                  text-slate-800
+                  outline-none
+                  focus:border-[#2F5D50]
+                  focus:ring-2
+                  focus:ring-[#2F5D50]/10
+                "
               >
                 {giftTypes.map((item) => (
                   <option
@@ -219,11 +506,14 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
                 ))}
               </select>
             </div>
+
             {/* TITULO */}
-            <div className="min-w-0">
+
+            <div className="w-full max-w-full min-w-0">
               <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                 Título
               </label>
+
               <input
                 type="text"
                 value={title}
@@ -232,15 +522,35 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
                 }
                 placeholder="Ej. Mesa de regalos Liverpool"
                 required
-                className="block h-10 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
+                className="
+                  block
+                  h-10
+                  w-full
+                  max-w-full
+                  min-w-0
+                  rounded-lg
+                  border
+                  border-slate-300
+                  bg-white
+                  px-3
+                  text-sm
+                  text-slate-800
+                  outline-none
+                  focus:border-[#2F5D50]
+                  focus:ring-2
+                  focus:ring-[#2F5D50]/10
+                "
               />
             </div>
           </div>
+
           {/* DESCRIPCIÓN */}
-          <div className="min-w-0">
+
+          <div className="w-full max-w-full min-w-0">
             <label className="mb-1.5 block text-xs font-semibold text-slate-600">
               Descripción
             </label>
+
             <textarea
               value={description}
               onChange={(e) =>
@@ -248,15 +558,36 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
               }
               rows={2}
               placeholder="Tu presencia es nuestro mejor regalo..."
-              className="block w-full min-w-0 resize-none rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 outline-none focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
+              className="
+                block
+                w-full
+                max-w-full
+                min-w-0
+                resize-none
+                rounded-lg
+                border
+                border-slate-300
+                bg-white
+                px-3
+                py-2
+                text-sm
+                text-slate-800
+                outline-none
+                focus:border-[#2F5D50]
+                focus:ring-2
+                focus:ring-[#2F5D50]/10
+              "
             />
           </div>
+
           {/* URL */}
+
           {(isGiftTable || type === "CUSTOM") && (
-            <div className="min-w-0">
+            <div className="w-full max-w-full min-w-0">
               <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                 Enlace
               </label>
+
               <input
                 type="url"
                 value={url}
@@ -264,17 +595,47 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
                   setUrl(e.target.value)
                 }
                 placeholder="https://..."
-                className="block h-10 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
+                className="
+                  block
+                  w-full
+                  max-w-full
+                  min-w-0
+                  rounded-lg
+                  border
+                  border-slate-300
+                  bg-white
+                  px-3
+                  py-2
+                  text-sm
+                  text-slate-800
+                  outline-none
+                  focus:border-[#2F5D50]
+                  focus:ring-2
+                  focus:ring-[#2F5D50]/10
+                "
               />
             </div>
           )}
+
           {/* DATOS BANCARIOS */}
+
           {isBankTransfer && (
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="min-w-0">
+            <div
+              className="
+                grid
+                w-full
+                max-w-full
+                min-w-0
+                grid-cols-1
+                gap-3
+                sm:grid-cols-2
+              "
+            >
+              <div className="w-full max-w-full min-w-0">
                 <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                   Titular
                 </label>
+
                 <input
                   type="text"
                   value={accountName}
@@ -282,13 +643,32 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
                     setAccountName(e.target.value)
                   }
                   placeholder="Nombre completo"
-                  className="block h-10 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
+                  className="
+                    block
+                    h-10
+                    w-full
+                    max-w-full
+                    min-w-0
+                    rounded-lg
+                    border
+                    border-slate-300
+                    bg-white
+                    px-3
+                    text-sm
+                    text-slate-800
+                    outline-none
+                    focus:border-[#2F5D50]
+                    focus:ring-2
+                    focus:ring-[#2F5D50]/10
+                  "
                 />
               </div>
-              <div className="min-w-0">
+
+              <div className="w-full max-w-full min-w-0">
                 <label className="mb-1.5 block text-xs font-semibold text-slate-600">
                   Cuenta / CLABE
                 </label>
+
                 <input
                   type="text"
                   value={accountNumber}
@@ -296,26 +676,82 @@ export default function EventGiftsForm({ eventId, gifts}: Props) {
                     setAccountNumber(e.target.value)
                   }
                   placeholder="000000000000000000"
-                  className="block h-10 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 outline-none focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
+                  className="
+                    block
+                    h-10
+                    w-full
+                    max-w-full
+                    min-w-0
+                    rounded-lg
+                    border
+                    border-slate-300
+                    bg-white
+                    px-3
+                    text-sm
+                    text-slate-800
+                    outline-none
+                    focus:border-[#2F5D50]
+                    focus:ring-2
+                    focus:ring-[#2F5D50]/10
+                  "
                 />
               </div>
             </div>
           )}
+
           {/* BOTONES */}
-          <div className="flex justify-end gap-2 pt-1">
+
+          <div
+            className="
+              flex
+              w-full
+              max-w-full
+              min-w-0
+              flex-wrap
+              justify-end
+              gap-2
+              pt-1
+            "
+          >
             {editingId && (
               <button
                 type="button"
                 onClick={resetForm}
-                className="rounded-lg border border-slate-200 bg-white px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50"
+                className="
+                  shrink-0
+                  rounded-lg
+                  border
+                  border-slate-200
+                  bg-white
+                  px-4
+                  py-2
+                  text-xs
+                  font-medium
+                  text-slate-600
+                  hover:bg-slate-50
+                "
               >
                 Cancelar
               </button>
             )}
+
             <button
               type="submit"
               disabled={loading}
-              className="rounded-lg bg-[#2F5D50] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#244A40] disabled:cursor-not-allowed disabled:opacity-60"
+              className="
+                shrink-0
+                rounded-lg
+                bg-[#2F5D50]
+                px-4
+                py-2
+                text-xs
+                font-semibold
+                text-white
+                transition
+                hover:bg-[#244A40]
+                disabled:cursor-not-allowed
+                disabled:opacity-60
+              "
             >
               {loading
                 ? "Guardando..."
