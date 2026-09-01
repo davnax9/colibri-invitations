@@ -107,7 +107,7 @@ export default function InvitationBook({ designs }: Props) {
         {/* =================================================== */}
         {/* SOMBRA DEL LIBRO */}
         {/* =================================================== */}
-        <div className="absolute bottom-[-25px] left-1/2 h-10 w-[80%] -translate-x-1/2 rounded-full bg-black/20 blur-2xl" />
+        <div className="absolute -bottom-6.25 left-1/2 h-10 w-[80%] -translate-x-1/2 rounded-full bg-black/20 blur-2xl" />
         {/* =================================================== */}
         {/* DESKTOP */}
         {/* =================================================== */}
@@ -178,17 +178,12 @@ export default function InvitationBook({ designs }: Props) {
         {/* ===================================================== */}
         {/* VERSIÓN MÓVIL */}
         {/* ===================================================== */}
-
         <div className="relative mx-auto w-full max-w-sm md:hidden">
-
           {/* =============================================== */}
           {/* IMAGEN DE LA INVITACIÓN */}
           {/* =============================================== */}
-
           <div className="relative">
-
             {/* BOTÓN ANTERIOR */}
-
             <button
               type="button"
               onClick={goMobilePrevious}
@@ -197,18 +192,13 @@ export default function InvitationBook({ designs }: Props) {
             >
               <span className="-mt-1">‹</span>
             </button>
-
-
             {/* IMAGEN */}
-
             {leftPage && (
               <Link
                 href={leftPage.href}
                 className={`block overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl transition-all duration-500 ${ isMobileTurning ? "scale-[0.98] opacity-70" : "scale-100 opacity-100" }`}
               >
-
                 <div className="relative aspect-3/4">
-
                   <Image
                     src={leftPage.image}
                     alt={leftPage.name}
@@ -216,12 +206,8 @@ export default function InvitationBook({ designs }: Props) {
                     sizes="100vw"
                     className="object-cover"
                   />
-
                   {/* DEGRADADO */}
-
                   <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
-
-
                   {/* INFORMACIÓN SOBRE LA IMAGEN */}
                   <div className="absolute bottom-5 left-5 right-5 text-white">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em]">{leftPage.category}</p>
@@ -515,11 +501,9 @@ function BookPage({
         backfaceVisibility: "hidden",
       }}
     >
-
       {/* =================================================== */}
       {/* IMAGEN */}
       {/* =================================================== */}
-
       <Image
         src={design.image}
         alt={`Diseño ${design.name}`}
@@ -527,40 +511,27 @@ function BookPage({
         sizes="50vw"
         className="object-cover"
       />
-
-
       {/* =================================================== */}
       {/* DEGRADADO */}
       {/* =================================================== */}
-
       <div className="absolute inset-x-0 bottom-0 h-36 bg-linear-to-t from-black/50 to-transparent" />
-
-
       {/* =================================================== */}
       {/* CATEGORÍA */}
       {/* =================================================== */}
-
       <div className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#2F5D50] shadow-sm backdrop-blur">
         {design.category}
       </div>
-
-
       {/* =================================================== */}
       {/* INFORMACIÓN */}
       {/* =================================================== */}
-
       <div className="absolute bottom-5 left-5 right-5 text-white">
-
         <p className="text-xs font-semibold uppercase tracking-[0.2em]">
           {design.category}
         </p>
-
         <p className="mt-1 text-xl font-bold">
           {design.name}
         </p>
-
       </div>
-
     </Link>
 
   )

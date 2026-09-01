@@ -56,7 +56,7 @@ const designs: FeaturedDesign[] = [
     category: "XV años",
     name: "Bianca",
     description: "Elegancia y delicadeza para una noche especial.",
-    image: "/templates/wedding-elegant.png",
+    image: "/templates/XV-elegante.png",
     href: "/invitacion/xv-bianca-elegante",
   },
   {
@@ -64,9 +64,33 @@ const designs: FeaturedDesign[] = [
     category: "XV años",
     name: "Bianquita",
     description: "Una invitación llena de personalidad.",
-    image: "/templates/wedding-elegant.png",
+    image: "/templates/XV-floral.png",
     href: "/invitacion/quinceanos-bianquita",
   },
+  {
+    id: "xv-kamila",
+    category: "XV años",
+    name: "Kamila",
+    description: "Una invitación llena de elegancia.",
+    image: "/templates/XV-luxury.png",
+    href: "/invitacion/xv-bianquita-luxury",
+  },
+  {
+    id: "xv-zoe",
+    category: "XV años",
+    name: "Zoe",
+    description: "Una invitación digna de una princesa.",
+    image: "/templates/XV-princesa.png",
+    href: "/invitacion/xv-bianca-princesa",
+  },
+  {
+    id: "xv-zoe",
+    category: "XV años",
+    name: "Zoe",
+    description: "Una invitación digna de una princesa.",
+    image: "/templates/XV-princesa.png",
+    href: "/invitacion/xv-bianca-princesa",
+  }
 
   // agrega aquí tus otros 3 diseños
 ]

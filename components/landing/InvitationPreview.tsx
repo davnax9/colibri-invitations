@@ -14,13 +14,13 @@ export default function InvitationPreview({
       <div className="absolute -inset-8 rounded-[4rem] bg-[#2F5D50]/10 blur-3xl" />
 
       {/* TELÉFONO */}
-      <div className="relative mx-auto w-[280px] rounded-[2.8rem] border-[8px] border-[#263832] bg-[#263832] p-1 shadow-2xl shadow-[#263832]/20 sm:w-[300px]">
+      <div className="relative mx-auto w-70 rounded-[2.8rem] border-8 border-[#263832] bg-[#263832] p-1 shadow-2xl shadow-[#263832]/20 sm:w-75">
 
         {/* Cámara / notch */}
         <div className="absolute left-1/2 top-2 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-[#263832]" />
 
         {/* Pantalla */}
-        <div className="relative h-[580px] overflow-hidden rounded-[2.2rem] bg-white">
+        <div className="relative h-145 overflow-hidden rounded-[2.2rem] bg-white">
 
           <iframe
             src={`/invitacion/${slug}`}
