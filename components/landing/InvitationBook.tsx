@@ -330,18 +330,16 @@ export default function InvitationBook({ designs }: Props) {
       {/* ===================================================== */}
       {/* INDICADORES */}
       {/* ===================================================== */}
-      <div className="mt-8 flex items-center justify-center gap-2">
+      <div className="mt-8 hidden items-center justify-center gap-2 md:flex">
         {Array.from({
           length: Math.ceil(designs.length / 2),
         }).map((_, index) => {
-          const active =
-            Math.floor(currentPage / 2) === index
+          const active = Math.floor(currentPage / 2) === index
           return (
             <button
               key={index}
               type="button"
               onClick={() => {
-
                 if (!isTurning) {
                   setCurrentPage(index * 2)
                 }
@@ -353,29 +351,19 @@ export default function InvitationBook({ designs }: Props) {
               }`}
               aria-label={`Ir a página ${index + 1}`}
             />
-
           )
-
         })}
-
       </div>
-
-
       {/* ===================================================== */}
       {/* TEXTO */}
       {/* ===================================================== */}
-
       <p className="mt-4 text-center text-xs text-[#8A9A8F]">
         Explora nuestros diseños y haz clic sobre una invitación para verla.
       </p>
-
-
       {/* ===================================================== */}
       {/* ANIMACIONES */}
       {/* ===================================================== */}
-
       <style jsx>{`
-
         /*
          * =====================================================
          * HOJA HACIA ADELANTE
@@ -464,7 +452,6 @@ export default function InvitationBook({ designs }: Props) {
         }
 
       `}</style>
-
     </div>
   )
 }
