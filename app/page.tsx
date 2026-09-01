@@ -1,8 +1,11 @@
 import ContactButton from "@/components/landing/ContactButton"
+import FaqSection from "@/components/landing/FaqSection"
 import FeaturedDesigns from "@/components/landing/FeaturedDesigns"
 import InvitationExamples from "@/components/landing/InvitationExamples"
 import InvitationPreview from "@/components/landing/InvitationPreview"
 import MobileMenu from "@/components/landing/MobileMenu"
+import PromotionBanner from "@/components/landing/PromotionBanner"
+import TrustSection from "@/components/landing/TrustSection"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -73,31 +76,6 @@ export default function HomePage() {
               </div>
             </div>
             {/* PREVIEW */}
-            {/* <div className="relative">
-              <div className="absolute -inset-6 rounded-[3rem] bg-[#2F5D50]/5 blur-2xl" />
-              <div className="relative mx-auto max-w-lg">
-                <div className="overflow-hidden rounded-4xl border border-white bg-white shadow-2xl shadow-[#263832]/10">
-                  <div className="relative flex h-107.5 items-center justify-center bg-[#E8EEE9]">
-                    <div className="absolute inset-0 bg-linear-to-b from-[#2F5D50]/10 to-[#2F5D50]/40" />
-                    <div className="relative text-center">
-                      <p className="text-sm uppercase tracking-[0.3em] text-[#2F5D50]">Nuestra boda</p>
-                      <h2 className="mt-5 font-serif text-5xl text-[#263832]">Ana & Jose</h2>
-                      <div className="mx-auto mt-6 h-px w-24 bg-[#C9A86A]" />
-                      <p className="mt-6 text-sm text-[#687A72]">14 · Noviembre · 2026</p>
-                    </div>
-                  </div>
-                  <div className="p-6 text-center">
-                    <p className="text-xs uppercase tracking-[0.2em] text-[#8A9A8F]">Estás invitado</p>
-                    <p className="mt-2 text-sm leading-6 text-[#687A72]">Nos encantaría compartir contigo este momento tan especial.</p>
-                    <div className="mt-5 flex justify-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-[#2F5D50]" />
-                      <span className="h-2 w-2 rounded-full bg-[#C9A86A]" />
-                      <span className="h-2 w-2 rounded-full bg-[#8FA89D]" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
             <InvitationPreview slug="/xv-bianca-elegante" />
           </div>
         </div>
@@ -106,6 +84,10 @@ export default function HomePage() {
       {/* DISEÑOS DESTACADOS                                    */}
       {/* ===================================================== */}
       <FeaturedDesigns />
+      {/* ===================================================== */}
+      {/* CONFIANZA */}
+      {/* ===================================================== */}
+      <TrustSection />
       {/* ===================================================== */}
       {/* COMO FUNCIONA */}
       {/* ===================================================== */}
@@ -116,28 +98,34 @@ export default function HomePage() {
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">Crea tu invitación en pocos pasos</h2>
             <p className="mt-4 text-[#687A72]">Nosotros ponemos las herramientas. Tú pones la historia.</p>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
             {[
               {
                 number: "01",
                 icon: "🎨",
                 title: "Elige tu diseño",
-                text: "Selecciona una plantilla pensada para bodas o XV años.",
+                text: "Selecciona una plantilla.",
               },
               {
                 number: "02",
                 icon: "✨",
                 title: "Personaliza",
-                text: "Agrega nombres, fotografías, fechas, música, ubicaciones y todos los detalles de tu evento.",
+                text: "Agrega detalles a tu evento.",
               },
               {
                 number: "03",
                 icon: "💌",
                 title: "Comparte",
-                text: "Envía tu invitación personalizada directamente a tus invitados.",
+                text: "Envía tu invitación fácilmente por WhatsApp.",
+              },
+              {
+                number: "04",
+                icon: "👥",
+                title: "Administra tus invitaciones",
+                text: "Recibe y administra las confirmaciones de tus invitados.",
               },
             ].map((item) => (
-              <div key={item.number} className="rounded-3xl border border-[#E5E9E5] bg-[#FAF8F3] p-7">
+              <div key={item.number} className="rounded-3xl border border-[#E5E9E5] bg-[#FAF8F3] p-5 sm:p-7 text-base sm:text-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#2F5D50]/10 text-xl">{item.icon}</div>
                   <span className="text-sm font-bold text-[#C9A86A]">{item.number}</span>
@@ -161,7 +149,7 @@ export default function HomePage() {
               <p className="mt-5 leading-7 text-[#687A72]">Crea una experiencia completa para tus invitados y administra todos los detalles de tu evento desde un solo lugar.</p>
               <Link href="/login" className="mt-7 inline-flex rounded-xl bg-[#2F5D50] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#244A40]">Comenzar ahora</Link>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               {[
                 ["📸", "Fotografías", "Comparte los momentos más especiales."],
                 ["🎵", "Música", "Dale personalidad a tu invitación."],
@@ -170,10 +158,10 @@ export default function HomePage() {
                 ["👥", "Lista de invitados", "Administra nombres y pases."],
                 ["💌", "Confirmaciones", "Conoce quién asistirá a tu evento."],
               ].map(([icon, title, text]) => (
-                <div key={title} className="rounded-2xl border border-[#E5E9E5] bg-white p-5 shadow-sm">
+                <div key={title} className="rounded-2xl border border-[#E5E9E5] bg-white p-4 shadow-sm sm:p-5">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#2F5D50]/10">{icon}</div>
-                  <h3 className="mt-4 font-semibold text-[#263832]">{title}</h3>
-                  <p className="mt-1 text-sm leading-5 text-[#687A72]">{text}</p>
+                  <h3 className="mt-4 text-sm font-semibold text-[#263832] sm:text-base">{title}</h3>
+                  <p className="mt-1 text-xs leading-5 text-[#687A72] sm:text-sm">{text}</p>
                 </div>
               ))}
             </div>
@@ -185,16 +173,33 @@ export default function HomePage() {
       {/* ===================================================== */}
       <section id="planes" className="border-t border-[#E5E9E5] bg-white">
         <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
+          {/* ENCABEZADO */}
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Planes</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">Elige la experiencia ideal para tu evento</h2>
+            <p className="mt-4 text-[#687A72]">Elige el plan que mejor se adapte a tu celebración.</p>
           </div>
+          {/* OFERTA */}
+          <PromotionBanner endDate="2026-09-06T23:59:59" />
+          {/* PLANES */}
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
+            {/* ================================================= */}
             {/* BASIC */}
+            {/* ================================================= */}
             <div className="rounded-3xl border border-[#E5E9E5] bg-[#FAF8F3] p-8">
               <p className="text-sm font-semibold text-[#8A9A8F]">BASIC</p>
               <h3 className="mt-3 text-2xl font-bold text-[#263832]">Lo esencial</h3>
               <p className="mt-3 text-sm leading-6 text-[#687A72]">Todo lo necesario para crear y compartir una invitación digital elegante.</p>
+              {/* PRECIO */}
+              <div className="mt-6">
+                <span className="text-sm font-medium text-[#8A9A8F]">Desde</span>
+                <div className="mt-1 flex items-baseline gap-3">
+                  <span className="text-lg font-medium text-[#8A9A8F] line-through">$500</span>
+                  <span className="text-4xl font-bold text-[#263832]">$400</span>
+                </div>
+                <p className="mt-1 text-xs text-[#8A9A8F]">20% de descuento · Pago único</p>
+              </div>
+              {/* CARACTERÍSTICAS */}
               <ul className="mt-7 space-y-3 text-sm text-[#687A72]">
                 <li>✓ Invitación digital</li>
                 <li>✓ Personalización del evento</li>
@@ -207,12 +212,20 @@ export default function HomePage() {
             </div>
             {/* PRO */}
             <div className="relative rounded-3xl border-2 border-[#2F5D50] bg-[#2F5D50] p-8 text-white shadow-xl">
-              <div className="absolute right-6 top-6 rounded-full bg-[#C9A86A] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
-                Recomendado
-              </div>
+              {/* RECOMENDADO */}
+              <div className="absolute right-6 top-6 rounded-full bg-[#C9A86A] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Recomendado</div>
               <p className="text-sm font-semibold text-[#D7E3DE]">PRO</p>
               <h3 className="mt-3 text-2xl font-bold">Experiencia completa</h3>
               <p className="mt-3 text-sm leading-6 text-[#D7E3DE]">Más control, más personalización y una mejor experiencia para administrar tus invitaciones.</p>
+              {/* PRECIO */}
+              <div className="mt-6">
+                <span className="text-sm font-medium text-[#D7E3DE]">Desde</span>
+                <div className="mt-1 flex items-baseline gap-3">
+                  <span className="text-lg font-medium text-[#AFC0B8] line-through">$800</span><span className="text-4xl font-bold text-white">$640</span>
+                </div>
+                <p className="mt-1 text-xs text-[#AFC0B8]">20% de descuento · Pago único</p>
+              </div>
+              {/* CARACTERÍSTICAS */}
               <ul className="mt-7 space-y-3 text-sm text-[#E4ECE8]">
                 <li>✓ Todo lo incluido en BASIC</li>
                 <li>✓ Mensajes personalizados</li>
@@ -222,11 +235,16 @@ export default function HomePage() {
               </ul>
             </div>
           </div>
-          <div className="text-center">
+          {/* CONTACTO */}
+          <div className="mt-10 text-center">
             <ContactButton />
           </div>
         </div>
       </section>
+      {/* ===================================================== */}
+      {/* PREGUNTAS FRECUENTES */}
+      {/* ===================================================== */}
+      <FaqSection />
       {/* ===================================================== */}
       {/* CTA */}
       {/* ===================================================== */}
