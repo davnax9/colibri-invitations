@@ -64,7 +64,7 @@ export default function GuestInvitationActions({guestId, slug, token, guestName,
 
   return (
     <>
-      <div className="flex flex-wrap gap-2">
+      <div className="grid grid-cols-4 gap-1.5">
           <button type="button" onClick={() => {window.open(invitationUrl,"_blank","noopener,noreferrer")}} className="rounded-lg border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 transition hover:bg-slate-50">
             Ver
           </button>
@@ -82,7 +82,7 @@ export default function GuestInvitationActions({guestId, slug, token, guestName,
               Mensaje
             </button>
           ) : (
-            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-400">Mensaje base</span>
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-400">Mensaje</span>
           )}
         </div>
 

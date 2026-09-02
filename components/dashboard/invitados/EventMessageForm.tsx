@@ -56,13 +56,11 @@ export default function EventMessageForm({eventId, eventName, initialMessage, ex
 
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-
       {/* ENCABEZADO */}
       <div>
         <h2 className="text-lg font-semibold text-slate-800">Mensaje para invitados</h2>
         <p className="mt-1 text-sm text-slate-500">Personaliza el mensaje que utilizarás para compartir las invitaciones de {eventName}.</p>
       </div>
-
       {/* EDITOR */}
       <div className="mt-6">
         <label htmlFor="guest-message" className="mb-2 block text-sm font-medium text-slate-700">Mensaje</label>
@@ -70,9 +68,8 @@ export default function EventMessageForm({eventId, eventName, initialMessage, ex
           className="w-full resize-y rounded-lg border border-slate-300 px-4 py-3 text-sm leading-6 text-slate-700 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
-
       {/* VARIABLES */}
-      <div className="mt-4">
+      {/* <div className="mt-4">
         <p className="text-sm font-medium text-slate-700">Variables disponibles</p>
         <div className="mt-2 flex flex-wrap gap-2">
           <VariableButton value="{nombre}" onClick={insertVariable} />
@@ -80,8 +77,7 @@ export default function EventMessageForm({eventId, eventName, initialMessage, ex
           <VariableButton value="{link}" onClick={insertVariable} />
         </div>
         <p className="mt-2 text-xs text-slate-400">Estas variables serán reemplazadas automáticamente al enviar la invitación.</p>
-      </div>
-
+      </div> */}
       {/* PREVISUALIZACIÓN */}
       <div className="mt-8">
         <p className="text-sm font-medium text-slate-700">Vista previa</p>
@@ -89,13 +85,11 @@ export default function EventMessageForm({eventId, eventName, initialMessage, ex
           <p className="whitespace-pre-wrap text-sm leading-6 text-slate-700">{previewMessage}</p>
         </div>
       </div>
-
       {error && (
         <div className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
             {error}
         </div>
        )}
-
       {/* BOTÓN */}
       <div className="mt-6 flex justify-end">
         <button type="button" onClick={handleSave} disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">

@@ -115,7 +115,7 @@ export default async function GuestsPage({ params }: Props) {
             </div>
           </div>
           <div className="overflow-hidden rounded-2xl bordershadow-sm">
-            <GuestTable eventId={event.id} guests={event.guests} eventSlug={event.slug} messageTemplate={event.message?.content} canCustomizeMessage={event.user.plan === "PRO"}/>
+            <GuestTable eventId={event.id} guests={event.guests} eventSlug={event.slug} messageTemplate={event.message?.content} canCustomizeMessage={event.user.plan === "PRO" || isAdmin}/>
           </div>
         </section>
       </div>
