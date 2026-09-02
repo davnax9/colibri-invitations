@@ -22,29 +22,18 @@ export default function InvitationBook({ designs }: Props) {
   const [isTurning, setIsTurning] = useState(false)
   const [direction, setDirection] = useState<"next" | "prev">("next")
   const [isMobileTurning, setIsMobileTurning] = useState(false)
+  const [mobileDirection, setMobileDirection] = useState<"next" | "prev">("next")
 
   const totalPages = designs.length
   const leftPage = designs[currentPage]
   const rightPage = designs[currentPage + 1]
-
-  /*
-   * Hoja siguiente
-   */
   const nextLeftPage = designs[currentPage + 2]
   const nextRightPage = designs[currentPage + 3]
-
-  /*
-   * Hoja anterior
-   */
   const previousLeftPage = designs[currentPage - 2]
   const previousRightPage = designs[currentPage - 1]
-
   const canGoNext = currentPage + 2 < totalPages
   const canGoPrevious = currentPage > 0
 
-  /* ========================================================= */
-  /* SIGUIENTE */
-  /* ========================================================= */
   function goNext() {
     if (isTurning || !canGoNext) return
 
@@ -56,10 +45,6 @@ export default function InvitationBook({ designs }: Props) {
       setIsTurning(false)
     }, 850)
   }
-
-  /* ========================================================= */
-  /* ANTERIOR */
-  /* ========================================================= */
 
   function goPrevious() {
     if (isTurning || !canGoPrevious) return
@@ -76,6 +61,7 @@ export default function InvitationBook({ designs }: Props) {
   function goMobileNext() {
     if (isMobileTurning || currentPage >= designs.length - 1) return
 
+    setMobileDirection("next")
     setIsMobileTurning(true)
 
     setTimeout(() => {
@@ -87,6 +73,7 @@ export default function InvitationBook({ designs }: Props) {
   function goMobilePrevious() {
     if (isMobileTurning || currentPage <= 0) return
 
+    setMobileDirection("prev")
     setIsMobileTurning(true)
 
     setTimeout(() => {
@@ -183,20 +170,14 @@ export default function InvitationBook({ designs }: Props) {
           {/* IMAGEN DE LA INVITACIÓN */}
           {/* =============================================== */}
           <div className="relative">
-            {/* BOTÓN ANTERIOR */}
-            <button
-              type="button"
-              onClick={goMobilePrevious}
-              disabled={currentPage <= 0 || isMobileTurning}
-              className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30" aria-label="Diseño anterior"
-            >
-              <span className="-mt-1">‹</span>
-            </button>
-            {/* IMAGEN */}
+
+            {/* ============================================= */}
+            {/* PÁGINA ACTUAL */}
+            {/* ============================================= */}
             {leftPage && (
               <Link
                 href={leftPage.href}
-                className={`block overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl transition-all duration-500 ${ isMobileTurning ? "scale-[0.98] opacity-70" : "scale-100 opacity-100" }`}
+                className="relative block overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl"
               >
                 <div className="relative aspect-4/5">
                   <Image
@@ -206,17 +187,198 @@ export default function InvitationBook({ designs }: Props) {
                     sizes="100vw"
                     className="object-cover object-top"
                   />
+
                   {/* DEGRADADO */}
                   <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
-                  {/* INFORMACIÓN SOBRE LA IMAGEN */}
+
+                  {/* INFORMACIÓN */}
                   <div className="absolute bottom-5 left-5 right-5 text-white">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em]">{leftPage.category}</p>
-                    <h3 className="mt-1 text-2xl font-bold">{leftPage.name}</h3>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+                      {leftPage.category}
+                    </p>
+
+                    <h3 className="mt-1 text-2xl font-bold">
+                      {leftPage.name}
+                    </h3>
                   </div>
                 </div>
               </Link>
             )}
+
+            {/* ============================================= */}
+            {/* ANIMACIÓN SIGUIENTE */}
+            {/* ============================================= */}
+            {isMobileTurning &&
+              mobileDirection === "next" &&
+              leftPage &&
+              designs[currentPage + 1] && (
+                <div
+                  className="mobile-page-flip-next absolute inset-0 z-10 overflow-hidden rounded-2xl"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transformOrigin: "left center",
+                  }}
+                >
+
+                  {/* FRENTE */}
+                  <div
+                    className="absolute inset-0 overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl"
+                    style={{
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={leftPage.image}
+                        alt={leftPage.name}
+                        fill
+                        sizes="100vw"
+                        className="object-cover object-top"
+                      />
+
+                      <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
+
+                      <div className="absolute bottom-5 left-5 right-5 text-white">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+                          {leftPage.category}
+                        </p>
+
+                        <h3 className="mt-1 text-2xl font-bold">
+                          {leftPage.name}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* REVERSO = SIGUIENTE */}
+                  <div
+                    className="absolute inset-0 overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl"
+                    style={{
+                      transform: "rotateY(180deg)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={designs[currentPage + 1].image}
+                        alt={designs[currentPage + 1].name}
+                        fill
+                        sizes="100vw"
+                        className="object-cover object-top"
+                      />
+
+                      <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
+
+                      <div className="absolute bottom-5 left-5 right-5 text-white">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+                          {designs[currentPage + 1].category}
+                        </p>
+
+                        <h3 className="mt-1 text-2xl font-bold">
+                          {designs[currentPage + 1].name}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              )}
+
+            {/* ============================================= */}
+            {/* ANIMACIÓN ANTERIOR */}
+            {/* ============================================= */}
+            {isMobileTurning &&
+              mobileDirection === "prev" &&
+              leftPage &&
+              designs[currentPage - 1] && (
+                <div
+                  className="mobile-page-flip-prev absolute inset-0 z-10 overflow-hidden rounded-2xl"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    transformOrigin: "right center",
+                  }}
+                >
+
+                  {/* FRENTE */}
+                  <div
+                    className="absolute inset-0 overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl"
+                    style={{
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={leftPage.image}
+                        alt={leftPage.name}
+                        fill
+                        sizes="100vw"
+                        className="object-cover object-top"
+                      />
+
+                      <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
+
+                      <div className="absolute bottom-5 left-5 right-5 text-white">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+                          {leftPage.category}
+                        </p>
+
+                        <h3 className="mt-1 text-2xl font-bold">
+                          {leftPage.name}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* REVERSO = ANTERIOR */}
+                  <div
+                    className="absolute inset-0 overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl"
+                    style={{
+                      transform: "rotateY(180deg)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={designs[currentPage - 1].image}
+                        alt={designs[currentPage - 1].name}
+                        fill
+                        sizes="100vw"
+                        className="object-cover object-top"
+                      />
+
+                      <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
+
+                      <div className="absolute bottom-5 left-5 right-5 text-white">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+                          {designs[currentPage - 1].category}
+                        </p>
+
+                        <h3 className="mt-1 text-2xl font-bold">
+                          {designs[currentPage - 1].name}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              )}
+
+            {/* ============================================= */}
+            {/* BOTÓN ANTERIOR */}
+            {/* ============================================= */}
+            <button
+              type="button"
+              onClick={goMobilePrevious}
+              disabled={currentPage <= 0 || isMobileTurning}
+              className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
+              aria-label="Diseño anterior"
+            >
+              <span className="-mt-1">‹</span>
+            </button>
+
+            {/* ============================================= */}
             {/* BOTÓN SIGUIENTE */}
+            {/* ============================================= */}
             <button
               type="button"
               onClick={goMobileNext}
@@ -226,6 +388,7 @@ export default function InvitationBook({ designs }: Props) {
             >
               <span className="-mt-1">›</span>
             </button>
+
           </div>
           {/* =============================================== */}
           {/* INFORMACIÓN DEL DISEÑO ACTUAL */}
@@ -426,6 +589,61 @@ export default function InvitationBook({ designs }: Props) {
         }
 
         @keyframes bookFlipPrev {
+
+          0% {
+            transform: rotateY(0deg);
+          }
+
+          100% {
+            transform: rotateY(180deg);
+          }
+
+        }
+
+
+
+        /*
+        * =====================================================
+        * PÁGINA MÓVIL HACIA ADELANTE
+        * =====================================================
+        */
+
+        .mobile-page-flip-next {
+          animation:
+            mobilePageFlipNext
+            700ms
+            cubic-bezier(0.4, 0, 0.2, 1)
+            forwards;
+        }
+
+        @keyframes mobilePageFlipNext {
+
+          0% {
+            transform: rotateY(0deg);
+          }
+
+          100% {
+            transform: rotateY(-180deg);
+          }
+
+        }
+
+
+        /*
+        * =====================================================
+        * PÁGINA MÓVIL HACIA ATRÁS
+        * =====================================================
+        */
+
+        .mobile-page-flip-prev {
+          animation:
+            mobilePageFlipPrev
+            700ms
+            cubic-bezier(0.4, 0, 0.2, 1)
+            forwards;
+        }
+
+        @keyframes mobilePageFlipPrev {
 
           0% {
             transform: rotateY(0deg);
