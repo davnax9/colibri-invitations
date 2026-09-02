@@ -23,6 +23,8 @@ export default function InvitationBook({ designs }: Props) {
   const [direction, setDirection] = useState<"next" | "prev">("next")
   const [isMobileTurning, setIsMobileTurning] = useState(false)
   const [mobileDirection, setMobileDirection] = useState<"next" | "prev">("next")
+  const [touchStartX, setTouchStartX] = useState<number | null>(null)
+  const [touchStartY, setTouchStartY] = useState<number | null>(null)
 
   const totalPages = designs.length
   const leftPage = designs[currentPage]
@@ -56,6 +58,48 @@ export default function InvitationBook({ designs }: Props) {
       setCurrentPage((current) => current - 2)
       setIsTurning(false)
     }, 850)
+  }
+
+  function handleTouchStart(event: React.TouchEvent<HTMLDivElement>) {
+    if (isMobileTurning) return
+
+    const touch = event.touches[0]
+
+    setTouchStartX(touch.clientX)
+    setTouchStartY(touch.clientY)
+  }
+
+  function handleTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
+    if (isMobileTurning || touchStartX === null || touchStartY === null) return
+
+    const touch = event.changedTouches[0]
+
+    const deltaX = touch.clientX - touchStartX
+    const deltaY = touch.clientY - touchStartY
+
+    // Limpiamos el estado
+    setTouchStartX(null)
+    setTouchStartY(null)
+
+    // Ignorar movimientos pequeños
+    const minSwipeDistance = 50
+
+    if (Math.abs(deltaX) < minSwipeDistance) return
+
+    // Si el movimiento vertical es mayor,
+    // probablemente el usuario está haciendo scroll.
+    if (Math.abs(deltaY) > Math.abs(deltaX)) return
+
+    // Deslizar hacia la izquierda
+    if (deltaX < 0) {
+      goMobileNext()
+      return
+    }
+
+    // Deslizar hacia la derecha
+    if (deltaX > 0) {
+      goMobilePrevious()
+    }
   }
 
   function goMobileNext() {
@@ -169,8 +213,7 @@ export default function InvitationBook({ designs }: Props) {
           {/* =============================================== */}
           {/* IMAGEN DE LA INVITACIÓN */}
           {/* =============================================== */}
-          <div className="relative">
-
+          <div className="relative touch-pan-y select-none" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             {/* ============================================= */}
             {/* PÁGINA ACTUAL */}
             {/* ============================================= */}
@@ -369,6 +412,8 @@ export default function InvitationBook({ designs }: Props) {
             <button
               type="button"
               onClick={goMobilePrevious}
+              onTouchStart={(event) => event.stopPropagation()}
+              onTouchEnd={(event) => event.stopPropagation()}
               disabled={currentPage <= 0 || isMobileTurning}
               className="absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
               aria-label="Diseño anterior"
@@ -382,6 +427,8 @@ export default function InvitationBook({ designs }: Props) {
             <button
               type="button"
               onClick={goMobileNext}
+              onTouchStart={(event) => event.stopPropagation()}
+              onTouchEnd={(event) => event.stopPropagation()}
               disabled={currentPage >= totalPages - 1 || isMobileTurning}
               className="absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#DCE4DF] bg-white/95 text-3xl font-light leading-none text-[#2F5D50] shadow-lg transition active:scale-95 disabled:cursor-not-allowed disabled:opacity-30"
               aria-label="Siguiente diseño"
