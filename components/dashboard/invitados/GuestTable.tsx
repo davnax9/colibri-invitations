@@ -241,7 +241,7 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                   </p>
                   <p className="mt-1 text-xs text-slate-500">Selecciona una acción para los invitados seleccionados.</p>
                 </div>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex w-full gap-2">
                   <button type="button" onClick={() => setSelectedGuests([])} className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">
                     Cancelar selección
                   </button>
