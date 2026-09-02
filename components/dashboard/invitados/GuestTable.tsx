@@ -217,14 +217,14 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
             <div className="flex-1">
                 <label className="sr-only">Buscar invitado</label>
                 <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Buscar por nombre o teléfono..."
-                    className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+                    className="w-full bg-white text-slate-800 rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
                 />
             </div>
             {/* FILTRO */}
             <div className="w-full md:w-52">
                 <label className="sr-only">Filtrar por estado</label>
                 <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as | "ALL" | "PENDING" | "CONFIRMED" | "DECLINED")}
-                    className="w-full rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+                    className="w-full bg-white text-slate-800 rounded-lg border border-slate-300 px-4 py-2.5 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
                 >
                     <option value="ALL">Todos los invitados</option>
                     <option value="PENDING">Pendientes</option>
