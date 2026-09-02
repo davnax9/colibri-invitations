@@ -73,6 +73,7 @@ export default function HomePage() {
                 <span>✓ Personalización</span>
                 <span>✓ Comparte por WhatsApp</span>
                 <span>✓ Confirmación de invitados</span>
+                <span>✓ Dashboard de confirmaciones</span>
               </div>
             </div>
             {/* PREVIEW */}

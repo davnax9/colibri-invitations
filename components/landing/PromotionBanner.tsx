@@ -39,14 +39,19 @@ function calculateTimeRemaining(endDate: string): TimeRemaining {
   }
 }
 
-export default function PromotionBanner({
-  endDate,
-}: PromotionBannerProps) {
-  const [time, setTime] = useState<TimeRemaining>(
-    calculateTimeRemaining(endDate)
-  )
+export default function PromotionBanner({ endDate }: PromotionBannerProps) {
+  // Valor inicial fijo para que servidor y cliente rendericen exactamente lo mismo
+  const [time, setTime] = useState<TimeRemaining>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  })
 
   useEffect(() => {
+    // Calculamos inmediatamente después de montar
+    setTime(calculateTimeRemaining(endDate))
+
     const interval = setInterval(() => {
       setTime(calculateTimeRemaining(endDate))
     }, 1000)
@@ -69,7 +74,7 @@ export default function PromotionBanner({
 
   return (
     <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-3xl border border-[#C9A86A]/40 bg-[#FAF8F3] shadow-sm">
-      
+
       {/* Encabezado */}
       <div className="bg-[#2F5D50] px-5 py-3 text-center">
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F3E7CF]">
@@ -121,7 +126,7 @@ export default function PromotionBanner({
             <span className="font-bold text-[#C9A86A]">:</span>
 
             {/* MINUTOS */}
-            <div className="min-w-15 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-[#E5E9E5] sm:min-w-17">
+            <div className="min-w-15 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-[#E5E9E5]">
               <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">
                 {formatNumber(time.minutes)}
               </p>

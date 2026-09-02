@@ -198,13 +198,13 @@ export default function InvitationBook({ designs }: Props) {
                 href={leftPage.href}
                 className={`block overflow-hidden rounded-2xl border border-[#DCE4DF] bg-white shadow-2xl transition-all duration-500 ${ isMobileTurning ? "scale-[0.98] opacity-70" : "scale-100 opacity-100" }`}
               >
-                <div className="relative aspect-3/4">
+                <div className="relative aspect-4/5">
                   <Image
                     src={leftPage.image}
                     alt={leftPage.name}
                     fill
                     sizes="100vw"
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                   {/* DEGRADADO */}
                   <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
@@ -468,7 +468,7 @@ function BookPage({
     return (
 
       <div
-        className={`relative aspect-3/4 bg-[#F7F4EC] ${
+        className={`relative aspect-4/5 bg-[#F7F4EC] ${
           side === "left"
             ? "rounded-l-2xl"
             : "rounded-r-2xl"
@@ -488,7 +488,7 @@ function BookPage({
 
     <Link
       href={design.href}
-      className={`relative block aspect-3/4 overflow-hidden border border-[#DCE4DF] bg-white ${
+      className={`relative block aspect-4/5 overflow-hidden border border-[#DCE4DF] bg-white ${
         side === "left"
           ? "rounded-l-2xl"
           : "rounded-r-2xl"
@@ -509,7 +509,7 @@ function BookPage({
         alt={`Diseño ${design.name}`}
         fill
         sizes="50vw"
-        className="object-cover"
+        className="object-cover object-top"
       />
       {/* =================================================== */}
       {/* DEGRADADO */}

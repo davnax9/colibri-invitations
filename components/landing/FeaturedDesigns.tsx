@@ -84,12 +84,12 @@ const designs: FeaturedDesign[] = [
     href: "/invitacion/xv-bianca-princesa",
   },
   {
-    id: "xv-zoe",
+    id: "xv-zoeModerno",
     category: "XV años",
-    name: "Zoe",
-    description: "Una invitación digna de una princesa.",
-    image: "/templates/XV-princesa.png",
-    href: "/invitacion/xv-bianca-princesa",
+    name: "ZoeModern",
+    description: "Una invitación con diseño moderno.",
+    image: "/templates/XV-moderno.png",
+    href: "/invitacion/xv-bianca-moderno",
   }
 
   // agrega aquí tus otros 3 diseños
