@@ -16,6 +16,7 @@ import WeddingModernHero from "./wedding/WeddingModernHero"
 import WeddingModernStory from "./wedding/WeddingModernStory"
 import WeddingTimeline from "./wedding/WeddingTimeline"
 import InvitationGifts from "./shared/InvitationGifts"
+import WeddingModernOpening from "./wedding/WeddingModernOpening"
 
 export default function WeddingModern({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -26,66 +27,68 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
 
   return (
     <InvitationTheme theme={event.theme} event={event}>
-      <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
-        {/* HERO */}
-        {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
-        <WeddingModernHero coverPhoto={coverPhoto} details={details} event={event}/>
+      <WeddingModernOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate} coverPhoto={coverPhoto}>
+        <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
+          {/* HERO */}
+          {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
+          <WeddingModernHero coverPhoto={coverPhoto} details={details} event={event}/>
 
-        {/* NOMBRES */}
-        <section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
-          <div className="mx-auto max-w-6xl">
-            <div className="grid gap-10 md:grid-cols-2 md:items-end">
-              <div>
-                <p className="text-xs uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>Celebramos nuestro amor</p>
-                <h2 className="mt-5 text-5xl font-light tracking-tight md:text-7xl" style={{color: "var(--theme-primary)"}}>{brideName}<span className="mx-3 font-serif italic" style={{color: "var(--theme-accent)"}}>&</span>{groomName}</h2>
+          {/* NOMBRES */}
+          <section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
+            <div className="mx-auto max-w-6xl">
+              <div className="grid gap-10 md:grid-cols-2 md:items-end">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>Celebramos nuestro amor</p>
+                  <h2 className="mt-5 text-5xl font-light tracking-tight md:text-7xl" style={{color: "var(--theme-primary)"}}>{brideName}<span className="mx-3 font-serif italic" style={{color: "var(--theme-accent)"}}>&</span>{groomName}</h2>
+                </div>
+                <p className="max-w-md text-sm leading-7 md:ml-auto" style={{color: "var(--theme-secondary)"}}>{details?.description ?? "Queremos compartir contigo uno de los días más importantes de nuestras vidas."}</p>
               </div>
-              <p className="max-w-md text-sm leading-7 md:ml-auto" style={{color: "var(--theme-secondary)"}}>{details?.description ?? "Queremos compartir contigo uno de los días más importantes de nuestras vidas."}</p>
             </div>
-          </div>
-        </section>
-        
-        {/* HISTORIA */}
-        <WeddingModernStory details={details} />
+          </section>
+          
+          {/* HISTORIA */}
+          <WeddingModernStory details={details} />
 
-        {/* FECHA */}
-        <WeddingDate event={event} />
+          {/* FECHA */}
+          <WeddingDate event={event} />
 
-        {/* COUNTDOWN */}
-        <Countdown targetDate={event.eventDate.toISOString()}/>
+          {/* COUNTDOWN */}
+          <Countdown targetDate={event.eventDate.toISOString()}/>
 
-        {/* TIMELINE */}
-        <WeddingTimeline schedules={event.schedules} />
+          {/* TIMELINE */}
+          <WeddingTimeline schedules={event.schedules} />
 
-        {/* INTRO */}
-        {/* <WeddingIntro details={details} /> */}
+          {/* INTRO */}
+          {/* <WeddingIntro details={details} /> */}
 
-        {/* HORARIOS */}
-        {/* <InvitationSchedule event={event} /> */}
+          {/* HORARIOS */}
+          {/* <InvitationSchedule event={event} /> */}
 
-        {/* UBICACIONES */}
-        <InvitationLocations event={event} />
+          {/* UBICACIONES */}
+          <InvitationLocations event={event} />
 
-        {/* GALERÍA */}
-        <InvitationGallery event={event} />
+          {/* GALERÍA */}
+          <InvitationGallery event={event} />
 
-        <InvitationGifts gifts={event.gifts} />
+          <InvitationGifts gifts={event.gifts} />
 
-        {/* DRESS CODE */}
-        <WeddingDressCode details={details} />
+          {/* DRESS CODE */}
+          <WeddingDressCode details={details} />
 
-        {/* CALENDARIO */}
-        <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
-          <h2 className="text-4xl font-light md:text-5xl" style={{color: "var(--theme-primary)"}}>Reserva la fecha</h2>
-          <div className="mt-8">
-            <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
-          </div>
-        </section>
+          {/* CALENDARIO */}
+          <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
+            <h2 className="text-4xl font-light md:text-5xl" style={{color: "var(--theme-primary)"}}>Reserva la fecha</h2>
+            <div className="mt-8">
+              <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
+            </div>
+          </section>
 
-        {/* FOOTER */}
-        <WeddingFooter details={details} />
+          {/* FOOTER */}
+          <WeddingFooter details={details} />
 
-        {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>)}
-      </main>
+          {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>)}
+        </main>
+      </WeddingModernOpening>
     </InvitationTheme>
   )
 }

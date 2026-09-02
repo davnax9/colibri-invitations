@@ -15,6 +15,7 @@ import WeddingRomanticHero from "./wedding/WeddingRomanticHero"
 import WeddingRomanticStory from "./wedding/WeddingRomanticStory"
 import WeddingRomanticTimeline from "./wedding/WeddingRomanticTimeline"
 import InvitationGifts from "./shared/InvitationGifts"
+import WeddingRomanticOpening from "./wedding/WeddingRomanticOpening"
 
 export default function WeddingRomantic({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -25,63 +26,65 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
 
   return (
     <InvitationTheme theme={event.theme} event={event}>
-      <main className="min-h-screen" style={{ backgroundColor: "var(--theme-background)", color: "var(--theme-text)",}}>
-        {/* HERO */}
-        {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
-        <WeddingRomanticHero coverPhoto={coverPhoto} details={details} event={event}/>
+      <WeddingRomanticOpening brideName={brideName} groomName={groomName} phrase={details?.phrase} eventDate={event.eventDate}>
+        <main className="min-h-screen" style={{ backgroundColor: "var(--theme-background)", color: "var(--theme-text)",}}>
+          {/* HERO */}
+          {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
+          <WeddingRomanticHero coverPhoto={coverPhoto} details={details} event={event}/>
 
-        {/* FRASE */}
-        <section className="px-6 py-24 text-center" style={{ backgroundColor: "var(--theme-surface)",}}>
-          <div className="mx-auto max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.4em]" style={{color: "var(--theme-secondary)"}}>Nuestra historia</p>
-            <div className="mx-auto mt-6 h-px w-12" style={{backgroundColor: "var(--theme-accent)"}}/>
-            <blockquote className="mt-8 text-3xl font-serif italic leading-relaxed md:text-5xl" style={{color: "var(--theme-primary)"}}>“{details?.phrase ?? "El amor nos trajo hasta aquí."}”</blockquote>
-          </div>
-        </section>
+          {/* FRASE */}
+          <section className="px-6 py-24 text-center" style={{ backgroundColor: "var(--theme-surface)",}}>
+            <div className="mx-auto max-w-3xl">
+              <p className="text-xs uppercase tracking-[0.4em]" style={{color: "var(--theme-secondary)"}}>Nuestra historia</p>
+              <div className="mx-auto mt-6 h-px w-12" style={{backgroundColor: "var(--theme-accent)"}}/>
+              <blockquote className="mt-8 text-3xl font-serif italic leading-relaxed md:text-5xl" style={{color: "var(--theme-primary)"}}>“{details?.phrase ?? "El amor nos trajo hasta aquí."}”</blockquote>
+            </div>
+          </section>
 
-        {/* INTRO */}
-        {/* <WeddingIntro details={details} /> */}
+          {/* INTRO */}
+          {/* <WeddingIntro details={details} /> */}
 
-        {/* HISTORIA */}
-        <WeddingRomanticStory details={details} />
+          {/* HISTORIA */}
+          <WeddingRomanticStory details={details} />
 
-        {/* FECHA */}
-        <WeddingDate event={event} />
+          {/* FECHA */}
+          <WeddingDate event={event} />
 
-        {/* COUNTDOWN */}
-        <Countdown targetDate={event.eventDate.toISOString()}/>
+          {/* COUNTDOWN */}
+          <Countdown targetDate={event.eventDate.toISOString()}/>
 
-        {/* TIMELINE */}
-        <WeddingRomanticTimeline schedules={event.schedules}/>
+          {/* TIMELINE */}
+          <WeddingRomanticTimeline schedules={event.schedules}/>
 
-        {/* HORARIOS */}
-        {/* <InvitationSchedule event={event} /> */}
+          {/* HORARIOS */}
+          {/* <InvitationSchedule event={event} /> */}
 
-        {/* UBICACIONES */}
-        <InvitationLocations event={event} />
+          {/* UBICACIONES */}
+          <InvitationLocations event={event} />
 
-        {/* CALENDARIO */}
-        <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
-          <p className="text-xs uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>Reserva la fecha</p>
-          <h2 className="mt-4 text-4xl font-serif md:text-5xl" style={{color: "var(--theme-primary)"}}>Acompáñanos</h2>
-          <div className="mt-8">
-            <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
-          </div>
-        </section>
+          {/* CALENDARIO */}
+          <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+            <p className="text-xs uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>Reserva la fecha</p>
+            <h2 className="mt-4 text-4xl font-serif md:text-5xl" style={{color: "var(--theme-primary)"}}>Acompáñanos</h2>
+            <div className="mt-8">
+              <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
+            </div>
+          </section>
 
-        {/* FOTOS */}
-        <InvitationGallery event={event} />
+          {/* FOTOS */}
+          <InvitationGallery event={event} />
 
-        <InvitationGifts gifts={event.gifts} />
+          <InvitationGifts gifts={event.gifts} />
 
-        {/* VESTIMENTA */}
-        <WeddingDressCode details={details} />
+          {/* VESTIMENTA */}
+          <WeddingDressCode details={details} />
 
-        {/* FOOTER */}
-        <WeddingFooter details={details} />
+          {/* FOOTER */}
+          <WeddingFooter details={details} />
 
-        {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />)}
-      </main>
+          {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />)}
+        </main>
+      </WeddingRomanticOpening>
     </InvitationTheme>
   )
 }

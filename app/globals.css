@@ -160,3 +160,86 @@ body {
 .invitation-seal-pulse {
   animation: invitationSealPulse 2.2s ease-in-out infinite;
 }
+
+@keyframes invitationModernPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.invitation-modern-seal {
+  animation: invitationModernPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes princessSparkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+
+  50% {
+    transform: scale(1.25) rotate(15deg);
+    opacity: 0.8;
+  }
+}
+
+.princess-sparkle {
+  animation: princessSparkle 3s ease-in-out infinite;
+}
+
+.princess-sparkle-delay {
+  animation: princessSparkle 3s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
+
+@keyframes princessOpeningPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.princess-opening-button {
+  animation: princessOpeningPulse 2.3s ease-in-out infinite;
+}
+
+/* BODAS */
+@keyframes weddingElegantSealPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.wedding-elegant-seal {
+  animation: weddingElegantSealPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes weddingLuxurySealPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.wedding-luxury-seal {
+  animation: weddingLuxurySealPulse 2.5s ease-in-out infinite;
+}
