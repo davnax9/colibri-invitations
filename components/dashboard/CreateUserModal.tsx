@@ -92,7 +92,7 @@ export default function CreateUserModal({ onClose }: Props) {
               onChange={(event) => setName(event.target.value)}
               placeholder="Juan Pérez"
               required
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full bg-white text-slate-800 rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
 
@@ -109,7 +109,7 @@ export default function CreateUserModal({ onClose }: Props) {
               onChange={(event) => setEmail(event.target.value)}
               placeholder="juan@email.com"
               required
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full bg-white text-slate-800 rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
 
@@ -127,7 +127,7 @@ export default function CreateUserModal({ onClose }: Props) {
               placeholder="Mínimo 8 caracteres"
               minLength={8}
               required
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full bg-white text-slate-800 rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
 
             <p className="mt-2 text-xs text-slate-400">
@@ -149,7 +149,7 @@ export default function CreateUserModal({ onClose }: Props) {
                   event.target.value as "ADMIN" | "CLIENT"
                 )
               }
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full bg-white text-slate-800 rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             >
               <option value="CLIENT">
                 Cliente
@@ -175,7 +175,7 @@ export default function CreateUserModal({ onClose }: Props) {
                   event.target.value as "BASIC" | "PRO"
                 )
               }
-              className="w-full rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+              className="w-full bg-white text-slate-800 rounded-lg border border-slate-300 px-4 py-3 text-sm outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             >
               <option value="BASIC">
                 BASIC
