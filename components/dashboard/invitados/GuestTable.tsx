@@ -6,6 +6,7 @@ import { toast } from "react-toastify"
 import GuestInvitationActions from "./GuestInvitationActions"
 import { GuestStatus } from "@/app/generated/prisma/enums"
 import BulkInvitationPanel from "./BulkInvitationPanel"
+import GuestMobileCard from "./GuestMobileCard"
 
 type Guest = {
   id: string;
@@ -253,85 +254,125 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
         </div>
       </div>
 
-      {/* TABLA */}
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+      {/* INVITADOS */}
+      <div>
         {guests.length === 0 ? (
-          <div className="px-6 py-16 text-center">
+          <div className="rounded-xl border border-slate-200 bg-white px-6 py-16 text-center shadow-sm">
             <p className="text-lg font-medium text-slate-700">Aún no tienes invitados</p>
             <p className="mt-2 text-sm text-slate-500">Agrega el primer invitado para comenzar.</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-slate-50">
-                <tr>
-                  <th className="px-4 py-4">
-                    <input type="checkbox" checked={filteredGuests.length > 0 && selectedGuests.length === filteredGuests.length} onChange={toggleAllGuests} className="h-4 w-4 rounded border-slate-300"/>
-                  </th>
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Invitado</th>
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Contacto</th>
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Pases</th>
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Estado</th>
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Invitación</th>
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredGuests.length === 0 ? (
+          <>
+            {/* ============================= */}
+            {/* DESKTOP / TABLET */}
+            {/* ============================= */}
+            <div className="hidden overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm md:block">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left">
+                  <thead className="bg-slate-50">
                     <tr>
-                        <td colSpan={5} className="px-5 py-10 text-center text-sm text-slate-500">No se encontraron invitados.
-                        </td>
+                      <th className="px-4 py-4">
+                        <input type="checkbox" checked={filteredGuests.length > 0 && selectedGuests.length === filteredGuests.length} onChange={toggleAllGuests} className="h-4 w-4 rounded border-slate-300"/>
+                      </th>
+                      <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Invitado</th>
+                      <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Contacto</th>
+                      <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Pases</th>
+                      <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Estado</th>
+                      <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Invitación</th>
+                      <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-slate-500">Acciones</th>
                     </tr>
+                  </thead>
+                  <tbody>
+                    {filteredGuests.length === 0 ? (
+                      <tr>
+                        <td colSpan={7} className="px-5 py-10 text-center text-sm text-slate-500">No se encontraron invitados.</td>
+                      </tr>
                     ) : (
-                    filteredGuests.map((guest) => (
+                      filteredGuests.map((guest) => (
                         <tr key={guest.id} className="border-t border-slate-100">
-                            <td className="px-4 py-4">
-                              <input type="checkbox" checked={selectedGuests.includes(guest.id)} onChange={() => toggleGuestSelection(guest.id)} className="h-4 w-4 rounded border-slate-300"/>
-                            </td>
-                            <td className="px-5 py-4">
-                                <p className="font-medium text-slate-800">{guest.name}</p>
-                            </td>
-                            <td className="px-5 py-4">
-                                <div className="text-sm text-slate-500">
-                                    {guest.phone && (<p>{guest.phone}</p>)}
-                                    {guest.email && (<p>{guest.email}</p>)}
-                                    {!guest.phone && !guest.email && (<span className="text-slate-400">Sin contacto</span>)}
-                                </div>
-                            </td>
-                            <td className="px-5 py-4">
-                                <p className="font-medium text-slate-700">{guest.passes}</p>
-                                {guest.confirmed !== null && (<p className="text-xs text-slate-400">{guest.confirmed} confirmados</p>)}
-                            </td>
-
-                            <td className="px-5 py-4">
-                                <span className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${getStatusClass(guest.status)}`}>{getStatusLabel(guest.status)}</span>
-                            </td>
-
-                            <td className="px-4 py-3">
-                              <GuestInvitationActions guestId={guest.id} slug={eventSlug} token={guest.token} guestName={guest.name} passes={guest.passes} messageTemplate={messageTemplate} currentMessage={guest.message} canCustomizeMessage={canCustomizeMessage}/>
-                            </td>
-
-                            <td className="px-5 py-4">
-                                <div className="flex gap-2">
-                                    <button type="button" onClick={() => openEdit(guest)} className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50">
-                                      Editar
-                                    </button>
-
-                                    <button type="button" onClick={() => handleDelete(guest)} className="rounded-lg border border-red-200 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50">
-                                      Eliminar
-                                    </button>
-
-                                    {/* <button type="button" onClick={() => handleCopyInvitation(guest.token)} className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
-                                      🔗 Copiar invitación
-                                    </button> */}
-                                </div>
-                            </td>
+                          <td className="px-4 py-4">
+                            <input type="checkbox" checked={selectedGuests.includes(guest.id)} onChange={() =>toggleGuestSelection(guest.id)}className="h-4 w-4 rounded border-slate-300"/>
+                          </td>
+                          <td className="px-5 py-4">
+                            <p className="font-medium text-slate-800">{guest.name}</p>
+                          </td>
+                          <td className="px-5 py-4">
+                            <div className="text-sm text-slate-500">
+                              {guest.phone && <p>{guest.phone}</p>}
+                              {guest.email && <p>{guest.email}</p>}
+                              {!guest.phone && !guest.email && (<span className="text-slate-400">Sin contacto</span>)}
+                            </div>
+                          </td>
+                          <td className="px-5 py-4">
+                            <p className="font-medium text-slate-700">{guest.passes}</p>
+                            {guest.confirmed !== null && (<p className="text-xs text-slate-400">{guest.confirmed} confirmados</p>)}
+                          </td>
+                          <td className="px-5 py-4">
+                            <span className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${getStatusClass(guest.status)}`}>{getStatusLabel(guest.status)}</span>
+                          </td>
+                          <td className="px-4 py-3">
+                            <GuestInvitationActions
+                              guestId={guest.id}
+                              slug={eventSlug}
+                              token={guest.token}
+                              guestName={guest.name}
+                              passes={guest.passes}
+                              messageTemplate={messageTemplate}
+                              currentMessage={guest.message}
+                              canCustomizeMessage={canCustomizeMessage}
+                            />
+                          </td>
+                          <td className="px-5 py-4">
+                            <div className="flex gap-2">
+                              <button type="button" onClick={() => openEdit(guest)} className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50">
+                                Editar
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => handleDelete(guest)}
+                                className="rounded-lg border border-red-200 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50"
+                              >
+                                Eliminar
+                              </button>
+                            </div>
+                          </td>
                         </tr>
-                    ))
-                )}
-              </tbody>
-            </table>
-          </div>
+                      ))
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* ============================= */}
+            {/* MOBILE */}
+            {/* ============================= */}
+            <div className="space-y-3 p-4 md:hidden">
+              {filteredGuests.length === 0 ? (
+                <div className="rounded-xl border border-slate-200 bg-white px-5 py-10 text-center shadow-sm">
+                  <p className="text-sm text-slate-500">
+                    No se encontraron invitados.
+                  </p>
+                </div>
+              ) : (
+                filteredGuests.map((guest) => (
+                  <GuestMobileCard
+                    key={guest.id}
+                    guest={guest}
+                    selected={selectedGuests.includes(guest.id)}
+                    onSelect={() => toggleGuestSelection(guest.id)}
+                    onEdit={() => openEdit(guest)}
+                    onDelete={() => handleDelete(guest)}
+                    eventSlug={eventSlug}
+                    messageTemplate={messageTemplate}
+                    canCustomizeMessage={canCustomizeMessage}
+                    getStatusLabel={getStatusLabel}
+                    getStatusClass={getStatusClass}
+                  />
+                ))
+              )}
+            </div>
+          </>
         )}
       </div>
 
@@ -369,7 +410,7 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
               {/* EMAIL */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Correo electrónico</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="juan@email.com"
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="luis@email.com"
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 />
               </div>

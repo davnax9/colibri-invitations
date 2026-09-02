@@ -114,7 +114,7 @@ export default async function GuestsPage({ params }: Props) {
               👥 {event.guests.length}{" "}{event.guests.length === 1 ? "invitado" : "invitados"}
             </div>
           </div>
-          <div className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-2xl bordershadow-sm">
             <GuestTable eventId={event.id} guests={event.guests} eventSlug={event.slug} messageTemplate={event.message?.content} canCustomizeMessage={event.user.plan === "PRO"}/>
           </div>
         </section>

@@ -1,3 +1,5 @@
+import { GuestStatus } from "@/app/generated/prisma/enums"
+
 export type GiftType =
   | "ENVELOPE"
   | "PHYSICAL_GIFT"
@@ -41,4 +43,19 @@ export type EventTheme = {
   backgroundColor: string
   surfaceColor: string
   textColor: string
+}
+
+export type Guest = {
+  id: string
+  name: string
+  createdAt: Date
+  updatedAt: Date
+  message: string | null
+  eventId: string
+  phone: string | null
+  email: string | null
+  passes: number
+  confirmed: number | null
+  status: GuestStatus
+  token: string
 }
