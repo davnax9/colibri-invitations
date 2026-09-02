@@ -39,8 +39,8 @@ const designs: FeaturedDesign[] = [
     category: "Boda",
     name: "Romantic",
     description: "Un diseño cálido y romántico.",
-    image: "/templates/wedding-elegant.png",
-    href: "/invitacion/demo-boda-romantic",
+    image: "/templates/wedding-romantic.png",
+    href: "/invitacion/prince-miguel",
   },
   {
     id: "wedding-minimal",
