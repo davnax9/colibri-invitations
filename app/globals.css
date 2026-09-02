@@ -145,3 +145,18 @@ body {
 .animate-book-page-prev {
   animation: book-page-prev 0.8s ease-in-out forwards;
 }
+
+@keyframes invitationSealPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.12);
+  }
+}
+
+.invitation-seal-pulse {
+  animation: invitationSealPulse 2.2s ease-in-out infinite;
+}

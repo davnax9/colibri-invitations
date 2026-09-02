@@ -14,6 +14,7 @@ import InvitationTheme from "./shared/InvitationTheme"
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 import QuinceanosElegantHero from "./quinceanos/QuinceanosElegantHero"
 import InvitationGifts from "./shared/InvitationGifts"
+import QuinceanosElegantEnvelope from "./quinceanos/QuinceanosElegantEnvelope"
 
 export default function QuinceanosElegant({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -23,38 +24,39 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
 
   return (
     <InvitationTheme theme={event.theme} event={event}>
+      <QuinceanosElegantEnvelope quinceaneraName={quinceaneraName}>
       <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
-        {/* <QuinceanosHero coverPhoto={coverPhoto} details={details} event={event} /> */}
-        <QuinceanosElegantHero coverPhoto={coverPhoto} details={details} event={event} />
+          <QuinceanosElegantHero coverPhoto={coverPhoto} details={details} event={event} />
 
-        <QuinceanosIntro details={details} />
+          <QuinceanosIntro details={details} />
 
-        <QuinceanosDate event={event} />
+          <QuinceanosDate event={event} />
 
-        <Countdown targetDate={event.eventDate.toISOString()}/>
+          <Countdown targetDate={event.eventDate.toISOString()}/>
 
-        <InvitationSchedule event={event} />
+          <InvitationSchedule event={event} />
 
-        <InvitationLocations event={event} />
+          <InvitationLocations event={event} />
 
-        <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
-          <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>No olvides la fecha</p>
-          <h2 className="mt-4 text-4xl font-serif" style={{color: "var(--theme-primary)"}}>Guarda este día</h2>
-          <div className="mt-8">
-            <AddToCalendar title={`XV años de ${quinceaneraName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
-          </div>
-        </section>
+          <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
+            <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>No olvides la fecha</p>
+            <h2 className="mt-4 text-4xl font-serif" style={{color: "var(--theme-primary)"}}>Guarda este día</h2>
+            <div className="mt-8">
+              <AddToCalendar title={`XV años de ${quinceaneraName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
+            </div>
+          </section>
 
-        <InvitationGallery event={event} />
+          <InvitationGallery event={event} />
 
-        <InvitationGifts gifts={event.gifts} />
+          <InvitationGifts gifts={event.gifts} />
 
-        <QuinceanosDressCode details={details} />
+          <QuinceanosDressCode details={details} />
 
-        <QuinceanosFooter details={details} />
+          <QuinceanosFooter details={details} />
 
-        {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />)}
-      </main>
+          {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />)}
+        </main>
+      </QuinceanosElegantEnvelope>
     </InvitationTheme>
   )
 }
