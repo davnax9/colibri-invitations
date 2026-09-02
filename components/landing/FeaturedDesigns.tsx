@@ -54,7 +54,7 @@ const designs: FeaturedDesign[] = [
   {
     id: "xv-bianca",
     category: "XV años",
-    name: "Bianca",
+    name: "Elegant",
     description: "Elegancia y delicadeza para una noche especial.",
     image: "/templates/XV-elegante.png",
     href: "/invitacion/xv-bianca-elegante",
@@ -62,7 +62,7 @@ const designs: FeaturedDesign[] = [
   {
     id: "xv-bianquita",
     category: "XV años",
-    name: "Bianquita",
+    name: "Floral",
     description: "Una invitación llena de personalidad.",
     image: "/templates/XV-floral.png",
     href: "/invitacion/quinceanos-bianquita",
@@ -70,7 +70,7 @@ const designs: FeaturedDesign[] = [
   {
     id: "xv-kamila",
     category: "XV años",
-    name: "Kamila",
+    name: "Luxury",
     description: "Una invitación llena de elegancia.",
     image: "/templates/XV-luxury.png",
     href: "/invitacion/xv-bianquita-luxury",
@@ -78,7 +78,7 @@ const designs: FeaturedDesign[] = [
   {
     id: "xv-zoe",
     category: "XV años",
-    name: "Zoe",
+    name: "Princess",
     description: "Una invitación digna de una princesa.",
     image: "/templates/XV-princesa.png",
     href: "/invitacion/xv-bianca-princesa",
@@ -86,7 +86,7 @@ const designs: FeaturedDesign[] = [
   {
     id: "xv-zoeModerno",
     category: "XV años",
-    name: "ZoeModern",
+    name: "Modern",
     description: "Una invitación con diseño moderno.",
     image: "/templates/XV-moderno.png",
     href: "/invitacion/xv-bianca-moderno",

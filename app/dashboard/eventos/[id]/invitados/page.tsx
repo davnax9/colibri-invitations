@@ -12,6 +12,9 @@ type Props = {
 
 export default async function GuestsPage({ params }: Props) {
   const session = await requireAuth()
+
+  const isAdmin = session.user.role === "ADMIN"
+
   const { id } = await params
   const event = await prisma.event.findFirst({
     where: {
@@ -68,7 +71,7 @@ export default async function GuestsPage({ params }: Props) {
               <p className="mt-2 max-w-2xl text-sm leading-6 text-white/70 md:text-base">Administra tus invitados, pases asignados y confirmacionespara <span className="font-medium text-white">{event.name}</span>.</p>
             </div>
             {/* Acción */}
-            {event.user.plan === "PRO" && (
+            {event.user.plan === "PRO" || isAdmin && (
               <Link href={`/dashboard/eventos/${event.id}/mensaje`} className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-[#2F5D50] shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-[#F5F2EB]">
                 <span className="text-base">✉️</span>Configurar mensaje
               </Link>
