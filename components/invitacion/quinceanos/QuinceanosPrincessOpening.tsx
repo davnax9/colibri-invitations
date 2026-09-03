@@ -66,7 +66,7 @@ export default function QuinceanosPrincessOpening({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden"
       style={{
         backgroundColor: "var(--theme-background)",
         color: "var(--theme-text)",
@@ -145,7 +145,7 @@ export default function QuinceanosPrincessOpening({
       >
         {/* LIBRO */}
         <div
-          className="relative mx-auto aspect-[3/4] max-w-[430px] overflow-hidden rounded-sm border shadow-2xl"
+          className="relative mx-auto aspect-3/4 max-w-107.5 overflow-hidden rounded-sm border shadow-2xl"
           style={{
             backgroundColor: "var(--theme-surface)",
             borderColor: "var(--theme-accent)",
@@ -215,7 +215,7 @@ export default function QuinceanosPrincessOpening({
             </p>
 
             <h1
-              className="mt-5 max-w-full break-words font-serif text-5xl font-light leading-[0.95] md:text-6xl"
+              className="mt-5 max-w-full wrap-break-words font-serif text-5xl font-light leading-[0.95] md:text-6xl"
               style={{
                 color: "var(--theme-primary)",
               }}
@@ -244,7 +244,7 @@ export default function QuinceanosPrincessOpening({
             {/* BOTÓN */}
             <div className="relative mt-9">
               <div
-                className="absolute inset-[-9px] rounded-full border"
+                className="absolute -inset-2.25 rounded-full border"
                 style={{
                   borderColor: "var(--theme-accent)",
                   opacity: 0.3,

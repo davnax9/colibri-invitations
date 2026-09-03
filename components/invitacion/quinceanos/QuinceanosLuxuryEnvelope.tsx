@@ -56,7 +56,7 @@ export default function QuinceanosLuxuryEnvelope({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden"
       style={{
         backgroundColor: "var(--theme-background)",
         color: "var(--theme-text)",
@@ -152,7 +152,7 @@ export default function QuinceanosLuxuryEnvelope({
 
         {/* CAJA */}
         <div
-          className={`relative w-full max-w-[340px] transition-all duration-700 ${
+          className={`relative w-full max-w-85 transition-all duration-700 ${
             isOpening
               ? "scale-[1.04] opacity-0"
               : "scale-100 opacity-100"
@@ -256,8 +256,8 @@ export default function QuinceanosLuxuryEnvelope({
             <div
               className={`absolute inset-0 z-20 origin-top transition-transform duration-1000 ${
                 isOpening
-                  ? "[transform:rotateX(-105deg)]"
-                  : "[transform:rotateX(0deg)]"
+                  ? "[transform-[rotateX(-105deg)]"
+                  : "[transform-[rotateX(0deg)]"
               }`}
               style={{
                 backgroundColor: "var(--theme-primary)",

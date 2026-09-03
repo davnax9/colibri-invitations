@@ -8,23 +8,10 @@ export default function CreateUserButton() {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2F5D50] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#244b40]"
-      >
-        <span className="text-lg">
-          +
-        </span>
-
-        Nuevo usuario
+      <button type="button" onClick={() => setOpen(true)} className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#2F5D50] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#244b40]">
+        <span className="text-lg">+</span>Nuevo usuario
       </button>
-
-      {open && (
-        <CreateUserModal
-          onClose={() => setOpen(false)}
-        />
-      )}
+      {open && (<CreateUserModal onClose={() => setOpen(false)}/>)}
     </>
   )
 }

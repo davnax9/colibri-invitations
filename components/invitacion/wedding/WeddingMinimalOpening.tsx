@@ -53,7 +53,7 @@ export default function WeddingMinimalOpening({
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden transition-all duration-1000 ${
+      className={`fixed inset-0 z-9999 flex items-center justify-center overflow-hidden transition-all duration-1000 ${
         isOpening
           ? "pointer-events-none opacity-0"
           : "opacity-100"

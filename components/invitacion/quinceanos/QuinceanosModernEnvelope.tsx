@@ -66,7 +66,7 @@ export default function QuinceanosModernEnvelope({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden"
       style={{
         backgroundColor: "var(--theme-background)",
         color: "var(--theme-text)",
@@ -133,7 +133,7 @@ export default function QuinceanosModernEnvelope({
           </div>
 
           {/* PORTADA */}
-          <div className="relative mx-auto max-w-[620px]">
+          <div className="relative mx-auto max-w-155">
             {/* PARTE SUPERIOR */}
             <div className="flex items-start justify-between">
               <div>
@@ -198,7 +198,7 @@ export default function QuinceanosModernEnvelope({
               </p>
 
               <h1
-                className="mt-6 max-w-3xl break-words font-serif text-5xl font-light leading-[0.95] tracking-tight md:text-8xl"
+                className="mt-6 max-w-3xl wrap-break-word font-serif text-5xl font-light leading-[0.95] tracking-tight md:text-8xl"
                 style={{
                   color: "var(--theme-primary)",
                 }}
@@ -228,7 +228,7 @@ export default function QuinceanosModernEnvelope({
               <div className="relative shrink-0">
                 {/* CÍRCULO EXTERIOR */}
                 <div
-                  className={`absolute inset-[-10px] rounded-full border transition-opacity duration-500 ${
+                  className={`absolute -inset-2.5 rounded-full border transition-opacity duration-500 ${
                     isOpening ? "opacity-0" : "opacity-40"
                   }`}
                   style={{

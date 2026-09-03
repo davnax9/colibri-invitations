@@ -53,7 +53,7 @@ export default function WeddingRomanticOpening({
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] overflow-hidden transition-opacity duration-1000 ${
+      className={`fixed inset-0 z-9999 overflow-hidden transition-opacity duration-1000 ${
         isOpening
           ? "pointer-events-none opacity-0"
           : "opacity-100"
@@ -65,7 +65,7 @@ export default function WeddingRomanticOpening({
     >
       {/* DECORACIÓN FLORAL IZQUIERDA */}
       <div
-        className={`pointer-events-none absolute -left-16 -top-10 h-80 w-80 rounded-full border transition-all duration-[1400ms] ${
+        className={`pointer-events-none absolute -left-16 -top-10 h-80 w-80 rounded-full border transition-all duration-1400 ${
           isOpening
             ? "-translate-x-20 -translate-y-10 rotate-12 opacity-0"
             : "opacity-40"
@@ -76,7 +76,7 @@ export default function WeddingRomanticOpening({
       />
 
       <div
-        className={`pointer-events-none absolute -left-20 top-24 h-52 w-52 rounded-full border transition-all duration-[1400ms] ${
+        className={`pointer-events-none absolute -left-20 top-24 h-52 w-52 rounded-full border transition-all duration-1400 ${
           isOpening
             ? "-translate-x-20 rotate-6 opacity-0"
             : "opacity-30"
@@ -88,7 +88,7 @@ export default function WeddingRomanticOpening({
 
       {/* DECORACIÓN FLORAL DERECHA */}
       <div
-        className={`pointer-events-none absolute -bottom-10 -right-16 h-80 w-80 rounded-full border transition-all duration-[1400ms] ${
+        className={`pointer-events-none absolute -bottom-10 -right-16 h-80 w-80 rounded-full border transition-all duration-1400 ${
           isOpening
             ? "translate-x-20 translate-y-10 -rotate-12 opacity-0"
             : "opacity-40"
@@ -99,7 +99,7 @@ export default function WeddingRomanticOpening({
       />
 
       <div
-        className={`pointer-events-none absolute bottom-24 -right-20 h-52 w-52 rounded-full border transition-all duration-[1400ms] ${
+        className={`pointer-events-none absolute bottom-24 -right-20 h-52 w-52 rounded-full border transition-all duration-1400 ${
           isOpening
             ? "translate-x-20 rotate-6 opacity-0"
             : "opacity-30"

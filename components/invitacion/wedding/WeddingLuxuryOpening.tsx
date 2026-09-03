@@ -64,7 +64,7 @@ export default function WeddingLuxuryOpening({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden"
       style={{
         backgroundColor: "var(--theme-background)",
         color: "var(--theme-text)",
@@ -126,7 +126,7 @@ export default function WeddingLuxuryOpening({
         {/* CAJA */}
 
         <div
-          className="relative mx-auto aspect-[1.05/1] max-w-[500px]"
+          className="relative mx-auto aspect-[1.05/1] max-w-125"
           style={{
             perspective: "1200px",
           }}
@@ -247,9 +247,9 @@ export default function WeddingLuxuryOpening({
 
             {/* SELLO */}
 
-            <div className="absolute bottom-[-18px] left-1/2 z-30 -translate-x-1/2">
+            <div className="absolute -bottom-4.5 left-1/2 z-30 -translate-x-1/2">
               <div
-                className="absolute inset-[-9px] rounded-full border"
+                className="absolute -inset-2.25 rounded-full border"
                 style={{
                   borderColor: "var(--theme-accent)",
                   opacity: 0.35,
@@ -261,7 +261,7 @@ export default function WeddingLuxuryOpening({
                 onClick={handleOpen}
                 disabled={isOpening}
                 aria-label="Abrir invitación"
-                className={`wedding-luxury-seal relative flex h-[76px] w-[76px] items-center justify-center rounded-full border-2 transition-all duration-500 md:h-[84px] md:w-[84px] ${
+                className={`wedding-luxury-seal relative flex h-19 w-19 items-center justify-center rounded-full border-2 transition-all duration-500 md:h-21 md:w-21 ${
                   isOpening
                     ? "scale-75 opacity-0"
                     : "hover:scale-110 active:scale-95"
@@ -290,8 +290,8 @@ export default function WeddingLuxuryOpening({
           <div
             className={`absolute inset-x-0 top-0 z-20 h-[38%] origin-bottom border transition-transform duration-1000 ${
               isOpening
-                ? "[transform:rotateX(-105deg)]"
-                : "[transform:rotateX(0deg)]"
+                ? "[transform-[rotateX(-105deg)]"
+                : "[transform-[rotateX(0deg)]"
             }`}
             style={{
               backgroundColor: "var(--theme-surface)",
