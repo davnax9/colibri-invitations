@@ -86,8 +86,7 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
     setLoading(true)
     setError("")
 
-    const result = editingGuest ? await updateEventGuest({ id: editingGuest.id, eventId, name, phone, email, passes})
-      : await createEventGuest({eventId, name, phone, email, passes})
+    const result = editingGuest ? await updateEventGuest({ id: editingGuest.id, eventId, name, phone, email, passes}) : await createEventGuest({eventId, name, phone, email, passes})
 
     if (!result.success) {
       setError(result.error)
@@ -198,7 +197,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
               <p className="mt-1 text-2xl font-bold text-red-800 sm:mt-2 sm:text-3xl">{declinedGuests}</p>
           </div>
       </div>
-
       {/* ENCABEZADO */}
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -209,7 +207,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
           + Agregar invitado
         </button>
       </div>
-
       <div className="mt-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="flex flex-col gap-3 md:flex-row">
             <p className="text-sm font-medium text-slate-700">Buscar y filtrar</p>
@@ -232,13 +229,10 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                     <option value="DECLINED">Rechazados</option>
                 </select>
             </div>
-
             {selectedGuests.length > 0 && (
               <div className="mt-4 flex flex-col gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-slate-800">
-                    {selectedGuests.length} invitado {selectedGuests.length !== 1 ? "s" : ""} seleccionado {selectedGuests.length !== 1 ? "s" : ""}
-                  </p>
+                  <p className="text-sm font-semibold text-slate-800">{selectedGuests.length} invitado {selectedGuests.length !== 1 ? "s" : ""} seleccionado {selectedGuests.length !== 1 ? "s" : ""}</p>
                   <p className="mt-1 text-xs text-slate-500">Selecciona una acción para los invitados seleccionados.</p>
                 </div>
                 <div className="flex w-full gap-2">
@@ -253,7 +247,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
             )}
         </div>
       </div>
-
       {/* INVITADOS */}
       <div>
         {guests.length === 0 ? (
@@ -311,27 +304,14 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                             <span className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${getStatusClass(guest.status)}`}>{getStatusLabel(guest.status)}</span>
                           </td>
                           <td className="px-4 py-3">
-                            <GuestInvitationActions
-                              guestId={guest.id}
-                              slug={eventSlug}
-                              token={guest.token}
-                              guestName={guest.name}
-                              passes={guest.passes}
-                              messageTemplate={messageTemplate}
-                              currentMessage={guest.message}
-                              canCustomizeMessage={canCustomizeMessage}
-                            />
+                            <GuestInvitationActions guestId={guest.id} slug={eventSlug} token={guest.token} guestName={guest.name} passes={guest.passes} messageTemplate={messageTemplate}currentMessage={guest.message} canCustomizeMessage={canCustomizeMessage}/>
                           </td>
                           <td className="px-5 py-4">
                             <div className="flex gap-2">
                               <button type="button" onClick={() => openEdit(guest)} className="rounded-lg border border-slate-200 px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50">
                                 Editar
                               </button>
-                              <button
-                                type="button"
-                                onClick={() => handleDelete(guest)}
-                                className="rounded-lg border border-red-200 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50"
-                              >
+                              <button type="button" onClick={() => handleDelete(guest)} className="rounded-lg border border-red-200 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50">
                                 Eliminar
                               </button>
                             </div>
@@ -343,39 +323,24 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                 </table>
               </div>
             </div>
-
             {/* ============================= */}
             {/* MOBILE */}
             {/* ============================= */}
             <div className="space-y-3 p-4 md:hidden">
               {filteredGuests.length === 0 ? (
                 <div className="rounded-xl border border-slate-200 bg-white px-5 py-10 text-center shadow-sm">
-                  <p className="text-sm text-slate-500">
-                    No se encontraron invitados.
-                  </p>
+                  <p className="text-sm text-slate-500">No se encontraron invitados.</p>
                 </div>
               ) : (
                 filteredGuests.map((guest) => (
-                  <GuestMobileCard
-                    key={guest.id}
-                    guest={guest}
-                    selected={selectedGuests.includes(guest.id)}
-                    onSelect={() => toggleGuestSelection(guest.id)}
-                    onEdit={() => openEdit(guest)}
-                    onDelete={() => handleDelete(guest)}
-                    eventSlug={eventSlug}
-                    messageTemplate={messageTemplate}
-                    canCustomizeMessage={canCustomizeMessage}
-                    getStatusLabel={getStatusLabel}
-                    getStatusClass={getStatusClass}
-                  />
+                  <GuestMobileCard key={guest.id} guest={guest} selected={selectedGuests.includes(guest.id)} onSelect={() => toggleGuestSelection(guest.id)} onEdit={() => openEdit(guest)} onDelete={() => handleDelete(guest)} eventSlug={eventSlug} messageTemplate={messageTemplate}
+                    canCustomizeMessage={canCustomizeMessage} getStatusLabel={getStatusLabel} getStatusClass={getStatusClass}/>
                 ))
               )}
             </div>
           </>
         )}
       </div>
-
       {/* MODAL */}
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
@@ -389,7 +354,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                 ×
               </button>
             </div>
-
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* NOMBRE */}
               <div>
@@ -398,7 +362,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 bg-white text-slate-800"
                 />
               </div>
-
               {/* TELEFONO */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Teléfono</label>
@@ -406,7 +369,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 />
               </div>
-
               {/* EMAIL */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Correo electrónico</label>
@@ -414,7 +376,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 />
               </div>
-
               {/* PASES */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Pases asignados</label>
@@ -423,20 +384,17 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                 />
                 <p className="mt-2 text-xs text-slate-400">Cantidad máxima de personas que podrán confirmar en esta invitación.</p>
               </div>
-
               {/* ERROR */}
               {error && (
                 <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
                   {error}
                 </div>
               )}
-
               {/* BOTONES */}
               <div className="flex justify-end gap-3 pt-2">
                 <button type="button" onClick={closeModal} disabled={loading} className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">
                   Cancelar
                 </button>
-
                 <button type="submit" disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">
                   {loading ? "Guardando..." : editingGuest ? "Guardar cambios" : "Agregar invitado"}
                 </button>
@@ -445,7 +403,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
           </div>
         </div>
       )}
-
       {/* MODAL INVITACIONES */}
       {bulkOpen && (<BulkInvitationPanel guests={selectedGuestRecords} slug={eventSlug} messageTemplate={messageTemplate} onClose={() => setBulkOpen(false)}/>)}
     </>

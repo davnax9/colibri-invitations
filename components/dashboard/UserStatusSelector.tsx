@@ -9,10 +9,7 @@ type Props = {
   currentStatus: boolean
 }
 
-export default function UserStatusSelector({
-  userId,
-  currentStatus,
-}: Props) {
+export default function UserStatusSelector({userId,currentStatus}: Props) {
   const [active, setActive] = useState(currentStatus)
   const [loading, setLoading] = useState(false)
 
@@ -37,25 +34,12 @@ export default function UserStatusSelector({
       return
     }
 
-    toast.success(
-      value
-        ? "Usuario activado correctamente"
-        : "Usuario desactivado correctamente"
-    )
+    toast.success(value ? "Usuario activado correctamente" : "Usuario desactivado correctamente")
   }
 
   return (
-    <select
-      value={active ? "ACTIVE" : "INACTIVE"}
-      disabled={loading}
-      onChange={(event) =>
-        handleChange(event.target.value === "ACTIVE")
-      }
-      className={`rounded-lg border px-3 py-2 text-xs font-semibold outline-none ${
-        active
-          ? "border-green-200 bg-green-50 text-green-700"
-          : "border-red-200 bg-red-50 text-red-700"
-      } disabled:cursor-not-allowed disabled:opacity-60`}
+    <select value={active ? "ACTIVE" : "INACTIVE"} disabled={loading} onChange={(event) => handleChange(event.target.value === "ACTIVE")}
+      className={`rounded-lg border px-3 py-2 text-xs font-semibold outline-none ${active ? "border-green-200 bg-green-50 text-green-700" : "border-red-200 bg-red-50 text-red-700"} disabled:cursor-not-allowed disabled:opacity-60`}
     >
       <option value="ACTIVE">Activo</option>
       <option value="INACTIVE">Inactivo</option>

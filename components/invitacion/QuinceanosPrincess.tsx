@@ -19,16 +19,12 @@ export default function QuinceanosPrincess({event,guest}: InvitationTemplateProp
 
   const details = event.details
 
-  const quinceaneraName =
-    details?.quinceaneraName ?? ""
+  const quinceaneraName = details?.quinceaneraName ?? ""
 
   const coverPhoto =
-    event.photos.find((photo) => photo.isCover) ??
-    event.photos[0]
+    event.photos.find((photo) => photo.isCover) ?? event.photos[0]
 
-  const invitationUrl = guest
-    ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}`
-    : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
+  const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
   return (
     <InvitationTheme theme={event.theme} event={event}>

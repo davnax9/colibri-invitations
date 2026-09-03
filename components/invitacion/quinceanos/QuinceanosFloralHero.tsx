@@ -53,7 +53,6 @@ export default function QuinceanosFloralHero({coverPhoto,details,event}: Props) 
             </div>
           </div>
         )}
-
         {/* FRASE */}
         {details?.phrase && (
           <div className="mx-auto mt-12 max-w-2xl text-center">

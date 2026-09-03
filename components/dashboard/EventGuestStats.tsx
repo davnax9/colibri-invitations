@@ -16,20 +16,6 @@ export default function EventGuestStats({ stats }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* CONTADORES DE INVITADOS */}
-      {/* <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Invitados" value={stats.totalGuests}/>
-        <StatCard label="Confirmados" value={stats.confirmedGuests}/>
-        <StatCard label="Pendientes" value={stats.pendingGuests}/>
-        <StatCard label="No asistirán" value={stats.declinedGuests}/>
-      </div> */}
-
-      {/* CONTADORES DE PASES */}
-      {/* <div className="grid gap-4 sm:grid-cols-2">
-        <StatCard label="Pases asignados" value={stats.totalPasses}/>
-        <StatCard label="Pases confirmados" value={stats.confirmedPasses}/>
-      </div> */}
-
       {/* GRÁFICAS */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* RESPUESTAS */}
@@ -46,18 +32,7 @@ export default function EventGuestStats({ stats }: Props) {
   )
 }
 
-// function StatCard({label,value}: { label: string, value: number}) {
-//   return (
-//     <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-//       <p className="text-sm font-medium text-slate-500">{label}</p>
-//       <p className="mt-2 text-3xl font-bold text-slate-800">{value}</p>
-//     </div>
-//   )
-// }
-
-function ProgressCard({title,description,percentage,current,total,currentLabel,pendingLabel}: {title: string,description: string,percentage: number,current: number,total: number,
-  currentLabel: string,pendingLabel: string
-}) {
+function ProgressCard({title,description,percentage,current,total,currentLabel,pendingLabel}: {title: string,description: string,percentage: number,current: number,total: number, currentLabel: string,pendingLabel: string}) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between gap-4">
@@ -67,12 +42,10 @@ function ProgressCard({title,description,percentage,current,total,currentLabel,p
         </div>
         <p className="text-2xl font-bold text-slate-800">{percentage}%</p>
       </div>
-
       {/* BARRA */}
       <div className="mt-5 h-3 overflow-hidden rounded-full bg-slate-100">
         <div className="h-full rounded-full bg-slate-800 transition-all duration-700" style={{width: `${percentage}%`}}/>
       </div>
-
       {/* INFORMACIÓN */}
       <div className="mt-3 flex justify-between text-xs text-slate-400">
         <span>{current} {currentLabel}</span>

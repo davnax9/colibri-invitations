@@ -66,8 +66,6 @@ export default async function GuestInvitationPage({ params }: Props) {
 
   return (
     <>
-      {/* {guest.event.template.type === "WEDDING" && (<WeddingTemplate event={guest.event} guest={guestInfo}/>)}
-      {guest.event.template.type === "QUINCEANOS" && (<QuinceanosTemplate event={guest.event} guest={guestInfo} />)} */}
        <InvitationRenderer event={guest.event} guest={guestInfo}/>
       <GuestRSVP token={guest.token} guestName={guest.name} passes={guest.passes} confirmedPasses={guest.confirmed} status={guest.status} />
     </>

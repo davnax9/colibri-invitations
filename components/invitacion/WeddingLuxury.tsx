@@ -1,13 +1,9 @@
-import WeddingHero from "./wedding/WeddingHero"
-import WeddingIntro from "./wedding/WeddingIntro"
 import WeddingDate from "./wedding/WeddingDate"
 import WeddingDressCode from "./wedding/WeddingDressCode"
 import WeddingFooter from "./wedding/WeddingFooter"
 
 import Countdown from "./shared/Countdown"
-import InvitationSchedule from "./shared/InvitationSchedule"
 import InvitationLocations from "./shared/InvitationLocations"
-import InvitationGallery from "./shared/InvitationGallery"
 import MusicPlayer from "./shared/MusicPlayer"
 import AddToCalendar from "./shared/AddToCalendar"
 import InvitationTheme from "./shared/InvitationTheme"
@@ -31,9 +27,7 @@ export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
       <WeddingLuxuryOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate}>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
           {/* HERO */}
-          {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
           <WeddingLuxuryHero coverPhoto={coverPhoto} details={details} event={event}/>
-
           {/* INTRO PREMIUM */}
           <section className="px-6 py-28 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
             <div className="mx-auto max-w-3xl">
@@ -48,11 +42,8 @@ export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
           <WeddingDate event={event} />
 
           <Countdown targetDate={event.eventDate.toISOString()}/>
-
           {/* CELEBRACIÓN */} 
           <WeddingLuxuryCelebration schedules={event.schedules} />
-
-          {/* <InvitationSchedule event={event} /> */}
 
           <InvitationLocations event={event} />
 
@@ -63,8 +54,6 @@ export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
               <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
             </div>
           </section>
-
-          {/* <InvitationGallery event={event} /> */}
           {/* GALERÍA LUXURY */} 
           <WeddingLuxuryGallery photos={event.photos} />
 

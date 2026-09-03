@@ -1,13 +1,9 @@
-import QuinceanosHero from "./quinceanos/QuinceanosHero"
 import QuinceanosIntro from "./quinceanos/QuinceanosIntro"
 import QuinceanosDate from "./quinceanos/QuinceanosDate"
 import QuinceanosDressCode from "./quinceanos/QuinceanosDressCode"
 import QuinceanosFooter from "./quinceanos/QuinceanosFooter"
 
 import Countdown from "./shared/Countdown"
-import InvitationSchedule from "./shared/InvitationSchedule"
-import InvitationLocations from "./shared/InvitationLocations"
-import InvitationGallery from "./shared/InvitationGallery"
 import MusicPlayer from "./shared/MusicPlayer"
 import AddToCalendar from "./shared/AddToCalendar"
 import InvitationTheme from "./shared/InvitationTheme"
@@ -30,7 +26,7 @@ export default function QuinceanosModern({event,guest}: InvitationTemplateProps)
     <InvitationTheme theme={event.theme} event={event}>
       <QuinceanosModernEnvelope quinceaneraName={name} eventDate={event.eventDate}>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
-          {/* <QuinceanosHero coverPhoto={coverPhoto} details={details} event={event}/> */}
+
           <QuinceanosModernHero coverPhoto={coverPhoto} details={details} event={event}/>
 
           <section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
@@ -50,10 +46,8 @@ export default function QuinceanosModern({event,guest}: InvitationTemplateProps)
 
           <QuinceanosIntro details={details} />
 
-          {/* <InvitationSchedule event={event} /> */}
           <InvitationTimeline schedules={event.schedules} />
 
-          {/* <InvitationLocations event={event} /> */}
           <InvitationEditorialLocations locations={event.locations} />
 
           <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
@@ -63,7 +57,6 @@ export default function QuinceanosModern({event,guest}: InvitationTemplateProps)
             </div>
           </section>
 
-          {/* <InvitationGallery event={event} /> */}
           <InvitationCollageGallery photos={event.photos} />
 
           <InvitationGifts gifts={event.gifts} />

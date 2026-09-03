@@ -9,10 +9,7 @@ type Props = {
   currentPlan: "BASIC" | "PRO"
 }
 
-export default function UserPlanSelector({
-  userId,
-  currentPlan,
-}: Props) {
+export default function UserPlanSelector({userId,currentPlan}: Props) {
   const [plan, setPlan] = useState(currentPlan)
   const [loading, setLoading] = useState(false)
 
@@ -43,17 +40,8 @@ export default function UserPlanSelector({
   }
 
   return (
-    <select
-      value={plan}
-      disabled={loading}
-      onChange={(event) =>
-        handleChange(event.target.value as "BASIC" | "PRO")
-      }
-      className={`rounded-lg border px-3 py-2 text-xs font-semibold outline-none transition ${
-        plan === "PRO"
-          ? "border-amber-200 bg-amber-50 text-amber-700"
-          : "border-slate-200 bg-slate-50 text-slate-600"
-      } disabled:cursor-not-allowed disabled:opacity-60`}
+    <select value={plan} disabled={loading} onChange={(event) => handleChange(event.target.value as "BASIC" | "PRO")}
+      className={`rounded-lg border px-3 py-2 text-xs font-semibold outline-none transition ${plan === "PRO" ? "border-amber-200 bg-amber-50 text-amber-700" : "border-slate-200 bg-slate-50 text-slate-600"} disabled:cursor-not-allowed disabled:opacity-60`}
     >
       <option value="BASIC">BASIC</option>
       <option value="PRO">PRO</option>

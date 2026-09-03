@@ -1,11 +1,8 @@
-import WeddingHero from "./wedding/WeddingHero"
-import WeddingIntro from "./wedding/WeddingIntro"
 import WeddingDate from "./wedding/WeddingDate"
 import WeddingDressCode from "./wedding/WeddingDressCode"
 import WeddingFooter from "./wedding/WeddingFooter"
 
 import Countdown from "./shared/Countdown"
-import InvitationSchedule from "./shared/InvitationSchedule"
 import InvitationLocations from "./shared/InvitationLocations"
 import InvitationGallery from "./shared/InvitationGallery"
 import MusicPlayer from "./shared/MusicPlayer"
@@ -30,7 +27,6 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
       <WeddingModernOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate} coverPhoto={coverPhoto}>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
           {/* HERO */}
-          {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
           <WeddingModernHero coverPhoto={coverPhoto} details={details} event={event}/>
 
           {/* NOMBRES */}
@@ -45,36 +41,22 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
               </div>
             </div>
           </section>
-          
           {/* HISTORIA */}
           <WeddingModernStory details={details} />
-
           {/* FECHA */}
           <WeddingDate event={event} />
-
           {/* COUNTDOWN */}
           <Countdown targetDate={event.eventDate.toISOString()}/>
-
           {/* TIMELINE */}
           <WeddingTimeline schedules={event.schedules} />
-
-          {/* INTRO */}
-          {/* <WeddingIntro details={details} /> */}
-
-          {/* HORARIOS */}
-          {/* <InvitationSchedule event={event} /> */}
-
           {/* UBICACIONES */}
           <InvitationLocations event={event} />
-
           {/* GALERÍA */}
           <InvitationGallery event={event} />
 
           <InvitationGifts gifts={event.gifts} />
-
           {/* DRESS CODE */}
           <WeddingDressCode details={details} />
-
           {/* CALENDARIO */}
           <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
             <h2 className="text-4xl font-light md:text-5xl" style={{color: "var(--theme-primary)"}}>Reserva la fecha</h2>
@@ -82,7 +64,6 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
               <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
             </div>
           </section>
-
           {/* FOOTER */}
           <WeddingFooter details={details} />
 

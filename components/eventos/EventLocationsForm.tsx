@@ -57,12 +57,6 @@ export default function EventLocationsForm({eventId,locations}: Props) {
     setError("")
     setMessage("")
 
-    // const result = await createEventLocation({
-    //   eventId,
-    //   name,
-    //   address,
-    //   mapsUrl,
-    // })
     const result = editingLocationId ? await updateEventLocation({id: editingLocationId, eventId, name, address, mapsUrl}): await createEventLocation({eventId, name, address, mapsUrl})
 
     if (!result.success) {
@@ -77,44 +71,10 @@ export default function EventLocationsForm({eventId,locations}: Props) {
     setMapsUrl("")
     setEditingLocationId(null)
 
-    // setMessage(editingLocationId ? "Ubicación actualizada correctamente": "Ubicación agregada correctamente")
     toast.success(editingLocationId ? "Ubicación actualizada correctamente": "Ubicación agregada correctamente")
     setLoading(false)
     router.refresh()
   }
-
-  // async function handleDelete(locationId: string) {
-  //   if (loading) return
-
-  //   const confirmed = window.confirm("¿Estás seguro de eliminar esta ubicación?")
-
-  //   if (!confirmed) return
-
-  //   setLoading(true)
-  //   setError("")
-  //   setMessage("")
-
-  //   const result = await deleteEventLocation({id: locationId, eventId})
-
-  //   if (!result.success) {
-  //     setError(result.error)
-  //     toast.error(result.error)
-  //     setLoading(false)
-  //     return
-  //   }
-
-  //   if (editingLocationId === locationId) {
-  //     setEditingLocationId(null)
-  //     setName("")
-  //     setAddress("")
-  //     setMapsUrl("")
-  //   }
-
-  //   // setMessage("Ubicación eliminada correctamente")
-  //   toast.success("Ubicación eliminada correctamente")
-  //   setLoading(false)
-  //   router.refresh()
-  // }
 
   async function handleDelete(locationId: string) {
     if (loading) return
@@ -171,7 +131,6 @@ export default function EventLocationsForm({eventId,locations}: Props) {
           ))}
         </div>
       )}
-
       {/* Nueva ubicación */}
       <form ref={formRef} onSubmit={handleSubmit} className="rounded-lg border border-dashed border-slate-300 p-5">
         <h3 className="font-medium text-slate-800">{editingLocationId ? "Editar ubicación" : "Agregar ubicación"}</h3>
@@ -199,7 +158,6 @@ export default function EventLocationsForm({eventId,locations}: Props) {
               {error}
             </div>
           )}
-
           {message && (
             <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-600">
               {message}

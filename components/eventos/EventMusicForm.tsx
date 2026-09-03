@@ -65,7 +65,6 @@ export default function EventMusicForm({eventId, music}: Props) {
         />
         <p className="mt-2 text-xs text-slate-400">Pega aquí la URL del video de YouTube que deseas utilizar.</p>
       </div>
-
       {/* Título */}
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la canción</label>
@@ -73,7 +72,6 @@ export default function EventMusicForm({eventId, music}: Props) {
             className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
-
       {/* Artista */}
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Artista</label>
@@ -81,25 +79,21 @@ export default function EventMusicForm({eventId, music}: Props) {
           className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
-
       {/* Autoplay */}
       <label className="flex items-center gap-3">
         <input type="checkbox" checked={autoplay} onChange={(e) => setAutoplay(e.target.checked)} className="h-4 w-4 rounded border-slate-300"/>
         <span className="text-sm text-slate-700">Reproducir automáticamente</span>
       </label>
-
       {error && (
         <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
           {error}
         </div>
       )}
-
       {message && (
         <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-600">
           {message}
         </div>
       )}
-
       <div className="flex justify-end">
         <button type="submit" disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">
           {loading ? "Guardando..." : "Guardar música"}

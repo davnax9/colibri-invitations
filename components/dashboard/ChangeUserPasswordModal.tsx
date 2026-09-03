@@ -10,28 +10,20 @@ type Props = {
   onClose: () => void
 }
 
-export default function ChangeUserPasswordModal({
-  userId,
-  userName,
-  onClose,
-}: Props) {
+export default function ChangeUserPasswordModal({userId,userName,onClose}: Props) {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
-  async function handleSubmit(
-    event: React.FormEvent<HTMLFormElement>
-  ) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     setError("")
 
     if (password.length < 8) {
-      setError(
-        "La contraseña debe tener al menos 8 caracteres."
-      )
+      setError("La contraseña debe tener al menos 8 caracteres.")
       return
     }
 
@@ -42,10 +34,7 @@ export default function ChangeUserPasswordModal({
 
     setLoading(true)
 
-    const result = await updateUserPassword({
-      userId,
-      password,
-    })
+    const result = await updateUserPassword({userId, password})
 
     setLoading(false)
 

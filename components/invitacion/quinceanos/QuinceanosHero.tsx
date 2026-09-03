@@ -22,13 +22,10 @@ export default function QuinceanosHero({ coverPhoto,details,event}: Props) {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden" style={{backgroundColor: "var(--theme-primary)"}}>
-
       {/* IMAGEN */}
       {coverPhoto && (<Image src={coverPhoto.url} alt={coverPhoto.title ?? "Fotografía de XV años"} fill priority sizes="100vw" className="object-cover"/>)}
-
       {/* OVERLAY */}
       <div className="absolute inset-0 bg-black/45" />
-
       {/* CONTENIDO */}
       <div className="relative z-10 px-6 text-center text-white">
         <p className="text-sm uppercase tracking-[0.5em] text-white/80">Mis XV años</p>

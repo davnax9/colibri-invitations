@@ -91,13 +91,11 @@ export default function GuestRSVP({token,guestName,passes,confirmedPasses,status
     </section>
   )
 }
-
   /*
    * ========================================================
    * RECHAZÓ
    * ========================================================
    */
-
   if (currentStatus === "DECLINED" && !editing) {
     return (
       <section className="bg-white px-6 py-20">
@@ -115,13 +113,11 @@ export default function GuestRSVP({token,guestName,passes,confirmedPasses,status
       </section>
     )
   }
-
   /*
    * ========================================================
    * PENDIENTE
    * ========================================================
    */
-
   if (currentStatus === "PENDING" || editing) {
     return (
       <section className="bg-white px-6 py-20">

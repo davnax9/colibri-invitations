@@ -68,16 +68,6 @@ export default function EventMessageForm({eventId, eventName, initialMessage, ex
           className="w-full resize-y rounded-lg border border-slate-300 px-4 py-3 text-sm leading-6 text-slate-700 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
-      {/* VARIABLES */}
-      {/* <div className="mt-4">
-        <p className="text-sm font-medium text-slate-700">Variables disponibles</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          <VariableButton value="{nombre}" onClick={insertVariable} />
-          <VariableButton value="{pases}" onClick={insertVariable} />
-          <VariableButton value="{link}" onClick={insertVariable} />
-        </div>
-        <p className="mt-2 text-xs text-slate-400">Estas variables serán reemplazadas automáticamente al enviar la invitación.</p>
-      </div> */}
       {/* PREVISUALIZACIÓN */}
       <div className="mt-8">
         <p className="text-sm font-medium text-slate-700">Vista previa</p>

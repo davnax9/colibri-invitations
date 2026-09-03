@@ -71,14 +71,6 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
     setError("")
     setMessage("")
 
-    // const result = await createEventSchedule({
-    //   eventId,
-    //   title,
-    //   date,
-    //   time,
-    //   description,
-    //   locationId,
-    // })
     const result = editingScheduleId ? 
       await updateEventSchedule({id: editingScheduleId, eventId, title, date, time, description,locationId}): 
       await createEventSchedule({eventId, title, date, time, description,locationId})
@@ -103,10 +95,6 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
 
   async function handleDelete(scheduleId: string) {
     if (loading) return
-
-    // const confirmed = window.confirm("¿Estás seguro de eliminar este horario?")
-
-    // if (!confirmed) return
 
     setLoading(true)
     setError("")
@@ -158,7 +146,6 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
           ))}
         </div>
       )}
-
       {/* Nuevo horario */}
       <form ref={formRef} onSubmit={handleSubmit} className="rounded-lg border border-dashed border-slate-300 p-5">
         <h3 className="font-medium text-slate-800">{editingScheduleId ? "Editar horario" : "Agregar horario"}</h3>
@@ -170,19 +157,16 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
               className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
-
           {/* Fecha */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Fecha</label>
             <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
-
           {/* Hora */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Hora</label>
             <input type="time" value={time} onChange={(e) => setTime(e.target.value)} className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
-
           {/* Ubicación */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Ubicación</label>
@@ -193,7 +177,6 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
               ))}
             </select>
           </div>
-
           {/* Descripción */}
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Descripción</label>
@@ -201,37 +184,26 @@ export default function EventSchedulesForm({eventId, eventDate, locations, sched
               className="w-full text-slate-800 bg-white resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
-
           {error && (
             <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
               {error}
             </div>
           )}
-
           {message && (
             <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-600">
               {message}
             </div>
           )}
-
           <div className="flex justify-end">
             <button type="submit" disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">
               {loading ? "Guardando..." : editingScheduleId ? "Guardar cambios": "Agregar Horario"}
             </button>
           </div>
-
         </div>
       </form>
-      <ConfirmModal
-        open={scheduleToDelete !== null}
-        onClose={() => setScheduleToDelete(null)}
-        onConfirm={() => {if (scheduleToDelete) handleDelete(scheduleToDelete.id)}}
-        title="Eliminar horario"
-        message={scheduleToDelete ? `¿Estás seguro de que deseas eliminar "${scheduleToDelete.title}"? Esta acción no se puede deshacer.` : ""}
-        confirmText="Eliminar"
-        cancelText="Cancelar"
-        variant="danger"
-        loading={loading}
+      <ConfirmModal open={scheduleToDelete !== null} onClose={() => setScheduleToDelete(null)} onConfirm={() => {if (scheduleToDelete) handleDelete(scheduleToDelete.id)}}
+        title="Eliminar horario" message={scheduleToDelete ? `¿Estás seguro de que deseas eliminar "${scheduleToDelete.title}"? Esta acción no se puede deshacer.` : ""}
+        confirmText="Eliminar" cancelText="Cancelar"variant="danger" loading={loading}
       />
     </div>
   )

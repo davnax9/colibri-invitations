@@ -89,11 +89,6 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
 
   async function handleDelete(photoId: string) {
     if (loading) return
-    // const confirmed = window.confirm("¿Seguro que deseas eliminar esta fotografía?")
-
-    // if (!confirmed) {
-    //   return
-    // }
 
     setLoading(true)
     setError("")
@@ -116,7 +111,6 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
 
   function requestDelete(photo: Photo) {
     if (loading) return
-
     setImageToDelete(photo)
   }
 
@@ -198,7 +192,6 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
             </SortableContext>
           </DndContext>
         )}
-
         {/* INFORMACIÓN DE FOTOGRAFÍAS */}
         <div className="rounded-2xl border border-[#E5E9E5] bg-white p-5 shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
@@ -214,7 +207,6 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
               <p className="mt-1 text-sm font-bold text-[#263832]">{items.length} / {maxPhotos} fotografías</p>
             </div>
           </div>
-
           {/* PROGRESO */}
           <div className="mt-5">
             <div className="h-2 overflow-hidden rounded-full bg-[#E5E9E5]">
@@ -225,7 +217,6 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
               <span className="font-medium text-[#687A72]">{remainingPhotos} disponibles</span>
             </div>
           </div>
-
           {/* UPLOAD */}
           {!limitReached ? (
             <div className="mt-5 rounded-xl border border-dashed border-[#8FA89D]/60 bg-[#FAF8F3] p-6 text-center">
@@ -239,7 +230,6 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
               <p className="mt-3 text-xs text-[#8A9A8F]">Puedes agregar {remainingPhotos}{" "} {remainingPhotos === 1 ? "fotografía más." : "fotografías más."}</p>
             </div>
           ) : (
-
             /* LÍMITE */
             <div className="mt-5 rounded-xl border border-[#C9A86A]/30 bg-[#FAF8F3] p-5">
               <div className="flex gap-4">
@@ -254,7 +244,6 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
               </div>
             </div>
           )}
-
           {/* MENSAJES */}
           {error && (
             <div className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
@@ -268,15 +257,8 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
           )}
         </div>
       </div>
-      <ConfirmModal
-        open={!!imageDelete}
-        title="Eliminar fotografía"
-        message={imageDelete? `¿Estás seguro de eliminar esta fotografía? Esta acción no se puede deshacer.` : ""}
-        confirmText="Eliminar"
-        cancelText="Cancelar"
-        loading={loading}
-        onClose={() => setImageToDelete(null)}
-        onConfirm={() => {if (imageDelete) handleDelete(imageDelete.id)}}
+      <ConfirmModal open={!!imageDelete} title="Eliminar fotografía" message={imageDelete? `¿Estás seguro de eliminar esta fotografía? Esta acción no se puede deshacer.` : ""}
+        confirmText="Eliminar" cancelText="Cancelar" loading={loading} onClose={() => setImageToDelete(null)} onConfirm={() => {if (imageDelete) handleDelete(imageDelete.id)}}
         variant="danger"
       />
     </>   

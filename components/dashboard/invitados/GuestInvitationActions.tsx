@@ -68,15 +68,12 @@ export default function GuestInvitationActions({guestId, slug, token, guestName,
           <button type="button" onClick={() => {window.open(invitationUrl,"_blank","noopener,noreferrer")}} className="rounded-lg border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 transition hover:bg-slate-50">
             Ver
           </button>
-
           <button type="button" onClick={handleCopy} className="rounded-lg border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 transition hover:bg-slate-50">
             {copied ? "✓ Copiado" : "Copiar"}
           </button>
-
           <button type="button" onClick={handleWhatsApp} className="rounded-lg bg-green-600 px-3 py-2 text-xs font-medium text-white transition hover:bg-green-700">
             WhatsApp
           </button>
-
           {canCustomizeMessage ? (
             <button type="button" onClick={() => setMessageOpen(true)} className="rounded-lg border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 transition hover:bg-slate-50">
               Mensaje
@@ -85,7 +82,6 @@ export default function GuestInvitationActions({guestId, slug, token, guestName,
             <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-medium text-slate-400">Mensaje</span>
           )}
         </div>
-
         {messageOpen && (
           <GuestMessageModal guestId={guestId} guestName={guestName} passes={passes} currentMessage={currentMessage} defaultMessage={messageTemplate} invitationUrl={invitationUrl}
             onClose={() => setMessageOpen(false)}

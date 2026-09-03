@@ -17,11 +17,7 @@ export default async function DashboardPage() {
 
   const events = await prisma.event.findMany({
     where:
-      session.user.role === "ADMIN"
-        ? {}
-        : {
-            userId: session.user.id,
-          },
+      session.user.role === "ADMIN" ? {} : {userId: session.user.id},
     include: {
       template: true,
       theme: true,

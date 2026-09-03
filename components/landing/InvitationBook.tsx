@@ -60,7 +60,7 @@ export default function InvitationBook({ designs }: Props) {
     }, 850)
   }
 
-  function handleTouchStart(event: React.TouchEvent<HTMLDivElement>) {
+  function handleMobileTouchStart(event: React.TouchEvent<HTMLDivElement>) {
     if (isMobileTurning) return
 
     const touch = event.touches[0]
@@ -69,7 +69,40 @@ export default function InvitationBook({ designs }: Props) {
     setTouchStartY(touch.clientY)
   }
 
-  function handleTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
+  // function handleTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
+  //   if (isMobileTurning || touchStartX === null || touchStartY === null) return
+
+  //   const touch = event.changedTouches[0]
+
+  //   const deltaX = touch.clientX - touchStartX
+  //   const deltaY = touch.clientY - touchStartY
+
+  //   // Limpiamos el estado
+  //   setTouchStartX(null)
+  //   setTouchStartY(null)
+
+  //   // Ignorar movimientos pequeños
+  //   const minSwipeDistance = 50
+
+  //   if (Math.abs(deltaX) < minSwipeDistance) return
+
+  //   // Si el movimiento vertical es mayor,
+  //   // probablemente el usuario está haciendo scroll.
+  //   if (Math.abs(deltaY) > Math.abs(deltaX)) return
+
+  //   // Deslizar hacia la izquierda
+  //   if (deltaX < 0) {
+  //     goMobileNext()
+  //     return
+  //   }
+
+  //   // Deslizar hacia la derecha
+  //   if (deltaX > 0) {
+  //     goMobilePrevious()
+  //   }
+  // }
+
+  function handleMobileTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
     if (isMobileTurning || touchStartX === null || touchStartY === null) return
 
     const touch = event.changedTouches[0]
@@ -77,28 +110,62 @@ export default function InvitationBook({ designs }: Props) {
     const deltaX = touch.clientX - touchStartX
     const deltaY = touch.clientY - touchStartY
 
-    // Limpiamos el estado
     setTouchStartX(null)
     setTouchStartY(null)
 
-    // Ignorar movimientos pequeños
     const minSwipeDistance = 50
 
     if (Math.abs(deltaX) < minSwipeDistance) return
 
-    // Si el movimiento vertical es mayor,
-    // probablemente el usuario está haciendo scroll.
     if (Math.abs(deltaY) > Math.abs(deltaX)) return
 
-    // Deslizar hacia la izquierda
     if (deltaX < 0) {
       goMobileNext()
       return
     }
 
-    // Deslizar hacia la derecha
     if (deltaX > 0) {
       goMobilePrevious()
+    }
+  }
+
+  function handleBookTouchStart(event: React.TouchEvent<HTMLDivElement>) {
+    if (isTurning) return
+
+    const touch = event.touches[0]
+
+    setTouchStartX(touch.clientX)
+    setTouchStartY(touch.clientY)
+  }
+
+  function handleBookTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
+    if (isTurning || touchStartX === null || touchStartY === null) return
+
+    const touch = event.changedTouches[0]
+
+    const deltaX = touch.clientX - touchStartX
+    const deltaY = touch.clientY - touchStartY
+
+    setTouchStartX(null)
+    setTouchStartY(null)
+
+    const minSwipeDistance = 50
+
+    if (Math.abs(deltaX) < minSwipeDistance) return
+
+    // Si el movimiento fue principalmente vertical,
+    // dejamos que el usuario haga scroll normalmente.
+    if (Math.abs(deltaY) > Math.abs(deltaX)) return
+
+    // Swipe hacia la izquierda → siguiente par
+    if (deltaX < 0) {
+      goNext()
+      return
+    }
+
+    // Swipe hacia la derecha → par anterior
+    if (deltaX > 0) {
+      goPrevious()
     }
   }
 
@@ -142,7 +209,8 @@ export default function InvitationBook({ designs }: Props) {
         {/* =================================================== */}
         {/* DESKTOP */}
         {/* =================================================== */}
-        <div className="relative mx-auto hidden w-full max-w-5xl md:block" style={{perspective: "2000px"}}>
+        {/* <div className="relative mx-auto hidden w-full max-w-5xl md:block" style={{perspective: "2000px"}}> */}
+        <div className="relative mx-auto hidden w-full max-w-5xl select-none md:block touch-pan-y" style={{ perspective: "2000px" }} onTouchStart={handleBookTouchStart} onTouchEnd={handleBookTouchEnd}>
           {/* ================================================= */}
           {/* CONTENEDOR DEL LIBRO */}
           {/* ================================================= */}
@@ -213,7 +281,7 @@ export default function InvitationBook({ designs }: Props) {
           {/* =============================================== */}
           {/* IMAGEN DE LA INVITACIÓN */}
           {/* =============================================== */}
-          <div className="relative touch-pan-y select-none" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+          <div className="relative touch-pan-y select-none" onTouchStart={handleMobileTouchStart} onTouchEnd={handleMobileTouchEnd}>
             {/* ============================================= */}
             {/* PÁGINA ACTUAL */}
             {/* ============================================= */}

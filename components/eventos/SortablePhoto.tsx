@@ -40,11 +40,6 @@ export default function SortablePhoto({photo, onDelete, onSetCover, loading}: Pr
         <div className="absolute left-2 top-2 rounded-lg bg-black/60 px-3 py-2 text-sm text-white backdrop-blur-sm">
           ⋮⋮
         </div>
-        {/* <button type="button" {...attributes} {...listeners} className="absolute left-2 top-2 rounded-lg bg-black/60 px-3 py-2 text-sm text-white backdrop-blur-sm hover:bg-black/80"
-          title="Arrastrar fotografía"
-        >
-          ⋮⋮
-        </button> */}
       </div>
       <div className="flex items-center justify-between gap-3 p-3">
         <p className="text-xs text-slate-400">Orden: {photo.order + 1}</p>

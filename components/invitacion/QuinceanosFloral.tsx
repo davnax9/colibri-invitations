@@ -28,24 +28,19 @@ export default function QuinceanosFloral({ event, guest }: InvitationTemplatePro
           {/* HERO */}
           <section className="relative" style={{backgroundColor: "var(--theme-surface)"}}>
             <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: "var(--theme-accent)" }}/>
-            {/* <QuinceanosHero coverPhoto={coverPhoto} details={details} event={event}/> */}
             <QuinceanosFloralHero coverPhoto={coverPhoto} details={details} event={event}/>
-
             {/* DETALLE FLORAL */}
             <div className="relative mx-auto -mt-8 flex w-fit items-center gap-4 rounded-full px-6 py-3 shadow-sm" style={{ backgroundColor: "var(--theme-background)", color: "var(--theme-primary)"}}>
               <span>✿</span><span className="text-xs uppercase tracking-[0.35em]">Mis XV años</span><span>✿</span>
             </div>
           </section>
-
           {/* INTRODUCCIÓN */}
           <section className="relative">
             <div className="pointer-events-none absolute left-0 top-0 text-7xl opacity-10" style={{ color: "var(--theme-primary)" }}>
               ❀
             </div>
-
             <QuinceanosIntro details={details} />
           </section>
-
           {/* FRASE */}
           {details?.phrase && (
             <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
@@ -58,29 +53,22 @@ export default function QuinceanosFloral({ event, guest }: InvitationTemplatePro
               </div>
             </section>
           )}
-
           {/* FECHA */}
           <QuinceanosDate event={event} />
-
           {/* COUNTDOWN */}
           <section className="relative overflow-hidden" style={{backgroundColor: "var(--theme-background)"}}>
             <div className="pointer-events-none absolute -left-16 top-10 text-8xl opacity-10" style={{ color: "var(--theme-primary)" }}>
               ❀
             </div>
-
             <Countdown targetDate={event.eventDate.toISOString()}/>
-
             <div className="pointer-events-none absolute -right-16 bottom-0 text-8xl opacity-10" style={{ color: "var(--theme-primary)" }}>
               ✿
             </div>
           </section>
-
           {/* HORARIOS */}
           <InvitationSchedule event={event} />
-
           {/* UBICACIONES */}
           <InvitationLocations event={event} />
-
           {/* CALENDARIO */}
           <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
             <div className="mx-auto max-w-2xl">
@@ -95,7 +83,6 @@ export default function QuinceanosFloral({ event, guest }: InvitationTemplatePro
               </div>
             </div>
           </section>
-
           {/* GALERÍA */}
           <section className="px-6 py-24" style={{ backgroundColor: "var(--theme-background)"}}>
             <div className="mx-auto max-w-6xl">
@@ -109,15 +96,11 @@ export default function QuinceanosFloral({ event, guest }: InvitationTemplatePro
               </div>
             </div>
           </section>
-
           <InvitationGifts gifts={event.gifts} />
-
           {/* VESTIMENTA */}
           <QuinceanosDressCode details={details} />
-
           {/* FOOTER */}
           <QuinceanosFooter details={details} />
-
           {/* MÚSICA */}
           {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>)}
         </main>

@@ -4,13 +4,11 @@ import WeddingDate from "./wedding/WeddingDate"
 import WeddingDressCode from "./wedding/WeddingDressCode"
 import WeddingFooter from "./wedding/WeddingFooter"
 import Countdown from "./shared/Countdown"
-import InvitationSchedule from "./shared/InvitationSchedule"
 import InvitationLocations from "./shared/InvitationLocations"
 import InvitationGallery from "./shared/InvitationGallery"
 import MusicPlayer from "./shared/MusicPlayer"
 import AddToCalendar from "./shared/AddToCalendar"
 import InvitationTheme from "./shared/InvitationTheme"
-import { EventTheme } from "@/app/generated/prisma/client"
 import WeddingElegantHero from "./wedding/WeddingElegantHero"
 import WeddingElegantEvents from "./wedding/WeddingElegantEvents"
 import InvitationGifts from "./shared/InvitationGifts"
@@ -32,7 +30,6 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
             <WeddingElegantOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate}>
                 <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
                     {/* PORTADA */}
-                    {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
                     <WeddingElegantHero coverPhoto={coverPhoto} details={details} event={event}/>
 
                     {/* INTRODUCCIÓN */}
@@ -46,9 +43,6 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
 
                     {/* PROGRAMA ELEGANTE */}
                     <WeddingElegantEvents schedules={event.schedules}/>
-
-                    {/* HORARIOS */}
-                    {/* <InvitationSchedule event={event}/> */}
 
                     {/* UBICACIONES */}
                     <InvitationLocations event={event}/>

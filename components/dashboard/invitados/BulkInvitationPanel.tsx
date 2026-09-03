@@ -54,7 +54,6 @@ export default function BulkInvitationPanel({ guests,slug, messageTemplate,onClo
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
       <div className="flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl">
-
         {/* HEADER */}
         <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
           <div>
@@ -65,7 +64,6 @@ export default function BulkInvitationPanel({ guests,slug, messageTemplate,onClo
             ×
           </button>
         </div>
-
         {/* LISTA */}
         <div className="flex-1 overflow-y-auto p-6">
           <div className="space-y-3">
@@ -98,7 +96,6 @@ export default function BulkInvitationPanel({ guests,slug, messageTemplate,onClo
             })}
           </div>
         </div>
-
         {/* FOOTER */}
         <div className="flex items-center justify-between border-t border-slate-200 bg-slate-50 px-6 py-4">
           <p className="text-sm text-slate-500">{sentGuests.length === guests.length? "Todas las invitaciones fueron preparadas." : `Faltan ${guests.length - sentGuests.length} invitaciones.`}</p>

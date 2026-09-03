@@ -70,7 +70,6 @@ export default function EventInvitationPreview({ event }: Props) {
             <div className="absolute inset-0 bg-black/45" />
           </>
         )}
-
         <div className="relative z-10 w-full px-6 pb-10 text-center text-white">
           <p className="text-[9px] uppercase tracking-[0.35em] text-white/70">{isWedding ? "Nuestra boda" : "Mis XV años"}</p>
           <div className="mx-auto mt-4 h-px w-10 bg-white/50" />
@@ -79,7 +78,6 @@ export default function EventInvitationPreview({ event }: Props) {
           {event.details?.phrase && (<p className="mt-5 text-xs italic leading-5 text-white/80">"{event.details.phrase}"</p>)}
         </div>
       </section>
-
       {/* INTRODUCCIÓN */}
       {(event.details?.title || event.details?.subtitle || event.details?.description) && (
         <section className="px-6 py-10 text-center" style={{backgroundColor: theme.backgroundColor}}>
@@ -88,13 +86,11 @@ export default function EventInvitationPreview({ event }: Props) {
           {event.details.description && (<p className="mt-4 text-xs leading-5" style={{color: theme.textColor}}>{event.details.description}</p>)}
         </section>
       )}
-
       {/* FECHA */}
       <section className="px-6 py-10 text-center" style={{backgroundColor: theme.surfaceColor}}>
         <p className="text-[9px] uppercase tracking-[0.25em]" style={{color: theme.secondaryColor}}>Reserva la fecha</p>
         <h2 className="mt-3 font-serif text-2xl" style={{color: theme.primaryColor}}>{formattedDate}</h2>
       </section>
-
       {/* HORARIOS */}
       {event.schedules.length > 0 && (
         <section className="px-5 py-10" style={{backgroundColor: theme.backgroundColor}}>
@@ -102,7 +98,6 @@ export default function EventInvitationPreview({ event }: Props) {
             <p className="text-[9px] uppercase tracking-[0.25em]" style={{color: theme.secondaryColor}}>Celebremos juntos</p>
             <h2 className="mt-2 font-serif text-2xl" style={{color: theme.primaryColor}}>Nuestro día</h2>
           </div>
-
           <div className="mt-6 space-y-3">
             {event.schedules.slice(0, 3).map((schedule) => (
               <div key={schedule.id} className="rounded-xl p-4 text-center shadow-sm" style={{backgroundColor: theme.surfaceColor}}>
@@ -115,7 +110,6 @@ export default function EventInvitationPreview({ event }: Props) {
           {event.schedules.length > 3 && (<p className="mt-4 text-center text-[9px]" style={{color: theme.secondaryColor}}>+ {event.schedules.length - 3} eventos más</p>)}
         </section>
       )}
-
       {/* FOOTER */}
       <footer className="px-6 py-10 text-center" style={{backgroundColor: theme.primaryColor,color: "#ffffff"}}>
         <p className="font-serif text-xl">{mainTitle}</p>

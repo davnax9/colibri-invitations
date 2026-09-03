@@ -113,12 +113,8 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
             )
           }
         )}
-
         {/* PERSONALIZADO */}
         {plan === "PRO" || isAdmin && (
-          // <button type="button" onClick={() => { if (!canCustomizeColors) return setSelectedPreset("CUSTOM")}} disabled={loading || !canCustomizeColors} className={`group relative overflow-hidden rounded-2xl border text-left transition ${
-          //   selectedPreset === "CUSTOM" ? "border-slate-800 ring-2 ring-slate-200" : "border-slate-200" } ${!canCustomizeColors? "cursor-not-allowed opacity-60": "hover:border-slate-400"}`}
-          // >
           <button type="button" onClick={() => {
               if (loading) return
               setSelectedPreset("CUSTOM")
@@ -144,7 +140,6 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
             </div>
           </button>
         )}
-
         {/* BLOQUEO BASIC */}
         {plan === "BASIC" || !isAdmin && (
           <div className="overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-slate-50">
@@ -195,95 +190,36 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
             </div>
             {/* FONDO */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
-                Fondo
-              </label>
-
+              <label className="mb-2 block text-sm font-medium text-slate-700">Fondo</label>
               <div className="flex items-center gap-3">
-                <input
-                  type="color"
-                  value={customColors.backgroundColor}
-                  onChange={(e) =>
-                    setCustomColors((current) => ({
-                      ...current,
-                      backgroundColor: e.target.value,
-                    }))
-                  }
-                  className="h-10 w-14 cursor-pointer rounded border border-slate-300"
-                />
-
-                <span className="text-sm text-slate-600">
-                  {customColors.backgroundColor}
-                </span>
+                <input type="color" value={customColors.backgroundColor} onChange={(e) => setCustomColors((current) => ({...current,backgroundColor: e.target.value}))} className="h-10 w-14 cursor-pointer rounded border border-slate-300"/>
+                <span className="text-sm text-slate-600">{customColors.backgroundColor}</span>
               </div>
             </div>
-
             {/* SUPERFICIE */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
-                Superficie
-              </label>
-
+              <label className="mb-2 block text-sm font-medium text-slate-700">Superficie</label>
               <div className="flex items-center gap-3">
-                <input
-                  type="color"
-                  value={customColors.surfaceColor}
-                  onChange={(e) =>
-                    setCustomColors((current) => ({
-                      ...current,
-                      surfaceColor: e.target.value,
-                    }))
-                  }
-                  className="h-10 w-14 cursor-pointer rounded border border-slate-300"
-                />
-
-                <span className="text-sm text-slate-600">
-                  {customColors.surfaceColor}
-                </span>
+                <input type="color" value={customColors.surfaceColor} onChange={(e) => setCustomColors((current) => ({...current, surfaceColor: e.target.value}))} className="h-10 w-14 cursor-pointer rounded border border-slate-300"/>
+                <span className="text-sm text-slate-600">{customColors.surfaceColor}</span>
               </div>
             </div>
-
             {/* TEXTO */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
-                Texto
-              </label>
-
+              <label className="mb-2 block text-sm font-medium text-slate-700">Texto</label>
               <div className="flex items-center gap-3">
-                <input
-                  type="color"
-                  value={customColors.textColor}
-                  onChange={(e) =>
-                    setCustomColors((current) => ({
-                      ...current,
-                      textColor: e.target.value,
-                    }))
-                  }
-                  className="h-10 w-14 cursor-pointer rounded border border-slate-300"
-                />
-
-                <span className="text-sm text-slate-600">
-                  {customColors.textColor}
-                </span>
+                <input type="color" value={customColors.textColor} onChange={(e) => setCustomColors((current) => ({...current, textColor: e.target.value}))} className="h-10 w-14 cursor-pointer rounded border border-slate-300"/>
+                <span className="text-sm text-slate-600">{customColors.textColor}</span>
               </div>
             </div>
-
           </div>
-
           <div className="mt-6 flex justify-end">
-            <button
-              type="button"
-              onClick={handleSaveCustomColors}
-              disabled={loading}
-              className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60"
-            >
+            <button type="button" onClick={handleSaveCustomColors} disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">
               {loading ? "Guardando..." : "Guardar colores"}
             </button>
           </div>
-
         </div>
       )}
-
     </div>
   )
 }

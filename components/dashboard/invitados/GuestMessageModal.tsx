@@ -75,7 +75,6 @@ export default function GuestMessageModal({guestId, guestName, passes, currentMe
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
       <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-xl">
-
         {/* HEADER */}
         <div className="flex items-start justify-between">
           <div>
@@ -86,15 +85,11 @@ export default function GuestMessageModal({guestId, guestName, passes, currentMe
             ×
           </button>
         </div>
-
         {/* EDITOR */}
         <div className="mt-6">
-          <label htmlFor="guest-custom-message" className="mb-2 block text-sm font-medium text-slate-700">
-            Mensaje
-          </label>
+          <label htmlFor="guest-custom-message" className="mb-2 block text-sm font-medium text-slate-700">Mensaje</label>
           <textarea id="guest-custom-message" value={message} onChange={(event) => setMessage(event.target.value)} rows={12} className="w-full resize-y rounded-lg border border-slate-300 px-4 py-3 text-sm leading-6 text-slate-700 outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
         </div>
-
         {/* VARIABLES */}
         <div className="mt-4">
           <p className="text-sm font-medium text-slate-700">Variables disponibles</p>
@@ -104,7 +99,6 @@ export default function GuestMessageModal({guestId, guestName, passes, currentMe
             <VariableButton value="{link}" onClick={insertVariable}/>
           </div>
         </div>
-
         {/* PREVIEW */}
         <div className="mt-6">
           <p className="text-sm font-medium text-slate-700">Vista previa</p>
@@ -112,21 +106,18 @@ export default function GuestMessageModal({guestId, guestName, passes, currentMe
             <p className="whitespace-pre-wrap text-sm leading-6 text-slate-700">{previewMessage}</p>
           </div>
         </div>
-
         {/* ERROR */}
         {error && (
           <div className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
             {error}
           </div>
         )}
-
         {/* SUCCESS */}
         {success && (
           <div className="mt-4 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-600">
             Mensaje actualizado correctamente.
           </div>
         )}
-
         {/* BUTTONS */}
         <div className="mt-6 flex flex-wrap justify-between gap-3">
           <button type="button" onClick={handleDeleteCustomMessage} disabled={loading || !currentMessage} className="rounded-lg border border-red-200 px-4 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40">

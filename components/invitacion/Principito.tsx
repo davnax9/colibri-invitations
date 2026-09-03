@@ -56,19 +56,6 @@ export default function Principito({
         {/* ================================================= */}
         <InvitationLocations event={event} />
         {/* ================================================= */}
-        {/* CALENDARIO */}
-        {/* ================================================= */}
-        {/* <section className="relative overflow-hidden px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}> */}
-          {/* Luna decorativa */}
-          {/* <div className="pointer-events-none absolute -right-10 top-10 h-32 w-32 rounded-full opacity-20"style={{backgroundColor: "var(--theme-secondary)",}}/>
-          <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)",}}>No olvides la fecha</p>
-          <h2 className="mt-4 text-4xl font-serif sm:text-5xl" style={{color: "var(--theme-primary)",}}>Guarda este día</h2>
-          <p className="mx-auto mt-4 max-w-md text-sm leading-6 opacity-80">Acompáñanos a celebrar una aventura muy especial.</p>
-          <div className="mt-8">
-            <AddToCalendar title={`Cumpleaños de ${childName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
-          </div>
-        </section> */}
-        {/* ================================================= */}
         {/* GALERÍA */}
         {/* ================================================= */}
         <InvitationGallery event={event} />

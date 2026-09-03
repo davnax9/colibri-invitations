@@ -1,10 +1,7 @@
-import WeddingHero from "./wedding/WeddingHero"
-import WeddingIntro from "./wedding/WeddingIntro"
 import WeddingDate from "./wedding/WeddingDate"
 import WeddingDressCode from "./wedding/WeddingDressCode"
 import WeddingFooter from "./wedding/WeddingFooter"
 import Countdown from "./shared/Countdown"
-import InvitationSchedule from "./shared/InvitationSchedule"
 import InvitationLocations from "./shared/InvitationLocations"
 import InvitationGallery from "./shared/InvitationGallery"
 import MusicPlayer from "./shared/MusicPlayer"
@@ -29,9 +26,7 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
       <WeddingRomanticOpening brideName={brideName} groomName={groomName} phrase={details?.phrase} eventDate={event.eventDate}>
         <main className="min-h-screen" style={{ backgroundColor: "var(--theme-background)", color: "var(--theme-text)",}}>
           {/* HERO */}
-          {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
           <WeddingRomanticHero coverPhoto={coverPhoto} details={details} event={event}/>
-
           {/* FRASE */}
           <section className="px-6 py-24 text-center" style={{ backgroundColor: "var(--theme-surface)",}}>
             <div className="mx-auto max-w-3xl">
@@ -40,28 +35,16 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
               <blockquote className="mt-8 text-3xl font-serif italic leading-relaxed md:text-5xl" style={{color: "var(--theme-primary)"}}>“{details?.phrase ?? "El amor nos trajo hasta aquí."}”</blockquote>
             </div>
           </section>
-
-          {/* INTRO */}
-          {/* <WeddingIntro details={details} /> */}
-
           {/* HISTORIA */}
           <WeddingRomanticStory details={details} />
-
           {/* FECHA */}
           <WeddingDate event={event} />
-
           {/* COUNTDOWN */}
           <Countdown targetDate={event.eventDate.toISOString()}/>
-
           {/* TIMELINE */}
           <WeddingRomanticTimeline schedules={event.schedules}/>
-
-          {/* HORARIOS */}
-          {/* <InvitationSchedule event={event} /> */}
-
           {/* UBICACIONES */}
           <InvitationLocations event={event} />
-
           {/* CALENDARIO */}
           <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
             <p className="text-xs uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>Reserva la fecha</p>
@@ -70,15 +53,12 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
               <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
             </div>
           </section>
-
           {/* FOTOS */}
           <InvitationGallery event={event} />
 
           <InvitationGifts gifts={event.gifts} />
-
           {/* VESTIMENTA */}
           <WeddingDressCode details={details} />
-
           {/* FOOTER */}
           <WeddingFooter details={details} />
 

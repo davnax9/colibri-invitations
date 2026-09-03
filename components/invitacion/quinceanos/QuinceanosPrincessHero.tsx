@@ -46,7 +46,6 @@ export default function QuinceanosPrincessHero({coverPhoto,details,event}: Props
             <span className="text-7xl" style={{color: "var(--theme-accent)"}}>♕</span>
           </div>
         )}
-
         {/* NOMBRE */}
         <div className="mt-10">
           <p className="text-sm uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>La celebración de</p>
@@ -57,10 +56,8 @@ export default function QuinceanosPrincessHero({coverPhoto,details,event}: Props
             <span className="text-2xl" style={{color: "var(--theme-accent)"}}>♕</span>
             <div className="h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
           </div>
-
           {/* FRASE */}
           {details?.phrase && (<p className="mx-auto mt-6 max-w-xl text-sm italic leading-7" style={{color: "var(--theme-secondary)"}}>"{details.phrase}"</p>)}
-
           {/* FECHA */}
           <p className="mt-8 text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>{event.eventDate.toLocaleDateString("es-MX", {day: "numeric", month: "long", year: "numeric"})}</p>
         </div>

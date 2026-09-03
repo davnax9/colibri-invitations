@@ -41,21 +41,13 @@ export default function DeleteEventButton({eventId,eventName}: Props) {
   return (
     <>
       {/* BOTÓN ELIMINAR */}
-      <button type="button" onClick={(e) => { e.preventDefault(), e.stopPropagation(), setConfirming(true)}} title="Eliminar evento"
-        className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/90 text-slate-500 shadow-sm backdrop-blur transition hover:bg-red-50 hover:text-red-500"
-      >
+      <button type="button" onClick={(e) => { e.preventDefault(), e.stopPropagation(), setConfirming(true)}} title="Eliminar evento" className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/90 text-slate-500 shadow-sm backdrop-blur transition hover:bg-red-50 hover:text-red-500">
         🗑️
       </button>
-
       {/* MODAL */}
       {confirming && typeof document !== "undefined" &&
         createPortal(
-          <div className="fixed inset-0 z-9999 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm" onClick={() => {
-              if (!loading) {
-                setConfirming(false)
-              }
-            }}
-          >
+          <div className="fixed inset-0 z-9999 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm" onClick={() => { if (!loading) setConfirming(false)}}>
             <div className="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
               {/* ICONO */}
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-2xl">

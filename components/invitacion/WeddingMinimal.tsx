@@ -1,5 +1,3 @@
-import WeddingHero from "./wedding/WeddingHero"
-import WeddingIntro from "./wedding/WeddingIntro"
 import WeddingDate from "./wedding/WeddingDate"
 import WeddingDressCode from "./wedding/WeddingDressCode"
 import WeddingFooter from "./wedding/WeddingFooter"
@@ -28,7 +26,6 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
     <InvitationTheme theme={event.theme} event={event}>
       <WeddingMinimalOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate}>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
-          {/* <WeddingHero coverPhoto={coverPhoto} details={details} event={event}/> */}
           <WeddingMinimalHero coverPhoto={coverPhoto} details={details} event={event}/>
 
           <section className="px-6 py-28 text-center" style={{backgroundColor: "var(--theme-background)"}}>

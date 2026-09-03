@@ -64,7 +64,6 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del novio</label>
             <input type="text" value={groomName} onChange={(e) => setGroomName(e.target.value)} placeholder="Carlos" className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
-
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la novia</label>
             <input type="text" value={brideName} onChange={(e) => setBrideName(e.target.value)} placeholder="Ana" className="w-full text-slate-800 bg-white  rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
@@ -76,7 +75,6 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
           <input type="text" value={quinceaneraName} onChange={(e) => setQuinceaneraName(e.target.value)} placeholder="María" className="w-full text-slate-800 bg-white  rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
         </div>
       )}
-
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Frase</label>
         <textarea value={phrase} onChange={(e) => setPhrase(e.target.value)} rows={3} placeholder="El amor no consiste en mirarse el uno al otro..."
@@ -93,19 +91,16 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
         <label className="mb-2 block text-sm font-medium text-slate-700">Código de vestimenta</label>
         <input type="text" value={dressCode} onChange={(e) => setDressCode(e.target.value)} placeholder="Formal" className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
       </div>
-
       {error && (
         <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
           {error}
         </div>
       )}
-
       {message && (
         <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-600">
           {message}
         </div>
       )}
-
       <div className="flex justify-end">
         <button type="submit" disabled={loading} className="rounded-lg bg-slate-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60">
           {loading ? "Guardando..." : "Guardar cambios"}
