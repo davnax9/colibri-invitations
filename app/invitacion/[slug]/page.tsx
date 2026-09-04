@@ -2,6 +2,8 @@ import { notFound } from "next/navigation"
 import { prisma } from "@/utils/prisma"
 import WeddingTemplate from "@/components/invitacion/WeddingTemplate"
 import QuinceanosTemplate from "@/components/invitacion/QuinceanosTemplate"
+import ComunionTemplate from "@/components/invitacion/ComunionTemplate"
+import BautizoTemplate from "@/components/invitacion/BautizoTemplate"
 
 type Props = { params: Promise<{slug: string}>}
 
@@ -53,6 +55,10 @@ export default async function InvitationPage({ params }: Props) {
       return <WeddingTemplate event={event}/>
     case "QUINCEANOS":
       return <QuinceanosTemplate event={event}/>
+    case "COMUNION":
+      return <ComunionTemplate event={event}/>
+    case "BAUTIZO":
+      return <BautizoTemplate event={event}/>
     default:
       notFound()
   }

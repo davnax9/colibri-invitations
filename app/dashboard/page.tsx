@@ -136,12 +136,14 @@ export default async function DashboardPage() {
               {events.map((event) => {
                 const theme = event.theme
                 const coverPhoto = event.photos[0]
-                const isWedding = event.type === "WEDDING"
+
+                const eventTypeInfo = { WEDDING: { label: "Boda", icon: "💍", }, QUINCEANOS: { label: "Quinceaños", icon: "👑", }, BAUTIZO: { label: "Bautizo", icon: "✝", }, COMUNION: { label: "Primera Comunión", icon: "✝", }, }[event.type]
+                const typeInfo = eventTypeInfo ?? { label: "Evento", icon: "✨", }
 
                 return (
                   <article key={event.id} className="group overflow-hidden rounded-3xl border border-[#E5E9E5] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                     {/* PORTADA */}
-                    <div className="relative h-48 overflow-hidden" style={{backgroundColor: theme?.backgroundColor ?? "#FAF8F3",}}>
+                    <div className="relative h-48 overflow-hidden" style={{backgroundColor: theme?.backgroundColor ?? "#FAF8F3"}}>
                       {coverPhoto ? (
                         <>
                           <img src={coverPhoto.url} alt={event.name} className="h-full w-full object-cover transition duration-700 group-hover:scale-105"/>
@@ -149,12 +151,12 @@ export default async function DashboardPage() {
                         </>
                       ) : (
                         <div className="flex h-full items-center justify-center">
-                          <span className="text-5xl">{isWedding ? "💍" : "👑"}</span>
+                          <span className="text-5xl">{typeInfo.icon}</span>
                         </div>
                       )}
                       {/* TIPO */}
                       <div className="absolute left-4 top-4">
-                        <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#263832] shadow-sm backdrop-blur">{isWedding ? "Boda" : "Quinceaños"}</span>
+                        <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#263832] shadow-sm backdrop-blur">{typeInfo.label}</span>
                       </div>
                       {/* ELIMINAR */}
                       <div className="absolute right-4 top-4 z-10">

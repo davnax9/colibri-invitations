@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 type Template = {
   id: string
   name: string
-  type: "WEDDING" | "QUINCEANOS"
+  type: "WEDDING" | "QUINCEANOS" | "BAUTIZO" | "COMUNION"
 }
 
 type Props = {
@@ -18,7 +18,7 @@ export default function CreateEventModal({ templates }: Props) {
   const [open, setOpen] = useState(false)
 
   const [name, setName] = useState("")
-  const [type, setType] = useState<"WEDDING" | "QUINCEANOS">("WEDDING")
+  const [type, setType] = useState<"WEDDING" | "QUINCEANOS" | "BAUTIZO" | "COMUNION">("WEDDING")
   const [eventDate, setEventDate] = useState("")
   const [templateId, setTemplateId] = useState("")
 
@@ -29,7 +29,7 @@ export default function CreateEventModal({ templates }: Props) {
     (template) => template.type === type
   )
 
-  function handleTypeChange(value: "WEDDING" | "QUINCEANOS") {
+  function handleTypeChange(value: "WEDDING" | "QUINCEANOS" | "BAUTIZO" | "COMUNION") {
     setType(value)
     setTemplateId("")
   }
@@ -95,6 +95,8 @@ export default function CreateEventModal({ templates }: Props) {
                 >
                   <option value="WEDDING" className="bg-white text-slate-800">Boda</option>
                   <option value="QUINCEANOS" className="bg-white text-slate-800">Quinceaños</option>
+                  <option value="COMUNION" className="bg-white text-slate-800">Primera Comunión</option>
+                  <option value="BAUTIZO" className="bg-white text-slate-800">Bautizo</option>
                 </select>
               </div>
               <div>

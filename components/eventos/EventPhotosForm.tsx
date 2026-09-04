@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useId } from "react"
 import {closestCenter,DndContext,DragEndEvent,PointerSensor,useSensor,useSensors,TouchSensor} from "@dnd-kit/core"
 import {arrayMove,SortableContext,rectSortingStrategy} from "@dnd-kit/sortable"
 import { CldUploadWidget } from "next-cloudinary"
@@ -37,6 +37,8 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
   const limitReached = items.length >= maxPhotos
 
   const [imageDelete, setImageToDelete] = useState<Photo | null>(null)
+
+  const dndId = useId()
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -181,7 +183,7 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
       <div className="mt-6 space-y-6">
         {/* Galería */}
         {items.length > 0 && (
-          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+          <DndContext id={dndId} sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={items.map((photo) => photo.id)} strategy={rectSortingStrategy}>
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 {items.map((photo) => (

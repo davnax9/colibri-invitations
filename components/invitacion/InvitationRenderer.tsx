@@ -1,5 +1,7 @@
 import WeddingTemplate from "./WeddingTemplate"
 import QuinceanosTemplate from "./QuinceanosTemplate"
+import BautizoTemplate from "./BautizoTemplate"
+import ComunionTemplate from "./ComunionTemplate"
 
 type GuestInfo = {
   name: string
@@ -20,6 +22,10 @@ export default function InvitationRenderer({ event, guest }: Props) {
       return (<WeddingTemplate event={event} guest={guest}/>)
     case "QUINCEANOS":
       return (<QuinceanosTemplate event={event} guest={guest}/>)
+    case "BAUTIZO":
+      return <BautizoTemplate event={event} guest={guest} />
+    case "COMUNION":
+      return <ComunionTemplate event={event} guest={guest} />
     default:
       return (
         <div className="flex min-h-screen items-center justify-center">

@@ -9,7 +9,6 @@ import EventMusicForm from "@/components/eventos/EventMusicForm"
 import Link from "next/link"
 import EventThemeSelector from "@/components/eventos/EventThemeSelector"
 import EventInvitationPreview from "@/components/dashboard/EventInvitationPreview"
-import LogoutButton from "@/components/dashboard/LogoutButton"
 import EventGiftsForm from "@/components/eventos/EventGiftsForm"
 import EventBackgroundForm from "@/components/eventos/EventBackgroundForm"
 
@@ -179,14 +178,12 @@ export default async function EventEditorPage({ params }: Props) {
                     </div>
                   </div>
                 </div>
-
                 {/* PREVIEW */}
                 <div className="bg-[#F3F1EB] px-5 py-6">
                   <div className="mx-auto">
                     <EventInvitationPreview event={event} />
                   </div>
                 </div>
-
                 {/* FOOTER */}
                 <div className="border-t border-[#E5E9E5] bg-white p-4">
                   <a href={`/invitacion/${event.slug}`} target="_blank" rel="noopener noreferrer" className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#2F5D50] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#244A40]">

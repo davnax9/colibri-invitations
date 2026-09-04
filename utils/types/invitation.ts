@@ -42,6 +42,7 @@ export type InvitationEvent = {
     groomName: string | null
     brideName: string | null
     quinceaneraName: string | null
+    childName: string | null
     dressCode: string | null
   } | null
 

@@ -7,6 +7,7 @@ type EventDetails = {
   groomName: string | null
   brideName: string | null
   quinceaneraName: string | null
+  childName: string | null
   phrase: string | null
   description: string | null
   dressCode: string | null
@@ -14,7 +15,7 @@ type EventDetails = {
 
 type Props = {
   eventId: string
-  eventType: "WEDDING" | "QUINCEANOS"
+  eventType: "WEDDING" | "QUINCEANOS" | "BAUTIZO" | "COMUNION"
   details: EventDetails | null
 }
 
@@ -22,6 +23,7 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
   const [groomName, setGroomName] = useState(details?.groomName ?? "")
   const [brideName, setBrideName] = useState(details?.brideName ?? "")
   const [quinceaneraName, setQuinceaneraName] = useState(details?.quinceaneraName ?? "")
+  const [childName, setChildName] = useState(details?.childName ?? "")
   const [phrase, setPhrase] = useState(details?.phrase ?? "")
   const [description, setDescription] = useState(details?.description ?? "")
   const [dressCode, setDressCode] = useState(details?.dressCode ?? "")
@@ -41,6 +43,7 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
       groomName,
       brideName,
       quinceaneraName,
+      childName,
       phrase,
       description,
       dressCode,
@@ -58,7 +61,7 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="mt-6 space-y-5">
-      {eventType === "WEDDING" ? (
+      {/* {eventType === "WEDDING" ? (
         <>
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del novio</label>
@@ -74,6 +77,30 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
           <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la quinceañera</label>
           <input type="text" value={quinceaneraName} onChange={(e) => setQuinceaneraName(e.target.value)} placeholder="María" className="w-full text-slate-800 bg-white  rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
         </div>
+      )} */}
+      {eventType === "WEDDING" && (
+        <>
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del novio</label>
+            <input type="text" value={groomName} onChange={(e) => setGroomName(e.target.value)} placeholder="Carlos" className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+          </div>
+          <div>
+            <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la novia</label>
+            <input type="text" value={brideName} onChange={(e) => setBrideName(e.target.value)} placeholder="Ana" className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+          </div>
+        </>
+      )}
+      {eventType === "QUINCEANOS" && (
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la quinceañera</label>
+          <input type="text" value={quinceaneraName} onChange={(e) => setQuinceaneraName(e.target.value)} placeholder="María" className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+        </div>
+      )}
+      {(eventType === "BAUTIZO" || eventType === "COMUNION") && (
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del niño o niña</label>
+          <input type="text" value={childName} onChange={(e) => setChildName(e.target.value)} placeholder="Mateo" className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+        </div>
       )}
       <div>
         <label className="mb-2 block text-sm font-medium text-slate-700">Frase</label>
@@ -87,10 +114,12 @@ export default function EventDetailsForm({eventId,eventType,details}: Props) {
           className="w-full text-slate-800 bg-white resize-none rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
         />
       </div>
-      <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700">Código de vestimenta</label>
-        <input type="text" value={dressCode} onChange={(e) => setDressCode(e.target.value)} placeholder="Formal" className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
-      </div>
+      {(eventType === "QUINCEANOS" || eventType === "WEDDING") && (
+        <div>
+          <label className="mb-2 block text-sm font-medium text-slate-700">Código de vestimenta</label>
+          <input type="text" value={dressCode} onChange={(e) => setDressCode(e.target.value)} placeholder="Formal" className="w-full text-slate-800 bg-white rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
+        </div>
+      )}
       {error && (
         <div className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
           {error}

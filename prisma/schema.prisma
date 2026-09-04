@@ -20,6 +20,8 @@ enum UserRole {
 enum EventType {
   WEDDING
   QUINCEANOS
+  BAUTIZO
+  COMUNION
 }
 
 enum UserPlan {
@@ -108,6 +110,7 @@ model EventDetails {
   groomName       String?
   brideName       String?
   quinceaneraName String?
+  childName       String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -9,7 +9,7 @@ type Props = {
 
     template: {
       name: string
-      type: "WEDDING" | "QUINCEANOS"
+      type: "WEDDING" | "QUINCEANOS" | "COMUNION" | "BAUTIZO"
     }
 
     details: {
@@ -20,6 +20,7 @@ type Props = {
       groomName: string | null
       brideName: string | null
       quinceaneraName: string | null
+      childName: string | null
       dressCode: string | null
     } | null
 
@@ -56,8 +57,11 @@ export default function EventInvitationPreview({ event }: Props) {
   const theme = event.theme ?? defaultTheme
 
   const coverPhoto = event.photos.find((photo) => photo.isCover) ?? event.photos[0]
-  const isWedding = event.template.type === "WEDDING"
-  const mainTitle = isWedding ? `${event.details?.brideName ?? ""} & ${event.details?.groomName ?? ""}` : event.details?.quinceaneraName ?? event.name
+  // const isWedding = event.template.type === "WEDDING"
+  const eventTypeContent = { WEDDING: { label: "Nuestra boda", title: `${event.details?.brideName ?? ""} & ${event.details?.groomName ?? ""}`, }, QUINCEANOS: { label: "Mis XV años", title: event.details?.quinceaneraName ?? event.name, }, BAUTIZO: { label: "Mi bautizo", title: event.details?.childName ?? event.name, }, COMUNION: { label: "Mi Primera Comunión", title: event.details?.childName ?? event.name, }, }[event.template.type]
+  // const mainTitle = isWedding ? `${event.details?.brideName ?? ""} & ${event.details?.groomName ?? ""}` : event.details?.quinceaneraName ?? event.name
+  const eventLabel = eventTypeContent?.label ?? "Mi evento" 
+  const mainTitle = eventTypeContent?.title ?? event.name
   const formattedDate = event.eventDate.toLocaleDateString("es-MX", {day: "numeric",month: "long", year: "numeric"})
 
   return (
@@ -71,7 +75,7 @@ export default function EventInvitationPreview({ event }: Props) {
           </>
         )}
         <div className="relative z-10 w-full px-6 pb-10 text-center text-white">
-          <p className="text-[9px] uppercase tracking-[0.35em] text-white/70">{isWedding ? "Nuestra boda" : "Mis XV años"}</p>
+          <p className="text-[9px] uppercase tracking-[0.35em] text-white/70">{eventLabel}</p>
           <div className="mx-auto mt-4 h-px w-10 bg-white/50" />
           <h1 className="mt-5 font-serif text-3xl font-light leading-tight">{mainTitle}</h1>
           <p className="mt-4 text-[10px] uppercase tracking-[0.2em] text-white/80">{formattedDate}</p>

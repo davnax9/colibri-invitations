@@ -4,7 +4,6 @@ import { prisma } from "@/utils/prisma"
 import { requireAuth } from "@/utils/auth"
 import { CreateEventSchema } from "@/utils/validations/event"
 import { revalidatePath } from "next/cache"
-// import cloudinary from "@/utils/cloudinary"
 import { v2 as cloudinary } from "cloudinary"
 import { extractYouTubeVideoId } from "@/utils/youtube"
 import { invitationThemePresets } from "@/utils/invitation-themes"
@@ -133,6 +132,7 @@ export async function saveEventDetails(data: {
   groomName?: string
   brideName?: string
   quinceaneraName?: string
+  childName?: string
   phrase?: string
   description?: string
   dressCode?: string
@@ -162,6 +162,7 @@ export async function saveEventDetails(data: {
       groomName: data.groomName || null,
       brideName: data.brideName || null,
       quinceaneraName: data.quinceaneraName || null,
+      childName: data.childName || null,
       phrase: data.phrase || null,
       description: data.description || null,
       dressCode: data.dressCode || null,
@@ -172,6 +173,7 @@ export async function saveEventDetails(data: {
       groomName: data.groomName || null,
       brideName: data.brideName || null,
       quinceaneraName: data.quinceaneraName || null,
+      childName: data.childName || null,
       phrase: data.phrase || null,
       description: data.description || null,
       dressCode: data.dressCode || null,

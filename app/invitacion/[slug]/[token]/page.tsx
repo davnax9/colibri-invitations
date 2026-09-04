@@ -26,13 +26,9 @@ export default async function GuestInvitationPage({ params }: Props) {
       event: {
         include: {
           template: true,
-
           theme: true,
-
           details: true,
-
           locations: true,
-
           schedules: {
             orderBy: {
               date: "asc",
@@ -41,13 +37,11 @@ export default async function GuestInvitationPage({ params }: Props) {
               location: true,
             },
           },
-
           photos: {
             orderBy: {
               order: "asc",
             },
           },
-
           music: true,
         },
       },
@@ -66,7 +60,7 @@ export default async function GuestInvitationPage({ params }: Props) {
 
   return (
     <>
-       <InvitationRenderer event={guest.event} guest={guestInfo}/>
+      <InvitationRenderer event={guest.event} guest={guestInfo}/>
       <GuestRSVP token={guest.token} guestName={guest.name} passes={guest.passes} confirmedPasses={guest.confirmed} status={guest.status} />
     </>
   )
