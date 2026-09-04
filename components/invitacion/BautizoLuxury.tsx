@@ -10,6 +10,7 @@ import InvitationSchedule from "./shared/InvitationSchedule"
 import InvitationTheme from "./shared/InvitationTheme"
 import BautizoElegantOpening from "./bautizo/BautizoElegantOpening"
 import BautizoLuxuryOpening from "./bautizo/BautizoLuxuryOpening"
+import BautizoLuxuryHero from "./bautizo/BautizoLuxuryHero"
 
 export default function BautizoLuxury({event,guest}: InvitationTemplateProps) {
   const childName = event.details?.childName ?? event.name
@@ -20,7 +21,7 @@ export default function BautizoLuxury({event,guest}: InvitationTemplateProps) {
     <InvitationTheme theme={event.theme} event={event}>
       <BautizoLuxuryOpening childName={childName} eventDate={event.eventDate}>
         <main className="min-h-screen bg-[#f5f1e8] text-[#24382f]">
-
+          <BautizoLuxuryHero childName={childName} eventDate={event.eventDate} coverPhoto={coverPhoto}/>
           {/* PORTADA */}
           <section className="relative min-h-screen overflow-hidden bg-[#24382f]">
 

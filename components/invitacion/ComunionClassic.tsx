@@ -9,6 +9,7 @@ import AddToCalendar from "./shared/AddToCalendar"
 import MusicPlayer from "./shared/MusicPlayer"
 import InvitationTheme from "./shared/InvitationTheme"
 import ComunionClassicOpening from "./comunion/ComunionClassicOpening"
+import ComunionClassicHero from "./comunion/ComunionClassicHero"
 
 export default function ComunionClassic({event,guest}: InvitationTemplateProps) {
   const childName = event.details?.childName ?? event.name
@@ -19,7 +20,7 @@ export default function ComunionClassic({event,guest}: InvitationTemplateProps) 
     <InvitationTheme theme={event.theme} event={event}>
       <ComunionClassicOpening childName={childName} eventDate={event.eventDate}>
         <main className="min-h-screen bg-[#faf8f3] text-stone-700">
-
+          <ComunionClassicHero childName={childName} eventDate={event.eventDate} coverPhoto={coverPhoto}/>
           <section className="relative min-h-screen overflow-hidden bg-[#faf8f3]">
 
             {coverPhoto && (

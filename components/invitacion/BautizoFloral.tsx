@@ -10,6 +10,7 @@ import MusicPlayer from "./shared/MusicPlayer"
 import InvitationTheme from "./shared/InvitationTheme"
 import BautizoElegantOpening from "./bautizo/BautizoElegantOpening"
 import BautizoFloralOpening from "./bautizo/BautizoFloralOpening"
+import BautizoFloralHero from "./bautizo/BautizoFloralHero"
 
 export default function BautizoFloral({event,guest}: InvitationTemplateProps) {
   const childName = event.details?.childName ?? event.name
@@ -20,6 +21,7 @@ export default function BautizoFloral({event,guest}: InvitationTemplateProps) {
     <InvitationTheme theme={event.theme} event={event}>
       <BautizoFloralOpening childName={childName} eventDate={event.eventDate}>
         <main className="min-h-screen bg-[#f7f4ed] text-[#405047]">
+          <BautizoFloralHero childName={childName} eventDate={event.eventDate} coverPhoto={coverPhoto}/>
           {/* PORTADA */}
           <section className="relative min-h-screen overflow-hidden">
             {coverPhoto && (

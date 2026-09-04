@@ -10,6 +10,7 @@ import InvitationSchedule from "./shared/InvitationSchedule"
 import InvitationTheme from "./shared/InvitationTheme"
 import ComunionClassicOpening from "./comunion/ComunionClassicOpening"
 import ComunionFloralOpening from "./comunion/ComunionFloralOpening"
+import ComunionFloralHero from "./comunion/ComunionFloralHero"
 
 export default function ComunionFloral({event,guest}: InvitationTemplateProps) {
   const childName = event.details?.childName ?? event.name
@@ -20,7 +21,7 @@ export default function ComunionFloral({event,guest}: InvitationTemplateProps) {
     <InvitationTheme theme={event.theme} event={event}>
       <ComunionFloralOpening childName={childName} eventDate={event.eventDate}>
         <main className="min-h-screen bg-[#faf7f8] text-[#554b55]">
-
+          <ComunionFloralHero childName={childName} eventDate={event.eventDate} coverPhoto={coverPhoto}/>
           {/* PORTADA */}
           <section className="relative min-h-screen overflow-hidden">
 

@@ -10,11 +10,9 @@ import MusicPlayer from "./shared/MusicPlayer"
 import InvitationTheme from "./shared/InvitationTheme"
 import BautizoElegantOpening from "./bautizo/BautizoElegantOpening"
 import BautizoAngelicalOpening from "./bautizo/BautizoAngelicalOpening"
+import BautizoAngelicalHero from "./bautizo/BautizoAngelicalHero"
 
-export default function BautizoAngelical({
-  event,
-  guest,
-}: InvitationTemplateProps) {
+export default function BautizoAngelical({event,guest}: InvitationTemplateProps) {
   const childName = event.details?.childName ?? event.name
   const coverPhoto = event.photos.find((photo) => photo.isCover) ?? event.photos[0]
   const formattedDate = event.eventDate.toLocaleDateString("es-MX", {day: "numeric",month: "long",year: "numeric"})
@@ -23,6 +21,7 @@ export default function BautizoAngelical({
     <InvitationTheme theme={event.theme} event={event}>
       <BautizoAngelicalOpening childName={childName} eventDate={event.eventDate}>
         <main className="min-h-screen bg-sky-50 text-slate-700" style={{background:"linear-gradient(to bottom, #f8fcff 0%, #ffffff 45%, #f4f9fc 100%)"}}>
+          <BautizoAngelicalHero childName={childName} eventDate={event.eventDate} coverPhoto={coverPhoto}/>
           {/* PORTADA */}
           <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
             {coverPhoto && (
