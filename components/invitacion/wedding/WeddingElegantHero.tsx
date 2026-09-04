@@ -37,7 +37,6 @@ export default function WeddingElegantHero({coverPhoto,details,event}: Props) {
             </div>
           )}
         </div>
-
         <div className="mt-10">
           <p className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--theme-secondary)" }}>Con amor</p>
           <h1 className="mt-4 text-5xl font-serif leading-tight md:text-7xl" style={{ color: "var(--theme-primary)" }}>{brideName}<span className="mx-3 italic" style={{ color: "var(--theme-accent)" }}>&</span>{groomName}</h1>

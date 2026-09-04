@@ -35,11 +35,9 @@ export default function WeddingModernHero({coverPhoto,details,event}: Props) {
           <p className="mt-5 text-sm" style={{ color: "var(--theme-secondary)" }}>{event.eventDate.toLocaleDateString("es-MX", {day: "2-digit", month: "long", year: "numeric"})}</p>
           {details?.phrase && (<p className="mt-8 max-w-md text-sm leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>)}
         </div>
-
         {/* FOTO */}
         <div className="relative min-h-125 lg:min-h-screen">
-          {coverPhoto ? (
-            <Image src={coverPhoto.url} alt={coverPhoto.title ?? event.name} fill priority className="object-cover"/>
+          {coverPhoto ? (<Image src={coverPhoto.url} alt={coverPhoto.title ?? event.name} fill priority className="object-cover"/>
           ) : (
             <div className="flex h-full items-center justify-center" style={{ backgroundColor: "var(--theme-surface)" }}>
               <span className="text-6xl" style={{ color: "var(--theme-primary)" }}> ♡ </span>

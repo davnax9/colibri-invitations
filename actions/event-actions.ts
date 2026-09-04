@@ -1451,6 +1451,7 @@ export async function updateEventThemeColors({
         user: {
           select: {
             plan: true,
+            role: true
           },
         },
       },
@@ -1467,7 +1468,7 @@ export async function updateEventThemeColors({
     // VALIDAR PLAN
     // =========================================================
 
-    if (event.user.plan !== "PRO") {
+    if (event.user.plan !== "PRO" && event.user.role !== "ADMIN") {
       return {
         success: false as const,
         error:

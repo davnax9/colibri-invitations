@@ -35,7 +35,6 @@ export default function WeddingMinimalHero({coverPhoto,details,event}: Props) {
           <p className="my-2 text-xl font-light" style={{ color: "var(--theme-accent)" }}>&</p>
           <h1 className="text-6xl font-serif font-light tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
         </div>
-
         {/* FOTO */}
         {coverPhoto && (
           <div className="mx-auto mt-12 w-full max-w-2xl">
@@ -44,10 +43,8 @@ export default function WeddingMinimalHero({coverPhoto,details,event}: Props) {
             </div>
           </div>
         )}
-
         {/* FRASE */}
         {details?.phrase && (<p className="mx-auto mt-10 max-w-xl text-center text-sm leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>)}
-
         <div className="mx-auto mt-10 h-px w-12" style={{ backgroundColor: "var(--theme-accent)" }}/>
       </div>
     </section>

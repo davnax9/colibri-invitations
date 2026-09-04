@@ -60,13 +60,11 @@ export default function MusicPlayer({ videoId, title, artist, autoplay = false}:
           >
             {playing ? "Ⅱ" : "▶"}
           </button>
-
           {/* INFORMACIÓN */}
           <div className="hidden max-w-40 sm:block">
             <p className="truncate text-sm font-medium">{title ?? "Nuestra canción"}</p>
             {artist && (<p className="truncate text-xs text-white/60">{artist}</p>)}
           </div>
-
           {/* INDICADOR */}
           {playing && (
             <div className="mr-2 flex items-end gap-0.5">

@@ -1,6 +1,3 @@
-
-import Countdown from '../shared/Countdown'
-
 type WeddingDateProps = {
     event: {
         name: string

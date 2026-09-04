@@ -42,9 +42,7 @@ export default function WeddingLuxuryHero({coverPhoto,details,event}: Props) {
           </div>
         )}
         <h1 className="mt-9 text-5xl font-serif md:text-7xl"  style={{ color: "var(--theme-primary)"}}>{brideName}<span className="mx-3 italic" style={{ color: "var(--theme-accent)" }}>&</span>{groomName}</h1>
-        {details?.phrase && (
-          <p className="mx-auto mt-5 max-w-lg text-sm italic leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>
-        )}
+        {details?.phrase && (<p className="mx-auto mt-5 max-w-lg text-sm italic leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>)}
         <div className="mx-auto mt-7 flex items-center justify-center gap-3">
           <div className="h-px w-12" style={{ backgroundColor: "var(--theme-accent)" }}/>
           <span style={{ color: "var(--theme-accent)" }}>✦</span>

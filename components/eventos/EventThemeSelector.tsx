@@ -28,7 +28,7 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
     textColor: currentPreset?.textColor ?? "#292524",
   })
 
-  const canCustomizeColors = plan === "PRO"
+  const canCustomizeColors = plan === "PRO" || isAdmin
 
   async function handleSelect(preset: string) {
     if (loading) return
@@ -54,7 +54,7 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
     if (loading) return
 
     // Protección adicional en frontend
-    if (plan !== "PRO") {
+    if (!canCustomizeColors) {
       toast.info("La personalización de colores está disponible en el plan PRO.")
       return
     }
@@ -114,14 +114,14 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
           }
         )}
         {/* PERSONALIZADO */}
-        {plan === "PRO" || isAdmin && (
+        {canCustomizeColors && (
           <button type="button" onClick={() => {
               if (loading) return
               setSelectedPreset("CUSTOM")
             }}
-            disabled={loading} className={`group relative overflow-hidden rounded-2xl border text-left transition ${selectedPreset === "CUSTOM"? "border-slate-800 ring-2 ring-slate-200" : "border-slate-200 hover:border-slate-400" }`}
+            disabled={loading} className={`group relative overflow-hidden rounded-2xl border text-left transition ${selectedPreset === "CUSTOM" ? "border-slate-800 ring-2 ring-slate-200" : "border-slate-200 hover:border-slate-400"}`}
           >
-            <div className="relative h-36 p-5" style={{background: customColors.backgroundColor}}>
+            <div className="relative h-36 p-5" style={{backgroundColor: customColors.backgroundColor}}>
               <div className="mx-auto flex h-full max-w-45 flex-col items-center justify-center rounded-xl p-4 shadow-sm" style={{backgroundColor: customColors.surfaceColor}}>
                 <div className="h-2 w-16 rounded-full" style={{backgroundColor: customColors.primaryColor}}/>
                 <div className="mt-3 h-1.5 w-24 rounded-full" style={{backgroundColor: customColors.secondaryColor}}/>
@@ -134,14 +134,16 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
                 {selectedPreset === "CUSTOM" && (<span className="text-sm font-medium text-green-600">✓ Seleccionado</span>)}
               </div>
               <p className="mt-1 text-xs leading-5 text-slate-500">Elige los colores de tu invitación.</p>
-              <span className="mt-2 inline-block text-xs font-semibold text-amber-600"><StarIcon width={15} height={15}/></span>
-              <span className="mt-2 inline-block text-xs font-semibold text-amber-600"><StarIcon width={15} height={15}/></span>
-              <span className="mt-2 inline-block text-xs font-semibold text-amber-600"><StarIcon width={15} height={15}/></span>
+              <div className="mt-2 flex gap-1">
+                <StarIcon width={15} height={15} className="text-amber-600" />
+                <StarIcon width={15} height={15} className="text-amber-600" />
+                <StarIcon width={15} height={15} className="text-amber-600" />
+              </div>
             </div>
           </button>
         )}
         {/* BLOQUEO BASIC */}
-        {plan === "BASIC" || !isAdmin && (
+        {!canCustomizeColors && (
           <div className="overflow-hidden rounded-2xl border border-dashed border-slate-300 bg-slate-50">
             <div className="flex h-36 items-center justify-center">
               <div className="text-center">
@@ -157,7 +159,7 @@ export default function EventThemeSelector({eventId, currentPreset, plan, isAdmi
         )}
       </div>
       {/* CONFIGURACIÓN DE COLORES */}
-      {selectedPreset === "CUSTOM" && plan === "PRO" && (
+      {selectedPreset === "CUSTOM" && canCustomizeColors && (
         <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-slate-800">Personaliza los colores</h3>
