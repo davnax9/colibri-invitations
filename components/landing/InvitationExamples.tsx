@@ -37,16 +37,9 @@ export default function InvitationExamples() {
             <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
                 {/* ENCABEZADO */}
                 <div className="mx-auto max-w-2xl text-center">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">
-                        Inspírate
-                    </p>
-                    <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">
-                        Conoce algunos de nuestros diseños
-                    </h2>
-                    <p className="mt-4 text-[#687A72]">
-                        Explora ejemplos reales de nuestras invitaciones y descubre cuál
-                        estilo se adapta mejor a tu celebración.
-                    </p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Inspírate</p>
+                    <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">Conoce algunos de nuestros diseños</h2>
+                    <p className="mt-4 text-[#687A72]">Explora ejemplos reales de nuestras invitaciones y descubre cuál estilo se adapta mejor a tu celebración.</p>
                 </div>
                 {/* TARJETAS */}
                 <div className="mt-12 grid gap-8 md:grid-cols-2">
@@ -58,9 +51,7 @@ export default function InvitationExamples() {
                                 {/* DEGRADADO */}
                                 <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-black/50 to-transparent" />
                                 {/* BADGE */}
-                                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#2F5D50] shadow-sm backdrop-blur">
-                                {example.badge}
-                                </span>
+                                <span className="absolute left-5 top-5 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-[#2F5D50] shadow-sm backdrop-blur">{example.badge}</span>
                             </div>
                             {/* INFORMACIÓN */}
                             <div className="p-6">
@@ -74,7 +65,6 @@ export default function InvitationExamples() {
                         </article>
                     ))}
                 </div>
-
                 {/* TEXTO INFERIOR */}
                 <div className="mt-10 text-center">
                     <p className="text-sm text-[#8A9A8F]">Cada invitación puede personalizarse con los detalles de tu evento.</p>

@@ -45,113 +45,53 @@ export default function ComunionFloral({event,guest}: InvitationTemplateProps) {
                 </div>
                 <p className="font-serif text-lg italic text-[#85718e]">Un día de fe, amor y alegría.</p>
                 <p className="mt-8 text-xs uppercase tracking-[0.25em] text-[#85718e]">{formattedDate}</p>
-
-                {event.details?.phrase && (
-                  <p className="mt-8 text-sm italic text-[#776d77]">
-                    "{event.details.phrase}"
-                  </p>
-                )}
+                {event.details?.phrase && (<p className="mt-8 text-sm italic text-[#776d77]">"{event.details.phrase}"</p>)}
               </div>
             </div>
           </section>
-
           {/* INTRO */}
           {event.details?.description && (
             <section className="px-6 py-24 text-center">
-
               <div className="mx-auto max-w-2xl">
-
                 <div className="text-3xl text-[#b49abe]">
                   ✿
                 </div>
-
-                <h2 className="mt-4 font-serif text-3xl">
-                  Con mucha alegría
-                </h2>
-
-                <p className="mt-6 text-sm leading-8 text-[#776d77]">
-                  {event.details.description}
-                </p>
+                <h2 className="mt-4 font-serif text-3xl">Con mucha alegría</h2>
+                <p className="mt-6 text-sm leading-8 text-[#776d77]">{event.details.description}</p>
               </div>
             </section>
           )}
-
           {/* FECHA */}
           <section className="bg-white px-6 py-20 text-center">
-
-            <p className="text-xs uppercase tracking-[0.3em] text-[#85718e]">
-              Guarda este día
-            </p>
-
-            <h2 className="mt-5 font-serif text-4xl">
-              {formattedDate}
-            </h2>
-
+            <p className="text-xs uppercase tracking-[0.3em] text-[#85718e]">Guarda este día</p>
+            <h2 className="mt-5 font-serif text-4xl">{formattedDate}</h2>
             <Countdown targetDate={event.eventDate.toISOString()} />
           </section>
-
           {/* HORARIOS */}
           {event.schedules.length > 0 && (
             <section className="px-6 py-24">
-
               <div className="mx-auto max-w-4xl">
-
                 <div className="mb-14 text-center">
-
-                  <p className="text-xs uppercase tracking-[0.3em] text-[#85718e]">
-                    Celebremos juntos
-                  </p>
-
-                  <h2 className="mt-3 font-serif text-4xl">
-                    Nuestro día
-                  </h2>
-
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#85718e]">Celebremos juntos</p>
+                  <h2 className="mt-3 font-serif text-4xl">Nuestro día</h2>
                 </div>
-
                 <InvitationSchedule event={event} />
               </div>
             </section>
           )}
-
-          {event.locations.length > 0 && (
-            <InvitationLocations event={event} />
-          )}
-
-          {event.photos.length > 0 && (
-            <InvitationGallery event={event} />
-          )}
-
-          {event.gifts.length > 0 && (
-            <InvitationGifts gifts={event.gifts} />
-          )}
-
+          {event.locations.length > 0 && (<InvitationLocations event={event}/>)}
+          {event.photos.length > 0 && (<InvitationGallery event={event} />)}
+          {event.gifts.length > 0 && (<InvitationGifts gifts={event.gifts} />)}
           <section className="px-6 py-16 text-center">
-
-            <AddToCalendar
-              title={`Primera Comunión de ${childName}`}
-              eventDate={event.eventDate}
-              schedules={event.schedules}
-              invitationUrl={`/invitacion/${event.slug}`}
-            />
-
+            <AddToCalendar title={`Primera Comunión de ${childName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={`/invitacion/${event.slug}`}/>
           </section>
-
           {event.music && <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />}
-
           <footer className="bg-[#554b55] px-6 py-20 text-center text-white">
-
             <div className="text-3xl text-[#c9b7d1]">
               ✿
             </div>
-
-            <p className="mt-6 font-serif text-4xl">
-              {childName}
-            </p>
-
-            <p className="mt-4 text-xs uppercase tracking-[0.3em] text-white/60">
-              Mi Primera Comunión
-            </p>
-
+            <p className="mt-6 font-serif text-4xl">{childName}</p>
+            <p className="mt-4 text-xs uppercase tracking-[0.3em] text-white/60">Mi Primera Comunión</p>
           </footer>
         </main>
       </ComunionFloralOpening>

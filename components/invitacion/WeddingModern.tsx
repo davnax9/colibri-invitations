@@ -28,7 +28,6 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
           {/* HERO */}
           <WeddingModernHero coverPhoto={coverPhoto} details={details} event={event}/>
-
           {/* NOMBRES */}
           <section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
             <div className="mx-auto max-w-6xl">

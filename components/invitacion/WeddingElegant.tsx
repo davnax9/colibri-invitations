@@ -31,22 +31,16 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                 <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
                     {/* PORTADA */}
                     <WeddingElegantHero coverPhoto={coverPhoto} details={details} event={event}/>
-
                     {/* INTRODUCCIÓN */}
                     <WeddingIntro details={details}/>
-
                     {/* FECHA */}
                     <WeddingDate event={event}/>
-
                     {/* CONTADOR RETROCESO */}
                     <Countdown targetDate={event.eventDate.toISOString()}/>
-
                     {/* PROGRAMA ELEGANTE */}
                     <WeddingElegantEvents schedules={event.schedules}/>
-
                     {/* UBICACIONES */}
                     <InvitationLocations event={event}/>
-
                     {/* CALENDARIO */}
                     <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
                     <p className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--theme-secondary)" }}>No olvides la fecha</p>
@@ -56,18 +50,13 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                         <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
                     </div>
                     </section>
-
                     {/* FOTOGRAFÍAS */}
                     <InvitationGallery event={event} />
-
                     <InvitationGifts gifts={event.gifts} />
-
                     {/* VESTIMENTA */}
                     <WeddingDressCode details={details} />
-
                     {/* FOOTER */}
                     <WeddingFooter details={details} />
-
                     {/* REPRODUCTOR MUSICA */}
                     {event.music && (
                     <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>

@@ -37,47 +37,28 @@ export default function FaqSection() {
   return (
     <section className="border-t border-[#E5E9E5] bg-[#FAF8F3]">
       <div className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
-
         {/* ENCABEZADO */}
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">
-            Preguntas frecuentes
-          </p>
-
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">
-            Todo lo que necesitas saber
-          </h2>
-
-          <p className="mt-4 leading-7 text-[#687A72]">
-            Resolvemos algunas de las preguntas más comunes antes de crear
-            tu invitación.
-          </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Preguntas frecuentes</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">Todo lo que necesitas saber</h2>
+          <p className="mt-4 leading-7 text-[#687A72]">Resolvemos algunas de las preguntas más comunes antes de crear tu invitación.</p>
         </div>
-
         {/* FAQ */}
         <div className="mt-12 space-y-3">
           {faqs.map((faq) => (
-            <details
-              key={faq.question}
-              className="group rounded-2xl border border-[#E5E9E5] bg-white"
-            >
+            <details key={faq.question} className="group rounded-2xl border border-[#E5E9E5] bg-white">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-sm font-semibold text-[#263832] sm:p-6 sm:text-base">
                 <span>{faq.question}</span>
-
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#2F5D50]/10 text-[#2F5D50] transition-transform duration-200 group-open:rotate-45">
                   +
                 </span>
               </summary>
-
               <div className="px-5 pb-5 sm:px-6 sm:pb-6">
-                <p className="text-sm leading-6 text-[#687A72]">
-                  {faq.answer}
-                </p>
+                <p className="text-sm leading-6 text-[#687A72]">{faq.answer}</p>
               </div>
             </details>
           ))}
         </div>
-
       </div>
     </section>
   )

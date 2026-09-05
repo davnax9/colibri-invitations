@@ -62,98 +62,49 @@ export default function PromotionBanner({ endDate }: PromotionBannerProps) {
   const formatNumber = (value: number) =>
     value.toString().padStart(2, "0")
 
-  const promotionActive =
-    time.days > 0 ||
-    time.hours > 0 ||
-    time.minutes > 0 ||
-    time.seconds > 0
+  const promotionActive = time.days > 0 || time.hours > 0 || time.minutes > 0 || time.seconds > 0
 
-  if (!promotionActive) {
-    return null
-  }
+  if (!promotionActive) return null
 
   return (
     <div className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-3xl border border-[#C9A86A]/40 bg-[#FAF8F3] shadow-sm">
-
       {/* Encabezado */}
       <div className="bg-[#2F5D50] px-5 py-3 text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F3E7CF]">
-          ✨ Oferta de lanzamiento
-        </p>
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#F3E7CF]">✨ Oferta de lanzamiento</p>
       </div>
-
       <div className="px-5 py-6 text-center sm:px-8 sm:py-7">
-
-        <h3 className="text-2xl font-bold tracking-tight text-[#263832] sm:text-3xl">
-          20% de descuento
-        </h3>
-
-        <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-[#687A72]">
-          Celebra con nosotros nuestro lanzamiento y disfruta de un
-          precio especial en tu invitación digital.
-        </p>
-
+        <h3 className="text-2xl font-bold tracking-tight text-[#263832] sm:text-3xl">20% de descuento</h3>
+        <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-[#687A72]">Celebra con nosotros nuestro lanzamiento y disfruta de un precio especial en tu invitación digital.</p>
         {/* Contador */}
         <div className="mt-6">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-[#8A9A8F]">
-            La promoción termina en
-          </p>
-
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-[#8A9A8F]">La promoción termina en</p>
           <div className="flex items-center justify-center gap-2 sm:gap-3">
-
             {/* DÍAS */}
             <div className="min-w-15 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-[#E5E9E5] sm:min-w-17">
-              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">
-                {formatNumber(time.days)}
-              </p>
-              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">
-                Días
-              </p>
+              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">{formatNumber(time.days)}</p>
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">Días</p>
             </div>
-
             <span className="font-bold text-[#C9A86A]">:</span>
-
             {/* HORAS */}
             <div className="min-w-15 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-[#E5E9E5] sm:min-w-17">
-              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">
-                {formatNumber(time.hours)}
-              </p>
-              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">
-                Horas
-              </p>
+              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">{formatNumber(time.hours)}</p>
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">Horas</p>
             </div>
-
             <span className="font-bold text-[#C9A86A]">:</span>
-
             {/* MINUTOS */}
             <div className="min-w-15 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-[#E5E9E5]">
-              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">
-                {formatNumber(time.minutes)}
-              </p>
-              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">
-                Min
-              </p>
+              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">{formatNumber(time.minutes)}</p>
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">Min</p>
             </div>
-
             <span className="font-bold text-[#C9A86A]">:</span>
-
             {/* SEGUNDOS */}
             <div className="min-w-15 rounded-xl bg-white px-3 py-2.5 shadow-sm ring-1 ring-[#E5E9E5] sm:min-w-17">
-              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">
-                {formatNumber(time.seconds)}
-              </p>
-              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">
-                Seg
-              </p>
+              <p className="text-xl font-bold text-[#2F5D50] sm:text-2xl">{formatNumber(time.seconds)}</p>
+              <p className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-[#8A9A8F]">Seg</p>
             </div>
-
           </div>
         </div>
-
-        <p className="mt-5 text-xs text-[#8A9A8F]">
-          Aplican términos y condiciones.
-        </p>
-
+        <p className="mt-5 text-xs text-[#8A9A8F]">Aplican términos y condiciones.</p>
       </div>
     </div>
   )
