@@ -1,8 +1,9 @@
 import InvitationBook from "./InvitationBook"
+import OtherCelebrationsModal from "./OtherCelebrationsModal"
 
 type FeaturedDesign = {
   id: string
-  category: "Boda" | "XV años"
+  category: "Boda" | "XV años" | "Bautizo" | "Primera Comunión"
   name: string
   description: string
   image: string
@@ -98,13 +99,20 @@ export default function FeaturedDesigns() {
     <section id="diseños" className="border-y border-[#E5E9E5] bg-white">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Conoce nuestros diseños</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Nuestro libro de diseños</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">Una invitación para cada historia</h2>
-          <p className="mt-4 leading-7 text-[#687A72]">Explora algunos de nuestros diseños y descubre cómo podría verse tu invitación.</p>
+          <p className="mt-4 leading-7 text-[#687A72]">Explora nuestra colección de invitaciones y encuentra el estilo perfecto para tu celebración.</p>
         </div>
         {/* LIBRO */}
         <div className="mt-14">
           <InvitationBook designs={designs} />
+        </div>
+        {/* OTRAS CELEBRACIONES */}
+        <div id="otras-celebraciones" className="mt-10 flex flex-col items-center text-center">
+          <p className="text-sm text-[#687A72]">¿Buscas una invitación para otra celebración?</p>
+          <div className="mt-4">
+            <OtherCelebrationsModal />
+          </div>
         </div>
       </div>
     </section>

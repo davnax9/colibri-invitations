@@ -6,7 +6,7 @@ import { useState } from "react"
 
 type Design = {
   id: string
-  category: "Boda" | "XV años"
+  category: "Boda" | "XV años" | "Bautizo" | "Primera Comunión"
   name: string
   description: string
   image: string

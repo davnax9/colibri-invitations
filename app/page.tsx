@@ -1,7 +1,7 @@
+import CelebrationTypes from "@/components/landing/CelebrationTypes"
 import ContactButton from "@/components/landing/ContactButton"
 import FaqSection from "@/components/landing/FaqSection"
 import FeaturedDesigns from "@/components/landing/FeaturedDesigns"
-import InvitationExamples from "@/components/landing/InvitationExamples"
 import InvitationPreview from "@/components/landing/InvitationPreview"
 import MobileMenu from "@/components/landing/MobileMenu"
 import PromotionBanner from "@/components/landing/PromotionBanner"
@@ -59,7 +59,17 @@ export default function HomePage() {
                 Tu historia comienza aquí
               </span>
               <h1 className="mt-7 max-w-2xl text-5xl font-bold leading-[1.05] tracking-tight text-[#263832] sm:text-6xl lg:text-7xl">Una invitación tan especial como tu momento.</h1>
-              <p className="mt-7 max-w-xl text-lg leading-8 text-[#687A72]">Diseñamos invitaciones digitales elegantes y personalizadas para bodas y XV años. Comparte cada detalle de tu celebración de una manera única.</p>
+              <p className="mt-7 max-w-xl text-lg leading-8 text-[#687A72]">Creamos invitaciones digitales elegantes y personalizadas para acompañar esos momentos que merecen ser recordados para siempre.</p>
+              {/* <p className="mt-7 max-w-xl text-lg leading-8 text-[#687A72]">Bodas · XV años · Bautizos · Primeras comuniones</p> */}
+              <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-[#687A72]">
+                <span>Bodas</span>
+                <span className="text-[#C9A86A]">•</span>
+                <span>XV años</span>
+                <span className="text-[#C9A86A]">•</span>
+                <span>Bautizos</span>
+                <span className="text-[#C9A86A]">•</span>
+                <span>Primeras comuniones</span>
+              </div>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/login" className="inline-flex items-center justify-center rounded-xl bg-[#2F5D50] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#2F5D50]/20 transition hover:-translate-y-0.5 hover:bg-[#244A40]">
                   Crear mi invitación<span className="ml-2">→</span>
@@ -81,6 +91,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* <CelebrationTypes /> */}
       {/* ===================================================== */}
       {/* DISEÑOS DESTACADOS                                    */}
       {/* ===================================================== */}
@@ -177,8 +189,8 @@ export default function HomePage() {
           {/* ENCABEZADO */}
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Planes</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">Elige la experiencia ideal para tu evento</h2>
-            <p className="mt-4 text-[#687A72]">Elige el plan que mejor se adapte a tu celebración.</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832] sm:text-4xl">Elige cómo quieres vivir tu invitación</h2>
+            <p className="mt-4 text-[#687A72]">Comienza con lo esencial o disfruta de todas las herramientas para administrar tu evento.</p>
           </div>
           {/* OFERTA */}
           <PromotionBanner endDate="2026-09-06T23:59:59" />
@@ -210,11 +222,16 @@ export default function HomePage() {
                 <li>✓ Lista de invitados</li>
                 <li>✓ Mensaje base para WhatsApp</li>
               </ul>
+              <div className="mt-8">
+                <Link href="/login" className="group flex w-full items-center justify-center rounded-xl border border-[#2F5D50] bg-white px-5 py-3.5 text-sm font-semibold text-[#2F5D50] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-md">
+                  Elegir BASIC<span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              </div>
             </div>
             {/* PRO */}
             <div className="relative rounded-3xl border-2 border-[#2F5D50] bg-[#2F5D50] p-8 text-white shadow-xl">
               {/* RECOMENDADO */}
-              <div className="absolute right-6 top-6 rounded-full bg-[#C9A86A] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">Recomendado</div>
+              <div className="absolute -top-3 right-6 rounded-full bg-[#C9A86A] px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-md">★ Recomendado</div>
               <p className="text-sm font-semibold text-[#D7E3DE]">PRO</p>
               <h3 className="mt-3 text-2xl font-bold">Experiencia completa</h3>
               <p className="mt-3 text-sm leading-6 text-[#D7E3DE]">Más control, más personalización y una mejor experiencia para administrar tus invitaciones.</p>
@@ -234,6 +251,12 @@ export default function HomePage() {
                 <li>✓ Administración avanzada</li>
                 <li>✓ Mayor control sobre tus envíos</li>
               </ul>
+              <div className="mt-8">
+                <Link href="/login" className="group flex w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-[#2F5D50] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-xl">
+                  ✨ Elegir PRO<span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+                <p className="mt-3 text-center text-xs text-[#D7E3DE]">La opción ideal para aprovechar al máximo tu invitación.</p>
+              </div>
             </div>
           </div>
           {/* CONTACTO */}
