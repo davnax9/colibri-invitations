@@ -17,14 +17,14 @@ export default function InvitationPreview({
         <div className="absolute left-1/2 top-2 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-[#263832]" />
         {/* Pantalla */}
         <div className="relative h-145 overflow-hidden rounded-[2.2rem] bg-white">
-          <iframe src={`/invitacion/${slug}`} title="Vista previa de invitación" className="h-full w-full border-0"/>
+          <iframe src={`/invitacion/${slug}`} title="Vista previa de invitación" className="absolute left-0 top-0 h-211 w-97.5 origin-top-left border-0" style={{transform: "scale(0.68)"}}/>
         </div>
       </div>
       {/* TEXTO DEL PREVIEW */}
       <div className="relative mt-6 text-center">
         <p className="text-sm font-medium text-[#687A72]">Así se verá tu invitación</p>
         <Link href={`/invitacion/${slug}`} target="_blank" rel="noopener noreferrer" className="mt-2 inline-flex items-center text-sm font-semibold text-[#2F5D50] transition hover:text-[#244A40]">
-          Ver invitación completa<span className="ml-1">→</span>
+          Ver invitación completa <span className="ml-1">→</span>
         </Link>
       </div>
     </div>

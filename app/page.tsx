@@ -77,7 +77,7 @@ export default function HomePage() {
               </div>
             </div>
             {/* PREVIEW */}
-            <InvitationPreview slug="/xv-bianquita-luxury" />
+            <InvitationPreview slug="/angelica-david" />
           </div>
         </div>
       </section>
