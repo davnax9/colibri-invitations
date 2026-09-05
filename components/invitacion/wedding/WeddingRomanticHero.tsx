@@ -41,16 +41,13 @@ export default function WeddingRomanticHero({coverPhoto,details,event}: Props) {
               <span className="text-2xl">♡</span>
             </div>
           </div>
-
           {/* INFORMACIÓN */}
           <div className="text-center md:text-left">
             <p className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--theme-secondary)" }}>Nuestra boda</p>
             <h1 className="mt-5 text-5xl font-serif italic leading-tight md:text-7xl" style={{ color: "var(--theme-primary)" }}>{brideName}</h1>
             <div className="my-2 text-3xl font-serif" style={{ color: "var(--theme-accent)" }}>&</div>
             <h1 className="text-5xl font-serif italic leading-tight md:text-7xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
-            {details?.phrase && (
-              <p className="mt-7 max-w-md text-sm leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>
-            )}
+            {details?.phrase && (<p className="mt-7 max-w-md text-sm leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>)}
             <div className="mt-8 h-px w-20 md:mx-0" style={{ backgroundColor: "var(--theme-accent)" }}/>
             <p className="mt-5 text-sm" style={{ color: "var(--theme-secondary)" }}>{event.eventDate.toLocaleDateString("es-MX", {day: "numeric", month: "long", year: "numeric"})}</p>
           </div>

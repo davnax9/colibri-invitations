@@ -29,13 +29,9 @@ export default function ComunionElegant({event, guest}: InvitationTemplateProps)
             <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
             {details?.phrase && (<p className="mx-auto mt-6 max-w-xl text-base leading-7" style={{color: "var(--theme-secondary)"}}>{details.phrase}</p>)}
           </section>
-
           <Countdown targetDate={event.eventDate.toISOString()}/>
-
           <InvitationSchedule event={event} />
-
           <InvitationLocations event={event} />
-
           {/* Fecha */}
           <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
             <p className="text-xs uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Reserva la fecha</p>
@@ -44,11 +40,8 @@ export default function ComunionElegant({event, guest}: InvitationTemplateProps)
               <AddToCalendar title={`Primera Comunión de ${childName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
             </div>
           </section>
-          
           <InvitationGallery event={event} />
-
           <InvitationGifts gifts={event.gifts} />
-
           {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>)}
         </main>
       </ComunionElegantOpening>

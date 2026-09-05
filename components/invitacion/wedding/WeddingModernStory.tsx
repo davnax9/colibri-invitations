@@ -19,7 +19,6 @@ export default function WeddingModernStory({ details }: Props) {
           <p className="text-xs font-semibold uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>01</p>
           <div className="mt-4 h-px w-12" style={{backgroundColor: "var(--theme-accent)"}}/>
         </div>
-
         {/* CONTENIDO */}
         <div className="max-w-3xl">
           <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Nuestra historia</p>
