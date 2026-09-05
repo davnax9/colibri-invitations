@@ -24,51 +24,27 @@ export default function ComunionFloral({event,guest}: InvitationTemplateProps) {
           <ComunionFloralHero childName={childName} eventDate={event.eventDate} coverPhoto={coverPhoto}/>
           {/* PORTADA */}
           <section className="relative min-h-screen overflow-hidden">
-
             {coverPhoto && (
               <>
-                <Image
-                  src={coverPhoto.url}
-                  alt={coverPhoto.title ?? "Fotografía de portada"}
-                  fill
-                  priority
-                  className="object-cover"
-                />
-
+                <Image src={coverPhoto.url} alt={coverPhoto.title ?? "Fotografía de portada"} fill priority className="object-cover"/>
                 <div className="absolute inset-0 bg-[#faf7f8]/65" />
                 <div className="absolute inset-0 bg-linear-to-b from-white/30 via-white/50 to-[#faf7f8]" />
               </>
             )}
-
             <div className="relative z-10 flex min-h-screen items-center justify-center px-6 text-center">
-
               <div className="max-w-xl">
-
                 <div className="mb-8 text-4xl text-[#a993b5]">
                   ✿
                 </div>
-
-                <p className="text-xs uppercase tracking-[0.35em] text-[#85718e]">
-                  Mi Primera Comunión
-                </p>
-
-                <h1 className="mt-6 font-serif text-6xl font-light text-[#554b55]">
-                  {childName}
-                </h1>
-
+                <p className="text-xs uppercase tracking-[0.35em] text-[#85718e]">Mi Primera Comunión</p>
+                <h1 className="mt-6 font-serif text-6xl font-light text-[#554b55]">{childName}</h1>
                 <div className="mx-auto my-8 flex items-center justify-center gap-3">
                   <span className="h-px w-12 bg-[#c9b8d0]" />
                   <span className="text-[#9b83a8]">✝</span>
                   <span className="h-px w-12 bg-[#c9b8d0]" />
                 </div>
-
-                <p className="font-serif text-lg italic text-[#85718e]">
-                  Un día de fe, amor y alegría.
-                </p>
-
-                <p className="mt-8 text-xs uppercase tracking-[0.25em] text-[#85718e]">
-                  {formattedDate}
-                </p>
+                <p className="font-serif text-lg italic text-[#85718e]">Un día de fe, amor y alegría.</p>
+                <p className="mt-8 text-xs uppercase tracking-[0.25em] text-[#85718e]">{formattedDate}</p>
 
                 {event.details?.phrase && (
                   <p className="mt-8 text-sm italic text-[#776d77]">
