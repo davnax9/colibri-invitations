@@ -7,23 +7,22 @@ const celebrations = [
   {
     icon: "✝",
     title: "Bautizos",
-    description:
-      "Diseños delicados y elegantes para celebrar este momento tan especial.",
+    description: "Diseños delicados y elegantes para celebrar este momento tan especial.",
     designs: [
-      {
-        name: "Elegant",
-        image: "/templates/bautizo-elegant.png",
-        href: "/invitacion/demo-bautizo-elegant",
-      },
       {
         name: "Angelical",
         image: "/templates/bautizo-angelical.png",
-        href: "/invitacion/demo-bautizo-angelical",
+        href: "/invitacion/angel-zavala-chang",
       },
       {
         name: "Floral",
         image: "/templates/bautizo-floral.png",
-        href: "/invitacion/demo-bautizo-floral",
+        href: "/invitacion//angel-david-1",
+      },
+      {
+        name: "Luxury",
+        image: "/templates/bautizo-luxury.png",
+        href: "/invitacion/abraham",
       },
     ],
   },
@@ -69,14 +68,8 @@ export default function OtherCelebrationsModal() {
 
       {/* MODAL */}
       {open && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#263832]/60 px-4 py-6 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-3xl bg-[#FAF8F3] p-6 shadow-2xl sm:p-8"
-            onClick={(event) => event.stopPropagation()}
-          >
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#263832]/60 px-4 py-6 backdrop-blur-sm" onClick={() => setOpen(false)}>
+          <div className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-3xl bg-[#FAF8F3] p-6 shadow-2xl sm:p-8" onClick={(event) => event.stopPropagation()}>
             {/* CERRAR */}
             <button
               type="button"
@@ -89,18 +82,9 @@ export default function OtherCelebrationsModal() {
 
             {/* ENCABEZADO */}
             <div className="mx-auto max-w-2xl pr-10 text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">
-                Más celebraciones
-              </p>
-
-              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832]">
-                También celebramos contigo
-              </h2>
-
-              <p className="mt-4 text-sm leading-6 text-[#687A72] sm:text-base">
-                Descubre nuestros diseños para bautizos y primeras
-                comuniones.
-              </p>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A9A8F]">Más celebraciones</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#263832]">También celebramos contigo</h2>
+              <p className="mt-4 text-sm leading-6 text-[#687A72] sm:text-base">Descubre nuestros diseños para bautizos y primeras comuniones.</p>
             </div>
 
             {/* CATEGORÍAS */}
