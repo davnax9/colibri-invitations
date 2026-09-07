@@ -17,7 +17,7 @@ const designs: FeaturedDesign[] = [
     name: "Elegant",
     description: "Un diseño elegante y atemporal para celebrar tu historia.",
     image: "/templates/wedding-elegant.png",
-    href: "/invitacion/demo-boda-elegant",
+    href: "/invitacion/jennifer-luis-martin",
   },
   {
     id: "wedding-luxury",
