@@ -28,7 +28,7 @@ export default function GuestInvitationActions({
   const [copied, setCopied] = useState(false)
   const [messageOpen, setMessageOpen] = useState(false)
 
-  // const invitationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${slug}/${token}`
+  // const invitationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${slug}/${token}`  
   const invitationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${encodeURIComponent(slug)}/${encodeURIComponent(token)}`
 
   async function handleCopy() {
