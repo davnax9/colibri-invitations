@@ -1,6 +1,14 @@
 type Props = {
   details: {
-    quinceaneraName?: string | null
+      title: string | null;
+      subtitle: string | null;
+      description: string | null;
+      phrase: string | null;
+      groomName: string | null;
+      brideName: string | null;
+      quinceaneraName: string | null;
+      childName: string | null;
+      dressCode: string | null;
   } | null
 }
 
@@ -18,7 +26,9 @@ export default function PrincipitoIntro({details}: Props) {
         <p className="text-xs uppercase tracking-[0.4em]" style={{color: "var(--theme-secondary)"}}>Había una vez...</p>
         <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-secondary)"}}/>
         <h2 className="mt-8 text-4xl font-serif leading-tight sm:text-5xl" style={{color: "var(--theme-primary)"}}>Una aventura<br />muy especial</h2>
-        <p className="mt-8 text-base leading-8 opacity-75 sm:text-lg">Hace algún tiempo comenzó una pequeña historia que hoy queremos celebrar contigo.</p>
+        {/* <p className="mt-8 text-base leading-8 opacity-75 sm:text-lg">Hace algún tiempo comenzó una pequeña historia que hoy queremos celebrar contigo.</p> */}
+        <p className="mt-8 text-base leading-8 opacity-75 sm:text-lg">{details?.phrase}</p>
+        <p className="mt-8 text-base leading-8 opacity-75 sm:text-lg">{details?.description}</p>
         <p className="mt-6 text-base leading-8 opacity-75 sm:text-lg">{childName} está por vivir un día lleno de alegría, sueños, juegos y momentos inolvidables.</p>
         <div className="mt-10 text-3xl">✦</div>
       </div>

@@ -51,7 +51,9 @@ type InvitationLocationsProps = {
 
 export default function InvitationLocations({ event }: InvitationLocationsProps) {
   if (event.locations.length === 0) return null
-
+  
+  const hasSingleLocation = event.locations.length === 1
+  
   return (
     <section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
       <div className="mx-auto max-w-5xl">
@@ -64,24 +66,37 @@ export default function InvitationLocations({ event }: InvitationLocationsProps)
           <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}} />
         </div>
         {/* UBICACIONES */}
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className={hasSingleLocation ? "mt-14 flex justify-center" : "mt-14 grid gap-6 md:grid-cols-2"}>
           {event.locations.map((location) => (
-            <div key={location.id} className="group rounded-2xl border p-8 text-center transition hover:-translate-y-1 hover:shadow-md" style={{backgroundColor: "var(--theme-background)", borderColor: "var(--theme-accent)"}}>
-              {/* ICONO */}
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full text-2xl shadow-sm" style={{backgroundColor: "var(--theme-surface)", color: "var(--theme-primary)"}}>
-                📍
+            <div key={location.id} className={`group relative overflow-hidden rounded-3xl border p-8 text-center transition duration-300 hover:-translate-y-1 hover:shadow-lg ${hasSingleLocation ? "w-full max-w-2xl px-8 py-10 md:px-12 md:py-12" : ""}`}
+              style={{backgroundColor: "var(--theme-background)", borderColor: "var(--theme-accent)"}}
+            >
+              {/* DECORACIÓN */}
+              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-10 blur-2xl" style={{backgroundColor: "var(--theme-accent)"}}/>
+              <div className="pointer-events-none absolute -bottom-20 -left-16 h-40 w-40 rounded-full opacity-10 blur-2xl" style={{backgroundColor: "var(--theme-secondary)"}}/>
+              {/* CONTENIDO */}
+              <div className="relative">
+                {/* ETIQUETA */}
+                {hasSingleLocation && (<p className="mb-5 text-[10px] font-medium uppercase tracking-[0.35em]" style={{ color: "var(--theme-secondary)" }}>Lugar de celebración</p>)}
+                {/* ICONO */}
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border shadow-sm" style={{backgroundColor: "var(--theme-surface)", borderColor: "var(--theme-accent)", color: "var(--theme-primary)",}}>
+                  <span className="text-2xl">📍</span>
+                </div>
+                {/* NOMBRE */}
+                <h3 className={`mt-6 font-serif ${hasSingleLocation ? "text-3xl md:text-4xl" : "text-2xl"}`} style={{ color: "var(--theme-primary)" }}>{location.name}</h3>
+                {/* LÍNEA DECORATIVA */}
+                <div className="mx-auto mt-5 h-px w-12" style={{backgroundColor: "var(--theme-accent)"}}/>
+                {/* DIRECCIÓN */}
+                {location.address ? (<p className={`mx-auto mt-5 leading-6 ${hasSingleLocation ? "max-w-lg text-base" : "max-w-sm text-sm"}`} style={{ color: "var(--theme-secondary)" }}>{location.address}</p>
+                ) : (<p className="mt-5 text-sm italic" style={{ color: "var(--theme-secondary)" }}>Dirección no disponible</p>)}
+                {/* MAPA */}
+                {location.mapsUrl && (
+                  <a href={location.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:opacity-90 hover:shadow-md" style={{backgroundColor: "var(--theme-primary)"}}>
+                    <span>🗺️</span>
+                    <span>Cómo llegar</span>
+                  </a>
+                )}
               </div>
-              {/* NOMBRE */}
-              <h3 className="mt-6 text-2xl font-serif" style={{color: "var(--theme-primary)"}}>{location.name}</h3>
-              {/* DIRECCIÓN */}
-              {location.address ? (<p className="mx-auto mt-4 max-w-sm text-sm leading-6" style={{color: "var(--theme-secondary)"}}>{location.address}</p>
-              ) : (<p className="mt-4 text-sm italic" style={{color: "var(--theme-secondary)"}}>Dirección no disponible</p>)}
-              {/* MAPA */}
-              {location.mapsUrl && (
-                <a href={location.mapsUrl} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white transition hover:opacity-90" style={{backgroundColor: "var(--theme-primary)"}}>
-                  🗺️ Cómo llegar
-                </a>
-              )}
             </div>
           ))}
         </div>

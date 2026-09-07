@@ -72,9 +72,9 @@ export default function WeddingElegantOpening({brideName,groomName,eventDate,chi
             </div>
           </div>
           {/* CONTENIDO */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-10 text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center">
             <p className="text-[10px] uppercase tracking-[0.45em]" style={{color: "var(--theme-secondary)"}}>Con mucho amor</p>
-            <p className="mt-7 font-serif text-2xl italic" style={{color: "var(--theme-primary)"}}>Te invitamos a celebrar</p>
+            <p className="mt-5 font-serif text-xl italic sm:text-2xl" style={{color: "var(--theme-primary)"}}>Te invitamos a celebrar</p>
             {/* NOMBRES */}
             <div className="mt-6 w-full max-w-[280px]">
               {/* MONOGRAMA */}
