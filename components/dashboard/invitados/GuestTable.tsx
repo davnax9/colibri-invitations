@@ -248,8 +248,7 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
         </div>
       </div>
       {/* INVITADOS */}
-      <div>
-        {guests.length === 0 ? (
+      <div> {guests.length === 0 ? (
           <div className="rounded-xl border border-slate-200 bg-white px-6 py-16 text-center shadow-sm">
             <p className="text-lg font-medium text-slate-700">Aún no tienes invitados</p>
             <p className="mt-2 text-sm text-slate-500">Agrega el primer invitado para comenzar.</p>
@@ -259,7 +258,7 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
             {/* ============================= */}
             {/* DESKTOP / TABLET */}
             {/* ============================= */}
-            <div className="hidden overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm md:block">
+            <div className="hidden overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm lg:block">
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead className="bg-slate-50">
@@ -326,7 +325,7 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
             {/* ============================= */}
             {/* MOBILE */}
             {/* ============================= */}
-            <div className="space-y-3 p-4 md:hidden">
+            <div className="space-y-3 p-0 lg:hidden">
               {filteredGuests.length === 0 ? (
                 <div className="rounded-xl border border-slate-200 bg-white px-5 py-10 text-center shadow-sm">
                   <p className="text-sm text-slate-500">No se encontraron invitados.</p>

@@ -8,6 +8,7 @@ import AddToCalendar from "./shared/AddToCalendar"
 import InvitationTheme from "./shared/InvitationTheme"
 import PrincipitoHero from "./principito/PrincipitoHero"
 import PrincipitoIntro from "./principito/PrincipitoIntro"
+import InvitationGifts from "./shared/InvitationGifts"
 
 export default function Principito({
   event,
@@ -72,6 +73,7 @@ export default function Principito({
           <p className="mx-auto mt-5 max-w-lg text-sm leading-7 opacity-80">Una pequeña aventura está por comenzar, y sería maravilloso compartirla contigo.</p>
           <div className="mt-8 text-3xl">✦ 🌹 ✦</div>
         </section>
+        {event.gifts.length > 0 && (<InvitationGifts gifts={event.gifts} />)}
         {/* ================================================= */}
         {/* MÚSICA */}
         {/* ================================================= */}

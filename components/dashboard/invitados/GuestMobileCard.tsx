@@ -1,7 +1,7 @@
 "use client"
 
-import { Guest } from "@/utils/types"
 import GuestInvitationActions from "./GuestInvitationActions"
+import { Guest } from "@/utils/types"
 
 type Props = {
   guest: Guest
@@ -29,51 +29,56 @@ export default function GuestMobileCard({
   getStatusClass,
 }: Props) {
   return (
-    <div className={`rounded-xl border bg-white px-3.5 py-3 shadow-sm transition ${selected ? "border-green-300 ring-1 ring-green-200" : "border-slate-200"}`}>
+    <div className={`rounded-xl border bg-white shadow-sm transition ${selected ? "border-green-300 ring-1 ring-green-200" : "border-slate-200"} p-4 sm:p-5`}>
+      {/* ===================================================== */}
       {/* ENCABEZADO */}
-      <div className="flex items-start gap-2.5">
-        <input type="checkbox" checked={selected} onChange={onSelect} className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300"/>
+      {/* ===================================================== */}
+      <div className="flex items-start gap-3">
+        <input type="checkbox" checked={selected} onChange={onSelect} className="mt-1 h-4 w-4 shrink-0 rounded border-slate-300"/>
         <div className="min-w-0 flex-1">
-          <div className="flex items-center justify-between gap-2">
-            <p className="min-w-0 truncate text-sm font-semibold text-slate-800">{guest.name}</p>
-            <span className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusClass(guest.status)}`}>{getStatusLabel(guest.status)}</span>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="truncate text-base font-semibold text-slate-800">{guest.name}</p>
+            <span  className={`w-fit rounded-full px-2.5 py-1 text-xs font-medium ${getStatusClass(guest.status)}`}>{getStatusLabel(guest.status)}</span>
           </div>
           {/* CONTACTO */}
-          {(guest.phone || guest.email) && (
-            <div className="mt-1 flex min-w-0 flex-col gap-0.5 text-xs text-slate-500">
+          {(guest.phone || guest.email) ? (
+            <div className="mt-2 grid gap-1 text-sm text-slate-500 sm:grid-cols-2">
               {guest.phone && (<span className="truncate">📱 {guest.phone}</span>)}
               {guest.email && (<span className="truncate">✉️ {guest.email}</span>)}
             </div>
-          )}
-          {!guest.phone && !guest.email && (<p className="mt-1 text-xs text-slate-400">Sin información de contacto</p>)}
+          ) : (<p className="mt-2 text-sm text-slate-400">Sin información de contacto</p>)}
         </div>
       </div>
-      {/* RESUMEN */}
-      <div className="mt-2 flex items-center gap-4 border-t border-slate-100 pt-2">
-        <div className="flex items-center gap-1.5">
-          <span className="text-xs text-slate-500">Pases</span>
-          <span className="text-sm font-semibold text-slate-700">{guest.passes}</span>
+      {/* ===================================================== */}
+      {/* INFORMACIÓN */}
+      {/* ===================================================== */}
+      <div className="mt-4 grid grid-cols-2 gap-3 border-t border-slate-100 pt-4">
+        {/* PASES */}
+        <div className="rounded-lg bg-slate-50 px-4 py-3">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Pases</p>
+          <p className="mt-1 text-lg font-semibold text-slate-700">{guest.passes}</p>
         </div>
-        {guest.confirmed !== null && (
-          <>
-            <div className="h-4 w-px bg-slate-200" />
-            <div className="flex items-center gap-1.5">
-              <span className="text-xs text-slate-500">Confirmados</span>
-              <span className="text-sm font-semibold text-slate-700">{guest.confirmed}</span>
-            </div>
-          </>
-        )}
+        {/* CONFIRMADOS */}
+        <div className="rounded-lg bg-slate-50 px-4 py-3">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-400">Confirmados</p>
+          <p className="mt-1 text-lg font-semibold text-slate-700">{guest.confirmed ?? 0}</p>
+        </div>
       </div>
+      {/* ===================================================== */}
       {/* INVITACIÓN */}
-      <div className="mt-2">
+      {/* ===================================================== */}
+      <div className="mt-4 border-t border-slate-100 pt-4">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Invitación</p>
         <GuestInvitationActions guestId={guest.id} slug={eventSlug} token={guest.token} guestName={guest.name} passes={guest.passes} messageTemplate={messageTemplate} currentMessage={guest.message} canCustomizeMessage={canCustomizeMessage}/>
       </div>
+      {/* ===================================================== */}
       {/* ACCIONES */}
-      <div className="mt-2 grid grid-cols-2 gap-2">
-        <button type="button" onClick={onEdit} className="rounded-lg border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600 transition hover:bg-slate-50">
+      {/* ===================================================== */}
+      <div className="mt-4 grid grid-cols-2 gap-3 border-t border-slate-100 pt-4">
+        <button type="button" onClick={onEdit} className="inline-flex min-h-10 items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
           Editar
         </button>
-        <button type="button" onClick={onDelete} className="rounded-lg border border-red-200 px-3 py-2 text-xs font-medium text-red-600 transition hover:bg-red-50">
+        <button type="button" onClick={onDelete} className="inline-flex min-h-10 items-center justify-center rounded-lg border border-red-200 bg-red-50 px-4 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-100">
           Eliminar
         </button>
       </div>
