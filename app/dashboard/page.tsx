@@ -105,7 +105,7 @@ export default async function DashboardPage() {
                 <span className="text-lg">🎨</span>
               </div>
             </div>
-            <p className="mt-4 text-3xl font-bold text-[#263832]">{templates.length}</p>
+            <p className="mt-4 text-3xl font-bold text-[#263832]">{templates.length -1}</p>
             <p className="mt-1 text-xs text-[#687A72]">Plantillas activas</p>
           </div>
         </section>

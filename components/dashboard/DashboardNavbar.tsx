@@ -40,7 +40,7 @@ export default function DashboardNavbar({ user }: Props) {
             </div>
           </Link>
           {/* NAVEGACIÓN */}
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 lg:flex">
             <Link href="/dashboard" className={`rounded-xl px-4 py-2.5 text-sm font-medium transition ${isActive("/dashboard") ? "bg-[#2F5D50]/10 text-[#2F5D50]" : "text-[#687A72] hover:bg-[#FAF8F3] hover:text-[#2F5D50]"}`}>
               <span className="mr-2">📅</span>Mis eventos
             </Link>
@@ -52,8 +52,8 @@ export default function DashboardNavbar({ user }: Props) {
             )}
           </nav>
           {/* USUARIO + LOGOUT */}
-          <div className="hidden items-center gap-3 md:flex">
-            <div className="hidden text-right lg:block">
+          <div className="hidden items-center gap-3 lg:flex">
+            <div className="hidden text-right xl:block">
               <p className="text-sm font-semibold text-[#263832]">{user.name}</p>
               <p className="text-xs text-[#8A9A8F]">
                 {user.role === "ADMIN" ? "Administrador" : "Cliente"}</p>
@@ -62,7 +62,7 @@ export default function DashboardNavbar({ user }: Props) {
             <LogoutButton />
           </div>
           {/* MOBILE */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <MobileMenu user={user} pathname={pathname} />
           </div>
         </div>

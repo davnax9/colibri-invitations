@@ -4,13 +4,14 @@ import { FormEvent, useState } from "react"
 
 type Props = {
   onClose: () => void
+  initialPlan?: "BASIC" | "PRO"
 }
 
-export default function ContactModal({ onClose }: Props) {
+export default function ContactModal({onClose,initialPlan = "PRO"}: Props) {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
-  const [plan, setPlan] = useState<"BASIC" | "PRO">("PRO")
+  const [plan, setPlan] = useState<"BASIC" | "PRO">(initialPlan)
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
 
@@ -40,7 +41,7 @@ ${message || "Me gustaría recibir más información sobre el servicio."}
 
     const whatsappUrl = `https://wa.me/${adminWhatsapp}?text=${encodeURIComponent(whatsappMessage)}`
 
-    window.open(whatsappUrl,"_blank","noopener,noreferrer")
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer")
 
     setLoading(false)
     onClose()
@@ -73,23 +74,17 @@ ${message || "Me gustaría recibir más información sobre el servicio."}
           {/* NOMBRE */}
           <div>
             <label htmlFor="contact-name" className="mb-2 block text-sm font-semibold text-[#263832]">Nombre</label>
-            <input id="contact-name" type="text" value={name} onChange={(event) => setName(event.target.value)} required placeholder="Tu nombre"
-              className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
-            />
+            <input id="contact-name" type="text" value={name} onChange={(event) => setName(event.target.value)} required placeholder="Tu nombre" className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"/>
           </div>
           {/* CORREO */}
           <div>
             <label htmlFor="contact-email" className="mb-2 block text-sm font-semibold text-[#263832]">Correo electrónico</label>
-            <input id="contact-email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required placeholder="correo@ejemplo.com"
-              className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
-            />
+            <input id="contact-email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required placeholder="correo@ejemplo.com" className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"/>
           </div>
           {/* TELEFONO */}
           <div>
             <label htmlFor="contact-phone" className="mb-2 block text-sm font-semibold text-[#263832]">Teléfono<span className="ml-1 font-normal text-[#8A9A8F]">(opcional)</span></label>
-            <input id="contact-phone" type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="10 dígitos"
-              className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
-            />
+            <input id="contact-phone" type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="10 dígitos" className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"/>
           </div>
           {/* PLAN */}
           <div>
@@ -106,15 +101,13 @@ ${message || "Me gustaría recibir más información sobre el servicio."}
           {/* MENSAJE */}
           <div>
             <label htmlFor="contact-message" className="mb-2 block text-sm font-semibold text-[#263832]">¿En qué podemos ayudarte?</label>
-            <textarea id="contact-message" value={message} onChange={(event) => setMessage(event.target.value)} rows={3} placeholder="Cuéntanos sobre tu evento..."
-              className="w-full resize-none rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"
-            />
+            <textarea id="contact-message" value={message} onChange={(event) => setMessage(event.target.value)} rows={3} placeholder="Cuéntanos sobre tu evento..." className="w-full resize-none rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"/>
           </div>
           {/* BOTON */}
           <button type="submit" disabled={loading} className="w-full rounded-xl bg-[#2F5D50] px-5 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#2F5D50]/15 transition hover:-translate-y-0.5 hover:bg-[#244A40] disabled:cursor-not-allowed disabled:opacity-60">
             {loading ? "Preparando..." : "Continuar por WhatsApp →"}
           </button>
-          <p className="text-center text-xs leading-5 text-[#8A9A8F]"> Al continuar se abrirá WhatsApp para que podamos atender personalmente tu solicitud.</p>
+          <p className="text-center text-xs leading-5 text-[#8A9A8F]">Al continuar se abrirá WhatsApp para que podamos atender personalmente tu solicitud.</p>
         </form>
       </div>
     </div>

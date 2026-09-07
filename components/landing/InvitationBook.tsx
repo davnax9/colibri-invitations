@@ -598,11 +598,14 @@ function BookPage({design,side,floating = false}: BookPageProps) {
   /* PÁGINA */
   /* ======================================================= */
   return (
-    <Link href={design.href} className={`relative block aspect-4/5 overflow-hidden border border-[#DCE4DF] bg-white ${side === "left" ? "rounded-l-2xl" : "rounded-r-2xl"} ${floating ? "absolute inset-0" : ""}`} style={{backfaceVisibility: "hidden"}}>
+    <Link href={design.href} className={`relative block aspect-[4/5] overflow-hidden border border-[#DCE4DF] bg-white ${side === "left" ? "rounded-l-2xl" : "rounded-r-2xl"} ${floating ? "absolute inset-0" : ""}`} style={{backfaceVisibility: "hidden"}}>
       {/* =================================================== */}
       {/* IMAGEN */}
       {/* =================================================== */}
-      <Image src={design.image} alt={`Diseño ${design.name}`} fill sizes="50vw" className="object-cover object-top"/>
+      {/* <Image src={design.image} alt={`Diseño ${design.name}`} fill sizes="50vw" className="object-cover object-top"/> */}
+      <div className="absolute inset-0 bg-[#F5F2EB]">
+        <Image src={design.image} alt={`Diseño ${design.name}`} fill sizes="50vw" className="object-contain"/>
+      </div>
       {/* =================================================== */}
       {/* DEGRADADO */}
       {/* =================================================== */}

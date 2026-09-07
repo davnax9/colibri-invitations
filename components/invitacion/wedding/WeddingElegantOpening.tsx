@@ -76,25 +76,32 @@ export default function WeddingElegantOpening({brideName,groomName,eventDate,chi
             <p className="text-[10px] uppercase tracking-[0.45em]" style={{color: "var(--theme-secondary)"}}>Con mucho amor</p>
             <p className="mt-7 font-serif text-2xl italic" style={{color: "var(--theme-primary)"}}>Te invitamos a celebrar</p>
             {/* NOMBRES */}
-            <div className="mt-7">
-              <h1 className="font-serif text-5xl font-light leading-none md:text-6xl" style={{color: "var(--theme-primary)"}}>{brideName}</h1>
-              <div className="my-4 flex items-center justify-center gap-3">
-                <div className="h-px w-8" style={{backgroundColor: "var(--theme-accent)"}}/>
-                <span className="font-serif text-2xl italic" style={{color: "var(--theme-accent)"}}>&</span>
-                <div className="h-px w-8" style={{backgroundColor: "var(--theme-accent)",}}/>
+            <div className="mt-6 w-full max-w-[280px]">
+              {/* MONOGRAMA */}
+              <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border" style={{borderColor: "var(--theme-accent)", backgroundColor: "var(--theme-background)"}}>
+                <span className="font-serif text-3xl font-light tracking-[0.15em]" style={{ color: "var(--theme-primary)"}}>{initials}</span>
               </div>
-              <h1 className="font-serif text-5xl font-light leading-none md:text-6xl" style={{color: "var(--theme-primary)"}}>{groomName}</h1>
+              {/* NOMBRES */}
+              <div className="mt-5">
+                <h1 className="font-serif text-2xl font-light leading-tight sm:text-3xl" style={{ color: "var(--theme-primary)"}}>{brideName}</h1>
+                <div className="my-2 flex items-center justify-center gap-3">
+                  <div className="h-px w-6" style={{ backgroundColor: "var(--theme-accent)"}}/>
+                  <span className="font-serif text-lg italic" style={{ color: "var(--theme-accent)"}}>&</span>
+                  <div className="h-px w-6" style={{ backgroundColor: "var(--theme-accent)"}} />
+                </div>
+                <h1 className="font-serif text-2xl font-light leading-tight sm:text-3xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
+              </div>
             </div>
             {/* FECHA */}
-            <div className="mt-8">
-              <p className="text-[9px] uppercase tracking-[0.4em]" style={{color: "var(--theme-secondary)"}}>Nuestra boda</p>
-              <p className="mt-2 text-xs" style={{color: "var(--theme-secondary)"}}>{formattedDate}</p>
+            <div className="mt-6">
+              <p className="text-[9px] uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>Nuestra boda</p>
+              <p className="mt-1 text-xs" style={{ color: "var(--theme-secondary)" }}>{formattedDate}</p>
             </div>
             {/* SELLO */}
-            <div className="relative mt-9">
+            <div className="relative mt-6">
               <div className="absolute -inset-2.5 rounded-full border" style={{borderColor: "var(--theme-accent)", opacity: 0.3}}/>
-              <button type="button" onClick={handleOpen} disabled={isOpening} aria-label="Abrir invitación" className={`wedding-elegant-seal relative flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all duration-500 md:h-17.5 md:w-17.5 ${
-                  isOpening ? "scale-75 opacity-0" : "hover:scale-110 active:scale-95"}`} style={{backgroundColor: "var(--theme-primary)",borderColor: "var(--theme-accent)",color: "var(--theme-background)"}}
+              <button type="button" onClick={handleOpen} disabled={isOpening} aria-label="Abrir invitación" className={`wedding-elegant-seal relative flex h-16 w-16 items-center justify-center rounded-full border-2 transition-all duration-500 md:h-17.5 md:w-17.5 ${isOpening ? "scale-75 opacity-0" : "hover:scale-110 active:scale-95"}`}
+                style={{backgroundColor: "var(--theme-primary)", borderColor: "var(--theme-accent)", color: "var(--theme-background)"}}
               >
                 <div className="text-center">
                   <span className="block font-serif text-lg">{initials}</span>

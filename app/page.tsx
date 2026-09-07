@@ -193,7 +193,7 @@ export default function HomePage() {
             <p className="mt-4 text-[#687A72]">Comienza con lo esencial o disfruta de todas las herramientas para administrar tu evento.</p>
           </div>
           {/* OFERTA */}
-          <PromotionBanner endDate="2026-09-06T23:59:59" />
+          <PromotionBanner endDate="2026-09-15T23:59:59" />
           {/* PLANES */}
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
             {/* ================================================= */}
@@ -223,9 +223,12 @@ export default function HomePage() {
                 <li>✓ Mensaje base para WhatsApp</li>
               </ul>
               <div className="mt-8">
-                <Link href="/login" className="group flex w-full items-center justify-center rounded-xl border border-[#2F5D50] bg-white px-5 py-3.5 text-sm font-semibold text-[#2F5D50] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-md">
+                {/* <Link href="/login" className="group flex w-full items-center justify-center rounded-xl border border-[#2F5D50] bg-white px-5 py-3.5 text-sm font-semibold text-[#2F5D50] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-md">
                   Elegir BASIC<span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                </Link>
+                </Link> */}
+                <ContactButton initialPlan="BASIC" className="group flex w-full items-center justify-center rounded-xl border border-[#2F5D50] bg-white px-5 py-3.5 text-sm font-semibold text-[#2F5D50] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-md">
+                  Elegir BASIC<span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </ContactButton>
               </div>
             </div>
             {/* PRO */}
@@ -252,17 +255,20 @@ export default function HomePage() {
                 <li>✓ Mayor control sobre tus envíos</li>
               </ul>
               <div className="mt-8">
-                <Link href="/login" className="group flex w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-[#2F5D50] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-xl">
+                {/* <Link href="/login" className="group flex w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-[#2F5D50] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-xl">
                   ✨ Elegir PRO<span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
-                </Link>
+                </Link> */}
+                <ContactButton initialPlan="PRO" className="group flex w-full items-center justify-center rounded-xl bg-white px-5 py-3.5 text-sm font-bold text-[#2F5D50] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#F5F2EB] hover:shadow-xl">
+                  ✨ Elegir PRO<span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                </ContactButton>
                 <p className="mt-3 text-center text-xs text-[#D7E3DE]">La opción ideal para aprovechar al máximo tu invitación.</p>
               </div>
             </div>
           </div>
           {/* CONTACTO */}
-          <div className="mt-10 text-center">
+          {/* <div className="mt-10 text-center">
             <ContactButton />
-          </div>
+          </div> */}
         </div>
       </section>
       {/* ===================================================== */}
