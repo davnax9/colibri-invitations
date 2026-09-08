@@ -67,8 +67,8 @@ export default function HomePage() {
                 <span>XV años</span>
                 <span className="text-[#C9A86A]">•</span>
                 <span>Bautizos</span>
-                <span className="text-[#C9A86A]">•</span>
-                <span>Primeras comuniones</span>
+                {/* <span className="text-[#C9A86A]">•</span>
+                <span>Primeras comuniones</span> */}
               </div>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link href="/login" className="inline-flex items-center justify-center rounded-xl bg-[#2F5D50] px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#2F5D50]/20 transition hover:-translate-y-0.5 hover:bg-[#244A40]">

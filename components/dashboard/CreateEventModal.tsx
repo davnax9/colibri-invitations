@@ -95,7 +95,7 @@ export default function CreateEventModal({ templates }: Props) {
                 >
                   <option value="WEDDING" className="bg-white text-slate-800">Boda</option>
                   <option value="QUINCEANOS" className="bg-white text-slate-800">Quinceaños</option>
-                  <option value="COMUNION" className="bg-white text-slate-800">Primera Comunión</option>
+                  {/* <option value="COMUNION" className="bg-white text-slate-800">Primera Comunión</option> */}
                   <option value="BAUTIZO" className="bg-white text-slate-800">Bautizo</option>
                 </select>
               </div>
