@@ -77,7 +77,7 @@ export default function QuinceanosElegantEnvelope({quinceaneraName,children}: Pr
               </div>
             </div>
             {/* SOLAPA DEL SOBRE */}
-            <div className={`absolute inset-x-0 top-0 z-20 origin-top transition-transform duration-1000 ${isOpening ? "[transform-[rotateX(180deg)]" : "[transform-[rotateX(0deg)]"}`} style={{transformStyle: "preserve-3d"}}>
+            <div className={`absolute inset-x-0 top-0 z-20 origin-top transition-transform duration-1000 ${isOpening ? "[transform-[rotateX(180)]" : "[transform-[rotateX(0)]"}`} style={{transformStyle: "preserve-3d"}}>
               <div className="h-0 w-0 border-l-165 border-r-165 border-t-105 border-l-transparent border-r-transparent" style={{borderTopColor: "var(--theme-primary)"}}/>
             </div>
             {/* LÍNEAS DECORATIVAS */}
