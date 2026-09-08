@@ -49,7 +49,7 @@ const designs: FeaturedDesign[] = [
     name: "Minimal",
     description: "Elegancia sencilla para un momento inolvidable.",
     image: "/templates/wedding-elegant.png",
-    href: "/invitacion/demo-boda-minimal",
+    href: "/invitacion/jennyfer-martin",
   },
 
   {
