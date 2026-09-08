@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import ContactButton from "./ContactButton"
 
 const celebrations = [
   {
@@ -107,10 +108,13 @@ export default function OtherCelebrationsModal() {
                     ))}
                   </div>
                   {/* CTA */}
-                  <div className="mt-5 text-center">
-                    <Link href="/login" onClick={() => setOpen(false)} className="text-sm font-semibold text-[#2F5D50] transition hover:text-[#244A40]">
-                      Crear mi invitación →
+                  <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <Link href="/login" onClick={() => setOpen(false)} className="flex w-full sm:w-auto items-center justify-center rounded-xl border border-[#2F5D50] bg-white px-5 py-3.5 text-sm font-semibold text-[#2F5D50] shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-100 hover:shadow-md">
+                      Crear mi invitación <span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
                     </Link>
+                    <ContactButton initialPlan="BASIC" className="group flex w-full sm:w-auto items-center justify-center rounded-xl border border-[#2F5D50] bg-white px-5 py-3.5 text-sm font-semibold text-[#2F5D50] shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-100 hover:shadow-md">
+                      Algun otro evento, contactanos<span className="ml-2 transition-transform group-hover:translate-x-1">→</span>
+                    </ContactButton>
                   </div>
                 </div>
               ))}
