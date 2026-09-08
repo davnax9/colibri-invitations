@@ -35,7 +35,7 @@ const celebrations = [
       {
         name: "Elegant",
         image: "/templates/comunion-elegant.png",
-        href: "/invitacion/demo-comunion-elegant",
+        href: "/invitacion/mateo",
       },
       {
         name: "Classic",
