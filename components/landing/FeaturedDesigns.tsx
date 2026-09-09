@@ -48,7 +48,7 @@ const designs: FeaturedDesign[] = [
     category: "Boda",
     name: "Minimal",
     description: "Elegancia sencilla para un momento inolvidable.",
-    image: "/templates/wedding-elegant.png",
+    image: "/templates/wedding-minimal.png",
     href: "/invitacion/jennyfer-martin",
   },
 
