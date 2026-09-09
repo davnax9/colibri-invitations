@@ -1886,6 +1886,8 @@ export async function updateEventBackground(data: {
       },
     })
 
+    revalidatePath(`/invitacion/${event.slug}`)
+
     return {
       success: true,
     }

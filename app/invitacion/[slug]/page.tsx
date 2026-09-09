@@ -5,6 +5,8 @@ import QuinceanosTemplate from "@/components/invitacion/QuinceanosTemplate"
 import ComunionTemplate from "@/components/invitacion/ComunionTemplate"
 import BautizoTemplate from "@/components/invitacion/BautizoTemplate"
 
+export const dynamic = "force-dynamic"
+
 type Props = { params: Promise<{slug: string}>}
 
 export default async function InvitationPage({ params }: Props) {

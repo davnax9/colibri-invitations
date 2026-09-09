@@ -38,7 +38,7 @@ export default function EventBackgroundForm({
     }
 
     setLoading(true)
-
+    
     const result = await updateEventBackground({eventId,enabled,texture: enabled ? selectedTexture : null,opacity})
 
     if (!result.success) {
@@ -155,16 +155,16 @@ export default function EventBackgroundForm({
               </div>
             </div>
           )}
-          {/* ================================================= */}
-          {/* GUARDAR */}
-          {/* ================================================= */}
-          <div className="flex justify-end border-t border-[#E5E9E5] pt-5">
-            <button type="button" onClick={handleSave} disabled={loading || (enabled && !selectedTexture)} className="rounded-xl bg-[#2F5D50] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#244A40] disabled:cursor-not-allowed disabled:opacity-50">
-              {loading ? "Guardando..." : "Guardar fondo"}
-            </button>
-          </div>
         </div>
       )}
+      {/* ================================================= */}
+      {/* GUARDAR */}
+      {/* ================================================= */}
+      <div className="flex justify-end border-t border-[#E5E9E5] pt-5">
+        <button type="button" onClick={handleSave} disabled={loading || (enabled && !selectedTexture)} className="rounded-xl bg-[#2F5D50] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#244A40] disabled:cursor-not-allowed disabled:opacity-50">
+          {loading ? "Guardando..." : "Guardar fondo"}
+        </button>
+      </div>
     </div>
   )
 }
