@@ -27,21 +27,33 @@ export default function ContactModal({onClose,initialPlan = "PRO"}: Props) {
       return
     }
 
-    const whatsappMessage = `
-Hola, quiero información sobre Colibrí Invitaciones. 👋
+    const wave = String.fromCodePoint(0x1f44b)
+    const person = String.fromCodePoint(0x1f464)
+    const phoneIcon = String.fromCodePoint(0x1f4f1)
+    const sparkle = String.fromCodePoint(0x2728)
+    const messageIcon = String.fromCodePoint(0x1f4ac)
 
-👤 Nombre: ${name}
-📧 Correo: ${email}
-📱 Teléfono: ${phone || "No proporcionado"}
-⭐ Plan de interés: ${plan}
+    const whatsappMessage = [
+      `Hola ${wave}`,
+      "",
+      "Me gustaría recibir información sobre Colibrí Invitaciones.",
+      "",
+      `${person} Nombre: ${name}`,
+      `${phoneIcon} Teléfono: ${phone || "No proporcionado"}`,
+      `${sparkle} Plan de interés: ${plan}`,
+      "",
+      `${messageIcon} Mensaje:`,
+      message || "Me gustaría recibir más información sobre el servicio.",
+    ].join("\n")
 
-💬 Mensaje:
-${message || "Me gustaría recibir más información sobre el servicio."}
-`.trim()
+    const params = new URLSearchParams({
+      text: whatsappMessage,
+    })
 
-    const whatsappUrl = `https://wa.me/${adminWhatsapp}?text=${encodeURIComponent(whatsappMessage)}`
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${adminWhatsapp}&${params.toString()}`
 
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer")
+    // window.open(whatsappUrl, "_blank", "noopener,noreferrer")
+    window.location.href = whatsappUrl
 
     setLoading(false)
     onClose()
@@ -77,10 +89,10 @@ ${message || "Me gustaría recibir más información sobre el servicio."}
             <input id="contact-name" type="text" value={name} onChange={(event) => setName(event.target.value)} required placeholder="Tu nombre" className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"/>
           </div>
           {/* CORREO */}
-          <div>
+          {/* <div>
             <label htmlFor="contact-email" className="mb-2 block text-sm font-semibold text-[#263832]">Correo electrónico</label>
             <input id="contact-email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} required placeholder="correo@ejemplo.com" className="w-full rounded-xl border border-[#DCE4DF] bg-[#FAF8F3] px-4 py-3 text-sm text-[#263832] outline-none transition placeholder:text-[#A0ADA7] focus:border-[#2F5D50] focus:ring-2 focus:ring-[#2F5D50]/10"/>
-          </div>
+          </div> */}
           {/* TELEFONO */}
           <div>
             <label htmlFor="contact-phone" className="mb-2 block text-sm font-semibold text-[#263832]">Teléfono<span className="ml-1 font-normal text-[#8A9A8F]">(opcional)</span></label>
