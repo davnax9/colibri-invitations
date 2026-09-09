@@ -61,7 +61,7 @@ export default async function GuestsPage({ params }: Props) {
             <div>
               <div className="mb-3 flex flex-wrap items-center gap-2">
                 <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
-                  {event.type === "WEDDING" ? "Boda" : "XV años"}
+                  {event.type === "WEDDING" ? "Boda" : event.type === "BAUTIZO" ? "Bautizo" : "XV años"}
                 </span>
                 <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur">
                   {event.eventDate.toLocaleDateString("es-MX", {day: "numeric",month: "long",year: "numeric",})}

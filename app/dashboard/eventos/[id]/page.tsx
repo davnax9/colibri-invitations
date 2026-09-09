@@ -79,7 +79,7 @@ export default async function EventEditorPage({ params }: Props) {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-[#E4ECE8] backdrop-blur">Editor de invitación</span>
                   <span className="text-[#C9A86A]">✦</span>
-                  <span className="text-xs text-[#D7E3DE]">{isWedding ? "Boda" : "Quinceaños"}</span>
+                  <span className="text-xs text-[#D7E3DE]">{isWedding ? "Boda" : event.type === "BAUTIZO" ? "Bautizo" : "Quinceaños"}</span>
                 </div>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">{event.name}</h1>
                 <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#D7E3DE]">

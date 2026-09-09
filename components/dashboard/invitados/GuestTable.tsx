@@ -48,6 +48,9 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
   const [statusFilter, setStatusFilter] = useState<"ALL" | "PENDING" | "CONFIRMED" | "DECLINED">("ALL")
   const [selectedGuests, setSelectedGuests] = useState<string[]>([])
 
+  const [guestToDelete, setGuestToDelete] = useState<Guest | null>(null)
+  const [deleting, setDeleting] = useState(false)
+
   function openCreate() {
     setEditingGuest(null)
 
@@ -100,15 +103,37 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
   }
 
   async function handleDelete(guest: Guest) {
-    const confirmed = window.confirm(`¿Deseas eliminar a ${guest.name}?`)
+    // const confirmed = window.confirm(`¿Deseas eliminar a ${guest.name}?`)
 
-    if (!confirmed) return
+    // if (!confirmed) return
 
-    const result = await deleteEventGuest({id: guest.id, eventId})
+    // const result = await deleteEventGuest({id: guest.id, eventId})
+
+    // if (!result.success) {
+    //   window.alert(result.error)
+    // }
+    setGuestToDelete(guest)
+  }
+
+  async function confirmDelete() {
+    if (!guestToDelete) return
+
+    setDeleting(true)
+
+    const result = await deleteEventGuest({
+      id: guestToDelete.id,
+      eventId,
+    })
+
+    setDeleting(false)
 
     if (!result.success) {
-      window.alert(result.error)
+      toast.error(result.error)
+      return
     }
+
+    toast.success("Invitado eliminado correctamente")
+    setGuestToDelete(null)
   }
 
   function getStatusLabel(status: Guest["status"]) {
@@ -369,12 +394,12 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
                 />
               </div>
               {/* EMAIL */}
-              <div>
+              {/* <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Correo electrónico</label>
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="luis@email.com"
                   className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200 text-slate-800 bg-white"
                 />
-              </div>
+              </div> */}
               {/* PASES */}
               <div>
                 <label className="mb-2 block text-sm font-medium text-slate-700">Pases asignados</label>
@@ -404,6 +429,76 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
       )}
       {/* MODAL INVITACIONES */}
       {bulkOpen && (<BulkInvitationPanel guests={selectedGuestRecords} slug={eventSlug} messageTemplate={messageTemplate} onClose={() => setBulkOpen(false)}/>)}
+      {/* MODAL CONFIRMAR ELIMINACIÓN */}
+      {guestToDelete && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 px-4">
+          <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+
+            {/* ICONO */}
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-50">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.8}
+                stroke="currentColor"
+                className="h-6 w-6 text-red-600"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m-9.303 3.376L10.5 3.75a1.732 1.732 0 013 0l7.803 12.376A1.732 1.732 0 0119.803 18H4.197a1.732 1.732 0 01-1.5-2.624z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 15.75h.008v.008H12v-.008z"
+                />
+              </svg>
+            </div>
+
+            {/* TITULO */}
+            <div className="mt-4">
+              <h2 className="text-lg font-semibold text-slate-800">
+                Eliminar invitado
+              </h2>
+
+              <p className="mt-2 text-sm leading-6 text-slate-500">
+                ¿Deseas eliminar a{" "}
+                <span className="font-semibold text-slate-700">
+                  {guestToDelete.name}
+                </span>
+                ?
+              </p>
+
+              <p className="mt-2 text-sm text-slate-400">
+                Esta acción no se puede deshacer.
+              </p>
+            </div>
+
+            {/* BOTONES */}
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setGuestToDelete(null)}
+                disabled={deleting}
+                className="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Cancelar
+              </button>
+
+              <button
+                type="button"
+                onClick={confirmDelete}
+                disabled={deleting}
+                className="rounded-lg bg-red-600 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {deleting ? "Eliminando..." : "Sí, eliminar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
