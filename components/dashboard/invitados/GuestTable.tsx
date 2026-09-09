@@ -103,15 +103,6 @@ export default function GuestTable({ eventId, guests, eventSlug, messageTemplate
   }
 
   async function handleDelete(guest: Guest) {
-    // const confirmed = window.confirm(`¿Deseas eliminar a ${guest.name}?`)
-
-    // if (!confirmed) return
-
-    // const result = await deleteEventGuest({id: guest.id, eventId})
-
-    // if (!result.success) {
-    //   window.alert(result.error)
-    // }
     setGuestToDelete(guest)
   }
 
