@@ -14,6 +14,8 @@ import { InvitationTemplateProps } from "@/utils/types/invitation"
 import QuinceanosFloralHero from "./quinceanos/QuinceanosFloralHero"
 import InvitationGifts from "./shared/InvitationGifts"
 import QuinceanosFloralEnvelope from "./quinceanos/QuinceanosFloralEnvelope"
+import QuinceanosFamily from "../eventos/QuinceanosFamily"
+import QuinceanosOrnaments from "./shared/QuinceanosOrnaments"
 
 export default function QuinceanosFloral({ event, guest }: InvitationTemplateProps) {
   const details = event.details
@@ -25,6 +27,23 @@ export default function QuinceanosFloral({ event, guest }: InvitationTemplatePro
     <InvitationTheme theme={event.theme} event={event}>
       <QuinceanosFloralEnvelope quinceaneraName={quinceaneraName}>
         <main className="min-h-screen overflow-hidden" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+          <div className="pointer-events-none absolute inset-0 z-20">
+            <div className="absolute left-0 top-0">
+              <QuinceanosOrnaments positions={["top-left"]} />
+            </div>
+
+            <div className="absolute right-0 top-0">
+              <QuinceanosOrnaments positions={["top-right"]} />
+            </div>
+
+            <div className="absolute bottom-0 left-0">
+              <QuinceanosOrnaments positions={["bottom-left"]} />
+            </div>
+
+            <div className="absolute bottom-0 right-0">
+              <QuinceanosOrnaments positions={["bottom-right"]} />
+            </div>
+          </div>
           {/* HERO */}
           <section className="relative" style={{backgroundColor: "var(--theme-surface)"}}>
             <div className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: "var(--theme-accent)" }}/>
@@ -34,6 +53,7 @@ export default function QuinceanosFloral({ event, guest }: InvitationTemplatePro
               <span>✿</span><span className="text-xs uppercase tracking-[0.35em]">Mis XV años</span><span>✿</span>
             </div>
           </section>
+          <QuinceanosFamily details={details}/>
           {/* INTRODUCCIÓN */}
           <section className="relative">
             <div className="pointer-events-none absolute left-0 top-0 text-7xl opacity-10" style={{ color: "var(--theme-primary)" }}>

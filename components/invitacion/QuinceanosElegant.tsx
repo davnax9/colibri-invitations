@@ -15,6 +15,7 @@ import { InvitationTemplateProps } from "@/utils/types/invitation"
 import QuinceanosElegantHero from "./quinceanos/QuinceanosElegantHero"
 import InvitationGifts from "./shared/InvitationGifts"
 import QuinceanosElegantEnvelope from "./quinceanos/QuinceanosElegantEnvelope"
+import QuinceanosFamily from "../eventos/QuinceanosFamily"
 
 export default function QuinceanosElegant({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -27,7 +28,7 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
       <QuinceanosElegantEnvelope quinceaneraName={quinceaneraName}>
       <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
           <QuinceanosElegantHero coverPhoto={coverPhoto} details={details} event={event} />
-
+          <QuinceanosFamily details={details}/>
           <QuinceanosIntro details={details} />
 
           <QuinceanosDate event={event} />

@@ -14,6 +14,7 @@ import InvitationLuxuryLocations from "./shared/InvitationLuxuryLocations"
 import InvitationLuxuryGallery from "./shared/InvitationLuxuryGallery"
 import InvitationGifts from "./shared/InvitationGifts"
 import QuinceanosLuxuryEnvelope from "./quinceanos/QuinceanosLuxuryEnvelope"
+import QuinceanosFamily from "../eventos/QuinceanosFamily"
 
 export default function QuinceanosLuxury({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -27,7 +28,7 @@ export default function QuinceanosLuxury({event,guest}: InvitationTemplateProps)
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
 
           <QuinceanosLuxuryHero coverPhoto={coverPhoto} details={details} event={event}/>
-
+          <QuinceanosFamily details={details}/>
           <section className="px-6 py-28 text-center" style={{ backgroundColor: "var(--theme-surface)"}}>
             <div className="mx-auto max-w-3xl">
               <div className="mx-auto h-px w-20" style={{backgroundColor: "var(--theme-accent)"}}/>
