@@ -112,6 +112,12 @@ model EventDetails {
   quinceaneraName String?
   childName       String?
 
+  fatherName    String?
+  motherName    String?
+  godfatherName String?
+  godmotherName String?
+  familyMessage String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

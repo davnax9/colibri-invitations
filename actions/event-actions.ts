@@ -127,15 +127,85 @@ export async function createEvent(data: unknown) {
   }
 }
 
+// export async function saveEventDetails(data: {
+//   eventId: string
+//   groomName?: string
+//   brideName?: string
+//   quinceaneraName?: string
+//   childName?: string
+//   phrase?: string
+//   description?: string
+//   dressCode?: string
+// }) {
+//   const session = await requireAuth()
+
+//   const event = await prisma.event.findFirst({
+//     where: {
+//       id: data.eventId,
+//       userId: session.user.id,
+//     },
+//   })
+
+//   if (!event) {
+//     return {
+//       success: false as const,
+//       error: "Evento no encontrado",
+//     }
+//   }
+
+//   const details = await prisma.eventDetails.upsert({
+//     where: {
+//       eventId: data.eventId,
+//     },
+
+//     update: {
+//       groomName: data.groomName || null,
+//       brideName: data.brideName || null,
+//       quinceaneraName: data.quinceaneraName || null,
+//       childName: data.childName || null,
+//       phrase: data.phrase || null,
+//       description: data.description || null,
+//       dressCode: data.dressCode || null,
+//     },
+
+//     create: {
+//       eventId: data.eventId,
+//       groomName: data.groomName || null,
+//       brideName: data.brideName || null,
+//       quinceaneraName: data.quinceaneraName || null,
+//       childName: data.childName || null,
+//       phrase: data.phrase || null,
+//       description: data.description || null,
+//       dressCode: data.dressCode || null,
+//     },
+//   })
+
+//   revalidatePath(`/dashboard/eventos/${data.eventId}`)
+//   revalidatePath(`/invitacion/${event.slug}`)
+
+//   return {
+//     success: true as const,
+//     details,
+//   }
+// }
+
 export async function saveEventDetails(data: {
   eventId: string
+
   groomName?: string
   brideName?: string
   quinceaneraName?: string
   childName?: string
+
   phrase?: string
   description?: string
   dressCode?: string
+
+  fatherName?: string
+  motherName?: string
+  godfatherName?: string
+  godmotherName?: string
+  familyMessage?: string
 }) {
   const session = await requireAuth()
 
@@ -163,20 +233,35 @@ export async function saveEventDetails(data: {
       brideName: data.brideName || null,
       quinceaneraName: data.quinceaneraName || null,
       childName: data.childName || null,
+
       phrase: data.phrase || null,
       description: data.description || null,
       dressCode: data.dressCode || null,
+
+      fatherName: data.fatherName || null,
+      motherName: data.motherName || null,
+      godfatherName: data.godfatherName || null,
+      godmotherName: data.godmotherName || null,
+      familyMessage: data.familyMessage || null,
     },
 
     create: {
       eventId: data.eventId,
+
       groomName: data.groomName || null,
       brideName: data.brideName || null,
       quinceaneraName: data.quinceaneraName || null,
       childName: data.childName || null,
+
       phrase: data.phrase || null,
       description: data.description || null,
       dressCode: data.dressCode || null,
+
+      fatherName: data.fatherName || null,
+      motherName: data.motherName || null,
+      godfatherName: data.godfatherName || null,
+      godmotherName: data.godmotherName || null,
+      familyMessage: data.familyMessage || null,
     },
   })
 
