@@ -22,6 +22,7 @@ import QuinceanosQuote from "./quinceanos/modern/QuinceanosQuote"
 import QuinceanosGoldDecor from "./quinceanos/modern/QuinceanosGoldDecor"
 import QuinceanosGoldDust from "./quinceanos/modern/QuinceanosGoldDust"
 import QuinceanosFamily from "../eventos/QuinceanosFamily"
+import QuinceanosBorder from "./quinceanos/modern/QuinceanosBorder"
 
 export default function QuinceanosModern({
   event,
@@ -60,7 +61,6 @@ export default function QuinceanosModern({
       theme={event.theme}
       event={event}
     >
-
       <QuinceanosModernEnvelope
         quinceaneraName={name}
         eventDate={event.eventDate}
@@ -73,6 +73,7 @@ export default function QuinceanosModern({
             color: "var(--theme-text)",
           }}
         >
+          <QuinceanosBorder position="top" />
 
           {/* =====================================================
               01. HERO
@@ -345,6 +346,8 @@ export default function QuinceanosModern({
               autoplay={event.music.autoplay}
             />
           )}
+
+          <QuinceanosBorder position="bottom" />
 
         </main>
 
