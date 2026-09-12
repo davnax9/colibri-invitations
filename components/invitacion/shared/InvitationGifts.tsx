@@ -128,9 +128,7 @@ export default function InvitationGifts({
             color: "var(--theme-secondary)",
           }}
         >
-          Tu presencia es lo más importante.
-          Si deseas tener un detalle,
-          aquí encontrarás algunas opciones.
+          Tu presencia es lo más importante. Si deseas tener un detalle, aquí encontrarás algunas opciones.
         </p>
 
 
@@ -147,7 +145,7 @@ export default function InvitationGifts({
 
         {/* REGALOS */}
 
-        <div className="mt-14 grid gap-12 sm:grid-cols-2">
+        <div className="mt-8 grid gap-12 sm:grid-cols-2">
 
           {sortedGifts.map((gift) => {
 
@@ -156,7 +154,7 @@ export default function InvitationGifts({
             return (
               <article
                 key={gift.id}
-                className="relative px-6 py-8"
+                className="relative px-6 py-4"
               >
 
                 {/* ICONO */}

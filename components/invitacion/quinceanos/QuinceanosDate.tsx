@@ -9,7 +9,7 @@ export default function QuinceanosDate({ event }: Props) {
   const date = event.eventDate
 
   return (
-    <section className="bg-white px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+    <section className="bg-white px-6 py-12 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
       <p className="text-sm uppercase tracking-[0.4em]" style={{color: "var(--theme-accent)"}}>Reserva la fecha</p>
       <div className="mx-auto mt-8 max-w-xl">
         <p className="text-2xl font-serif md:text-3xl" style={{color: "var(--theme-primary)"}}>{date.toLocaleDateString("es-MX", {weekday: "long",})}</p>

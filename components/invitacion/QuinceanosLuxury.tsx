@@ -26,10 +26,9 @@ export default function QuinceanosLuxury({event,guest}: InvitationTemplateProps)
     <InvitationTheme theme={event.theme} event={event}>
       <QuinceanosLuxuryEnvelope quinceaneraName={name}>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
-
           <QuinceanosLuxuryHero coverPhoto={coverPhoto} details={details} event={event}/>
           <QuinceanosFamily details={details}/>
-          <section className="px-6 py-28 text-center" style={{ backgroundColor: "var(--theme-surface)"}}>
+          <section className="px-6 py-12 text-center" style={{ backgroundColor: "var(--theme-surface)"}}>
             <div className="mx-auto max-w-3xl">
               <div className="mx-auto h-px w-20" style={{backgroundColor: "var(--theme-accent)"}}/>
               <p className="mt-8 text-xs uppercase tracking-[0.5em]" style={{color: "var(--theme-secondary)",}}>Mis XV años</p>

@@ -8,32 +8,23 @@ type Props = {
   } | null
 }
 
-export default function QuinceanosFamily({
-  details,
-}: Props) {
+export default function QuinceanosFamily({details}: Props) {
 
   if (!details) {
     return null
   }
 
-  const hasParents =
-    Boolean(details.fatherName) ||
-    Boolean(details.motherName)
-
-  const hasGodparents =
-    Boolean(details.godfatherName) ||
-    Boolean(details.godmotherName)
-
-  const hasMessage =
-    Boolean(details.familyMessage)
-
+  const hasParents = Boolean(details.fatherName) || Boolean(details.motherName)
+  const hasGodparents = Boolean(details.godfatherName) || Boolean(details.godmotherName)
+  const hasMessage = Boolean(details.familyMessage)
+  
   if (!hasParents && !hasGodparents && !hasMessage) {
     return null
   }
 
   return (
     <section
-      className="relative overflow-hidden px-6 py-24 sm:px-10 md:py-32"
+      className="relative overflow-hidden px-6 pt-8 pb-8 sm:px-10 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12"
       style={{
         backgroundColor: "var(--theme-background)",
         color: "var(--theme-text)",

@@ -3,10 +3,7 @@ type Props = {
   className?: string
 }
 
-export default function QuinceanosGoldDecor({
-  variant = "sparkles",
-  className = "",
-}: Props) {
+export default function QuinceanosGoldDecor({variant = "sparkles", className = ""}: Props) {
 
   if (variant === "divider") {
     return (

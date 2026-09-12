@@ -22,38 +22,16 @@ const GOLD = "#B89455"
 const DARK_GOLD = "#8C6A36"
 const CHAMPAGNE = "#D8C08A"
 
-export default function QuinceanosModernHero({
-  coverPhoto,
-  details,
-  event,
-}: Props) {
+export default function QuinceanosModernHero({coverPhoto, details, event}: Props) {
 
-  const quinceaneraName =
-    details?.quinceaneraName ?? "Mis XV"
-
-  const formattedDate =
-    event.eventDate.toLocaleDateString(
-      "es-MX",
-      {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      }
-    )
+  const quinceaneraName = details?.quinceaneraName ?? "Mis XV"
+  const formattedDate = event.eventDate.toLocaleDateString("es-MX",{day: "numeric",month: "long",year: "numeric"})
 
   return (
-    <section
-      className="relative min-h-screen overflow-hidden"
-      style={{
-        backgroundColor: "var(--theme-background)",
-        color: "var(--theme-text)",
-      }}
-    >
-
+    <section className="relative min-h-screen overflow-hidden" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
       {/* =====================================================
           BRILLOS DE FONDO
       ===================================================== */}
-
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full"

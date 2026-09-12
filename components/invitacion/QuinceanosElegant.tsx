@@ -18,6 +18,8 @@ import QuinceanosElegantEnvelope from "./quinceanos/QuinceanosElegantEnvelope"
 import QuinceanosFamily from "../eventos/QuinceanosFamily"
 import QuinceanosElegantDecor from "./quinceanos/elegant/QuinceanosElegantDecor"
 import QuinceanosElegantOrnament from "./quinceanos/elegant/QuinceanosElegantOrnament"
+import QuinceanosBorder from "./quinceanos/elegant/QuinceanosBorder"
+import QuinceanosSideBorder from "./quinceanos/elegant/QuinceanosSideBorders"
 
 export default function QuinceanosElegant({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -30,6 +32,9 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
       <QuinceanosElegantEnvelope quinceaneraName={quinceaneraName}>
         <QuinceanosElegantDecor>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
+          <QuinceanosSideBorder side="left" />
+          <QuinceanosSideBorder side="right" />
+          <QuinceanosBorder position="top" />
           <QuinceanosElegantHero coverPhoto={coverPhoto} details={details} event={event} />
           
           <section
@@ -98,6 +103,8 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
           <QuinceanosFooter details={details} />
 
           {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />)}
+
+          <QuinceanosBorder position="bottom" />
         </main>
         </QuinceanosElegantDecor>
       </QuinceanosElegantEnvelope>

@@ -18,33 +18,293 @@ const PRIMARY = "var(--theme-primary)"
 const ACCENT = "var(--theme-accent)"
 const SECONDARY = "var(--theme-secondary)"
 
+const PAPER = "#FAF8F3"
+
+/* =========================================================
+   HOJA BOTÁNICA
+========================================================= */
+
+function Leaf({
+  x,
+  y,
+  rotate = 0,
+  scale = 1,
+  opacity = 0.55,
+}: {
+  x: number
+  y: number
+  rotate?: number
+  scale?: number
+  opacity?: number
+}) {
+  return (
+    <g
+      transform={`translate(${x} ${y}) rotate(${rotate}) scale(${scale})`}
+      opacity={opacity}
+    >
+      <path
+        d="
+          M 0 0
+          C 4 -10, 13 -15, 22 -15
+          C 17 -6, 9 0, 0 0
+          Z
+        "
+        fill={PRIMARY}
+      />
+
+      <path
+        d="M 1 -1 C 8 -7, 14 -11, 20 -14"
+        fill="none"
+        stroke={SECONDARY}
+        strokeWidth="0.8"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+    </g>
+  )
+}
+
+
+/* =========================================================
+   PEQUEÑO BROTE
+========================================================= */
+
+function Bud({
+  x,
+  y,
+  rotate = 0,
+  scale = 1,
+}: {
+  x: number
+  y: number
+  rotate?: number
+  scale?: number
+}) {
+  return (
+    <g
+      transform={`translate(${x} ${y}) rotate(${rotate}) scale(${scale})`}
+    >
+      <path
+        d="
+          M 0 0
+          C -7 -8, -5 -16, 0 -21
+          C 5 -16, 7 -8, 0 0
+          Z
+        "
+        fill={ACCENT}
+        opacity="0.55"
+      />
+
+      <path
+        d="M 0 0 C 0 -7, 0 -14, 0 -20"
+        fill="none"
+        stroke={PRIMARY}
+        strokeWidth="1"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+    </g>
+  )
+}
+
+
+/* =========================================================
+   FLOR BOTÁNICA DELICADA
+========================================================= */
+
+function BotanicalFlower({
+  x,
+  y,
+  scale = 1,
+}: {
+  x: number
+  y: number
+  scale?: number
+}) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${scale})`}>
+
+      {/* pétalos traseros */}
+      <path
+        d="M 0 0
+           C -18 -7, -20 -20, -10 -28
+           C -2 -34, 5 -20, 0 0"
+        fill={ACCENT}
+        opacity="0.42"
+      />
+
+      <path
+        d="M 0 0
+           C 18 -7, 20 -20, 10 -28
+           C 2 -34, -5 -20, 0 0"
+        fill={ACCENT}
+        opacity="0.42"
+      />
+
+      {/* pétalos principales */}
+      <path
+        d="M 0 0
+           C -14 -5, -18 -16, -11 -22
+           C -4 -27, 1 -15, 0 0"
+        fill={ACCENT}
+        opacity="0.72"
+      />
+
+      <path
+        d="M 0 0
+           C 14 -5, 18 -16, 11 -22
+           C 4 -27, -1 -15, 0 0"
+        fill={ACCENT}
+        opacity="0.72"
+      />
+
+      <path
+        d="M 0 0
+           C -8 -13, -5 -24, 1 -27
+           C 8 -23, 7 -11, 0 0"
+        fill={ACCENT}
+        opacity="0.62"
+      />
+
+      {/* centro */}
+      <circle
+        cx="0"
+        cy="0"
+        r="4"
+        fill={SECONDARY}
+        opacity="0.9"
+      />
+
+      <circle
+        cx="0"
+        cy="0"
+        r="1.7"
+        fill={PAPER}
+        opacity="0.9"
+      />
+
+    </g>
+  )
+}
+
+
+/* =========================================================
+   FLOR PEQUEÑA
+========================================================= */
+
+function SmallFlower({
+  x,
+  y,
+  scale = 1,
+}: {
+  x: number
+  y: number
+  scale?: number
+}) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${scale})`}>
+
+      <circle
+        cx="0"
+        cy="0"
+        r="2.8"
+        fill={SECONDARY}
+        opacity="0.9"
+      />
+
+      {[0, 72, 144, 216, 288].map((rotation) => (
+        <ellipse
+          key={rotation}
+          cx="0"
+          cy="-7"
+          rx="3.5"
+          ry="8"
+          fill={ACCENT}
+          opacity="0.48"
+          transform={`rotate(${rotation})`}
+        />
+      ))}
+
+      <circle
+        cx="0"
+        cy="0"
+        r="1.1"
+        fill={PAPER}
+        opacity="0.8"
+      />
+
+    </g>
+  )
+}
+
+
+/* =========================================================
+   DESTELLO FINO
+========================================================= */
+
+function Sparkle({
+  x,
+  y,
+  size = 8,
+}: {
+  x: number
+  y: number
+  size?: number
+}) {
+  return (
+    <g
+      transform={`translate(${x} ${y})`}
+      fill={ACCENT}
+      opacity="0.65"
+    >
+      <path
+        d={`
+          M 0 -${size}
+          L 1.4 -1.4
+          L ${size} 0
+          L 1.4 1.4
+          L 0 ${size}
+          L -1.4 1.4
+          L -${size} 0
+          L -1.4 -1.4
+          Z
+        `}
+      />
+    </g>
+  )
+}
+
+
 /* =========================================================
    ORNAMENTO HORIZONTAL
-   ========================================================= */
+========================================================= */
 
 function FloralHorizontal({
   position,
 }: {
   position: "top" | "bottom"
 }) {
-  const gradientId = `gold-horizontal-${position}`
-  const flowerId = `flower-horizontal-${position}`
+  const isBottom = position === "bottom"
 
   return (
     <div
-      className={[
-        "pointer-events-none w-full overflow-hidden",
-        position === "bottom" ? "rotate-180" : "",
-      ].join(" ")}
+      className={`
+        pointer-events-none
+        w-full
+        overflow-hidden
+        ${isBottom ? "rotate-180" : ""}
+      `}
     >
       <svg
-        viewBox="0 0 760 180"
+        viewBox="0 0 760 170"
         className="mx-auto h-auto w-full max-w-[760px]"
         aria-hidden="true"
       >
+
         <defs>
+
           <linearGradient
-            id={gradientId}
+            id={`branch-${position}`}
             x1="0%"
             y1="0%"
             x2="100%"
@@ -57,21 +317,21 @@ function FloralHorizontal({
             />
 
             <stop
-              offset="18%"
+              offset="25%"
               stopColor={PRIMARY}
-              stopOpacity="0.35"
+              stopOpacity="0.45"
             />
 
             <stop
               offset="50%"
               stopColor={ACCENT}
-              stopOpacity="0.9"
+              stopOpacity="0.85"
             />
 
             <stop
-              offset="82%"
+              offset="75%"
               stopColor={PRIMARY}
-              stopOpacity="0.35"
+              stopOpacity="0.45"
             />
 
             <stop
@@ -81,208 +341,235 @@ function FloralHorizontal({
             />
           </linearGradient>
 
-          <radialGradient
-            id={flowerId}
-            cx="50%"
-            cy="50%"
-            r="60%"
-          >
-            <stop
-              offset="0%"
-              stopColor={ACCENT}
-              stopOpacity="0.9"
-            />
-
-            <stop
-              offset="60%"
-              stopColor={PRIMARY}
-              stopOpacity="0.65"
-            />
-
-            <stop
-              offset="100%"
-              stopColor={SECONDARY}
-              stopOpacity="0.15"
-            />
-          </radialGradient>
         </defs>
 
-        {/* Rama izquierda */}
+
+        {/* =================================================
+            RAMAS PRINCIPALES
+        ================================================= */}
+
         <path
           d="
-            M 35 105
-            C 95 78, 135 82, 180 105
-            C 225 128, 270 125, 315 98
+            M 35 118
+            C 105 75, 155 82, 220 108
+            C 275 130, 320 118, 360 88
           "
           fill="none"
-          stroke={`url(#${gradientId})`}
-          strokeWidth="2"
+          stroke={`url(#branch-${position})`}
+          strokeWidth="1.5"
           strokeLinecap="round"
         />
 
-        {/* Rama derecha */}
         <path
           d="
-            M 725 105
-            C 665 78, 625 82, 580 105
-            C 535 128, 490 125, 445 98
+            M 725 118
+            C 655 75, 605 82, 540 108
+            C 485 130, 440 118, 400 88
           "
           fill="none"
-          stroke={`url(#${gradientId})`}
-          strokeWidth="2"
+          stroke={`url(#branch-${position})`}
+          strokeWidth="1.5"
           strokeLinecap="round"
         />
 
-        {/* Ramas secundarias */}
+
+        {/* =================================================
+            RAMAS FINAS
+        ================================================= */}
+
         <path
           d="
-            M 65 125
-            C 145 105, 200 110, 265 125
+            M 75 111
+            C 125 94, 165 96, 208 112
           "
           fill="none"
           stroke={PRIMARY}
           strokeOpacity="0.3"
-          strokeWidth="1"
+          strokeWidth="0.8"
         />
 
         <path
           d="
-            M 695 125
-            C 615 105, 560 110, 495 125
+            M 685 111
+            C 635 94, 595 96, 552 112
           "
           fill="none"
           stroke={PRIMARY}
           strokeOpacity="0.3"
-          strokeWidth="1"
+          strokeWidth="0.8"
         />
 
-        {/* Flor central */}
-        <g transform="translate(380 82)">
-          {Array.from({ length: 8 }).map((_, index) => (
-            <ellipse
-              key={index}
-              cx="0"
-              cy="-17"
-              rx="9"
-              ry="18"
-              fill={`url(#${flowerId})`}
-              transform={`rotate(${index * 45})`}
-            />
-          ))}
 
-          <circle
-            cx="0"
-            cy="0"
-            r="7"
-            fill={SECONDARY}
-            fillOpacity="0.85"
+        {/* =================================================
+            HOJAS IZQUIERDA
+        ================================================= */}
+
+        <Leaf
+          x={115}
+          y={91}
+          rotate={-35}
+          scale={0.8}
+        />
+
+        <Leaf
+          x={145}
+          y={96}
+          rotate={35}
+          scale={0.7}
+        />
+
+        <Leaf
+          x={182}
+          y={105}
+          rotate={-38}
+          scale={0.75}
+        />
+
+        <Leaf
+          x={220}
+          y={112}
+          rotate={34}
+          scale={0.7}
+        />
+
+        <Leaf
+          x={270}
+          y={111}
+          rotate={-42}
+          scale={0.72}
+        />
+
+
+        {/* =================================================
+            HOJAS DERECHA
+        ================================================= */}
+
+        <g transform="translate(760 0) scale(-1 1)">
+
+          <Leaf
+            x={115}
+            y={91}
+            rotate={-35}
+            scale={0.8}
           />
 
-          <circle
-            cx="0"
-            cy="0"
-            r="3"
-            fill="#FAF8F3"
-            fillOpacity="0.8"
+          <Leaf
+            x={145}
+            y={96}
+            rotate={35}
+            scale={0.7}
+          />
+
+          <Leaf
+            x={182}
+            y={105}
+            rotate={-38}
+            scale={0.75}
+          />
+
+          <Leaf
+            x={220}
+            y={112}
+            rotate={34}
+            scale={0.7}
+          />
+
+          <Leaf
+            x={270}
+            y={111}
+            rotate={-42}
+            scale={0.72}
+          />
+
+        </g>
+
+
+        {/* =================================================
+            FLORES
+        ================================================= */}
+
+        <BotanicalFlower
+          x={380}
+          y={76}
+          scale={0.9}
+        />
+
+        <SmallFlower
+          x={270}
+          y={111}
+          scale={0.75}
+        />
+
+        <SmallFlower
+          x={490}
+          y={111}
+          scale={0.75}
+        />
+
+
+        {/* =================================================
+            BROTES
+        ================================================= */}
+
+        <Bud
+          x={95}
+          y={102}
+          rotate={-55}
+          scale={0.65}
+        />
+
+        <Bud
+          x={300}
+          y={104}
+          rotate={-25}
+          scale={0.55}
+        />
+
+        <g transform="translate(760 0) scale(-1 1)">
+          <Bud
+            x={95}
+            y={102}
+            rotate={-55}
+            scale={0.65}
+          />
+
+          <Bud
+            x={300}
+            y={104}
+            rotate={-25}
+            scale={0.55}
           />
         </g>
 
-        {/* Flores laterales */}
-        <SmallFlower x={255} y={112} />
-        <SmallFlower x={505} y={112} />
 
-        {/* Hojas */}
-        <g
-          fill={PRIMARY}
-          fillOpacity="0.55"
-        >
-          <ellipse
-            cx="150"
-            cy="91"
-            rx="5"
-            ry="13"
-            transform="rotate(-48 150 91)"
-          />
+        {/* =================================================
+            DESTELLOS
+        ================================================= */}
 
-          <ellipse
-            cx="185"
-            cy="105"
-            rx="5"
-            ry="13"
-            transform="rotate(48 185 105)"
-          />
+        <Sparkle
+          x={125}
+          y={65}
+          size={5}
+        />
 
-          <ellipse
-            cx="225"
-            cy="113"
-            rx="5"
-            ry="13"
-            transform="rotate(-48 225 113)"
-          />
+        <Sparkle
+          x={635}
+          y={65}
+          size={5}
+        />
 
-          <ellipse
-            cx="610"
-            cy="91"
-            rx="5"
-            ry="13"
-            transform="rotate(48 610 91)"
-          />
+        <Sparkle
+          x={320}
+          y={47}
+          size={4}
+        />
 
-          <ellipse
-            cx="575"
-            cy="105"
-            rx="5"
-            ry="13"
-            transform="rotate(-48 575 105)"
-          />
+        <Sparkle
+          x={440}
+          y={47}
+          size={4}
+        />
 
-          <ellipse
-            cx="535"
-            cy="113"
-            rx="5"
-            ry="13"
-            transform="rotate(48 535 113)"
-          />
-        </g>
-
-        {/* Destellos */}
-        <g
-          fill={PRIMARY}
-          fillOpacity="0.55"
-          fontFamily="serif"
-        >
-          <text
-            x="115"
-            y="70"
-            fontSize="13"
-          >
-            ✦
-          </text>
-
-          <text
-            x="625"
-            y="70"
-            fontSize="13"
-          >
-            ✦
-          </text>
-
-          <text
-            x="300"
-            y="55"
-            fontSize="9"
-          >
-            ✦
-          </text>
-
-          <text
-            x="450"
-            y="55"
-            fontSize="9"
-          >
-            ✦
-          </text>
-        </g>
       </svg>
     </div>
   )
@@ -290,46 +577,8 @@ function FloralHorizontal({
 
 
 /* =========================================================
-   FLOR PEQUEÑA
-   ========================================================= */
-
-function SmallFlower({
-  x,
-  y,
-}: {
-  x: number
-  y: number
-}) {
-  return (
-    <g transform={`translate(${x} ${y})`}>
-      <circle
-        cx="0"
-        cy="0"
-        r="5"
-        fill={PRIMARY}
-        fillOpacity="0.65"
-      />
-
-      {[0, 45, 90, 135].map((rotation) => (
-        <ellipse
-          key={rotation}
-          cx="0"
-          cy="-11"
-          rx="5"
-          ry="11"
-          fill={ACCENT}
-          fillOpacity="0.5"
-          transform={`rotate(${rotation})`}
-        />
-      ))}
-    </g>
-  )
-}
-
-
-/* =========================================================
    ORNAMENTO DE ESQUINA
-   ========================================================= */
+========================================================= */
 
 function FloralCorner({
   position,
@@ -357,7 +606,11 @@ function FloralCorner({
 
   return (
     <div
-      className="pointer-events-none"
+      className="
+        pointer-events-none
+        w-[180px]
+        sm:w-[220px]
+      "
       style={{
         transform,
         transformOrigin: "center",
@@ -365,184 +618,183 @@ function FloralCorner({
     >
       <svg
         viewBox="0 0 220 220"
-        width="220"
-        height="220"
+        className="h-auto w-full"
         aria-hidden="true"
       >
-        {/* Rama vertical */}
+
+        {/* =================================================
+            RAMA PRINCIPAL VERTICAL
+        ================================================= */}
+
         <path
           d="
-            M 18 205
-            C 25 165, 35 130, 60 100
-            C 82 74, 110 48, 150 25
+            M 22 205
+            C 30 165, 42 132, 65 102
+            C 88 72, 118 47, 158 22
           "
           fill="none"
           stroke={PRIMARY}
-          strokeWidth="2"
-          strokeOpacity="0.65"
+          strokeWidth="1.6"
+          strokeOpacity="0.58"
           strokeLinecap="round"
         />
 
-        {/* Rama horizontal */}
+
+        {/* =================================================
+            RAMA PRINCIPAL HORIZONTAL
+        ================================================= */}
+
         <path
           d="
-            M 18 205
-            C 58 198, 95 190, 125 170
-            C 153 151, 176 124, 198 82
+            M 22 205
+            C 62 197, 98 188, 128 166
+            C 158 144, 180 113, 199 76
           "
           fill="none"
           stroke={PRIMARY}
-          strokeWidth="2"
-          strokeOpacity="0.65"
+          strokeWidth="1.6"
+          strokeOpacity="0.58"
           strokeLinecap="round"
         />
 
-        {/* Rama secundaria */}
+
+        {/* =================================================
+            RAMAS FINAS
+        ================================================= */}
+
         <path
           d="
-            M 42 166
-            C 66 157, 85 145, 103 128
+            M 42 168
+            C 67 158, 85 145, 105 123
           "
           fill="none"
           stroke={PRIMARY}
-          strokeWidth="1"
-          strokeOpacity="0.35"
+          strokeWidth="0.8"
+          strokeOpacity="0.32"
         />
 
-        {/* Flor principal */}
-        <g transform="translate(28 188)">
-          {Array.from({ length: 8 }).map((_, index) => (
-            <ellipse
-              key={index}
-              cx="0"
-              cy="-17"
-              rx="8"
-              ry="17"
-              fill={ACCENT}
-              fillOpacity="0.55"
-              transform={`rotate(${index * 45})`}
-            />
-          ))}
+        <path
+          d="
+            M 65 103
+            C 85 95, 101 83, 116 67
+          "
+          fill="none"
+          stroke={PRIMARY}
+          strokeWidth="0.8"
+          strokeOpacity="0.3"
+        />
 
-          <circle
-            cx="0"
-            cy="0"
-            r="7"
-            fill={SECONDARY}
-            fillOpacity="0.8"
-          />
 
-          <circle
-            cx="0"
-            cy="0"
-            r="3"
-            fill="#FAF8F3"
-            fillOpacity="0.75"
-          />
-        </g>
+        {/* =================================================
+            FLOR PRINCIPAL
+        ================================================= */}
 
-        {/* Flor secundaria */}
-        <g transform="translate(100 126)">
-          <circle
-            cx="0"
-            cy="0"
-            r="4"
-            fill={PRIMARY}
-            fillOpacity="0.7"
-          />
+        <BotanicalFlower
+          x={28}
+          y={187}
+          scale={0.95}
+        />
 
-          {[0, 60, 120, 180, 240, 300].map(
-            (rotation) => (
-              <ellipse
-                key={rotation}
-                cx="0"
-                cy="-9"
-                rx="4"
-                ry="9"
-                fill={ACCENT}
-                fillOpacity="0.45"
-                transform={`rotate(${rotation})`}
-              />
-            )
-          )}
-        </g>
 
-        {/* Hojas */}
-        <g
-          fill={PRIMARY}
-          fillOpacity="0.55"
-        >
-          <ellipse
-            cx="52"
-            cy="157"
-            rx="5"
-            ry="13"
-            transform="rotate(-55 52 157)"
-          />
+        {/* =================================================
+            FLOR SECUNDARIA
+        ================================================= */}
 
-          <ellipse
-            cx="73"
-            cy="147"
-            rx="5"
-            ry="13"
-            transform="rotate(35 73 147)"
-          />
+        <SmallFlower
+          x={104}
+          y={126}
+          scale={0.75}
+        />
 
-          <ellipse
-            cx="82"
-            cy="91"
-            rx="5"
-            ry="13"
-            transform="rotate(-45 82 91)"
-          />
 
-          <ellipse
-            cx="108"
-            cy="69"
-            rx="5"
-            ry="13"
-            transform="rotate(42 108 69)"
-          />
+        {/* =================================================
+            HOJAS
+        ================================================= */}
 
-          <ellipse
-            cx="135"
-            cy="48"
-            rx="5"
-            ry="13"
-            transform="rotate(-45 135 48)"
-          />
-        </g>
+        <Leaf
+          x={51}
+          y={160}
+          rotate={-55}
+          scale={0.8}
+        />
 
-        {/* Destellos */}
-        <g
-          fill={PRIMARY}
-          fillOpacity="0.55"
-          fontFamily="serif"
-        >
-          <text
-            x="118"
-            y="105"
-            fontSize="10"
-          >
-            ✦
-          </text>
+        <Leaf
+          x={73}
+          y={148}
+          rotate={35}
+          scale={0.75}
+        />
 
-          <text
-            x="155"
-            y="70"
-            fontSize="8"
-          >
-            ✦
-          </text>
+        <Leaf
+          x={78}
+          y={92}
+          rotate={-45}
+          scale={0.72}
+        />
 
-          <text
-            x="78"
-            y="185"
-            fontSize="8"
-          >
-            ✦
-          </text>
-        </g>
+        <Leaf
+          x={105}
+          y={69}
+          rotate={42}
+          scale={0.7}
+        />
+
+        <Leaf
+          x={134}
+          y={47}
+          rotate={-42}
+          scale={0.68}
+        />
+
+        <Leaf
+          x={157}
+          y={29}
+          rotate={35}
+          scale={0.55}
+        />
+
+
+        {/* =================================================
+            BROTES
+        ================================================= */}
+
+        <Bud
+          x={92}
+          y={136}
+          rotate={-40}
+          scale={0.55}
+        />
+
+        <Bud
+          x={124}
+          y={57}
+          rotate={-35}
+          scale={0.48}
+        />
+
+
+        {/* =================================================
+            DESTELLOS
+        ================================================= */}
+
+        <Sparkle
+          x={119}
+          y={103}
+          size={5}
+        />
+
+        <Sparkle
+          x={158}
+          y={72}
+          size={4}
+        />
+
+        <Sparkle
+          x={77}
+          y={182}
+          size={4}
+        />
+
       </svg>
     </div>
   )
@@ -551,7 +803,7 @@ function FloralCorner({
 
 /* =========================================================
    ORNAMENTO LATERAL
-   ========================================================= */
+========================================================= */
 
 function FloralSide({
   position,
@@ -562,198 +814,205 @@ function FloralSide({
 
   return (
     <div
-      className="pointer-events-none"
+      className="
+        pointer-events-none
+        w-[75px]
+        sm:w-[105px]
+        lg:w-[125px]
+      "
       style={{
-        transform: isRight ? "scaleX(-1)" : undefined,
+        transform: isRight
+          ? "scaleX(-1)"
+          : undefined,
       }}
     >
       <svg
         viewBox="0 0 160 620"
-        width="160"
-        height="620"
-        className="h-auto w-[90px] sm:w-[120px]"
+        className="h-auto w-full"
         aria-hidden="true"
       >
-        {/* Rama principal */}
+
+        {/* =================================================
+            RAMA PRINCIPAL
+        ================================================= */}
+
         <path
           d="
-            M 20 600
-            C 35 520, 25 455, 52 390
-            C 80 325, 70 270, 100 210
-            C 116 175, 125 125, 138 35
+            M 22 600
+            C 34 520, 28 460, 52 392
+            C 74 330, 72 272, 98 212
+            C 116 170, 126 120, 138 34
           "
           fill="none"
           stroke={PRIMARY}
-          strokeOpacity="0.6"
-          strokeWidth="2"
+          strokeOpacity="0.58"
+          strokeWidth="1.6"
           strokeLinecap="round"
         />
 
-        {/* Rama secundaria */}
+
+        {/* =================================================
+            RAMAS SECUNDARIAS
+        ================================================= */}
+
         <path
           d="
-            M 34 485
-            C 68 470, 82 450, 96 420
+            M 34 486
+            C 64 472, 83 451, 97 419
           "
           fill="none"
           stroke={PRIMARY}
           strokeOpacity="0.3"
-          strokeWidth="1"
+          strokeWidth="0.8"
         />
 
         <path
           d="
-            M 50 350
-            C 78 335, 94 315, 105 285
+            M 51 352
+            C 76 337, 93 316, 105 284
           "
           fill="none"
           stroke={PRIMARY}
           strokeOpacity="0.3"
-          strokeWidth="1"
+          strokeWidth="0.8"
         />
 
-        {/* Flor inferior */}
-        <g transform="translate(25 575)">
-          {Array.from({ length: 8 }).map((_, index) => (
-            <ellipse
-              key={index}
-              cx="0"
-              cy="-15"
-              rx="8"
-              ry="16"
-              fill={ACCENT}
-              fillOpacity="0.55"
-              transform={`rotate(${index * 45})`}
-            />
-          ))}
+        <path
+          d="
+            M 73 274
+            C 95 259, 108 239, 117 216
+          "
+          fill="none"
+          stroke={PRIMARY}
+          strokeOpacity="0.25"
+          strokeWidth="0.8"
+        />
 
-          <circle
-            cx="0"
-            cy="0"
-            r="6"
-            fill={SECONDARY}
-            fillOpacity="0.8"
-          />
 
-          <circle
-            cx="0"
-            cy="0"
-            r="2.5"
-            fill="#FAF8F3"
-            fillOpacity="0.8"
-          />
-        </g>
+        {/* =================================================
+            FLOR INFERIOR
+        ================================================= */}
 
-        {/* Flor central */}
-        <g transform="translate(62 342)">
-          <circle
-            cx="0"
-            cy="0"
-            r="4"
-            fill={PRIMARY}
-            fillOpacity="0.7"
-          />
+        <BotanicalFlower
+          x={25}
+          y={575}
+          scale={0.9}
+        />
 
-          {[0, 60, 120, 180, 240, 300].map(
-            (rotation) => (
-              <ellipse
-                key={rotation}
-                cx="0"
-                cy="-9"
-                rx="4"
-                ry="9"
-                fill={ACCENT}
-                fillOpacity="0.45"
-                transform={`rotate(${rotation})`}
-              />
-            )
-          )}
-        </g>
 
-        {/* Hojas */}
-        <g
-          fill={PRIMARY}
-          fillOpacity="0.55"
-        >
-          <ellipse
-            cx="40"
-            cy="500"
-            rx="5"
-            ry="14"
-            transform="rotate(-55 40 500)"
-          />
+        {/* =================================================
+            FLOR CENTRAL
+        ================================================= */}
 
-          <ellipse
-            cx="48"
-            cy="450"
-            rx="5"
-            ry="14"
-            transform="rotate(42 48 450)"
-          />
+        <SmallFlower
+          x={62}
+          y={342}
+          scale={0.72}
+        />
 
-          <ellipse
-            cx="63"
-            cy="390"
-            rx="5"
-            ry="14"
-            transform="rotate(-48 63 390)"
-          />
 
-          <ellipse
-            cx="77"
-            cy="275"
-            rx="5"
-            ry="14"
-            transform="rotate(42 77 275)"
-          />
+        {/* =================================================
+            HOJAS
+        ================================================= */}
 
-          <ellipse
-            cx="94"
-            cy="210"
-            rx="5"
-            ry="14"
-            transform="rotate(-48 94 210)"
-          />
+        <Leaf
+          x={40}
+          y={500}
+          rotate={-55}
+          scale={0.82}
+        />
 
-          <ellipse
-            cx="112"
-            cy="145"
-            rx="5"
-            ry="14"
-            transform="rotate(42 112 145)"
-          />
-        </g>
+        <Leaf
+          x={48}
+          y={451}
+          rotate={42}
+          scale={0.78}
+        />
 
-        {/* Destellos */}
-        <g
-          fill={PRIMARY}
-          fillOpacity="0.55"
-          fontFamily="serif"
-        >
-          <text
-            x="78"
-            y="320"
-            fontSize="9"
-          >
-            ✦
-          </text>
+        <Leaf
+          x={63}
+          y={390}
+          rotate={-48}
+          scale={0.75}
+        />
 
-          <text
-            x="110"
-            y="175"
-            fontSize="8"
-          >
-            ✦
-          </text>
+        <Leaf
+          x={77}
+          y={276}
+          rotate={42}
+          scale={0.72}
+        />
 
-          <text
-            x="55"
-            y="430"
-            fontSize="8"
-          >
-            ✦
-          </text>
-        </g>
+        <Leaf
+          x={94}
+          y={210}
+          rotate={-48}
+          scale={0.68}
+        />
+
+        <Leaf
+          x={112}
+          y={145}
+          rotate={42}
+          scale={0.62}
+        />
+
+        <Leaf
+          x={125}
+          y={90}
+          rotate={-42}
+          scale={0.58}
+        />
+
+
+        {/* =================================================
+            BROTES
+        ================================================= */}
+
+        <Bud
+          x={52}
+          y={468}
+          rotate={-45}
+          scale={0.52}
+        />
+
+        <Bud
+          x={87}
+          y={305}
+          rotate={-35}
+          scale={0.48}
+        />
+
+        <Bud
+          x={116}
+          y={175}
+          rotate={-40}
+          scale={0.45}
+        />
+
+
+        {/* =================================================
+            DESTELLOS
+        ================================================= */}
+
+        <Sparkle
+          x={79}
+          y={320}
+          size={5}
+        />
+
+        <Sparkle
+          x={110}
+          y={174}
+          size={4}
+        />
+
+        <Sparkle
+          x={55}
+          y={430}
+          size={4}
+        />
+
       </svg>
     </div>
   )
@@ -762,13 +1021,14 @@ function FloralSide({
 
 /* =========================================================
    COMPONENTE PRINCIPAL
-   ========================================================= */
+========================================================= */
 
 export default function QuinceanosOrnaments({
   positions,
 }: Props) {
   return (
     <div className="pointer-events-none">
+
       {positions.includes("top") && (
         <FloralHorizontal position="top" />
       )}
@@ -800,6 +1060,7 @@ export default function QuinceanosOrnaments({
       {positions.includes("right") && (
         <FloralSide position="right" />
       )}
+
     </div>
   )
 }

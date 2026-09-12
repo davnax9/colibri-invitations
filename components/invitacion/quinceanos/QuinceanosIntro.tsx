@@ -9,7 +9,6 @@ type Props = {
 export default function QuinceanosIntro({
   details,
 }: Props) {
-
   if (
     !details?.title &&
     !details?.subtitle &&
@@ -20,17 +19,20 @@ export default function QuinceanosIntro({
 
   return (
     <section
-      className="relative overflow-hidden px-6 py-24 sm:px-10 md:py-32"
+      className="relative overflow-hidden px-6 pt-8 pb-8 sm:px-10 sm:pt-10 sm:pb-10 md:pt-12 md:pb-12"
       style={{
         backgroundColor:
           "var(--theme-background)",
       }}
     >
 
-      {/* DECORACIÓN */}
+      {/* =====================================================
+          DECORACIÓN
+      ===================================================== */}
+
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-0 h-48 w-48 opacity-10"
+        className="pointer-events-none absolute left-0 top-0 h-36 w-36 opacity-10 sm:h-48 sm:w-48"
         style={{
           background:
             "radial-gradient(circle at top left, var(--theme-accent), transparent 70%)",
@@ -39,18 +41,26 @@ export default function QuinceanosIntro({
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 right-0 h-56 w-56 opacity-10"
+        className="pointer-events-none absolute bottom-0 right-0 h-44 w-44 opacity-10 sm:h-56 sm:w-56"
         style={{
           background:
             "radial-gradient(circle at bottom right, var(--theme-accent), transparent 70%)",
         }}
       />
 
+
+      {/* =====================================================
+          CONTENEDOR
+      ===================================================== */}
+
       <div className="relative mx-auto max-w-4xl">
 
-        {/* MARCO */}
+        {/* =================================================
+            MARCO
+        ================================================= */}
+
         <div
-          className="relative border px-7 py-14 sm:px-12 sm:py-16 md:px-20"
+          className="relative border px-5 py-9 sm:px-10 sm:py-12 md:px-20 md:py-16"
           style={{
             borderColor:
               "var(--theme-accent)",
@@ -58,15 +68,20 @@ export default function QuinceanosIntro({
         >
 
           {/* SEGUNDO MARCO */}
+
           <div
-            className="pointer-events-none absolute inset-3 border opacity-25"
+            className="pointer-events-none absolute inset-2 border opacity-25 sm:inset-3"
             style={{
               borderColor:
                 "var(--theme-accent)",
             }}
           />
 
-          {/* CABECERA */}
+
+          {/* =================================================
+              CABECERA
+          ================================================= */}
+
           <div
             className="relative text-center"
             style={{
@@ -75,20 +90,24 @@ export default function QuinceanosIntro({
             }}
           >
 
-            <div className="text-4xl">
+            <div className="text-3xl sm:text-4xl">
               ❦
             </div>
 
-            <p className="mt-5 text-xs uppercase tracking-[0.45em]">
+            <p className="mt-3 text-[10px] uppercase tracking-[0.4em] sm:mt-5 sm:text-xs sm:tracking-[0.45em]">
               Una noche especial
             </p>
 
           </div>
 
-          {/* TÍTULO */}
+
+          {/* =================================================
+              TÍTULO
+          ================================================= */}
+
           {details.title && (
             <h2
-              className="relative mt-8 text-center font-serif text-4xl leading-tight sm:text-5xl"
+              className="relative mt-6 text-center font-serif text-3xl leading-tight sm:mt-8 sm:text-5xl"
               style={{
                 color:
                   "var(--theme-primary)",
@@ -98,10 +117,14 @@ export default function QuinceanosIntro({
             </h2>
           )}
 
-          {/* SUBTÍTULO */}
+
+          {/* =================================================
+              SUBTÍTULO
+          ================================================= */}
+
           {details.subtitle && (
             <p
-              className="relative mx-auto mt-6 max-w-xl text-center font-serif text-lg italic leading-8"
+              className="relative mx-auto mt-4 max-w-xl text-center font-serif text-base italic leading-7 sm:mt-6 sm:text-lg sm:leading-8"
               style={{
                 color:
                   "var(--theme-secondary)",
@@ -111,9 +134,13 @@ export default function QuinceanosIntro({
             </p>
           )}
 
-          {/* DIVISOR */}
+
+          {/* =================================================
+              DIVISOR
+          ================================================= */}
+
           <div
-            className="relative mx-auto my-9 flex max-w-xs items-center gap-4"
+            className="relative mx-auto my-6 flex max-w-xs items-center gap-3 sm:my-9 sm:gap-4"
             style={{
               color:
                 "var(--theme-accent)",
@@ -122,7 +149,7 @@ export default function QuinceanosIntro({
 
             <span className="h-px flex-1 bg-current opacity-40" />
 
-            <span>
+            <span className="text-sm sm:text-base">
               ✦
             </span>
 
@@ -130,10 +157,14 @@ export default function QuinceanosIntro({
 
           </div>
 
-          {/* DESCRIPCIÓN */}
+
+          {/* =================================================
+              DESCRIPCIÓN
+          ================================================= */}
+
           {details.description && (
             <p
-              className="relative mx-auto max-w-2xl text-center font-serif text-base leading-8 opacity-80 sm:text-lg sm:leading-9"
+              className="relative mx-auto max-w-2xl text-center font-serif text-sm leading-7 opacity-80 sm:text-lg sm:leading-9"
               style={{
                 color:
                   "var(--theme-text)",
@@ -143,9 +174,13 @@ export default function QuinceanosIntro({
             </p>
           )}
 
-          {/* ORNAMENTO FINAL */}
+
+          {/* =================================================
+              ORNAMENTO FINAL
+          ================================================= */}
+
           <div
-            className="relative mt-10 text-center text-3xl"
+            className="relative mt-7 text-center text-2xl sm:mt-10 sm:text-3xl"
             style={{
               color:
                 "var(--theme-accent)",

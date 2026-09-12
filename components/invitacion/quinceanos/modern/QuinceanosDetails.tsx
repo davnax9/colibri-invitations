@@ -11,21 +11,20 @@ export default function QuinceanosDetails({
   ceremony = "Ceremonia",
   reception = "Recepción",
 }: Props) {
-
   return (
     <section
-      className="relative px-6 py-24 sm:py-32"
+      className="relative px-5 py-16 sm:px-6 sm:py-24 md:py-28"
       style={{
         backgroundColor: "var(--theme-background)",
       }}
     >
-
       <div className="mx-auto max-w-5xl">
 
+        {/* ENCABEZADO */}
         <div className="text-center">
 
           <p
-            className="text-xs uppercase tracking-[0.35em]"
+            className="text-[10px] uppercase tracking-[0.35em] sm:text-xs"
             style={{
               color: "#8C6A36",
             }}
@@ -34,7 +33,7 @@ export default function QuinceanosDetails({
           </p>
 
           <h2
-            className="mt-4 font-serif text-4xl sm:text-6xl"
+            className="mt-3 font-serif text-3xl sm:mt-4 sm:text-5xl md:text-6xl"
             style={{
               color: "var(--theme-primary)",
             }}
@@ -43,7 +42,7 @@ export default function QuinceanosDetails({
           </h2>
 
           <div
-            className="mx-auto mt-8 h-px w-24"
+            className="mx-auto mt-6 h-px w-20 sm:mt-8 sm:w-24"
             style={{
               backgroundColor: "#B89455",
             }}
@@ -51,18 +50,18 @@ export default function QuinceanosDetails({
 
         </div>
 
+        {/* FRAMES */}
+        <div className="mt-10 grid gap-5 sm:mt-14 sm:gap-7 md:mt-16 md:grid-cols-2 md:gap-8">
 
-        <div className="mt-16 grid gap-8 md:grid-cols-2">
-
+          {/* CEREMONIA */}
           <QuinceanosVintageFrame
             variant="subtle"
             className="bg-[#FAF8F3]"
           >
-
-            <div className="px-10 py-12 text-center">
+            <div className="px-5 py-7 sm:px-8 sm:py-10 md:px-10 md:py-12 text-center">
 
               <div
-                className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border"
+                className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border sm:h-14 sm:w-14"
                 style={{
                   borderColor: "rgba(184,148,85,0.55)",
                   color: "#B89455",
@@ -72,7 +71,7 @@ export default function QuinceanosDetails({
               </div>
 
               <h3
-                className="mt-6 font-serif text-2xl"
+                className="mt-4 font-serif text-xl sm:mt-5 sm:text-2xl"
                 style={{
                   color: "var(--theme-primary)",
                 }}
@@ -81,7 +80,7 @@ export default function QuinceanosDetails({
               </h3>
 
               <p
-                className="mt-3 text-sm leading-6"
+                className="mx-auto mt-2 max-w-sm text-xs leading-5 sm:mt-3 sm:text-sm sm:leading-6"
                 style={{
                   color: "var(--theme-secondary)",
                 }}
@@ -90,19 +89,17 @@ export default function QuinceanosDetails({
               </p>
 
             </div>
-
           </QuinceanosVintageFrame>
 
-
+          {/* RECEPCIÓN */}
           <QuinceanosVintageFrame
             variant="subtle"
             className="bg-[#FAF8F3]"
           >
-
-            <div className="px-10 py-12 text-center">
+            <div className="px-5 py-7 sm:px-8 sm:py-10 md:px-10 md:py-12 text-center">
 
               <div
-                className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border"
+                className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border sm:h-14 sm:w-14"
                 style={{
                   borderColor: "rgba(184,148,85,0.55)",
                   color: "#B89455",
@@ -112,7 +109,7 @@ export default function QuinceanosDetails({
               </div>
 
               <h3
-                className="mt-6 font-serif text-2xl"
+                className="mt-4 font-serif text-xl sm:mt-5 sm:text-2xl"
                 style={{
                   color: "var(--theme-primary)",
                 }}
@@ -121,7 +118,7 @@ export default function QuinceanosDetails({
               </h3>
 
               <p
-                className="mt-3 text-sm leading-6"
+                className="mx-auto mt-2 max-w-sm text-xs leading-5 sm:mt-3 sm:text-sm sm:leading-6"
                 style={{
                   color: "var(--theme-secondary)",
                 }}
@@ -130,13 +127,10 @@ export default function QuinceanosDetails({
               </p>
 
             </div>
-
           </QuinceanosVintageFrame>
 
         </div>
-
       </div>
-
     </section>
   )
 }
