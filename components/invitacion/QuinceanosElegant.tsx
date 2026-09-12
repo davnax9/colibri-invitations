@@ -16,6 +16,8 @@ import QuinceanosElegantHero from "./quinceanos/QuinceanosElegantHero"
 import InvitationGifts from "./shared/InvitationGifts"
 import QuinceanosElegantEnvelope from "./quinceanos/QuinceanosElegantEnvelope"
 import QuinceanosFamily from "../eventos/QuinceanosFamily"
+import QuinceanosElegantDecor from "./quinceanos/elegant/QuinceanosElegantDecor"
+import QuinceanosElegantOrnament from "./quinceanos/elegant/QuinceanosElegantOrnament"
 
 export default function QuinceanosElegant({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -26,16 +28,46 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
   return (
     <InvitationTheme theme={event.theme} event={event}>
       <QuinceanosElegantEnvelope quinceaneraName={quinceaneraName}>
-      <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
+        <QuinceanosElegantDecor>
+        <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
           <QuinceanosElegantHero coverPhoto={coverPhoto} details={details} event={event} />
-          <QuinceanosFamily details={details}/>
+          
+          <section
+            className="relative px-6 py-10"
+            style={{
+              backgroundColor: "var(--theme-background)",
+            }}
+          >
+            <QuinceanosElegantOrnament
+              symbol="star"
+              className="mb-10"
+            />
+
+            <QuinceanosFamily details={details} />
+          </section>
+
           <QuinceanosIntro details={details} />
 
+          <QuinceanosElegantOrnament
+            symbol="diamond"
+            className="my-4"
+          />
+
           <QuinceanosDate event={event} />
+
+          <QuinceanosElegantOrnament
+            symbol="cross"
+            className="my-6"
+          />
 
           <Countdown targetDate={event.eventDate.toISOString()}/>
 
           <InvitationSchedule event={event} />
+
+          <QuinceanosElegantOrnament
+            symbol="diamond"
+            className="my-8"
+          />
 
           <InvitationLocations event={event} />
 
@@ -49,14 +81,25 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
 
           <InvitationGallery event={event} />
 
+          <QuinceanosElegantOrnament
+            symbol="star"
+            className="my-8"
+          />
+
           <InvitationGifts gifts={event.gifts} />
 
           <QuinceanosDressCode details={details} />
+
+          <QuinceanosElegantOrnament
+            symbol="diamond"
+            className="mb-8"
+          />
 
           <QuinceanosFooter details={details} />
 
           {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />)}
         </main>
+        </QuinceanosElegantDecor>
       </QuinceanosElegantEnvelope>
     </InvitationTheme>
   )
