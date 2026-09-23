@@ -1,9 +1,9 @@
 export const PLAN_LIMITS = {
   BASIC: {
-    photos: 5,
+    photos: 10,
   },
   PRO: {
-    photos: 8,
+    photos: 10,
   },
 } as const
 

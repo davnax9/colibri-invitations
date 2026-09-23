@@ -240,7 +240,7 @@ export default function EventPhotosForm({eventId, photos, plan, isAdmin}: Props)
                 </div>
                 <div>
                   <h4 className="font-semibold text-[#263832]">Has alcanzado el límite de fotografías</h4>
-                  <p className="mt-1 text-sm leading-6 text-[#687A72]">Tu plan {plan} permite hasta {maxPhotos}{" "}{maxPhotos === 5 ? "fotografías." : "fotografías."}</p>
+                  <p className="mt-1 text-sm leading-6 text-[#687A72]">Tu plan {plan} permite hasta {maxPhotos}{" "}{maxPhotos === 10 ? "fotografías." : "fotografías."}</p>
                   {plan === "BASIC" && (<p className="mt-2 text-sm font-semibold text-[#2F5D50]">Actualiza a PRO para agregar hasta 8 fotografías.</p>)}
                 </div>
               </div>
