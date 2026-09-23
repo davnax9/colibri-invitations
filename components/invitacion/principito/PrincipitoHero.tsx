@@ -71,7 +71,7 @@ export default function PrincipitoHero({coverPhoto,details,event}: Props) {
         {/* FECHA */}
         <div className="mx-auto mt-8 flex max-w-xs items-center justify-center gap-4">
           <div className="h-px flex-1 bg-white/20" />
-          <p className="text-sm font-medium text-white/80">{formattedDate}</p>
+          <p className="text-xl font-medium text-[#F4E7B2]">{formattedDate}</p>
           <div className="h-px flex-1 bg-white/20" />
         </div>
         {/* INDICADOR */}
