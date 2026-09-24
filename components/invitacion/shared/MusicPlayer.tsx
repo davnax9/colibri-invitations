@@ -4,7 +4,6 @@ import YouTube, {
   YouTubeProps,
   YouTubePlayer,
 } from "react-youtube"
-
 import {
   forwardRef,
   useCallback,
@@ -26,6 +25,18 @@ type Props = {
   autoplay?: boolean
   onReady?: () => void
 }
+
+type YouTubeReadyEvent = Parameters<
+  NonNullable<YouTubeProps["onReady"]>
+>[0]
+
+type YouTubeStateChangeEvent = Parameters<
+  NonNullable<YouTubeProps["onStateChange"]>
+>[0]
+
+type YouTubeErrorEvent = Parameters<
+  NonNullable<YouTubeProps["onError"]>
+>[0]
 
 const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
   function MusicPlayer(
@@ -95,7 +106,7 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
     )
 
     const handleReady: YouTubeProps["onReady"] = useCallback(
-      (event) => {
+      (event: YouTubeReadyEvent) => {
         console.log("YouTube listo")
 
         setPlayer(event.target)
@@ -110,7 +121,7 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
     )
 
     const handleStateChange: YouTubeProps["onStateChange"] =
-      useCallback((event) => {
+      useCallback((event: YouTubeStateChangeEvent) => {
         console.log(
           "Cambio de estado YouTube:",
           event.data
@@ -147,7 +158,7 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
       }, [])
 
     const handleError: YouTubeProps["onError"] =
-      useCallback((event) => {
+      useCallback((event: YouTubeErrorEvent) => {
         console.error(
           "❌ Error de YouTube:",
           event.data
