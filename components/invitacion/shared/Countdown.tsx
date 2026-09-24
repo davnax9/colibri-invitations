@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useEffect, useState } from "react"
@@ -13,64 +14,64 @@ type TimeLeft = {
   seconds: number
 }
 
-function calculateTimeLeft(
-  targetDate: string
-): TimeLeft {
-  const difference =
-    new Date(targetDate).getTime() -
-    Date.now()
+const initialTimeLeft: TimeLeft = {
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+}
+
+function calculateTimeLeft(targetDate: string): TimeLeft {
+  const target = new Date(targetDate).getTime()
+
+  if (!Number.isFinite(target)) {
+    return initialTimeLeft
+  }
+
+  const difference = target - Date.now()
 
   if (difference <= 0) {
-    return {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    }
+    return initialTimeLeft
   }
 
   return {
     days: Math.floor(
-      difference /
-        (1000 * 60 * 60 * 24)
+      difference / (1000 * 60 * 60 * 24)
     ),
 
     hours: Math.floor(
-      (difference /
-        (1000 * 60 * 60)) %
-        24
+      (difference / (1000 * 60 * 60)) % 24
     ),
 
     minutes: Math.floor(
-      (difference /
-        (1000 * 60)) %
-        60
+      (difference / (1000 * 60)) % 60
     ),
 
     seconds: Math.floor(
-      (difference / 1000) %
-        60
+      (difference / 1000) % 60
     ),
   }
 }
 
-export default function Countdown({
-  targetDate,
-}: Props) {
+export default function Countdown({ targetDate }: Props) {
+  // Estado inicial fijo: mismo HTML en servidor y navegador.
   const [timeLeft, setTimeLeft] =
-    useState<TimeLeft>(() =>
-      calculateTimeLeft(targetDate)
-    )
+    useState<TimeLeft>(initialTimeLeft)
 
+  // El cálculo con Date.now() ocurre solo en el navegador,
+  // después del montaje, evitando el hydration mismatch.
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft(
-        calculateTimeLeft(targetDate)
-      )
-    }, 1000)
+    const updateCountdown = () => {
+      setTimeLeft(calculateTimeLeft(targetDate))
+    }
 
-    return () =>
-      clearInterval(interval)
+    // Actualizar inmediatamente al montar.
+    updateCountdown()
+
+    // Mantener el contador actualizado cada segundo.
+    const interval = setInterval(updateCountdown, 1000)
+
+    return () => clearInterval(interval)
   }, [targetDate])
 
   const units = [
@@ -104,15 +105,10 @@ export default function Countdown({
         md:py-12
       "
       style={{
-        backgroundColor:
-          "var(--theme-background)",
+        backgroundColor: "var(--theme-background)",
       }}
     >
-
-      {/* =====================================================
-          BRILLO CENTRAL
-      ===================================================== */}
-
+      {/* BRILLO CENTRAL */}
       <div
         aria-hidden="true"
         className="
@@ -132,27 +128,10 @@ export default function Countdown({
         }}
       />
 
-      <div
-        className="
-          relative
-          mx-auto
-          max-w-4xl
-          text-center
-        "
-      >
-
-        {/* =================================================
-            ORNAMENTO
-        ================================================= */}
-
+      <div className="relative mx-auto max-w-4xl text-center">
+        {/* ORNAMENTO */}
         <div
-          className="
-            mb-6
-            flex
-            items-center
-            justify-center
-            gap-4
-          "
+          className="mb-6 flex items-center justify-center gap-4"
           style={{
             color: "#B89455",
           }}
@@ -160,31 +139,23 @@ export default function Countdown({
           <span
             className="h-px w-12 sm:w-16"
             style={{
-              backgroundColor:
-                "#B89455",
+              backgroundColor: "#B89455",
               opacity: 0.4,
             }}
           />
 
-          <span className="text-lg">
-            ✦
-          </span>
+          <span className="text-lg">✦</span>
 
           <span
             className="h-px w-12 sm:w-16"
             style={{
-              backgroundColor:
-                "#B89455",
+              backgroundColor: "#B89455",
               opacity: 0.4,
             }}
           />
         </div>
 
-
-        {/* =================================================
-            HEADER
-        ================================================= */}
-
+        {/* HEADER */}
         <p
           className="
             text-[10px]
@@ -207,8 +178,7 @@ export default function Countdown({
             md:text-5xl
           "
           style={{
-            color:
-              "var(--theme-primary)",
+            color: "var(--theme-primary)",
           }}
         >
           Cada vez falta menos
@@ -225,19 +195,14 @@ export default function Countdown({
             leading-7
           "
           style={{
-            color:
-              "var(--theme-secondary)",
+            color: "var(--theme-secondary)",
           }}
         >
           La espera también forma parte
           de este momento tan especial.
         </p>
 
-
-        {/* =================================================
-            CONTADOR
-        ================================================= */}
-
+        {/* CONTADOR */}
         <div
           className="
             mx-auto
@@ -247,22 +212,12 @@ export default function Countdown({
             max-w-3xl
           "
         >
-
           {units.map((unit, index) => (
-
             <div
               key={unit.label}
-              className="
-                relative
-                px-1
-                sm:px-3
-              "
+              className="relative px-1 sm:px-3"
             >
-
-              {/* =================================================
-                  CARD
-              ================================================= */}
-
+              {/* CARD */}
               <div
                 className="
                   mx-auto
@@ -281,15 +236,11 @@ export default function Countdown({
                   sm:py-5
                 "
                 style={{
-                  borderColor:
-                    "rgba(184,148,85,0.28)",
-                  backgroundColor:
-                    "rgba(250,248,243,0.28)",
+                  borderColor: "rgba(184,148,85,0.28)",
+                  backgroundColor: "rgba(250,248,243,0.28)",
                 }}
               >
-
                 {/* NÚMERO */}
-
                 <p
                   className="
                     font-serif
@@ -299,18 +250,13 @@ export default function Countdown({
                     md:text-5xl
                   "
                   style={{
-                    color:
-                      "var(--theme-primary)",
+                    color: "var(--theme-primary)",
                   }}
                 >
-                  {String(
-                    unit.value
-                  ).padStart(2, "0")}
+                  {String(unit.value).padStart(2, "0")}
                 </p>
 
-
                 {/* ETIQUETA */}
-
                 <p
                   className="
                     mt-2
@@ -326,14 +272,9 @@ export default function Countdown({
                 >
                   {unit.label}
                 </p>
-
               </div>
 
-
-              {/* =================================================
-                  SEPARADOR
-              ================================================= */}
-
+              {/* SEPARADOR */}
               {index !== 0 && (
                 <div
                   aria-hidden="true"
@@ -342,64 +283,43 @@ export default function Countdown({
                     left-0
                     top-1/2
                     h-10
-                    -translate-y-1/2
                     w-px
+                    -translate-y-1/2
                   "
                   style={{
-                    backgroundColor:
-                      "rgba(184,148,85,0.22)",
+                    backgroundColor: "rgba(184,148,85,0.22)",
                   }}
                 />
               )}
-
             </div>
-
           ))}
-
         </div>
 
-
-        {/* =================================================
-            FINAL
-        ================================================= */}
-
+        {/* FINAL */}
         <div
-          className="
-            mt-12
-            flex
-            items-center
-            justify-center
-            gap-4
-          "
+          className="mt-12 flex items-center justify-center gap-4"
           style={{
             color: "#B89455",
           }}
         >
-
           <span
             className="h-px w-12"
             style={{
-              backgroundColor:
-                "#B89455",
+              backgroundColor: "#B89455",
               opacity: 0.35,
             }}
           />
 
-          <span className="text-sm">
-            ❦
-          </span>
+          <span className="text-sm">❦</span>
 
           <span
             className="h-px w-12"
             style={{
-              backgroundColor:
-                "#B89455",
+              backgroundColor: "#B89455",
               opacity: 0.35,
             }}
           />
-
         </div>
-
       </div>
     </section>
   )
