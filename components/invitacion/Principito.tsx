@@ -26,18 +26,7 @@ export default function Principito({
 
   return (
     <InvitationTheme theme={event.theme} event={event}>
-      <PrincipitoExperience
-        // music={
-        //   event.music
-        //     ? {
-        //         url: event.music.url,
-        //         title: event.music.title,
-        //         artist: event.music.artist,
-        //       }
-        //     : null
-        // }
-        // autoplay={event.music?.autoplay ?? false}
-      >
+      <PrincipitoExperience>
         <main className="min-h-screen overflow-hidden" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
           {/* ================================================= */}
           {/* HERO */}
