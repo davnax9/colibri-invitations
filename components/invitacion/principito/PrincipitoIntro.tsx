@@ -29,7 +29,7 @@ export default function PrincipitoIntro({details}: Props) {
         {/* <p className="mt-8 text-base leading-8 opacity-75 sm:text-lg">Hace algún tiempo comenzó una pequeña historia que hoy queremos celebrar contigo.</p> */}
         <p className="mt-8 text-base leading-8 opacity-75 sm:text-lg">{details?.phrase}</p>
         <p className="mt-8 text-base leading-8 opacity-75 sm:text-lg">{details?.description}</p>
-        <p className="mt-6 text-base leading-8 opacity-75 sm:text-lg">{childName} está por vivir un día lleno de alegría, sueños, juegos y momentos inolvidables.</p>
+        {/* <p className="mt-6 text-base leading-8 opacity-75 sm:text-lg">{childName} está por vivir un día lleno de alegría, sueños, juegos y momentos inolvidables.</p> */}
         <div className="mt-10 text-3xl">✦</div>
       </div>
     </section>
