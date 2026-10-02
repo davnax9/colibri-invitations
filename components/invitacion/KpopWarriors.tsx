@@ -186,7 +186,7 @@ export default function KpopWarriors({
                   text-pink-200/80
                 "
               >
-                The stage is yours
+                Esta etapa es tuya
               </p>
 
               <div className="mx-auto mt-5 h-px w-20 bg-gradient-to-r from-transparent via-pink-300/70 to-transparent" />
@@ -224,7 +224,7 @@ export default function KpopWarriors({
               </div>
 
               <p className="mt-6 text-[10px] uppercase tracking-[0.45em] text-cyan-200/60">
-                K-POP WARRIORS
+                guerreras K-POP 
               </p>
 
             </div>

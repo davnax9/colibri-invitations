@@ -169,7 +169,7 @@ export default function KpopWarriorsIntro({
             sm:text-xs
           "
         >
-          This is her moment
+          Este es su momento
         </p>
 
         {/* ================================================= */}
