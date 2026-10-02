@@ -5,6 +5,7 @@ import QuinceanosLuxury from "./QuinceanosLuxury"
 import QuinceanosFloral from "./QuinceanosFloral"
 import QuinceanosPrincess from "./QuinceanosPrincess"
 import Principito from "./Principito"
+import KpopWarriors from "./KpopWarriors"
 
 export default function QuinceanosTemplate({event,guest}: InvitationTemplateProps) {
 
@@ -22,6 +23,8 @@ export default function QuinceanosTemplate({event,guest}: InvitationTemplateProp
     //Caso para fiesta de Angel David
     case "principito":
       return <Principito event={event} guest={guest} />
+    case "kpop-warriors":
+      return <KpopWarriors event={event} guest={guest} />
     default:
       return <QuinceanosElegant event={event} guest={guest} />
   }
