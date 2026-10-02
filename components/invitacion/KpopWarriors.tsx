@@ -10,6 +10,7 @@ import InvitationTheme from "./shared/InvitationTheme"
 import KpopWarriorsExperience from "./KpopWarriorsExperience"
 import KpopWarriorsHero from "./kpop/KpopWarriorsHero"
 import KpopWarriorsIntro from "./kpop/KpopWarriorsIntro"
+import Image from "next/image"
 
 export default function KpopWarriors({
   event,
@@ -60,25 +61,6 @@ export default function KpopWarriors({
               backgroundColor: "var(--theme-background)",
             }}
           >
-
-            {/* <p
-              className="text-xs uppercase tracking-[0.35em]"
-              style={{
-                color: "var(--theme-secondary)",
-              }}
-            >
-              La cuenta regresiva comienza
-            </p> */}
-
-            {/* <h2
-              className="mt-4 text-4xl font-serif sm:text-5xl"
-              style={{
-                color: "var(--theme-primary)",
-              }}
-            >
-              Falta muy poco
-            </h2> */}
-
             <div className="mt-1">
               <Countdown
                 targetDate={event.eventDate.toISOString()}
@@ -99,31 +81,152 @@ export default function KpopWarriors({
 
           <InvitationGallery event={event} />
 
+          {/* ================================================= */}
           {/* CIERRE */}
+          {/* ================================================= */}
 
           <section
-            className="relative overflow-hidden px-6 py-5 text-center"
+            className="
+              relative
+              overflow-hidden
+              px-6
+              py-20
+              text-center
+            "
             style={{
-              backgroundColor: "var(--theme-primary)",
-              color: "var(--theme-background)",
+              background:
+                "radial-gradient(circle at 50% 20%, #5b1f68 0%, #29103f 38%, #100819 72%, #07050b 100%)",
+              color: "#ffffff",
             }}
           >
 
-            <p className="text-sm uppercase tracking-[0.35em] opacity-70">
-              The stage is yours
-            </p>
+            {/* ================================================= */}
+            {/* GUERRERA CYAN DECORATIVA */}
+            {/* ================================================= */}
 
-            <h2 className="mt-5 text-4xl font-serif sm:text-5xl">
-              {childName}
-            </h2>
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -right-40
+                bottom-[-100px]
+                h-[560px]
+                w-[390px]
+                opacity-[0.12]
 
-            <p className="mx-auto mt-5 max-w-lg text-sm leading-7 opacity-80">
-              Una noche especial, llena de música, sueños,
-              brillo y momentos inolvidables.
-            </p>
+                sm:-right-28
+                sm:h-[650px]
+                sm:w-[450px]
+                sm:opacity-[0.14]
 
-            <div className="mt-8 text-3xl">
-              ✦ ✨ ✦
+                lg:-right-20
+                lg:h-[720px]
+                lg:w-[500px]
+                lg:opacity-[0.16]
+              "
+              aria-hidden="true"
+            >
+
+              <Image
+                src="/kpop/warriors/kpop2.png"
+                alt=""
+                fill
+                className="object-contain object-bottom"
+                sizes="500px"
+              />
+
+            </div>
+
+            {/* ================================================= */}
+            {/* GLOW */}
+            {/* ================================================= */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                left-1/2
+                top-0
+                h-72
+                w-72
+                -translate-x-1/2
+                rounded-full
+                bg-fuchsia-500/20
+                blur-3xl
+              "
+            />
+
+            {/* ================================================= */}
+            {/* DESTELLOS */}
+            {/* ================================================= */}
+
+            <div className="pointer-events-none absolute left-[12%] top-10 text-xl text-pink-300/60">
+              ✦
+            </div>
+
+            <div className="pointer-events-none absolute right-[15%] top-16 text-lg text-cyan-300/60">
+              ✧
+            </div>
+
+            <div className="pointer-events-none absolute bottom-12 left-[20%] text-sm text-cyan-300/40">
+              ✦
+            </div>
+
+            {/* ================================================= */}
+            {/* CONTENIDO */}
+            {/* ================================================= */}
+
+            <div className="relative z-10 mx-auto max-w-2xl">
+
+              <p
+                className="
+                  text-sm
+                  uppercase
+                  tracking-[0.35em]
+                  text-pink-200/80
+                "
+              >
+                The stage is yours
+              </p>
+
+              <div className="mx-auto mt-5 h-px w-20 bg-gradient-to-r from-transparent via-pink-300/70 to-transparent" />
+
+              <h2
+                className="
+                  mt-6
+                  text-4xl
+                  font-black
+                  tracking-wide
+                  text-white
+                  drop-shadow-[0_0_20px_rgba(236,72,153,0.35)]
+                  sm:text-5xl
+                "
+              >
+                {childName}
+              </h2>
+
+              <p
+                className="
+                  mx-auto
+                  mt-5
+                  max-w-lg
+                  text-sm
+                  leading-7
+                  text-purple-100/75
+                "
+              >
+                Una noche especial, llena de música, sueños,
+                brillo y momentos inolvidables.
+              </p>
+
+              <div className="mt-8 text-3xl text-pink-200">
+                ✦ ✨ ✦
+              </div>
+
+              <p className="mt-6 text-[10px] uppercase tracking-[0.45em] text-cyan-200/60">
+                K-POP WARRIORS
+              </p>
+
             </div>
 
           </section>

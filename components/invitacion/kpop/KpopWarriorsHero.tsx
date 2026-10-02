@@ -1,4 +1,5 @@
 import Image from "next/image"
+import KpopWarriorsDecor from "./KpopWarriorsDecor"
 
 type Props = {
   coverPhoto?: {
@@ -41,6 +42,8 @@ export default function KpopWarriorsHero({
           "radial-gradient(circle at 50% 25%, #5b1f68 0%, #29103f 38%, #100819 72%, #07050b 100%)",
       }}
     >
+
+      <KpopWarriorsDecor />
 
       {/* ================================================= */}
       {/* LUCES DE ESCENARIO */}
@@ -122,11 +125,11 @@ export default function KpopWarriorsHero({
       {/* CONTENIDO */}
       {/* ================================================= */}
 
-      <div className="relative z-10 mx-auto w-full max-w-2xl text-center">
+      <div className="relative z-10 mx-auto w-full max-w-2xl px-2 text-center sm:px-0">
 
         {/* LABEL */}
 
-        <p className="text-[10px] font-medium uppercase tracking-[0.5em] text-pink-200/90 sm:text-xs">
+        <p className="text-[10px] font-medium uppercase tracking-[0.45em] text-pink-200/90 sm:text-xs sm:tracking-[0.5em]">
           Una tarde para recordar
         </p>
 
@@ -156,7 +159,7 @@ export default function KpopWarriorsHero({
 
         {/* FOTO */}
 
-        <div className="relative mx-auto mt-10 h-80 w-72 sm:h-[390px] sm:w-[350px]">
+        <div className="relative mx-auto mt-10 h-[300px] w-[250px] sm:h-[390px] sm:w-[350px]">
 
           {/* HALO */}
 
@@ -170,13 +173,28 @@ export default function KpopWarriorsHero({
 
           {/* MARCO EXTERIOR */}
 
-          <div className="absolute -inset-2 rotate-2 rounded-[45%] border border-pink-300/40 bg-gradient-to-br from-pink-400/20 via-transparent to-cyan-400/20 shadow-[0_0_40px_rgba(236,72,153,0.25)]" />
+          {/* <div className="absolute -inset-2 rotate-2 rounded-[45%] border border-pink-300/40 bg-gradient-to-br from-pink-400/20 via-transparent to-cyan-400/20 shadow-[0_0_40px_rgba(236,72,153,0.25)]" /> */}
+          
+          <div
+            className="
+              absolute
+              -inset-2
+              rotate-2
+              rounded-[45%]
+              border
+              border-pink-300/40
+              bg-gradient-to-br
+              from-pink-400/20
+              via-purple-500/10
+              to-cyan-400/20
+              shadow-[0_0_40px_rgba(236,72,153,0.25)]
+            "
+          />
 
           {/* FOTO */}
 
           {coverPhoto ? (
             <div className="relative h-full w-full overflow-hidden rounded-[42%] border-4 border-white/20 shadow-2xl">
-
               <Image
                 src={coverPhoto.url}
                 alt={childName}
