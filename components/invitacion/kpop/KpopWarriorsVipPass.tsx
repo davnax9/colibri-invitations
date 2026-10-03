@@ -137,9 +137,9 @@ export default function KpopWarriorsVipPass({
               sm:text-4xl
             "
           >
-            K-POP
+            PASE VIP
             <span className="text-fuchsia-400">
-              {" "}PASE VIP
+              {" "}K-POP
             </span>
           </h2>
 
@@ -208,7 +208,7 @@ export default function KpopWarriorsVipPass({
                 </p>
 
                 <p className="mt-1 text-sm font-semibold uppercase tracking-[0.15em] text-cyan-300">
-                  K-POP WARRIORS
+                  GUERRERAS K-POP
                 </p>
 
               </div>
