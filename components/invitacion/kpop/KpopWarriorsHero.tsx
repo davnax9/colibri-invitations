@@ -31,6 +31,7 @@ export default function KpopWarriorsHero({
       day: "numeric",
       month: "long",
       year: "numeric",
+      timeZone: "UTC",
     }
   )
 
@@ -262,7 +263,7 @@ export default function KpopWarriorsHero({
         </h3>
 
         <p className="mt-4 text-base tracking-[0.12em] text-purple-100/75 sm:text-lg">
-          celebra sus 9 años
+          celebra sus 8 años
         </p>
 
         {/* FECHA */}

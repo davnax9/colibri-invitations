@@ -76,21 +76,23 @@ export default function KpopWarriorsDressCode({
 
       <div className="relative z-10 mx-auto max-w-2xl">
 
-        <p className="text-[10px] uppercase tracking-[0.5em] text-pink-300/80">
+        {/* <p className="text-[10px] uppercase tracking-[0.5em] text-pink-300/80">
           The look
-        </p>
-
+        </p> 
+        
         <h2 className="mt-4 text-4xl font-black text-white sm:text-5xl">
-          Dress to
+          Vistete para
           <span className="text-cyan-300">
-            {" "}shine
+            {" "}Brillar
           </span>
-        </h2>
-
+        </h2> 
+        
         <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-purple-100/60">
           Esta noche no hay reglas para brillar.
-          Ven con tu mejor estilo K-Pop.
         </p>
+        <p className="mx-auto mt-5 max-w-md text-sm leading-7 text-purple-100/60">
+          Ven con tu mejor estilo K-Pop.
+        </p> */}
 
         {/* CARD */}
 
@@ -118,17 +120,21 @@ export default function KpopWarriorsDressCode({
           </div>
 
           <p className="mt-5 text-[9px] uppercase tracking-[0.45em] text-purple-200/40">
+            Esta noche no hay reglas para brillar.
+            </p>
+
+          {/* <p className="mt-5 text-[9px] uppercase tracking-[0.45em] text-purple-200/40">
             Dress code
-          </p>
+          </p> 
 
           <h3 className="mt-3 text-2xl font-black uppercase tracking-wide text-white">
-            {dressCode || "K-POP STYLE"}
-          </h3>
+            {"K-POP"}
+          </h3>*/}
 
           <div className="mx-auto mt-6 h-px w-20 bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
 
           <p className="mt-6 text-xs uppercase tracking-[0.25em] text-pink-300/70">
-            Shine • Dance • Be yourself
+            Brilla • Baila • Se tu mismo
           </p>
 
         </div>

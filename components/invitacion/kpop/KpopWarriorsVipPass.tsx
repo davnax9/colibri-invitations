@@ -17,7 +17,8 @@ export default function KpopWarriorsVipPass({
     {
       day: "numeric",
       month: "long",
-      year: "numeric"
+      year: "numeric",
+      timeZone: "UTC",
     }
   )
 
@@ -122,7 +123,7 @@ export default function KpopWarriorsVipPass({
         <div className="text-center">
 
           <p className="text-[10px] font-semibold uppercase tracking-[0.5em] text-cyan-300/80">
-            Guest access
+            Acceso de invitado
           </p>
 
           <h2
@@ -138,7 +139,7 @@ export default function KpopWarriorsVipPass({
           >
             K-POP
             <span className="text-fuchsia-400">
-              {" "}VIP PASS
+              {" "}PASE VIP
             </span>
           </h2>
 
@@ -203,7 +204,7 @@ export default function KpopWarriorsVipPass({
               <div>
 
                 <p className="text-[9px] uppercase tracking-[0.4em] text-purple-200/50">
-                  Headliner
+                  Artista principal
                 </p>
 
                 <p className="mt-1 text-sm font-semibold uppercase tracking-[0.15em] text-cyan-300">
@@ -236,7 +237,7 @@ export default function KpopWarriorsVipPass({
             <div className="mt-10 text-center">
 
               <p className="text-[9px] uppercase tracking-[0.45em] text-purple-200/50">
-                Tonight's star
+                Estrella de la noche
               </p>
 
               <h3
@@ -288,7 +289,7 @@ export default function KpopWarriorsVipPass({
 
               </div>
 
-              <div
+              {/* <div
                 className="
                   rounded-2xl
                   border
@@ -307,7 +308,7 @@ export default function KpopWarriorsVipPass({
                   {dressCode || "K-POP STYLE"}
                 </p>
 
-              </div>
+              </div> */}
 
             </div>
 
@@ -330,7 +331,7 @@ export default function KpopWarriorsVipPass({
             </div>
 
             <p className="mt-6 text-center text-[9px] uppercase tracking-[0.4em] text-purple-200/40">
-              You are on the guest list
+              Estas en la lista de invitados
             </p>
 
           </div>
