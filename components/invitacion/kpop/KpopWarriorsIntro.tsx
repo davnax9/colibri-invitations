@@ -1,4 +1,5 @@
 import Image from "next/image"
+import KpopAtmosphere from "./KpopAtmosphere"
 
 type Props = {
   details: {
@@ -23,9 +24,11 @@ export default function KpopWarriorsIntro({
       className="relative overflow-hidden px-6 py-24 text-center"
       style={{
         background:
-          "linear-gradient(180deg, #100819 0%, #1a0d2b 45%, #24103d 72%, #100819 100%)",
+          "radial-gradient(circle at 50% 25%, #42176A 0%, #211036 38%, #10091B 68%, #07040B 100%)",
       }}
     >
+
+      <KpopAtmosphere />
 
       {/* ================================================= */}
       {/* GUERRERA DECORATIVA */}
@@ -210,14 +213,25 @@ export default function KpopWarriorsIntro({
             text-4xl
             font-black
             leading-tight
-            text-white
-            drop-shadow-[0_0_20px_rgba(236,72,153,0.35)]
+            text-[#F5F3FF]
+            drop-shadow-[0_0_20px_rgba(217,70,239,0.18)]
             sm:text-5xl
           "
         >
           Una noche
           <br />
-          <span className="text-pink-300">
+
+          <span
+            className="
+              bg-gradient-to-r
+              from-fuchsia-300
+              via-pink-100
+              to-cyan-300
+              bg-clip-text
+              text-transparent
+              drop-shadow-[0_0_18px_rgba(217,70,239,0.30)]
+            "
+          >
             para brillar
           </span>
         </h2>

@@ -11,6 +11,8 @@ import KpopWarriorsExperience from "./KpopWarriorsExperience"
 import KpopWarriorsHero from "./kpop/KpopWarriorsHero"
 import KpopWarriorsIntro from "./kpop/KpopWarriorsIntro"
 import Image from "next/image"
+import KpopWarriorsVipPass from "./kpop/KpopWarriorsVipPass"
+import KpopWarriorsDressCode from "./kpop/KpopWarriorsDressCode"
 
 export default function KpopWarriors({
   event,
@@ -53,6 +55,14 @@ export default function KpopWarriors({
             details={details}
           />
 
+          {/* VIP PASS */}
+
+          <KpopWarriorsVipPass
+            childName={childName}
+            eventDate={event.eventDate}
+            dressCode={details?.dressCode}
+          />
+
           {/* COUNTDOWN */}
 
           <section
@@ -81,6 +91,12 @@ export default function KpopWarriors({
 
           <InvitationGallery event={event} />
 
+          {/* DRESS CODE */}
+
+          <KpopWarriorsDressCode
+            dressCode={details?.dressCode}
+          />
+
           {/* ================================================= */}
           {/* CIERRE */}
           {/* ================================================= */}
@@ -95,7 +111,7 @@ export default function KpopWarriors({
             "
             style={{
               background:
-                "radial-gradient(circle at 50% 20%, #5b1f68 0%, #29103f 38%, #100819 72%, #07050b 100%)",
+                "radial-gradient(circle at 50% 20%, #5B1F68 0%, #29103F 35%, #100819 68%, #07050B 100%)",
               color: "#ffffff",
             }}
           >
@@ -152,6 +168,24 @@ export default function KpopWarriors({
                 -translate-x-1/2
                 rounded-full
                 bg-fuchsia-500/20
+                blur-3xl
+              "
+            />
+
+            {/* ================================================= */}
+            {/* AURORA CYAN */}
+            {/* ================================================= */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -right-32
+                top-1/3
+                h-72
+                w-72
+                rounded-full
+                bg-cyan-500/10
                 blur-3xl
               "
             />

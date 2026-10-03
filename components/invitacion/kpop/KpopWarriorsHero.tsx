@@ -1,5 +1,6 @@
 import Image from "next/image"
 import KpopWarriorsDecor from "./KpopWarriorsDecor"
+import KpopAtmosphere from "./KpopAtmosphere"
 
 type Props = {
   coverPhoto?: {
@@ -30,7 +31,6 @@ export default function KpopWarriorsHero({
       day: "numeric",
       month: "long",
       year: "numeric",
-      timeZone: "UTC",
     }
   )
 
@@ -39,9 +39,10 @@ export default function KpopWarriorsHero({
       className="relative flex min-h-[760px] items-center justify-center overflow-hidden px-6 py-20"
       style={{
         background:
-          "radial-gradient(circle at 50% 25%, #5b1f68 0%, #29103f 38%, #100819 72%, #07050b 100%)",
+          "radial-gradient(circle at 50% 22%, #64206F 0%, #35134F 28%, #1A0D2B 55%, #0B0612 78%, #07040B 100%)",
       }}
     >
+      <KpopAtmosphere />
 
       <KpopWarriorsDecor />
 
@@ -135,7 +136,17 @@ export default function KpopWarriorsHero({
 
         {/* TITULO */}
 
-        <h1 className="mt-5 text-5xl font-black tracking-[0.08em] text-white drop-shadow-[0_0_25px_rgba(236,72,153,0.45)] sm:text-7xl">
+        <h1 className="bg-gradient-to-r
+          from-fuchsia-300
+          via-pink-100
+          to-cyan-300
+          bg-clip-text
+          text-5xl
+          font-black
+          tracking-[0.08em]
+          text-transparent
+          drop-shadow-[0_0_25px_rgba(217,70,239,0.35)]
+          sm:text-7xl">
           K-POP
         </h1>
 
