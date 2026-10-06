@@ -114,26 +114,11 @@ export default async function UsersPage() {
             <table className="w-full text-left text-sm">
               <thead className="border-b border-slate-200 bg-[#F8F9F7]">
                 <tr>
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Usuario
-                  </th>
-
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Rol
-                  </th>
-
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Plan
-                  </th>
-
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Estado
-                  </th>
-
-                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Eventos
-                  </th>
-
+                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Usuario</th>
+                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Rol</th>
+                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Plan</th>
+                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Estado</th>
+                  <th className="px-5 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500">Eventos</th>
                   <th className="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wider text-slate-500">
                     Acciones
                   </th>
@@ -185,18 +170,12 @@ export default async function UsersPage() {
 
                     {/* PLAN */}
                     <td className="px-5 py-5">
-                      <UserPlanSelector
-                        userId={user.id}
-                        currentPlan={user.plan}
-                      />
+                      <UserPlanSelector userId={user.id} currentPlan={user.plan} />
                     </td>
 
                     {/* ESTADO */}
                     <td className="px-5 py-5">
-                      <UserStatusSelector
-                        userId={user.id}
-                        currentStatus={user.active}
-                      />
+                      <UserStatusSelector userId={user.id} currentStatus={user.active} />
                     </td>
 
                     {/* EVENTOS */}
@@ -207,23 +186,15 @@ export default async function UsersPage() {
                         </div>
 
                         <div>
-                          <p className="font-semibold text-slate-700">
-                            {user.events.length}
-                          </p>
-
-                          <p className="text-[11px] text-slate-400">
-                            {user.events.length === 1 ? "evento" : "eventos"}
-                          </p>
+                          <p className="font-semibold text-slate-700">{user.events.length}</p>
+                          <p className="text-[11px] text-slate-400">{user.events.length === 1 ? "evento" : "eventos"}</p>
                         </div>
                       </div>
                     </td>
 
                     {/* ACCIONES */}
                     <td className="px-5 py-5 text-right">
-                      <UserActions
-                        userId={user.id}
-                        userName={user.name}
-                      />
+                      <UserActions userId={user.id} userName={user.name}/>
                     </td>
                   </tr>
                 ))}
@@ -256,13 +227,8 @@ export default async function UsersPage() {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="truncate font-semibold text-slate-800">
-                        {user.name}
-                      </p>
-
-                      <p className="mt-0.5 truncate text-xs text-slate-500">
-                        {user.email}
-                      </p>
+                      <p className="truncate font-semibold text-slate-800">{user.name}</p>
+                      <p className="mt-0.5 truncate text-xs text-slate-500">{user.email}</p>
                     </div>
 
                   </div>
@@ -271,14 +237,10 @@ export default async function UsersPage() {
                   <div className="shrink-0">
                     {user.role === "ADMIN" ? (
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-[#D6B98C]/40 bg-[#FBF7EF] px-2.5 py-1 text-[11px] font-semibold text-[#8B6B3F]">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#D6B98C]" />
-                        Admin
-                      </span>
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#D6B98C]" />Admin</span>
                     ) : (
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-semibold text-slate-600">
-                        <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
-                        Cliente
-                      </span>
+                        <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />Cliente</span>
                     )}
                   </div>
 
@@ -298,112 +260,60 @@ export default async function UsersPage() {
 
                   {/* PLAN */}
                   <div>
-                    <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-                      Plan
-                    </p>
-
-                    <UserPlanSelector
-                      userId={user.id}
-                      currentPlan={user.plan}
-                    />
+                    <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Plan</p>
+                    <UserPlanSelector userId={user.id} currentPlan={user.plan} />
                   </div>
-
 
                   {/* ESTADO */}
                   <div>
-                    <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-                      Estado
-                    </p>
-
-                    <UserStatusSelector
-                      userId={user.id}
-                      currentStatus={user.active}
-                    />
+                    <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Estado</p>
+                    <UserStatusSelector userId={user.id} currentStatus={user.active} />
                   </div>
-
                 </div>
-
 
                 {/* ============================================= */}
                 {/* EVENTOS */}
                 {/* ============================================= */}
                 <div className="mt-5 rounded-xl bg-[#F8FAF8] p-4">
-
                   <div className="flex items-center justify-between">
-
                     <div className="flex items-center gap-3">
-
                       <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#E7EFE9] text-sm">
                         ✦
                       </div>
-
                       <div>
-                        <p className="text-xs font-semibold text-slate-500">
-                          Eventos registrados
-                        </p>
-
-                        <p className="mt-0.5 text-sm font-bold text-slate-700">
-                          {user.events.length}{" "}
-                          {user.events.length === 1 ? "evento" : "eventos"}
-                        </p>
+                        <p className="text-xs font-semibold text-slate-500">Eventos registrados</p>
+                        <p className="mt-0.5 text-sm font-bold text-slate-700">{user.events.length}{" "} {user.events.length === 1 ? "evento" : "eventos"}</p>
                       </div>
-
                     </div>
-
                   </div>
-
                 </div>
-
-
                 {/* ============================================= */}
                 {/* ACCIONES */}
                 {/* ============================================= */}
                 <div className="mt-5">
-
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-                    Acciones
-                  </p>
-
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">Acciones</p>
                   <div className="flex justify-end">
-                    <UserActions
-                      userId={user.id}
-                      userName={user.name}
-                    />
+                    <UserActions userId={user.id} userName={user.name} />
                   </div>
-
                 </div>
-
               </div>
             ))}
-
           </div>
-
-
           {/* =================================================== */}
           {/* SIN USUARIOS */}
           {/* =================================================== */}
           {users.length === 0 && (
             <div className="px-6 py-16 text-center">
-
               <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#E7EFE9] text-2xl">
                 ✦
               </div>
-
-              <p className="mt-4 text-lg font-semibold text-slate-700">
-                No existen usuarios registrados
-              </p>
-
-              <p className="mt-1 text-sm text-slate-500">
-                Crea el primer usuario para comenzar a administrar Colibrí.
-              </p>
-
+              <p className="mt-4 text-lg font-semibold text-slate-700">No existen usuarios registrados</p>
+              <p className="mt-1 text-sm text-slate-500">Crea el primer usuario para comenzar a administrar Colibrí.</p>
               <div className="mt-5">
                 <CreateUserButton />
               </div>
-
             </div>
           )}
-
         </div>
         {/* Nota */}
         <div className="mt-5 flex items-start gap-3 rounded-xl border border-[#DCE7DF] bg-[#F3F7F4] px-4 py-3">
