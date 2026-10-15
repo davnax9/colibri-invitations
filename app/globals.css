@@ -256,3 +256,25 @@ body {
     transform: scale(1.15);
   }
 }
+
+/* Opening de boda: simular vista horizontal en móviles verticales */
+
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .wedding-opening-landscape {
+    width: 100dvh !important;
+    height: 100vw !important;
+    min-height: 0 !important;
+
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+
+    transform: translate(-50%, -50%) rotate(90deg);
+    transform-origin: center center;
+
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+}

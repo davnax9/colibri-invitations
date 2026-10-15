@@ -14,6 +14,8 @@ import { InvitationTemplateProps } from "@/utils/types/invitation"
 import WeddingMinimalHero from "./wedding/WeddingMinimalHero"
 import InvitationGifts from "./shared/InvitationGifts"
 import WeddingMinimalOpening from "./wedding/WeddingMinimalOpening"
+import WeddingEnvelopeHZOpening from "./wedding/WeddingEnvelopeHZOpening"
+import ScrollReveal from "@/app/components/ui/ScrollReveal"
 
 export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -24,42 +26,68 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
 
   return (
     <InvitationTheme theme={event.theme} event={event}>
-      <WeddingMinimalOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate}>
+      <WeddingEnvelopeHZOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate}>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
-          <WeddingMinimalHero coverPhoto={coverPhoto} details={details} event={event}/>
+          <ScrollReveal direction="left" delay={0} duration={800}>
+            <WeddingMinimalHero coverPhoto={coverPhoto} details={details} event={event}/>
+          </ScrollReveal>
 
-          <section className="px-6 py-28 text-center" style={{backgroundColor: "var(--theme-background)"}}>
-            <p className="text-xs uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>{details?.title ?? "Nos casamos"}</p>
-            <h2 className="mt-6 text-4xl font-light tracking-tight md:text-6xl" style={{color: "var(--theme-primary)"}}>{brideName}<span className="mx-3" style={{color: "var(--theme-accent)"}}>&</span>{groomName}</h2>
-            <div className="mx-auto mt-8 h-px w-10" style={{backgroundColor: "var(--theme-accent)"}}/>
-          </section>
+          <ScrollReveal direction="right" delay={100} duration={700}>
+            <section className="px-6 py-28 text-center" style={{backgroundColor: "var(--theme-background)"}}>
+              <p className="text-xs uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>{details?.title ?? "Nos casamos"}</p>
+              <h2 className="mt-6 text-4xl font-light tracking-tight md:text-6xl" style={{color: "var(--theme-primary)"}}>{brideName}<span className="mx-3" style={{color: "var(--theme-accent)"}}>&</span>{groomName}</h2>
+              <div className="mx-auto mt-8 h-px w-10" style={{backgroundColor: "var(--theme-accent)"}}/>
+            </section>
+          </ScrollReveal>
 
-          <WeddingDate event={event} />
+          <ScrollReveal direction="left" delay={200} duration={700}>
+            <WeddingDate event={event} />
+          </ScrollReveal>
 
-          <Countdown targetDate={event.eventDate.toISOString()}/>
+          <ScrollReveal direction="right" delay={300} duration={700}>
+            <Countdown targetDate={event.eventDate.toISOString()}/>
+          </ScrollReveal>
 
-          <InvitationSchedule event={event} />
+          <ScrollReveal direction="left" delay={400} duration={700}>
+            <InvitationSchedule event={event} />
+          </ScrollReveal>
 
-          <InvitationLocations event={event} />
+          <ScrollReveal direction="right" delay={500} duration={700}>
+            <InvitationLocations event={event} />
+          </ScrollReveal>
 
-          <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
-            <h2 className="text-3xl font-light" style={{color: "var(--theme-primary)"}}>Guarda la fecha</h2>
-            <div className="mt-7">
-              <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl} />
-            </div>
-          </section>
+          <ScrollReveal direction="left" delay={600} duration={700}>
+            <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+              <h2 className="text-3xl font-light" style={{color: "var(--theme-primary)"}}>Guarda la fecha</h2>
+              <div className="mt-7">
+                <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl} />
+              </div>
+            </section>
+          </ScrollReveal>
 
-          <InvitationGallery event={event} />
+          <ScrollReveal direction="right" delay={700} duration={700}>
+            <InvitationGallery event={event} />
+          </ScrollReveal>
 
-          <InvitationGifts gifts={event.gifts} />
+          <ScrollReveal direction="left" delay={800} duration={700}>
+            <InvitationGifts gifts={event.gifts} />
+          </ScrollReveal>
 
-          <WeddingDressCode details={details} />
+          <ScrollReveal direction="right" delay={900} duration={700}>
+            <WeddingDressCode details={details} />
+          </ScrollReveal>
 
-          <WeddingFooter details={details} />
+          <ScrollReveal direction="left" delay={1000} duration={700}>
+            <WeddingFooter details={details} />
+          </ScrollReveal>
 
-          {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} /> )}
+          {event.music && (
+            <ScrollReveal direction="right" delay={1100} duration={700}>
+              <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />
+            </ScrollReveal>
+          )}
         </main>
-      </WeddingMinimalOpening>
+      </WeddingEnvelopeHZOpening>
     </InvitationTheme>
   )
 }
