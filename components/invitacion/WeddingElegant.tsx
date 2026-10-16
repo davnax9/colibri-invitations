@@ -14,6 +14,7 @@ import WeddingElegantEvents from "./wedding/WeddingElegantEvents"
 import InvitationGifts from "./shared/InvitationGifts"
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 import WeddingElegantOpening from "./wedding/WeddingElegantOpening"
+import ScrollReveal from "@/app/components/ui/ScrollReveal"
 
 export default function WeddingElegant({event, guest}: InvitationTemplateProps) {
     const details = event.details
@@ -30,36 +31,60 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
             <WeddingElegantOpening brideName={brideName} groomName={groomName} eventDate={event.eventDate}>
                 <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
                     {/* PORTADA */}
-                    <WeddingElegantHero coverPhoto={coverPhoto} details={details} event={event}/>
+                    <ScrollReveal direction="left" delay={0} duration={800}>
+                        <WeddingElegantHero coverPhoto={coverPhoto} details={details} event={event}/>
+                    </ScrollReveal>
                     {/* INTRODUCCIÓN */}
-                    <WeddingIntro details={details}/>
+                    <ScrollReveal direction="right" delay={100} duration={700}>
+                        <WeddingIntro details={details}/>
+                    </ScrollReveal>
                     {/* FECHA */}
-                    <WeddingDate event={event}/>
+                    <ScrollReveal direction="left" delay={200} duration={700}>
+                        <WeddingDate event={event}/>
+                    </ScrollReveal>
                     {/* CONTADOR RETROCESO */}
-                    <Countdown targetDate={event.eventDate.toISOString()}/>
+                    <ScrollReveal direction="right" delay={300} duration={700}>
+                        <Countdown targetDate={event.eventDate.toISOString()}/>
+                    </ScrollReveal>
                     {/* PROGRAMA ELEGANTE */}
-                    <WeddingElegantEvents schedules={event.schedules}/>
+                    <ScrollReveal direction="left" delay={400} duration={700}>
+                        <WeddingElegantEvents schedules={event.schedules}/>
+                    </ScrollReveal>
                     {/* UBICACIONES */}
-                    <InvitationLocations event={event}/>
+                    <ScrollReveal direction="right" delay={500} duration={700}>
+                        <InvitationLocations event={event}/>
+                    </ScrollReveal>
                     {/* CALENDARIO */}
-                    <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
-                    <p className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--theme-secondary)" }}>No olvides la fecha</p>
-                    <h2 className="mt-4 text-4xl font-serif" style={{ color: "var(--theme-primary)" }}>Guarda nuestro día</h2>
-                    <p className="mx-auto mt-4 max-w-xl" style={{ color: "var(--theme-secondary)" }}>Agrega nuestra celebración a tu calendario para que no olvides acompañarnos.</p>
-                    <div className="mt-8">
-                        <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
-                    </div>
-                    </section>
+                    <ScrollReveal direction="left" delay={600} duration={700}>
+                        <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+                        <p className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--theme-secondary)" }}>No olvides la fecha</p>
+                        <h2 className="mt-4 text-4xl font-serif" style={{ color: "var(--theme-primary)" }}>Guarda nuestro día</h2>
+                        <p className="mx-auto mt-4 max-w-xl" style={{ color: "var(--theme-secondary)" }}>Agrega nuestra celebración a tu calendario para que no olvides acompañarnos.</p>
+                        <div className="mt-8">
+                            <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
+                        </div>
+                        </section>
+                    </ScrollReveal>
                     {/* FOTOGRAFÍAS */}
-                    <InvitationGallery event={event} />
-                    <InvitationGifts gifts={event.gifts} />
+                    <ScrollReveal direction="right" delay={700} duration={700}>
+                        <InvitationGallery event={event} />
+                    </ScrollReveal>
+                    <ScrollReveal direction="left" delay={800} duration={700}>
+                        <InvitationGifts gifts={event.gifts} />
+                    </ScrollReveal>
                     {/* VESTIMENTA */}
-                    <WeddingDressCode details={details} />
+                    <ScrollReveal direction="right" delay={900} duration={700}>
+                        <WeddingDressCode details={details} />
+                    </ScrollReveal>
                     {/* FOOTER */}
-                    <WeddingFooter details={details} />
+                    <ScrollReveal direction="left" delay={1000} duration={700}>
+                        <WeddingFooter details={details} />
+                    </ScrollReveal>
                     {/* REPRODUCTOR MUSICA */}
                     {event.music && (
-                    <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>
+                    <ScrollReveal direction="right" delay={1100} duration={700}>
+                        <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>
+                    </ScrollReveal>
                     )}
                 </main>
             </WeddingElegantOpening>

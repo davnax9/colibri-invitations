@@ -269,7 +269,7 @@ export default function EventDetailsForm({
       {/* PADRES Y PADRINOS                                    */}
       {/* ===================================================== */}
 
-      {eventType === "QUINCEANOS" && (
+      {(eventType === "QUINCEANOS" || eventType === "WEDDING") && (
         <QuinceanosFamilyForm
           fatherName={fatherName}
           motherName={motherName}
@@ -281,6 +281,7 @@ export default function EventDetailsForm({
           onGodfatherNameChange={setGodfatherName}
           onGodmotherNameChange={setGodmotherName}
           onFamilyMessageChange={setFamilyMessage}
+          type={eventType}
         />
       )}
 

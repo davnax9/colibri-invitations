@@ -12,6 +12,7 @@ type Props = {
   onGodfatherNameChange: (value: string) => void
   onGodmotherNameChange: (value: string) => void
   onFamilyMessageChange: (value: string) => void
+  type: "WEDDING" | "QUINCEANOS"
 }
 
 export default function QuinceanosFamilyForm({
@@ -25,6 +26,7 @@ export default function QuinceanosFamilyForm({
   onGodfatherNameChange,
   onGodmotherNameChange,
   onFamilyMessageChange,
+  type
 }: Props) {
   return (
     <section className="mt-8 rounded-2xl border border-[#E5E9E5]  p-5 sm:p-6">
@@ -67,7 +69,7 @@ export default function QuinceanosFamilyForm({
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">
-              Nombre del padre
+              {type==="QUINCEANOS" ? "Nombre del padre" : "Padres del novio" }
             </label>
 
             <input
@@ -76,14 +78,14 @@ export default function QuinceanosFamilyForm({
               onChange={(e) =>
                 onFatherNameChange(e.target.value)
               }
-              placeholder="Juan Pérez"
+              placeholder={type === 'QUINCEANOS' ? "Juan Pérez" : "Juan Perez y Maria Gallardo"}         
               className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-[#B89455] focus:ring-2 focus:ring-[#B89455]/20"
             />
           </div>
 
           <div>
             <label className="mb-2 block text-sm font-medium text-slate-700">
-              Nombre de la madre
+              {type==="QUINCEANOS" ? "Nombre de la madre" :  "Padres de la novia"}
             </label>
 
             <input
@@ -92,7 +94,7 @@ export default function QuinceanosFamilyForm({
               onChange={(e) =>
                 onMotherNameChange(e.target.value)
               }
-              placeholder="María López"
+              placeholder={type==="QUINCEANOS" ? "María López" : "Jesus Martinez y Maria Lopez"}
               className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition focus:border-[#B89455] focus:ring-2 focus:ring-[#B89455]/20"
             />
           </div>

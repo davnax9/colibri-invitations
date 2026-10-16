@@ -6,9 +6,10 @@ type Props = {
     godmotherName: string | null
     familyMessage: string | null
   } | null
+  type?: string
 }
 
-export default function QuinceanosFamily({details}: Props) {
+export default function QuinceanosFamily({details, type}: Props) {
 
   if (!details) {
     return null
@@ -113,8 +114,7 @@ export default function QuinceanosFamily({details}: Props) {
               color: "var(--theme-secondary)",
             }}
           >
-            Hay personas que hacen que cada momento
-            sea todavía más especial.
+            Hay personas que hacen que cada momento sea todavía más especial.
           </p>
 
         </div>
@@ -133,7 +133,7 @@ export default function QuinceanosFamily({details}: Props) {
                 color: "#8C6A36",
               }}
             >
-              Mis padres
+              {type==="W" ? "Nuestros" :  "Mis"} padres
             </p>
 
 

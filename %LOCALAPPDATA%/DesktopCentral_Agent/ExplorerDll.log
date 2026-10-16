@@ -1,0 +1,7 @@
+﻿Date	Time	Severity	PID	TID	Function	Message
+15-10-2026	18:37:28.436	 INFO	 53924	  9112	DllMain	"DLL_PROCESS_ATTACH Mon Jun  9 17:03:48 2025 11.4.2500.28"
+15-10-2026	18:37:28.439	 INFO	 53924	 84804	LateInitialization	"Intialization..."
+15-10-2026	18:37:28.440	 INFO	 53924	 84804	LateInitialization	"Exe = C:\Users\dzavala\Downloads\PortableGit\usr\bin\bash.exe"
+15-10-2026	18:37:28.441	 INFO	 53924	 84804	LateInitialization	"IsExplorer = 0"
+15-10-2026	18:37:28.443	 INFO	 53924	 84804	Edlp::Path::InitializeExcludedPathPatterns	"Windows drive = C:"
+15-10-2026	18:37:28.445	 INFO	 53924	 84804	LateInitialization	"Intialization finished"

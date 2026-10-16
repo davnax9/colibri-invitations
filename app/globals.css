@@ -278,3 +278,10 @@ body {
     overflow: hidden !important;
   }
 }
+
+/* Tipografía caligráfica para detalles especiales */
+.font-wedding {
+  font-family: var(--font-great-vibes), cursive;
+  font-weight: 400;
+  font-style: normal;
+}
