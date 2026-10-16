@@ -62,15 +62,15 @@ export default async function GuestInvitationPage({ params }: Props) {
   return (
     <>
       <InvitationRenderer event={guest.event} guest={guestInfo}/>
-      {/* <GuestRSVP token={guest.token} guestName={guest.name} passes={guest.passes} confirmedPasses={guest.confirmed} status={guest.status} /> */}
+      <GuestRSVP token={guest.token} guestName={guest.name} passes={guest.passes} confirmedPasses={guest.confirmed} status={guest.status} />
       <div className="relative z-[9999]">
-        {/* <GuestRSVP
+        <GuestRSVP
           token={guest.token}
           guestName={guest.name}
           passes={guest.passes}
           confirmedPasses={guest.confirmed}
           status={guest.status}
-        /> */}
+        />
       </div>
     </>
   )
