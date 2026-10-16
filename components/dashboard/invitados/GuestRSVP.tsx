@@ -125,6 +125,7 @@ export default function GuestRSVP({token,guestName,passes,confirmedPasses,status
           <p className="text-sm uppercase tracking-[0.3em] text-stone-400">Confirmación de asistencia</p>
           <h2 className="mt-4 text-3xl font-serif text-stone-800">{editing ? "Modifica tu confirmación" : `Hola, ${guestName}`}</h2>
           <p className="mt-5 leading-7 text-stone-600">{editing ? "Actualiza la cantidad de personas que asistirán.": "Nos encantaría contar contigo en este día tan especial."}</p>
+          <p className="mt-5 leading-7 text-red-300">Favor de confirmar o declinar asistencia.</p>
           {/* PASES */}
           <div className="mt-8 rounded-2xl bg-stone-50 p-6">
             <p className="text-sm text-stone-500">Tu invitación incluye</p>
