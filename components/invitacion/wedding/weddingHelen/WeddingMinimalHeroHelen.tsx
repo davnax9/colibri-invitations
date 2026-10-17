@@ -1,4 +1,5 @@
 import Image from "next/image"
+import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
 
 type Props = {
   coverPhoto?: {
@@ -23,8 +24,9 @@ export default function WeddingMinimalHeroHelen({coverPhoto,details,event}: Prop
   const groomName = details?.groomName ?? ""
 
   return (
-    <section className="min-h-screen px-6 py-2" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
-      <div className="mx-auto flex min-h-[calc(100vh-8rem)] max-w-5xl flex-col justify-center">
+    <section className="relative min-h-screen overflow-hidden px-6 py-2" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+      <BotanicalBackground />
+      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-8rem)] max-w-5xl flex-col justify-center">
         {/* NOMBRES */}
         <div className="mt-2 text-center">
           <h1 className="text-5xl font-wedding font-light tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{brideName}</h1>

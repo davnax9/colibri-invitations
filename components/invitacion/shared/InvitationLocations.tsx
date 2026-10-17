@@ -1,3 +1,5 @@
+import BotanicalBackground from "./BotanicalBackground"
+
 type InvitationLocationsProps = {
   event: {
     name: string
@@ -59,13 +61,14 @@ export default function InvitationLocations({
 
   return (
     <section
-      className="px-4 py-10 sm:px-6 sm:py-16 md:px-10 md:py-24"
+      className="relative overflow-hidden px-4 py-10 sm:px-6 sm:py-16 md:px-10 md:py-24"
       style={{
         backgroundColor:
           "var(--theme-surface)",
       }}
     >
-      <div className="mx-auto max-w-5xl">
+      <BotanicalBackground />
+      <div className="relative z-10 mx-auto max-w-5xl">
 
         {/* =================================================
             ENCABEZADO

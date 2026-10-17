@@ -27,6 +27,7 @@ export type InvitationEvent = {
   backgroundTexture: string | null
   backgroundOpacity: number
   backgroundPosition: string
+  showChildsSection: boolean
 
   template: {
     slug: string

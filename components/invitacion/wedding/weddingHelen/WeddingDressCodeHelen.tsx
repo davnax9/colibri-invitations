@@ -1,4 +1,6 @@
 
+import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
+
 type WeddingDressCodeProps = {
   details: {
     title: string | null
@@ -18,7 +20,7 @@ function DressIcon() {
       viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="h-16 w-16 sm:h-[72px] sm:w-[72px]"
+      className="h-20 w-20 sm:h-24 sm:w-24"
       aria-hidden="true"
     >
       <g
@@ -27,28 +29,32 @@ function DressIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Tirantes y escote */}
-        <path d="M25 9 L27 18 L22 23" />
-        <path d="M39 9 L37 18 L42 23" />
+        {/* Tirantes finos */}
+        <path d="M25 13 L27 8.5" />
+        <path d="M39 13 L37 8.5" />
 
-        {/* Parte superior */}
-        <path d="M27 18 Q32 23 37 18" />
-        <path d="M22 23 L27 18" />
-        <path d="M42 23 L37 18" />
+        {/* Escote en V */}
+        <path d="M25 13 L32 21 L39 13" />
+
+        {/* Cuerpo entallado */}
+        <path d="M25 13 Q24 22 26.5 30" />
+        <path d="M39 13 Q40 22 37.5 30" />
 
         {/* Cintura */}
-        <path d="M22 23 L29 31 L35 31 L42 23" />
-        <path d="M29 31 L25 39" />
-        <path d="M35 31 L39 39" />
+        <path d="M26.5 30 L37.5 30" />
 
-        {/* Falda larga */}
-        <path d="M25 39 L18 54 Q32 58 46 54 L39 39" />
-        <path d="M25 39 Q32 43 39 39" />
-        <path d="M24 45 L22 53" />
-        <path d="M40 45 L42 53" />
+        {/* Falda larga con vuelo */}
+        <path d="M26.5 30 Q19 42 13 56" />
+        <path d="M37.5 30 Q45 42 51 56" />
+        <path d="M13 56 Q32 60.5 51 56" />
+
+        {/* Pliegues de la falda */}
+        <path d="M29.5 31 Q25 43 21 56" />
+        <path d="M34.5 31 Q39 43 43 56" />
+        <path d="M32 31 L32 57.5" />
 
         {/* Detalle de la cintura */}
-        <path d="M27 34 L37 34" />
+        <circle cx="32" cy="30" r="1.2" fill="var(--theme-accent)" />
       </g>
     </svg>
   )
@@ -60,7 +66,7 @@ function SuitIcon() {
       viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="h-16 w-16 sm:h-[72px] sm:w-[72px]"
+      className="h-20 w-20 sm:h-24 sm:w-24"
       aria-hidden="true"
     >
       <g
@@ -69,28 +75,39 @@ function SuitIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
+        {/* Hombros */}
+        <path d="M14 18 L26 12" />
+        <path d="M50 18 L38 12" />
+
         {/* Cuello de la camisa */}
-        <path d="M24 10 L32 17 L40 10" />
-        <path d="M24 10 L19 13 L13 19 L18 29 L23 26" />
-        <path d="M40 10 L45 13 L51 19 L46 29 L41 26" />
+        <path d="M27 12 L32 18 L37 12" />
 
         {/* Solapas del saco */}
-        <path d="M24 10 L27 22 L32 17" />
-        <path d="M40 10 L37 22 L32 17" />
-        <path d="M18 29 L18 53 Q32 57 46 53 L46 29" />
+        <path d="M26 12 L24 22 L32 39" />
+        <path d="M38 12 L40 22 L32 39" />
+
+        {/* Muescas de las solapas */}
+        <path d="M24 22 L20.5 19.5" />
+        <path d="M40 22 L43.5 19.5" />
+
+        {/* Costados de la chaqueta */}
+        <path d="M14 18 L15.5 32 L17 48" />
+        <path d="M50 18 L48.5 32 L47 48" />
+
+        {/* Bajo de la chaqueta */}
+        <path d="M17 48 Q32 52 47 48" />
 
         {/* Corbata */}
-        <path d="M29 20 L32 17 L35 20 L34 25 L32 28 L30 25 Z" />
-        <path d="M32 28 L28.5 45 L32 49 L35.5 45 Z" />
+        <path d="M30 13.5 L34 13.5 L33.3 17.5 L30.7 17.5 Z" />
+        <path d="M30.7 17.5 L33.3 17.5 L34.8 32 L32 37 L29.2 32 Z" />
 
-        {/* Bolsillos y botones */}
-        <path d="M21 34 L27 34 L27 39" />
-        <path d="M43 34 L37 34 L37 39" />
-        <path d="M38 30 L38 49" />
-        <circle cx="35.5" cy="32" r="0.8" fill="var(--theme-accent)" />
-        <circle cx="35.5" cy="38" r="0.8" fill="var(--theme-accent)" />
-        <path d="M24 53 L24 56" />
-        <path d="M40 53 L40 56" />
+        {/* Botones */}
+        <circle cx="35.8" cy="37" r="0.9" fill="var(--theme-accent)" />
+        <circle cx="35.8" cy="44" r="0.9" fill="var(--theme-accent)" />
+
+        {/* Bolsillo del pecho con pañuelo */}
+        <path d="M18.5 31 L24 31 L24 34" />
+        <path d="M18.5 31 L20.5 28.5 L22.5 31" />
       </g>
     </svg>
   )
@@ -103,10 +120,11 @@ export default function WeddingDressCodeHelen({
 
   return (
     <section
-      className="px-6 py-20 text-center sm:py-24"
+      className="relative overflow-hidden px-6 py-20 text-center sm:py-24"
       style={{ backgroundColor: "var(--theme-surface)" }}
     >
-      <div className="mx-auto max-w-2xl">
+      <BotanicalBackground />
+      <div className="relative z-10 mx-auto max-w-2xl">
         {/* ENCABEZADO */}
         <p
           className="text-xs uppercase tracking-[0.3em] sm:text-sm"
@@ -133,7 +151,7 @@ export default function WeddingDressCodeHelen({
         <div className="mx-auto mt-10 grid max-w-lg grid-cols-2 gap-5 sm:mt-12 sm:gap-12">
           {/* CABALLEROS */}
           <div className="flex flex-col items-center">
-            <div className="flex h-24 items-center justify-center sm:h-28">
+            <div className="flex h-28 items-center justify-center sm:h-32">
               <SuitIcon />
             </div>
 
@@ -159,7 +177,7 @@ export default function WeddingDressCodeHelen({
 
           {/* MUJERES */}
           <div className="flex flex-col items-center">
-            <div className="flex h-24 items-center justify-center sm:h-28">
+            <div className="flex h-28 items-center justify-center sm:h-32">
               <DressIcon />
             </div>
 

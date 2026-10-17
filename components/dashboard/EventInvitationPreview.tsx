@@ -6,6 +6,7 @@ type Props = {
     name: string
     eventDate: Date
     theme: EventTheme | null
+    showChildsSection: boolean
 
     template: {
       name: string
@@ -79,7 +80,7 @@ export default function EventInvitationPreview({ event }: Props) {
           <div className="mx-auto mt-4 h-px w-10 bg-white/50" />
           <h1 className="mt-5 font-serif text-3xl font-light leading-tight">{mainTitle}</h1>
           <p className="mt-4 text-[10px] uppercase tracking-[0.2em] text-white/80">{formattedDate}</p>
-          {event.details?.phrase && (<p className="mt-5 text-xs italic leading-5 text-white/80">"{event.details.phrase}"</p>)}
+          {event.details?.phrase && (<p className="mt-5 text-xs italic leading-5 text-white/80">{'"'}{event.details.phrase}{'"'}</p>)}
         </div>
       </section>
       {/* INTRODUCCIÓN */}
@@ -112,6 +113,13 @@ export default function EventInvitationPreview({ event }: Props) {
             ))}
           </div>
           {event.schedules.length > 3 && (<p className="mt-4 text-center text-[9px]" style={{color: theme.secondaryColor}}>+ {event.schedules.length - 3} eventos más</p>)}
+        </section>
+      )}
+      {/* SECCIÓN DE NIÑOS */}
+      {event.showChildsSection && (
+        <section className="px-6 py-10 text-center" style={{backgroundColor: theme.surfaceColor}}>
+          <p className="text-[9px] uppercase tracking-[0.25em]" style={{color: theme.secondaryColor}}>Solo adultos</p>
+          <p className="mx-auto mt-3 max-w-70 text-xs italic leading-5" style={{color: theme.textColor}}>Adoramos a los pequeños, sin embargo esta celebración está diseñada solo para adultos. ¡Agradecemos su comprensión!</p>
         </section>
       )}
       {/* FOOTER */}

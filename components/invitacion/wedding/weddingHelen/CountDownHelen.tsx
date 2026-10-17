@@ -2,6 +2,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
 
 type Props = {
   targetDate: string
@@ -108,6 +109,7 @@ export default function CountdownHelen({ targetDate }: Props) {
         backgroundColor: "var(--theme-background)",
       }}
     >
+      <BotanicalBackground />
       {/* BRILLO CENTRAL */}
       <div
         aria-hidden="true"
@@ -128,7 +130,7 @@ export default function CountdownHelen({ targetDate }: Props) {
         }}
       />
 
-      <div className="relative mx-auto max-w-4xl text-center">
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
         {/* ORNAMENTO */}
         <div
           className="mb-6 flex items-center justify-center gap-4"

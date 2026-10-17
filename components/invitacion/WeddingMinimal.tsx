@@ -13,6 +13,9 @@ import InvitationTheme from "./shared/InvitationTheme"
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 import WeddingMinimalHero from "./wedding/WeddingMinimalHero"
 import InvitationGifts from "./shared/InvitationGifts"
+import InvitationChilds from "./shared/InvitationChilds"
+import BotanicalBackground from "./shared/BotanicalBackground"
+import ColibriBranding from "./shared/ColibriBranding"
 import WeddingMinimalOpening from "./wedding/WeddingMinimalOpening"
 import WeddingEnvelopeHZOpening from "./wedding/WeddingEnvelopeHZOpening"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
@@ -31,6 +34,8 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
   const brideName = details?.brideName ?? ""
   const groomName = details?.groomName ?? ""
   const coverPhoto = event.photos.find((photo) => photo.isCover) ?? event.photos[0]
+  const featurePhoto = event.photos[2] ?? null
+  const featurePhoto2 = event.photos[3] ?? null
   const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
   return (
@@ -66,16 +71,16 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
             <WeddingDateHelen event={event} />
           </ScrollReveal>
 
-          {/* Agregar una foto */}
-          {/* <section className="min-h-screen px-6 py-2" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
-            <div className="mx-auto flex min-h-[calc(100vh-8rem)] max-w-5xl flex-col justify-center">
-              <div className="mx-auto mt-2 w-full max-w-2xl">
-                <div className="relative aspect-video overflow-hidden">
-                  <Image src="./" alt={coverPhoto.title ?? event.name} fill priority className="object-cover"/>
+          {/* FOTO DEL EVENTO */}
+          {featurePhoto && (
+            <ScrollReveal direction="left" delay={200} duration={700}>
+              <section className="w-full" style={{backgroundColor: "var(--theme-background)"}}>
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <Image src={featurePhoto.url} alt={featurePhoto.title ?? event.name} fill className="object-cover"/>
                 </div>
-              </div>
-            </div>
-          </section> */}
+              </section>
+            </ScrollReveal>
+          )}
 
           <ScrollReveal direction="left" delay={400} duration={700}>
             {/* <InvitationSchedule event={event} /> */}
@@ -93,17 +98,24 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
           </ScrollReveal>
 
           <ScrollReveal direction="left" delay={600} duration={700}>
-            <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
-              <h2 className="text-3xl font-light" style={{color: "var(--theme-primary)"}}>Guarda la fecha</h2>
-              <div className="mt-7">
+            <section className="relative overflow-hidden px-6 py-20 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+              <BotanicalBackground />
+              <h2 className="relative z-10 text-3xl font-light" style={{color: "var(--theme-primary)"}}>Guarda la fecha</h2>
+              <div className="relative z-10 mt-7">
                 <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl} />
               </div>
             </section>
           </ScrollReveal>
 
-          <ScrollReveal direction="right" delay={700} duration={700}>
+          {/* <ScrollReveal direction="right" delay={700} duration={700}>
             <InvitationGallery event={event} />
-          </ScrollReveal>
+          </ScrollReveal> */}
+
+          {event.showChildsSection && (
+            <ScrollReveal direction="right" delay={850} duration={700}>
+              <InvitationChilds />
+            </ScrollReveal>
+          )}
 
           <ScrollReveal direction="left" delay={800} duration={700}>
             <InvitationGifts gifts={event.gifts} />
@@ -113,8 +125,23 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
             <InvitationLocations event={event} />
           </ScrollReveal>
 
+          {/* FOTO DE LOS NOVIOS */}
+          {featurePhoto2 && (
+            <ScrollReveal direction="left" delay={200} duration={700}>
+              <section className="w-full" style={{backgroundColor: "var(--theme-background)"}}>
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <Image src={featurePhoto2.url} alt={featurePhoto2.title ?? event.name} fill className="object-cover"/>
+                </div>
+              </section>
+            </ScrollReveal>
+          )}
+
           <ScrollReveal direction="left" delay={1000} duration={700}>
             <WeddingFooter details={details} />
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={1100} duration={700}>
+            <ColibriBranding />
           </ScrollReveal>
 
           {event.music && (

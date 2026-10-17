@@ -1,3 +1,5 @@
+import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
+
 type Props = {
   details: {
     fatherName: string | null
@@ -32,6 +34,8 @@ export default function QuinceanosFamilyHelen({details, type}: Props) {
       }}
     >
 
+      <BotanicalBackground />
+
       {/* ============================================
           DECORACIÓN DE FONDO
       ============================================ */}
@@ -64,7 +68,7 @@ export default function QuinceanosFamilyHelen({details, type}: Props) {
       />
 
 
-      <div className="relative mx-auto max-w-4xl">
+      <div className="relative z-10 mx-auto max-w-4xl">
 
         {/* ============================================
             ENCABEZADO

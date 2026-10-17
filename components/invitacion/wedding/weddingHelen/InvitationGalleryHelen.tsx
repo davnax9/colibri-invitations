@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useRef, useState } from "react"
 import { ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/24/outline"
+import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
 
 type InvitationGalleryProps = {
   event: {
@@ -96,8 +97,9 @@ export default function InvitationGalleryHelen({event}: InvitationGalleryProps) 
   }
 
   return (
-    <section className="w-full max-w-full overflow-hidden px-4 py-8 sm:px-6 sm:py-16" style={{backgroundColor: "var(--theme-background)"}}>
-      <div className="mx-auto w-full max-w-5xl min-w-0">
+    <section className="relative w-full max-w-full overflow-hidden px-4 py-8 sm:px-6 sm:py-16" style={{backgroundColor: "var(--theme-background)"}}>
+      <BotanicalBackground />
+      <div className="relative z-10 mx-auto w-full max-w-5xl min-w-0">
         {/* ENCABEZADO */}
         <div className="text-center">
           <h2 className="mt-1 font-serif text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>H&E</h2>

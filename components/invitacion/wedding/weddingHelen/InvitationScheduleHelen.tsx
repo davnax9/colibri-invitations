@@ -1,3 +1,5 @@
+import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
+
 type InvitationScheduleProps = {
   event: {
     name: string
@@ -221,15 +223,16 @@ export default function InvitationScheduleHelen({event}: InvitationScheduleProps
   return (
     <>
       {event.schedules.length > 0 && (
-        <section className="px-6 py-8" style={{backgroundColor: "var(--theme-background)"}}>
+        <section className="relative overflow-hidden px-6 py-8" style={{backgroundColor: "var(--theme-background)"}}>
+          <BotanicalBackground />
           {/* ENCABEZADO */}
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h2 className="mt-2 text-4xl font-serif" style={{color: "var(--theme-primary)"}}>Nuestro día</h2>
             <p className="mt-4 text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Itinerario</p>
             <div className="mx-auto mt-5 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
           </div>
           {/* LÍNEA DE TIEMPO */}
-          <div className="mx-auto mt-16 max-w-4xl">
+          <div className="relative z-10 mx-auto mt-16 max-w-4xl">
             <div className="relative">
               {/* LÍNEA CENTRAL */}
               <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2" style={{backgroundColor: "var(--theme-accent)", opacity: 0.5}}/>

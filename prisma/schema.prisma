@@ -93,6 +93,8 @@ model Event {
   backgroundOpacity   Float   @default(0.15)
   backgroundPosition  String  @default("center")
 
+  showChildsSection   Boolean @default(true)
+
   @@index([userId])
   @@index([templateId])
 }

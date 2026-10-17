@@ -11,6 +11,7 @@ import EventThemeSelector from "@/components/eventos/EventThemeSelector"
 import EventInvitationPreview from "@/components/dashboard/EventInvitationPreview"
 import EventGiftsForm from "@/components/eventos/EventGiftsForm"
 import EventBackgroundForm from "@/components/eventos/EventBackgroundForm"
+import EventChildsForm from "@/components/eventos/EventChildsForm"
 
 type Props = {
   params: Promise<{ id: string }>
@@ -156,6 +157,10 @@ export default async function EventEditorPage({ params }: Props) {
 
             <EditorSection number="07" icon="🎁" title="Mesa de regalos" description="Agrega las opciones de regalo que tus invitados podrán consultar.">
               <EventGiftsForm eventId={event.id} gifts={event.gifts}/>
+            </EditorSection>
+
+            <EditorSection number="08" icon="👶" title="Sección de niños" description="Decide si se muestra el aviso de que la celebración es solo para adultos.">
+              <EventChildsForm eventId={event.id} enabled={event.showChildsSection}/>
             </EditorSection>
           </section>
 

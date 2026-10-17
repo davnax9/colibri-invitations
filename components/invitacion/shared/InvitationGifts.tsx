@@ -5,6 +5,7 @@ import {
   HeartIcon,
   CreditCardIcon,
 } from "@heroicons/react/24/outline"
+import BotanicalBackground from "./BotanicalBackground"
 
 type Gift = {
   id: string
@@ -57,6 +58,8 @@ export default function InvitationGifts({
       }}
     >
 
+      <BotanicalBackground />
+
       {/* BRILLO */}
 
       <div
@@ -68,7 +71,7 @@ export default function InvitationGifts({
         }}
       />
 
-      <div className="relative mx-auto max-w-4xl">
+      <div className="relative z-10 mx-auto max-w-4xl">
 
         {/* ORNAMENTO */}
 

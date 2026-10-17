@@ -1,0 +1,49 @@
+
+> invitaciones-digitales@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.2 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.18.100.2:3000
+- Environments: .env
+✓ Ready in 541ms
+✓ Running next.config.ts took 44ms
+
+(node:24824) Warning: SECURITY WARNING: The SSL modes 'prefer', 'require', and 'verify-ca' are treated as aliases for 'verify-full'.
+In the next major version (pg-connection-string v3.0.0 and pg v9.0.0), these modes will adopt standard libpq semantics, which have weaker security guarantees.
+
+To prepare for this change:
+- If you want the current behavior, explicitly use 'sslmode=verify-full'
+- If you want libpq compatibility now, use 'uselibpqcompat=true&sslmode=require'
+
+See https://www.postgresql.org/docs/current/libpq-ssl.html for libpq SSL mode definitions.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 3.0s (next.js: 1180ms, application-code: 1858ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/jennyfer-martin 200 in 3.4s (next.js: 981ms, application-code: 2.4s)
+[browser] Image with src "/logoColibri.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 1867ms (next.js: 20ms, application-code: 1846ms)
+[browser] Image with src "/logoColibri.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ GET /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 570ms (next.js: 22ms, application-code: 548ms)
+[browser] Image with src "https://res.cloudinary.com/ddkaxyzro/image/upload/v1788934112/c1vlshkejgavcexldacr.jpg" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[browser] Image with src "/logoColibri.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+ POST /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 865ms (next.js: 20ms, application-code: 845ms)
+  └─ ƒ updateEventShowChilds({"enabled":true,"eventId":"cmtjbaxti00016c7if74x0esc"}) in 319ms actions/event-actions.ts
+ POST /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 2.6s (next.js: 18ms, application-code: 2.6s)
+  └─ ƒ updateEventShowChilds({"enabled":false,"eventId":"cmtjbaxti00016c7if74x0esc"}) in 922ms actions/event-actions.ts
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/jennyfer-martin 200 in 705ms (next.js: 18ms, application-code: 687ms)
+ POST /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 2.6s (next.js: 21ms, application-code: 2.6s)
+  └─ ƒ updateEventShowChilds({"enabled":true,"eventId":"cmtjbaxti00016c7if74x0esc"}) in 900ms actions/event-actions.ts
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/jennyfer-martin 200 in 693ms (next.js: 20ms, application-code: 673ms)
+✓ Compiled in 241ms
+ GET /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 1596ms (next.js: 39ms, application-code: 1557ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/jennyfer-martin 200 in 1940ms (next.js: 45ms, application-code: 1895ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/jennyfer-martin 200 in 522ms (next.js: 43ms, application-code: 479ms)
+ GET /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 662ms (next.js: 27ms, application-code: 635ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/jennyfer-martin 200 in 2.3s (next.js: 25ms, application-code: 2.3s)

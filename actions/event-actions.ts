@@ -1988,3 +1988,54 @@ export async function updateEventBackground(data: {
     }
   }
 }
+
+export async function updateEventShowChilds(data: {
+  eventId: string
+  enabled: boolean
+}) {
+  try {
+    const session = await requireAuth()
+
+    const event = await prisma.event.findFirst({
+      where: {
+        id: data.eventId,
+        ...(session.user.role === "ADMIN"
+          ? {}
+          : { userId: session.user.id }),
+      },
+    })
+
+    if (!event) {
+      return {
+        success: false as const,
+        error: "Evento no encontrado.",
+      }
+    }
+
+    await prisma.event.update({
+      where: {
+        id: data.eventId,
+      },
+      data: {
+        showChildsSection: data.enabled,
+      },
+    })
+
+    revalidatePath(`/dashboard/eventos/${data.eventId}`)
+    revalidatePath(`/invitacion/${event.slug}`)
+
+    return {
+      success: true as const,
+    }
+  } catch (error) {
+    console.error(
+      "Error actualizando la sección de niños:",
+      error
+    )
+
+    return {
+      success: false as const,
+      error: "No fue posible actualizar la sección de niños.",
+    }
+  }
+}
