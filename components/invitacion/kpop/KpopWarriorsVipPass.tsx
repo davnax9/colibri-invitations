@@ -240,7 +240,7 @@ export default function KpopWarriorsVipPass({
                 Estrella de la noche
               </p>
 
-              <h3
+              {/* <h3
                 className="
                   mt-3
                   text-4xl
@@ -252,7 +252,21 @@ export default function KpopWarriorsVipPass({
                 "
               >
                 {childName}
-              </h3>
+              </h3> */}
+              <br />
+              <span
+                className="pt-12 text-4xl font-wedding
+                  bg-gradient-to-r
+                  from-fuchsia-300
+                  via-pink-100
+                  to-cyan-300
+                  bg-clip-text
+                  text-transparent
+                  drop-shadow-[0_0_18px_rgba(217,70,239,0.30)]
+                "
+              >
+                {childName}
+              </span>
 
             </div>
 

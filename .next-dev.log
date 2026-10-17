@@ -180,3 +180,11 @@ TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
 TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
  GET /invitacion/bianquita 200 in 379ms (next.js: 30ms, application-code: 349ms)
  GET /dashboard/eventos/cmuq5qgci0001fw7il4qak7de 200 in 523ms (next.js: 17ms, application-code: 506ms)
+ GET /dashboard/eventos/cmuq5qgci0001fw7il4qak7de 200 in 1182ms (next.js: 17ms, application-code: 1164ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/bianquita 200 in 1556ms (next.js: 26ms, application-code: 1530ms)
+ POST /dashboard/eventos/cmuq5qgci0001fw7il4qak7de 200 in 2.4s (next.js: 25ms, application-code: 2.4s)
+  └─ ƒ saveEventDetails({"brideName":"","childName":"","description":"","...":"10 items not stringified"}) in 883ms actions/event-actions.ts
+ GET /dashboard/eventos/cmuq5qgci0001fw7il4qak7de 200 in 1226ms (next.js: 18ms, application-code: 1208ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/bianquita 200 in 1592ms (next.js: 33ms, application-code: 1559ms)
