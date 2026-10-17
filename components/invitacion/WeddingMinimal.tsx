@@ -145,9 +145,7 @@ export default function WeddingMinimal({event,guest}: InvitationTemplateProps) {
           </ScrollReveal>
 
           {event.music && (
-            <ScrollReveal direction="right" delay={1100} duration={700}>
-              <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />
-            </ScrollReveal>
+            <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />
           )}
         </main>
       </WeddingEnvelopeHZOpening>

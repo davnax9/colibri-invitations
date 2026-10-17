@@ -47,3 +47,6 @@ TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
  GET /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 662ms (next.js: 27ms, application-code: 635ms)
 TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
  GET /invitacion/jennyfer-martin 200 in 2.3s (next.js: 25ms, application-code: 2.3s)
+ GET /dashboard/eventos/cmtjbaxti00016c7if74x0esc 200 in 1368ms (next.js: 30ms, application-code: 1338ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/jennyfer-martin 200 in 1674ms (next.js: 44ms, application-code: 1630ms)
