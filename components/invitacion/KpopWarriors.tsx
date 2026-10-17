@@ -13,6 +13,7 @@ import KpopWarriorsIntro from "./kpop/KpopWarriorsIntro"
 import Image from "next/image"
 import KpopWarriorsVipPass from "./kpop/KpopWarriorsVipPass"
 import KpopWarriorsDressCode from "./kpop/KpopWarriorsDressCode"
+import ScrollReveal from "@/app/components/ui/ScrollReveal"
 
 export default function KpopWarriors({
   event,
@@ -42,65 +43,71 @@ export default function KpopWarriors({
         >
 
           {/* HERO */}
-
-          <KpopWarriorsHero
-            coverPhoto={coverPhoto}
-            details={details}
-            event={event}
-          />
+          <ScrollReveal direction="left" delay={800} duration={700}>
+            <KpopWarriorsHero
+              coverPhoto={coverPhoto}
+              details={details}
+              event={event}
+            />
+          </ScrollReveal>
+          
 
           {/* INTRO */}
-
-          <KpopWarriorsIntro
-            details={details}
-          />
+          <ScrollReveal direction="right" delay={800} duration={700}>
+            <KpopWarriorsIntro
+              details={details}
+            />
+          </ScrollReveal>
 
           {/* VIP PASS */}
-
-          <KpopWarriorsVipPass
-            childName={childName}
-            eventDate={event.eventDate}
-            dressCode={details?.dressCode}
-          />
+          <ScrollReveal direction="left" delay={800} duration={700}>
+            <KpopWarriorsVipPass
+              childName={childName}
+              eventDate={event.eventDate}
+              dressCode={details?.dressCode}
+            />
+          </ScrollReveal>
 
           {/* COUNTDOWN */}
-
-          <section
-            className="relative overflow-hidden px-6 py-2 text-center"
-            style={{
-              backgroundColor: "var(--theme-background)",
-            }}
-          >
-            <div className="mt-1">
-              <Countdown
-                targetDate={event.eventDate.toISOString()}
-              />
-            </div>
-
-          </section>
+          <ScrollReveal direction="right" delay={800} duration={700}>
+            <section
+              className="relative overflow-hidden px-6 py-2 text-center"
+              style={{
+                backgroundColor: "var(--theme-background)",
+              }}
+            >
+              <div className="mt-1">
+                <Countdown
+                  targetDate={event.eventDate.toISOString()}
+                />
+              </div>
+            </section>
+          </ScrollReveal>
 
           {/* HORARIOS */}
-
-          <InvitationSchedule event={event} />
+          <ScrollReveal direction="left" delay={800} duration={700}>
+            <InvitationSchedule event={event} />
+          </ScrollReveal>  
 
           {/* UBICACIONES */}
-
-          <InvitationLocations event={event} />
+          <ScrollReveal direction="right" delay={800} duration={700}> 
+            <InvitationLocations event={event} />
+          </ScrollReveal> 
 
           {/* GALERÍA */}
 
-          <InvitationGallery event={event} />
+          {/* <InvitationGallery event={event} /> */}
 
           {/* DRESS CODE */}
-
-          <KpopWarriorsDressCode
-            dressCode={details?.dressCode}
-          />
+          <ScrollReveal direction="left" delay={800} duration={700}>
+            <KpopWarriorsDressCode
+              dressCode={details?.dressCode}
+            />
+          </ScrollReveal>  
 
           {/* ================================================= */}
           {/* CIERRE */}
           {/* ================================================= */}
-
           <section
             className="
               relative
