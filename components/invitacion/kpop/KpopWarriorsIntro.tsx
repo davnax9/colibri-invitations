@@ -210,7 +210,7 @@ export default function KpopWarriorsIntro({
         <h2
           className="
             mt-8
-            text-4xl
+            text-lg
             font-black
             leading-tight
             text-[#F5F3FF]
@@ -218,9 +218,14 @@ export default function KpopWarriorsIntro({
             sm:text-5xl
           "
         >
-          Una noche
+          Nuestra pequeña estrella Bianca cumple 8 años.✨
           <br />
-
+          <br />
+          Queremos compartir con usteedes una noche muy especial, llena de musica, luces, magia y diversión. 
+          <br /><br />
+          {/* Una noche
+          <br />
+          */}    
           <span
             className="
               bg-gradient-to-r
@@ -232,8 +237,9 @@ export default function KpopWarriorsIntro({
               drop-shadow-[0_0_18px_rgba(217,70,239,0.30)]
             "
           >
-            para brillar
-          </span>
+            Los Esperamos para cantar, bailar y brillar juntos.
+          </span> 
+          🎤✨
         </h2>
 
         {/* ================================================= */}

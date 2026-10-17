@@ -151,8 +151,8 @@ export default function KpopWarriorsHero({
           K-POP
         </h1>
 
-        <h2 className="mt-1 text-2xl font-bold tracking-[0.28em] text-cyan-200 drop-shadow-[0_0_18px_rgba(34,211,238,0.45)] sm:text-4xl">
-          WARRIORS
+        <h2 className="mt-1 text-xl font-bold tracking-[0.28em] text-cyan-200 drop-shadow-[0_0_18px_rgba(34,211,238,0.45)] sm:text-4xl">
+          DEMON HUNTERS
         </h2>
 
         {/* SEPARADOR */}
@@ -258,12 +258,26 @@ export default function KpopWarriorsHero({
 
         {/* NOMBRE */}
 
-        <h3 className="mt-12 text-4xl font-black tracking-wide text-white drop-shadow-[0_0_15px_rgba(236,72,153,0.4)] sm:text-5xl">
+        {/* <h3 className="mt-12 text-4xl font-wedding tracking-wide text-white drop-shadow-[0_0_15px_rgba(236,72,153,0.4)] sm:text-5xl">
           {childName}
-        </h3>
+        </h3> */}
+        <br></br><br></br>
+        <span
+            className="pt-12 text-4xl font-wedding
+              bg-gradient-to-r
+              from-fuchsia-300
+              via-pink-100
+              to-cyan-300
+              bg-clip-text
+              text-transparent
+              drop-shadow-[0_0_18px_rgba(217,70,239,0.30)]
+            "
+          >
+            {childName}
+          </span>
 
-        <p className="mt-4 text-base tracking-[0.12em] text-purple-100/75 sm:text-lg">
-          celebra sus 8 años
+        <p className="mt-4 text-2xl tracking-[0.12em] text-purple-100/75 sm:text-lg">
+          Celebra sus 8 años
         </p>
 
         {/* FECHA */}

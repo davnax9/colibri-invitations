@@ -92,7 +92,7 @@ export default function KpopWarriorsEnvelope({
         </h1>
 
         <h2 className="mt-1 text-2xl font-bold tracking-[0.18em] text-cyan-200 drop-shadow-[0_0_14px_rgba(34,211,238,0.45)] sm:text-3xl">
-          WARRIORS
+          DEMON HUNTERS
         </h2>
 
         {/* SEPARADOR */}
