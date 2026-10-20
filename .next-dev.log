@@ -188,3 +188,6 @@ TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
  GET /dashboard/eventos/cmuq5qgci0001fw7il4qak7de 200 in 1226ms (next.js: 18ms, application-code: 1208ms)
 TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
  GET /invitacion/bianquita 200 in 1592ms (next.js: 33ms, application-code: 1559ms)
+ GET /dashboard/eventos/cmuq5qgci0001fw7il4qak7de 200 in 1157ms (next.js: 16ms, application-code: 1141ms)
+TEXTURA INVITACIÓN: { enabled: false, texture: null, opacity: 0.15 }
+ GET /invitacion/bianquita 200 in 1398ms (next.js: 31ms, application-code: 1367ms)

@@ -193,7 +193,7 @@ export default function HomePage() {
             <p className="mt-4 text-[#687A72]">Comienza con lo esencial o disfruta de todas las herramientas para administrar tu evento.</p>
           </div>
           {/* OFERTA */}
-          <PromotionBanner endDate="2026-09-15T23:59:59" />
+          <PromotionBanner endDate="2026-10-30T23:59:59" />
           {/* PLANES */}
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
             {/* ================================================= */}
@@ -207,8 +207,8 @@ export default function HomePage() {
               <div className="mt-6">
                 <span className="text-sm font-medium text-[#8A9A8F]">Desde</span>
                 <div className="mt-1 flex items-baseline gap-3">
-                  <span className="text-lg font-medium text-[#8A9A8F] line-through">$500</span>
-                  <span className="text-4xl font-bold text-[#263832]">$400</span>
+                  <span className="text-lg font-medium text-[#8A9A8F] line-through">$350</span>
+                  <span className="text-4xl font-bold text-[#263832]">$280</span>
                 </div>
                 <p className="mt-1 text-xs text-[#8A9A8F]">20% de descuento · Pago único</p>
               </div>
@@ -242,7 +242,7 @@ export default function HomePage() {
               <div className="mt-6">
                 <span className="text-sm font-medium text-[#D7E3DE]">Desde</span>
                 <div className="mt-1 flex items-baseline gap-3">
-                  <span className="text-lg font-medium text-[#AFC0B8] line-through">$800</span><span className="text-4xl font-bold text-white">$640</span>
+                  <span className="text-lg font-medium text-[#AFC0B8] line-through">$500</span><span className="text-4xl font-bold text-white">$400</span>
                 </div>
                 <p className="mt-1 text-xs text-[#AFC0B8]">20% de descuento · Pago único</p>
               </div>
