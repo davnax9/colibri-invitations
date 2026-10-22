@@ -1,3 +1,5 @@
+import BotanicalBackground from "../shared/BotanicalBackground"
+
 type Props = {
   schedules: {
     id: string
@@ -13,7 +15,8 @@ type Props = {
 
 export default function WeddingLuxuryCelebration({ schedules }: Props) {
   return (
-    <section className="px-6 py-28" style={{backgroundColor: "var(--theme-surface)",color: "var(--theme-text)"}}>
+    <section className="px-6 py-8" style={{backgroundColor: "var(--theme-surface)",color: "var(--theme-text)"}}>
+      <BotanicalBackground />
       <div className="mx-auto max-w-5xl">
         {/* ENCABEZADO */}
         <div className="text-center">

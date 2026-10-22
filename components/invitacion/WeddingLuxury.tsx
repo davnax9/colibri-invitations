@@ -17,6 +17,9 @@ import WeddingLuxuryOpening from "./wedding/WeddingLuxuryOpening"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
 import ColibriBranding from "./shared/ColibriBranding"
 import InvitationChilds from "./shared/InvitationChilds"
+import QuinceanosFamilyHelen from "./wedding/weddingHelen/QuinceanosFamilyHelen"
+import WeddingDressCodeHelen from "./wedding/weddingHelen/WeddingDressCodeHelen"
+import BotanicalBackground from "./shared/BotanicalBackground"
 
 export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -33,22 +36,26 @@ return (
           <ScrollReveal direction="left" delay={0} duration={800}>
             <WeddingLuxuryHero coverPhoto={coverPhoto} details={details} event={event}/>
           </ScrollReveal>
+          <ScrollReveal direction="right" delay={700} duration={700}>
+            <QuinceanosFamilyHelen details={details} type='W'/>
+          </ScrollReveal>
           {/* INTRO PREMIUM */}
           <ScrollReveal direction="right" delay={100} duration={700}>
-            <section className="px-6 py-28 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+            <section className="px-6 py-12 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+              <BotanicalBackground />
               <div className="mx-auto max-w-3xl">
                 <div className="mx-auto h-px w-20" style={{backgroundColor: "var(--theme-accent)"}}/>
                 <p className="mt-8 text-xs uppercase tracking-[0.5em]" style={{color: "var(--theme-secondary)"}}>Una celebración especial</p>
-                <h2 className="mt-8 text-5xl font-serif md:text-7xl" style={{color: "var(--theme-primary)"}}>{brideName}<span className="mx-3 italic" style={{color: "var(--theme-accent)"}}>&</span>{groomName}</h2>
+                <h2 className="mt-8 text-3xl font-wedding md:text-7xl" style={{color: "var(--theme-primary)"}}>{brideName}<span className="mx-3 italic" style={{color: "var(--theme-accent)"}}>&</span>{groomName}</h2>
                 <p className="mx-auto mt-8 max-w-2xl text-sm leading-8" style={{color: "var(--theme-secondary)"}}>{details?.description}</p>
                 <div className="mx-auto mt-10 h-px w-20" style={{backgroundColor: "var(--theme-accent)"}}/>
               </div>
             </section>
           </ScrollReveal>
 
-          <ScrollReveal direction="left" delay={200} duration={700}>
+          {/* <ScrollReveal direction="left" delay={200} duration={700}>
             <WeddingDate event={event} />
-          </ScrollReveal>
+          </ScrollReveal> */}
 
           <ScrollReveal direction="right" delay={300} duration={700}>
             <Countdown targetDate={event.eventDate.toISOString()}/>
@@ -63,7 +70,8 @@ return (
           </ScrollReveal>
 
           <ScrollReveal direction="left" delay={600} duration={700}>
-            <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+            <section className="px-6 py-6 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+              <BotanicalBackground />
               <p className="text-xs uppercase tracking-[0.4em]" style={{color: "var(--theme-secondary)"}}>Reserva la fecha</p>
               <h2 className="mt-5 text-4xl font-serif" style={{color: "var(--theme-primary)"}}>Guarda nuestro día</h2>
               <div className="mt-8">
@@ -87,7 +95,8 @@ return (
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={900} duration={700}>
-            <WeddingDressCode details={details} />
+            {/* <WeddingDressCode details={details} /> */}
+            <WeddingDressCodeHelen details={details} />
           </ScrollReveal>
 
           <ScrollReveal direction="left" delay={1000} duration={700}>

@@ -61,7 +61,7 @@ export default function InvitationLocations({
 
   return (
     <section
-      className="relative overflow-hidden px-4 py-10 sm:px-6 sm:py-16 md:px-10 md:py-24"
+      className="relative overflow-hidden px-4 py-4 sm:px-6 sm:py-8 md:px-10 md:py-12"
       style={{
         backgroundColor:
           "var(--theme-surface)",

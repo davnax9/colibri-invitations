@@ -1,4 +1,5 @@
 import Image from "next/image"
+import BotanicalBackground from "../shared/BotanicalBackground"
 
 type Props = {
   coverPhoto?: {
@@ -24,6 +25,7 @@ export default function WeddingLuxuryHero({coverPhoto,details,event}: Props) {
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-16" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+      <BotanicalBackground />
       {/* MARCO EXTERIOR */}
       <div className="absolute inset-5 border md:inset-10" style={{ borderColor: "var(--theme-accent)" }}/>
       <div className="absolute inset-8 border md:inset-14" style={{ borderColor: "var(--theme-accent)" }}/>
@@ -41,7 +43,9 @@ export default function WeddingLuxuryHero({coverPhoto,details,event}: Props) {
             </div>
           </div>
         )}
-        <h1 className="mt-9 text-5xl font-serif md:text-7xl"  style={{ color: "var(--theme-primary)"}}>{brideName}<span className="mx-3 italic" style={{ color: "var(--theme-accent)" }}>&</span>{groomName}</h1>
+        <h1 className="mt-9 text-5xl font-wedding md:text-7xl"  style={{ color: "var(--theme-primary)"}}>{brideName}</h1>
+        <h1 className="mt-2 text-5xl font-wedding md:text-7xl"  style={{ color: "var(--theme-primary)"}}><span className="mx-3 italic" style={{ color: "var(--theme-accent)" }}>&</span></h1>
+        <h1 className="mt-2 text-5xl font-wedding md:text-7xl"  style={{ color: "var(--theme-primary)"}}>{groomName}</h1>
         {details?.phrase && (<p className="mx-auto mt-5 max-w-lg text-sm italic leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>)}
         <div className="mx-auto mt-7 flex items-center justify-center gap-3">
           <div className="h-px w-12" style={{ backgroundColor: "var(--theme-accent)" }}/>

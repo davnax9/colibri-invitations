@@ -1,5 +1,6 @@
 
 import Image from "next/image"
+import BotanicalBackground from "../shared/BotanicalBackground"
 
 type Props = {
   photos: {
@@ -18,7 +19,8 @@ export default function WeddingLuxuryGallery({ photos }: Props) {
   const secondaryPhotos = photos.filter((photo) => photo.id !== coverPhoto.id).slice(0, 4)
 
   return (
-    <section className="px-6 py-28" style={{ backgroundColor: "var(--theme-background)" }}>
+    <section className="px-6 py-12" style={{ backgroundColor: "var(--theme-background)" }}>
+      <BotanicalBackground />
       <div className="mx-auto max-w-6xl">
         {/* ENCABEZADO */}
         <div className="mb-16 text-center">
