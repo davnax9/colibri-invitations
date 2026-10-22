@@ -102,7 +102,7 @@ export default function InvitationGalleryHelen({event}: InvitationGalleryProps) 
       <div className="relative z-10 mx-auto w-full max-w-5xl min-w-0">
         {/* ENCABEZADO */}
         <div className="text-center">
-          <h2 className="mt-1 font-serif text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>H&E</h2>
+          <h2 className="mt-1 font-wedding text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>H&E</h2>
           <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
         </div>
         {/* CARRUSEL */}

@@ -51,7 +51,7 @@ export default function InvitationGifts({
 
   return (
     <section
-      className="relative overflow-hidden px-6 py-24 text-center sm:px-10 md:py-32"
+      className="relative overflow-hidden px-6 py-8 text-center sm:px-10 md:py-12"
       style={{
         backgroundColor:
           "var(--theme-background)",

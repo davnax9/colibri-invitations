@@ -2,6 +2,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import BotanicalBackground from "./BotanicalBackground"
 
 type Props = {
   targetDate: string
@@ -108,6 +109,7 @@ export default function Countdown({ targetDate }: Props) {
         backgroundColor: "var(--theme-background)",
       }}
     >
+      <BotanicalBackground />
       {/* BRILLO CENTRAL */}
       <div
         aria-hidden="true"

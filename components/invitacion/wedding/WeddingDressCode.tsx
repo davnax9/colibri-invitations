@@ -1,3 +1,5 @@
+import BotanicalBackground from "../shared/BotanicalBackground"
+
 type WeddingDressCodeProps = {
   details: {
     title: string | null
@@ -16,6 +18,7 @@ export default function WeddingDressCode({details}: WeddingDressCodeProps) {
 
   return (
     <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+      <BotanicalBackground />
       <div className="mx-auto max-w-2xl">
         {/* ENCABEZADO */}
         <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Código de vestimenta</p>

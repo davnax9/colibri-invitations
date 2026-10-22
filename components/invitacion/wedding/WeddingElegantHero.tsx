@@ -1,4 +1,5 @@
 import Image from "next/image"
+import BotanicalBackground from "../shared/BotanicalBackground"
 
 type Props = {
   coverPhoto?: {
@@ -23,7 +24,8 @@ export default function WeddingElegantHero({coverPhoto,details,event}: Props) {
   const groomName = details?.groomName ?? ""
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-20" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-6" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
+      <BotanicalBackground />
       {/* DECORACIÓN */}
       <div className="absolute left-1/2 top-20 h-px w-24 -translate-x-1/2" style={{ backgroundColor: "var(--theme-accent)" }}/>
       <div className="relative z-10 mx-auto w-full max-w-5xl text-center">
@@ -39,10 +41,12 @@ export default function WeddingElegantHero({coverPhoto,details,event}: Props) {
         </div>
         <div className="mt-10">
           <p className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--theme-secondary)" }}>Con amor</p>
-          <h1 className="mt-4 text-5xl font-serif leading-tight md:text-7xl" style={{ color: "var(--theme-primary)" }}>{brideName}<span className="mx-3 italic" style={{ color: "var(--theme-accent)" }}>&</span>{groomName}</h1>
+          <h1 className="mt-4 text-4xl font-wedding leading-tight md:text-7xl" style={{ color: "var(--theme-primary)" }}>{brideName}</h1>
+          <h1 className="mt-1 text-4xl font-wedding leading-tight md:text-7xl" style={{ color: "var(--theme-primary)" }}><span className="mx-3 italic" style={{ color: "var(--theme-accent)" }}>&</span></h1>
+          <h1 className="mt-1 text-4xl font-wedding leading-tight md:text-7xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
           {details?.phrase && (<p className="mx-auto mt-6 max-w-xl text-sm leading-7 md:text-base" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>)}
         </div>
-        <div className="mx-auto mt-10 h-px w-16" style={{ backgroundColor: "var(--theme-accent)" }}/>
+        <div className="mx-auto mt-8 h-px w-16" style={{ backgroundColor: "var(--theme-accent)" }}/>
         <p className="mt-6 text-sm" style={{ color: "var(--theme-secondary)" }}>{event.eventDate.toLocaleDateString("es-MX", {day: "numeric", month: "long", year: "numeric"})}</p>
       </div>
     </section>

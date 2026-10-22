@@ -1,3 +1,5 @@
+import BotanicalBackground from "../shared/BotanicalBackground"
+
 type WeddingDateProps = {
     event: {
         name: string
@@ -52,7 +54,8 @@ type WeddingDateProps = {
 export default function WeddingDate({event}: WeddingDateProps) {
   return (
     <>
-        <section className="bg-white px-6 py-24 text-center" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+        <section className="bg-white px-6 py-8 text-center" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+            <BotanicalBackground />
             <p className="text-sm uppercase tracking-[0.3em] text-stone-400" style={{color: "var(--theme-secondary)"}}>Reserva la fecha</p>
             <div className="mx-auto mt-5 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}} />
             <h2 className="mt-5 text-4xl font-serif" style={{color: "var(--theme-primary)"}}>{event.eventDate.toLocaleDateString("es-MX",{day: "numeric", month: "long",year: "numeric"})}</h2>

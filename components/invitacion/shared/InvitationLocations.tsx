@@ -69,13 +69,10 @@ export default function InvitationLocations({
     >
       <BotanicalBackground />
       <div className="relative z-10 mx-auto max-w-5xl">
-
         {/* =================================================
             ENCABEZADO
         ================================================= */}
-
         <div className="text-center">
-
           <p
             className="text-[9px] uppercase tracking-[0.25em] sm:text-sm sm:tracking-[0.3em]"
             style={{
@@ -103,8 +100,7 @@ export default function InvitationLocations({
                 "var(--theme-secondary)",
             }}
           >
-            Te compartimos los lugares donde estaremos
-            celebrando este día tan especial.
+            Te compartimos lugares que te seran utiles para que nos acompañes en este momento tan especial.
           </p>
 
           {/* DETALLE DECORATIVO */}

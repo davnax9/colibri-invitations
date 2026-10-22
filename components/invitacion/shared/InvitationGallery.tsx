@@ -97,7 +97,7 @@ export default function InvitationGallery({event}: InvitationGalleryProps) {
   }
 
   return (
-    <section className="relative w-full max-w-full overflow-hidden px-4 py-16 sm:px-6 sm:py-24" style={{backgroundColor: "var(--theme-background)"}}>
+    <section className="relative w-full max-w-full overflow-hidden px-4 py-8 sm:px-6 sm:py-12" style={{backgroundColor: "var(--theme-background)"}}>
       <BotanicalBackground />
       <div className="relative z-10 mx-auto w-full max-w-5xl min-w-0">
         {/* ENCABEZADO */}
