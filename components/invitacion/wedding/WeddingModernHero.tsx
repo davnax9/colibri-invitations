@@ -26,11 +26,11 @@ export default function WeddingModernHero({coverPhoto,details,event}: Props) {
     <section className="relative min-h-screen overflow-hidden" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
       <div className="mx-auto grid min-h-screen max-w-7xl lg:grid-cols-2">
         {/* INFORMACIÓN */}
-        <div className="flex flex-col justify-center px-8 py-20 lg:px-16">
+        <div className="flex flex-col justify-center px-8 py-12 lg:px-16">
           <p className="text-xs font-medium uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>Save the date</p>
-          <h1 className="mt-8 text-6xl font-serif leading-[0.9] tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{brideName}</h1>
-          <div className="my-2 text-5xl font-light" style={{ color: "var(--theme-accent)" }}>&</div>
-          <h1 className="text-6xl font-serif leading-[0.9] tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
+          <h1 className="mt-8 text-6xl font-wedding leading-[0.9] tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{brideName}</h1>
+          <div className="my-2 text-5xl font-wedding" style={{ color: "var(--theme-accent)" }}>&</div>
+          <h1 className="text-6xl font-wedding leading-[0.9] tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
           <div className="mt-10 h-px w-20" style={{ backgroundColor: "var(--theme-primary)" }}/>
           <p className="mt-5 text-sm" style={{ color: "var(--theme-secondary)" }}>{event.eventDate.toLocaleDateString("es-MX", {day: "2-digit", month: "long", year: "numeric"})}</p>
           {details?.phrase && (<p className="mt-8 max-w-md text-sm leading-7" style={{ color: "var(--theme-secondary)" }}>{details.phrase}</p>)}

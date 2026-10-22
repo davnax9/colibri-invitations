@@ -17,6 +17,7 @@ import WeddingModernOpening from "./wedding/WeddingModernOpening"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
 import ColibriBranding from "./shared/ColibriBranding"
 import InvitationChilds from "./shared/InvitationChilds"
+import QuinceanosFamilyHelen from "./wedding/weddingHelen/QuinceanosFamilyHelen"
 
 export default function WeddingModern({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -33,14 +34,19 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
           <ScrollReveal direction="left" delay={0} duration={800}>
             <WeddingModernHero coverPhoto={coverPhoto} details={details} event={event}/>
           </ScrollReveal>
+          <ScrollReveal direction="right" delay={700} duration={700}>
+            <QuinceanosFamilyHelen details={details} type='W'/>
+          </ScrollReveal>
           {/* NOMBRES */}
           <ScrollReveal direction="right" delay={100} duration={700}>
-            <section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
+            <section className="px-6 py-12" style={{backgroundColor: "var(--theme-surface)"}}>
               <div className="mx-auto max-w-6xl">
                 <div className="grid gap-10 md:grid-cols-2 md:items-end">
                   <div>
                     <p className="text-xs uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>Celebramos nuestro amor</p>
-                    <h2 className="mt-5 text-5xl font-light tracking-tight md:text-7xl" style={{color: "var(--theme-primary)"}}>{brideName}<span className="mx-3 font-serif italic" style={{color: "var(--theme-accent)"}}>&</span>{groomName}</h2>
+                    <h2 className="mt-5 text-5xl font-wedding tracking-tight md:text-7xl" style={{color: "var(--theme-primary)"}}>{brideName}</h2>
+                    <h2 className="mt-5 text-5xl font-wedding tracking-tight md:text-7xl" style={{color: "var(--theme-primary)"}}><span className="mx-3 font-serif italic" style={{color: "var(--theme-accent)"}}>&</span></h2>
+                    <h2 className="mt-5 text-5xl font-wedding tracking-tight md:text-7xl" style={{color: "var(--theme-primary)"}}>{groomName}</h2>
                   </div>
                   <p className="max-w-md text-sm leading-7 md:ml-auto" style={{color: "var(--theme-secondary)"}}>{details?.description ?? "Queremos compartir contigo uno de los días más importantes de nuestras vidas."}</p>
                 </div>
