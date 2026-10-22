@@ -20,6 +20,9 @@ import QuinceanosElegantDecor from "./quinceanos/elegant/QuinceanosElegantDecor"
 import QuinceanosElegantOrnament from "./quinceanos/elegant/QuinceanosElegantOrnament"
 import QuinceanosBorder from "./quinceanos/elegant/QuinceanosBorder"
 import QuinceanosSideBorder from "./quinceanos/elegant/QuinceanosSideBorders"
+import ColibriBranding from "./shared/ColibriBranding"
+import ScrollReveal from "@/app/components/ui/ScrollReveal"
+import InvitationChilds from "./shared/InvitationChilds"
 
 export default function QuinceanosElegant({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -35,7 +38,9 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
           <QuinceanosSideBorder side="left" />
           <QuinceanosSideBorder side="right" />
           <QuinceanosBorder position="top" />
-          <QuinceanosElegantHero coverPhoto={coverPhoto} details={details} event={event} />
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <QuinceanosElegantHero coverPhoto={coverPhoto} details={details} event={event} />
+          </ScrollReveal>
           
           <section
             className="relative px-6 py-10"
@@ -43,65 +48,100 @@ export default function QuinceanosElegant({event,guest}: InvitationTemplateProps
               backgroundColor: "var(--theme-background)",
             }}
           >
-            <QuinceanosElegantOrnament
-              symbol="star"
-              className="mb-10"
-            />
-
-            <QuinceanosFamily details={details} />
+            <ScrollReveal direction="right" delay={1100} duration={700}>
+              <QuinceanosElegantOrnament
+                symbol="star"
+                className="mb-10"
+              />
+            </ScrollReveal>
+            <ScrollReveal direction="left" delay={1100} duration={700}>
+              <QuinceanosFamily details={details} />
+            </ScrollReveal>
           </section>
-
-          <QuinceanosIntro details={details} />
-
+          
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <QuinceanosIntro details={details} />
+          </ScrollReveal>
+          
           <QuinceanosElegantOrnament
             symbol="diamond"
             className="my-4"
           />
 
-          <QuinceanosDate event={event} />
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <QuinceanosDate event={event} />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <QuinceanosElegantOrnament
+              symbol="cross"
+              className="my-6"
+            />
+          </ScrollReveal>
 
-          <QuinceanosElegantOrnament
-            symbol="cross"
-            className="my-6"
-          />
-
-          <Countdown targetDate={event.eventDate.toISOString()}/>
-
-          <InvitationSchedule event={event} />
-
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <Countdown targetDate={event.eventDate.toISOString()}/>
+          </ScrollReveal>
+          
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <InvitationSchedule event={event} />
+          </ScrollReveal>
+          
           <QuinceanosElegantOrnament
             symbol="diamond"
             className="my-8"
           />
 
-          <InvitationLocations event={event} />
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <InvitationLocations event={event} />
+          </ScrollReveal>
+          
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
+              <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>No olvides la fecha</p>
+              <h2 className="mt-4 text-4xl font-serif" style={{color: "var(--theme-primary)"}}>Guarda este día</h2>
+              <div className="mt-8">
+                <AddToCalendar title={`XV años de ${quinceaneraName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
+              </div>
+            </section>
+          </ScrollReveal>
+          
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <InvitationGallery event={event} />
+          </ScrollReveal>  
 
-          <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
-            <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>No olvides la fecha</p>
-            <h2 className="mt-4 text-4xl font-serif" style={{color: "var(--theme-primary)"}}>Guarda este día</h2>
-            <div className="mt-8">
-              <AddToCalendar title={`XV años de ${quinceaneraName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
-            </div>
-          </section>
-
-          <InvitationGallery event={event} />
-
+        
           <QuinceanosElegantOrnament
             symbol="star"
             className="my-8"
           />
 
-          <InvitationGifts gifts={event.gifts} />
+          {event.showChildsSection && (
+            <ScrollReveal direction="right" delay={850} duration={700}>
+              <InvitationChilds />
+            </ScrollReveal>
+          )}
 
-          <QuinceanosDressCode details={details} />
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <InvitationGifts gifts={event.gifts} />
+          </ScrollReveal>  
+          
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <QuinceanosDressCode details={details} />
+          </ScrollReveal>  
 
           <QuinceanosElegantOrnament
             symbol="diamond"
             className="mb-8"
           />
 
-          <QuinceanosFooter details={details} />
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <QuinceanosFooter details={details} />  
+          </ScrollReveal>    
 
+          <ScrollReveal direction="up" delay={1100} duration={700}>
+            <ColibriBranding />
+          </ScrollReveal>
           {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />)}
 
           <QuinceanosBorder position="bottom" />

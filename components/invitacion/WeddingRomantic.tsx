@@ -14,6 +14,8 @@ import WeddingRomanticTimeline from "./wedding/WeddingRomanticTimeline"
 import InvitationGifts from "./shared/InvitationGifts"
 import WeddingRomanticOpening from "./wedding/WeddingRomanticOpening"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
+import ColibriBranding from "./shared/ColibriBranding"
+import InvitationChilds from "./shared/InvitationChilds"
 
 export default function WeddingRomantic({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -74,7 +76,11 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
           <ScrollReveal direction="left" delay={800} duration={700}>
             <InvitationGallery event={event} />
           </ScrollReveal>
-
+          {event.showChildsSection && (
+            <ScrollReveal direction="right" delay={850} duration={700}>
+              <InvitationChilds />
+            </ScrollReveal>
+          )}
           <ScrollReveal direction="right" delay={900} duration={700}>
             <InvitationGifts gifts={event.gifts} />
           </ScrollReveal>
@@ -86,7 +92,9 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
           <ScrollReveal direction="right" delay={1100} duration={700}>
             <WeddingFooter details={details} />
           </ScrollReveal>
-
+          <ScrollReveal direction="up" delay={1100} duration={700}>
+            <ColibriBranding />
+          </ScrollReveal>
           {event.music && (
             <ScrollReveal direction="left" delay={1200} duration={700}>
               <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />

@@ -15,6 +15,8 @@ import WeddingLuxuryGallery from "./wedding/WeddingLuxuryGallery"
 import InvitationGifts from "./shared/InvitationGifts"
 import WeddingLuxuryOpening from "./wedding/WeddingLuxuryOpening"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
+import ColibriBranding from "./shared/ColibriBranding"
+import InvitationChilds from "./shared/InvitationChilds"
 
 export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -74,6 +76,12 @@ return (
             <WeddingLuxuryGallery photos={event.photos} />
           </ScrollReveal>
 
+          {event.showChildsSection && (
+            <ScrollReveal direction="right" delay={850} duration={700}>
+              <InvitationChilds />
+            </ScrollReveal>
+          )}
+
           <ScrollReveal direction="left" delay={800} duration={700}>
             <InvitationGifts gifts={event.gifts} />
           </ScrollReveal>
@@ -84,6 +92,10 @@ return (
 
           <ScrollReveal direction="left" delay={1000} duration={700}>
             <WeddingFooter details={details} />
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={1100} duration={700}>
+            <ColibriBranding />
           </ScrollReveal>
 
           {event.music && (

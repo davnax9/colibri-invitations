@@ -14,6 +14,9 @@ import InvitationTheme from "./shared/InvitationTheme"
 import { InvitationTemplateProps } from "@/utils/types/invitation"
 import InvitationGifts from "./shared/InvitationGifts"
 import QuinceanosPrincessOpening from "./quinceanos/QuinceanosPrincessOpening"
+import ColibriBranding from "./shared/ColibriBranding"
+import ScrollReveal from "@/app/components/ui/ScrollReveal"
+import InvitationChilds from "./shared/InvitationChilds"
 
 export default function QuinceanosPrincess({event,guest}: InvitationTemplateProps) {
 
@@ -27,53 +30,86 @@ export default function QuinceanosPrincess({event,guest}: InvitationTemplateProp
       <QuinceanosPrincessOpening quinceaneraName={quinceaneraName} eventDate={event.eventDate}>
         <main className="min-h-screen" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
           {/* HERO */}
-          <QuinceanosPrincessHero coverPhoto={coverPhoto} details={details} event={event}/>
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <QuinceanosPrincessHero coverPhoto={coverPhoto} details={details} event={event}/>
+          </ScrollReveal>
           {/* INTRO */}
-          <QuinceanosIntro details={details} />
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <QuinceanosIntro details={details} />
+          </ScrollReveal>
           {/* FECHA */}
-          <QuinceanosDate event={event} />
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <QuinceanosDate event={event} />
+          </ScrollReveal>
           {/* CUENTA REGRESIVA */}
-          <Countdown targetDate={event.eventDate.toISOString()}/>
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <Countdown targetDate={event.eventDate.toISOString()}/>
+          </ScrollReveal>
           {/* FRASE */}
-          {details?.phrase && (<section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
-              <div className="mx-auto max-w-3xl text-center">
-                <span className="text-4xl" aria-hidden="true">✦</span><p className="mt-6 font-serif text-3xl italic leading-relaxed md:text-4xl" style={{color: "var(--theme-primary)"}}>“{details.phrase}”</p>
-                <div className="mx-auto mt-8 h-px w-20" style={{backgroundColor: "var(--theme-accent)"}}/>
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            {details?.phrase && (<section className="px-6 py-24" style={{backgroundColor: "var(--theme-surface)"}}>
+                <div className="mx-auto max-w-3xl text-center">
+                  <span className="text-4xl" aria-hidden="true">✦</span><p className="mt-6 font-serif text-3xl italic leading-relaxed md:text-4xl" style={{color: "var(--theme-primary)"}}>“{details.phrase}”</p>
+                  <div className="mx-auto mt-8 h-px w-20" style={{backgroundColor: "var(--theme-accent)"}}/>
+                </div>
+              </section>
+            )}
+          </ScrollReveal>
+          {/* MOMENTOS DE LA CELEBRACIÓN */}
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <section className="px-6 py-24" style={{backgroundColor: "var(--theme-background)"}}>
+              <div className="mx-auto max-w-5xl">
+                <div className="text-center">
+                  <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Un día para recordar</p>
+                  <h2 className="mt-4 font-serif text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>Momentos especiales</h2>
+                  <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
+                </div>
+                <div className="mt-16">
+                  <InvitationSchedule event={event} />
+                </div>
               </div>
             </section>
-          )}
-          {/* MOMENTOS DE LA CELEBRACIÓN */}
-          <section className="px-6 py-24" style={{backgroundColor: "var(--theme-background)"}}>
-            <div className="mx-auto max-w-5xl">
-              <div className="text-center">
-                <p className="text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Un día para recordar</p>
-                <h2 className="mt-4 font-serif text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>Momentos especiales</h2>
-                <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
-              </div>
-              <div className="mt-16">
-                <InvitationSchedule event={event} />
-              </div>
-            </div>
-          </section>
+          </ScrollReveal>
           {/* UBICACIONES */}
-          <InvitationLocations event={event} />
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <InvitationLocations event={event} />
+          </ScrollReveal>
           {/* CALENDARIO */}
-          <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
-            <span className="text-3xl" aria-hidden="true">✦</span>
-            <p className="mt-5 text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Reserva este día</p>
-            <h2 className="mt-4 font-serif text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>No faltes a mi celebración</h2>
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-6" style={{color: "var(--theme-secondary)"}}>Guarda la fecha en tu calendario y acompáñame a celebrar este momento inolvidable.</p>
-            <div className="mt-8">
-              <AddToCalendar title={quinceaneraName || event.name} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
-            </div>
-          </section>
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <section className="px-6 py-24 text-center" style={{backgroundColor: "var(--theme-surface)"}}>
+              <span className="text-3xl" aria-hidden="true">✦</span>
+              <p className="mt-5 text-sm uppercase tracking-[0.3em]" style={{color: "var(--theme-secondary)"}}>Reserva este día</p>
+              <h2 className="mt-4 font-serif text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>No faltes a mi celebración</h2>
+              <p className="mx-auto mt-5 max-w-xl text-sm leading-6" style={{color: "var(--theme-secondary)"}}>Guarda la fecha en tu calendario y acompáñame a celebrar este momento inolvidable.</p>
+              <div className="mt-8">
+                <AddToCalendar title={quinceaneraName || event.name} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
+              </div>
+            </section>
+          </ScrollReveal>
           {/* FOTOGRAFÍAS */}
-          <InvitationGallery event={event} />
-          <InvitationGifts gifts={event.gifts} />
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <InvitationGallery event={event} />
+          </ScrollReveal>
+          {event.showChildsSection && (
+            <ScrollReveal direction="right" delay={850} duration={700}>
+              <InvitationChilds />
+            </ScrollReveal>
+          )}
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <InvitationGifts gifts={event.gifts} />
+          </ScrollReveal>
           {/* VESTIMENTA */}
-          <QuinceanosDressCode details={details} />
+          <ScrollReveal direction="left" delay={1100} duration={700}>
+            <QuinceanosDressCode details={details} />
+          </ScrollReveal>
           {/* FOOTER */}
-          <QuinceanosFooter details={details} />
+          <ScrollReveal direction="right" delay={1100} duration={700}>
+            <QuinceanosFooter details={details} />
+          </ScrollReveal>
+
+          <ScrollReveal direction="up" delay={1100} duration={700}>
+            <ColibriBranding />
+          </ScrollReveal>
           {/* MÚSICA */}
           {event.music && (<MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>)}
         </main>
