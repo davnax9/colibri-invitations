@@ -21,6 +21,7 @@ import QuinceanosFamily from "../eventos/QuinceanosFamily"
 import QuinceanosFamilyHelen from "./wedding/weddingHelen/QuinceanosFamilyHelen"
 import InvitationScheduleHelen from "./wedding/weddingHelen/InvitationScheduleHelen"
 import BotanicalBackground from "./shared/BotanicalBackground"
+import WeddingDateHelen from "./wedding/weddingHelen/WeddingDateHelen"
 
 export default function WeddingElegant({event, guest}: InvitationTemplateProps) {
     const details = event.details
@@ -49,7 +50,7 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                     </ScrollReveal>
                     {/* FECHA */}
                     <ScrollReveal direction="left" delay={200} duration={700}>
-                        <WeddingDate event={event}/>
+                        <WeddingDateHelen event={event} />
                     </ScrollReveal>
                     {/* CONTADOR RETROCESO */}
                     <ScrollReveal direction="right" delay={300} duration={700}>

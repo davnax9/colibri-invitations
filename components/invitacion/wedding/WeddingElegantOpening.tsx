@@ -83,13 +83,13 @@ export default function WeddingElegantOpening({brideName,groomName,eventDate,chi
               </div>
               {/* NOMBRES */}
               <div className="mt-5">
-                <h1 className="font-serif text-2xl font-light leading-tight sm:text-3xl" style={{ color: "var(--theme-primary)"}}>{brideName}</h1>
+                <h1 className="font-serif text-4xl font-wedding leading-tight sm:text-3xl" style={{ color: "var(--theme-primary)"}}>{brideName}</h1>
                 <div className="my-2 flex items-center justify-center gap-3">
                   <div className="h-px w-6" style={{ backgroundColor: "var(--theme-accent)"}}/>
                   <span className="font-serif text-lg italic" style={{ color: "var(--theme-accent)"}}>&</span>
                   <div className="h-px w-6" style={{ backgroundColor: "var(--theme-accent)"}} />
                 </div>
-                <h1 className="font-serif text-2xl font-light leading-tight sm:text-3xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
+                <h1 className="font-wedding text-4xl font-light leading-tight sm:text-3xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>
               </div>
             </div>
             {/* FECHA */}

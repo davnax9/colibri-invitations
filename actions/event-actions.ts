@@ -10,6 +10,123 @@ import { invitationThemePresets } from "@/utils/invitation-themes"
 import { getMaxPhotos } from "@/utils/plan-limits"
 import { GiftData } from "@/utils/types"
 
+// export async function createEvent(data: unknown) {
+//   const session = await requireAuth()
+
+//   // =========================================================
+//   // VALIDAR DATOS
+//   // =========================================================
+
+//   const result = CreateEventSchema.safeParse(data)
+
+//   if (!result.success) {
+//     return {
+//       success: false as const,
+//       error: "Los datos proporcionados no son válidos",
+//     }
+//   }
+
+//   const {name,type,eventDate,templateId} = result.data
+
+//   // =========================================================
+//   // REGLA DE NEGOCIO
+//   // CLIENT = solamente un evento activo
+//   // ADMIN = puede crear múltiples eventos
+//   // =========================================================
+
+//   if (session.user.role === "CLIENT") {
+//     const now = new Date()
+
+//     const activeEvent = await prisma.event.findFirst({
+//       where: {
+//         userId: session.user.id,
+//         expiresAt: {
+//           gt: now,
+//         },
+//       },
+//     })
+
+//     if (activeEvent) {
+//       return {
+//         success: false as const,
+//         error: "Ya tienes una invitación activa. Puedes crear otra cuando finalice su periodo de vigencia.",
+//       }
+//     }
+//   }
+
+//   // =========================================================
+//   // VALIDAR TEMPLATE
+//   // =========================================================
+
+//   const template = await prisma.template.findFirst({
+//     where: {
+//       id: templateId,
+//       type,
+//       active: true,
+//     },
+//   })
+
+//   if (!template) {
+//     return {
+//       success: false as const,
+//       error: "El diseño seleccionado no es válido",
+//     }
+//   }
+
+//   // =========================================================
+//   // GENERAR SLUG
+//   // =========================================================
+
+//   const baseSlug = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+
+//   let slug = baseSlug
+//   let counter = 1
+
+//   while (
+//     await prisma.event.findUnique({
+//       where: {
+//         slug,
+//       },
+//     })
+//   ) {
+//     slug = `${baseSlug}-${counter}`
+//     counter++
+//   }
+
+//   // =========================================================
+//   // CALCULAR FECHA DE EXPIRACIÓN
+//   // =========================================================
+
+//   const expiresAt = new Date(eventDate)
+//   expiresAt.setDate(expiresAt.getDate() + 5)
+
+//   // =========================================================
+//   // CREAR EVENTO
+//   // =========================================================
+
+//   const event = await prisma.event.create({
+//     data: {
+//       name,
+//       slug,
+//       type,
+//       eventDate: eventDateValue,
+//       expiresAt,
+//       userId: session.user.id,
+//       templateId,
+//     },
+//     include: {
+//       template: true,
+//     },
+//   })
+
+//   revalidatePath("/dashboard")
+
+//   return {
+//     success: true as const,
+//     event,
+//   }
+// }
+
 export async function createEvent(data: unknown) {
   const session = await requireAuth()
 
@@ -26,7 +143,39 @@ export async function createEvent(data: unknown) {
     }
   }
 
-  const {name,type,eventDate,templateId} = result.data
+  const { name, type, eventDate, templateId } = result.data
+
+  // =========================================================
+  // NORMALIZAR FECHA DEL EVENTO
+  // =========================================================
+
+  // El input type="date" entrega una fecha como YYYY-MM-DD.
+  // Extraemos sus componentes sin convertirla a hora local.
+  const eventDateString = String(eventDate).slice(0, 10)
+
+  const [year, month, day] = eventDateString.split("-").map(Number)
+
+  const isValidDate =
+    Number.isInteger(year) &&
+    Number.isInteger(month) &&
+    Number.isInteger(day) &&
+    month >= 1 &&
+    month <= 12 &&
+    day >= 1 &&
+    day <= new Date(Date.UTC(year, month, 0)).getUTCDate()
+
+  if (!isValidDate) {
+    return {
+      success: false as const,
+      error: "La fecha del evento no es válida",
+    }
+  }
+
+  // Guardamos la fecha a las 12:00 UTC para mantener
+  // el mismo día al mostrarla utilizando timeZone: "UTC".
+  const eventDateValue = new Date(
+    Date.UTC(year, month - 1, day, 12, 0, 0)
+  )
 
   // =========================================================
   // REGLA DE NEGOCIO
@@ -49,7 +198,8 @@ export async function createEvent(data: unknown) {
     if (activeEvent) {
       return {
         success: false as const,
-        error: "Ya tienes una invitación activa. Puedes crear otra cuando finalice su periodo de vigencia.",
+        error:
+          "Ya tienes una invitación activa. Puedes crear otra cuando finalice su periodo de vigencia.",
       }
     }
   }
@@ -77,7 +227,12 @@ export async function createEvent(data: unknown) {
   // GENERAR SLUG
   // =========================================================
 
-  const baseSlug = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+  const baseSlug = name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
 
   let slug = baseSlug
   let counter = 1
@@ -95,21 +250,27 @@ export async function createEvent(data: unknown) {
 
   // =========================================================
   // CALCULAR FECHA DE EXPIRACIÓN
+  // Cinco días después de la fecha del evento
   // =========================================================
 
-  const expiresAt = new Date(eventDate)
-  expiresAt.setDate(expiresAt.getDate() + 5)
+  const expiresAt = new Date(eventDateValue)
+
+  expiresAt.setUTCDate(expiresAt.getUTCDate() + 5)
 
   // =========================================================
   // CREAR EVENTO
   // =========================================================
+
+  console.log("Fecha recibida:", eventDate)
+  console.log("Fecha que se guardará:", eventDateValue.toISOString())
+  console.log("Fecha de expiración:", expiresAt.toISOString())
 
   const event = await prisma.event.create({
     data: {
       name,
       slug,
       type,
-      eventDate,
+      eventDate: eventDateValue,
       expiresAt,
       userId: session.user.id,
       templateId,
@@ -126,68 +287,6 @@ export async function createEvent(data: unknown) {
     event,
   }
 }
-
-// export async function saveEventDetails(data: {
-//   eventId: string
-//   groomName?: string
-//   brideName?: string
-//   quinceaneraName?: string
-//   childName?: string
-//   phrase?: string
-//   description?: string
-//   dressCode?: string
-// }) {
-//   const session = await requireAuth()
-
-//   const event = await prisma.event.findFirst({
-//     where: {
-//       id: data.eventId,
-//       userId: session.user.id,
-//     },
-//   })
-
-//   if (!event) {
-//     return {
-//       success: false as const,
-//       error: "Evento no encontrado",
-//     }
-//   }
-
-//   const details = await prisma.eventDetails.upsert({
-//     where: {
-//       eventId: data.eventId,
-//     },
-
-//     update: {
-//       groomName: data.groomName || null,
-//       brideName: data.brideName || null,
-//       quinceaneraName: data.quinceaneraName || null,
-//       childName: data.childName || null,
-//       phrase: data.phrase || null,
-//       description: data.description || null,
-//       dressCode: data.dressCode || null,
-//     },
-
-//     create: {
-//       eventId: data.eventId,
-//       groomName: data.groomName || null,
-//       brideName: data.brideName || null,
-//       quinceaneraName: data.quinceaneraName || null,
-//       childName: data.childName || null,
-//       phrase: data.phrase || null,
-//       description: data.description || null,
-//       dressCode: data.dressCode || null,
-//     },
-//   })
-
-//   revalidatePath(`/dashboard/eventos/${data.eventId}`)
-//   revalidatePath(`/invitacion/${event.slug}`)
-
-//   return {
-//     success: true as const,
-//     details,
-//   }
-// }
 
 export async function saveEventDetails(data: {
   eventId: string
@@ -682,65 +781,6 @@ export async function createEventPhoto(data: {
     photo,
   }
 }
-
-// export async function deleteEventPhoto(data: {
-//   eventId: string
-//   photoId: string
-// }) {
-//   const session = await requireAuth()
-
-//   const event = await prisma.event.findFirst({
-//     where: {
-//       id: data.eventId,
-//       userId: session.user.id,
-//     },
-//   })
-
-//   if (!event) {
-//     return {
-//       success: false as const,
-//       error: "Evento no encontrado",
-//     }
-//   }
-
-//   const photo = await prisma.eventPhoto.findFirst({
-//     where: {
-//       id: data.photoId,
-//       eventId: data.eventId,
-//     },
-//   })
-
-//   if (!photo) {
-//     return {
-//       success: false as const,
-//       error: "Fotografía no encontrada",
-//     }
-//   }
-
-//   // Eliminar de Cloudinary
-//   if (photo.publicId) {
-//     console.log("Cloudinary config:", {
-//     cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-//     api_key: process.env.CLOUDINARY_API_KEY ? "OK" : "MISSING",
-//     api_secret: process.env.CLOUDINARY_API_SECRET ? "OK" : "MISSING",
-//   })
-//     await cloudinary.uploader.destroy(photo.publicId)
-//   }
-
-//   // Eliminar de PostgreSQL
-//   await prisma.eventPhoto.delete({
-//     where: {
-//       id: photo.id,
-//     },
-//   })
-
-//   revalidatePath(`/dashboard/eventos/${data.eventId}`)
-//   revalidatePath(`/invitacion/${event.slug}`)
-
-//   return {
-//     success: true as const,
-//   }
-// }
 
 export async function deleteEventPhoto(data: {
   eventId: string
