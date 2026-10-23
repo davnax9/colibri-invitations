@@ -1,4 +1,5 @@
 import Image from "next/image"
+import BotanicalBackground from "../shared/BotanicalBackground"
 
 type Props = {
   coverPhoto?: {
@@ -24,6 +25,7 @@ export default function WeddingModernHero({coverPhoto,details,event}: Props) {
 
   return (
     <section className="relative min-h-screen overflow-hidden" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
+      <BotanicalBackground />
       <div className="mx-auto grid min-h-screen max-w-7xl lg:grid-cols-2">
         {/* INFORMACIÓN */}
         <div className="flex flex-col justify-center px-8 py-12 lg:px-16">

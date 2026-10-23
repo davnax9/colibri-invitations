@@ -1,3 +1,5 @@
+import BotanicalBackground from "../shared/BotanicalBackground"
+
 type Schedule = {
   id: string
   title: string
@@ -21,6 +23,7 @@ export default function WeddingTimeline({ schedules }: Props) {
 
   return (
     <section className="px-6 py-24 sm:py-32" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+      <BotanicalBackground />
       <div className="mx-auto max-w-5xl">
         {/* ENCABEZADO */}
         <div className="mb-16 grid gap-6 md:grid-cols-[180px_1fr]">

@@ -18,6 +18,7 @@ import ScrollReveal from "@/app/components/ui/ScrollReveal"
 import ColibriBranding from "./shared/ColibriBranding"
 import InvitationChilds from "./shared/InvitationChilds"
 import QuinceanosFamilyHelen from "./wedding/weddingHelen/QuinceanosFamilyHelen"
+import BotanicalBackground from "./shared/BotanicalBackground"
 
 export default function WeddingModern({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -40,6 +41,7 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
           {/* NOMBRES */}
           <ScrollReveal direction="right" delay={100} duration={700}>
             <section className="px-6 py-12" style={{backgroundColor: "var(--theme-surface)"}}>
+              <BotanicalBackground />
               <div className="mx-auto max-w-6xl">
                 <div className="grid gap-10 md:grid-cols-2 md:items-end">
                   <div>
@@ -92,6 +94,7 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
           {/* CALENDARIO */}
           <ScrollReveal direction="left" delay={1000} duration={700}>
             <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
+              <BotanicalBackground />
               <h2 className="text-4xl font-light md:text-5xl" style={{color: "var(--theme-primary)"}}>Reserva la fecha</h2>
               <div className="mt-8">
                 <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
