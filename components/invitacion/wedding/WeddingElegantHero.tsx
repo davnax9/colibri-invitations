@@ -1,5 +1,6 @@
 import Image from "next/image"
 import BotanicalBackground from "../shared/BotanicalBackground"
+import { getCoupleInitials } from "@/utils"
 
 type Props = {
   coverPhoto?: {
@@ -29,6 +30,7 @@ export default function WeddingElegantHero({coverPhoto,details,event}: Props) {
       {/* DECORACIÓN */}
       <div className="absolute left-1/2 top-20 h-px w-24 -translate-x-1/2" style={{ backgroundColor: "var(--theme-accent)" }}/>
       <div className="relative z-10 mx-auto w-full max-w-5xl text-center">
+        <p className="text-2xl font-wedding uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>{getCoupleInitials(details)}</p>
         <p className="text-xs uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>Nuestra boda</p>
         <div className="mt-10">
           {coverPhoto && (

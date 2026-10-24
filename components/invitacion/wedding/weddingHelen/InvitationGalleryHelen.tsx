@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useRef, useState } from "react"
 import { ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/24/outline"
 import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
+import { getCoupleInitials } from "@/utils"
 
 type InvitationGalleryProps = {
   event: {
@@ -102,7 +103,7 @@ export default function InvitationGalleryHelen({event}: InvitationGalleryProps) 
       <div className="relative z-10 mx-auto w-full max-w-5xl min-w-0">
         {/* ENCABEZADO */}
         <div className="text-center">
-          <h2 className="mt-1 font-wedding text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>H&E</h2>
+          <h2 className="mt-1 font-wedding text-4xl md:text-5xl" style={{color: "var(--theme-primary)"}}>{getCoupleInitials(event.details)}</h2>
           <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>
         </div>
         {/* CARRUSEL */}

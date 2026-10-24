@@ -22,6 +22,7 @@ import QuinceanosFamilyHelen from "./wedding/weddingHelen/QuinceanosFamilyHelen"
 import InvitationScheduleHelen from "./wedding/weddingHelen/InvitationScheduleHelen"
 import BotanicalBackground from "./shared/BotanicalBackground"
 import WeddingDateHelen from "./wedding/weddingHelen/WeddingDateHelen"
+import Image from "next/image"
 
 export default function WeddingElegant({event, guest}: InvitationTemplateProps) {
     const details = event.details
@@ -30,7 +31,7 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
     const groomName = details?.groomName ?? ""
 
     const coverPhoto = event.photos.find((photo) => photo.isCover) ?? event.photos[0]
-
+    const featurePhoto = event.photos[2] ?? null
     const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
     return (
@@ -56,6 +57,16 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                     <ScrollReveal direction="right" delay={300} duration={700}>
                         <Countdown targetDate={event.eventDate.toISOString()}/>
                     </ScrollReveal>
+                    {/* FOTO DEL EVENTO */}
+                    {featurePhoto && (
+                    <ScrollReveal direction="left" delay={200} duration={700}>
+                        <section className="w-full" style={{backgroundColor: "var(--theme-background)"}}>
+                        <div className="relative aspect-video w-full overflow-hidden">
+                            <Image src={featurePhoto.url} alt={featurePhoto.title ?? event.name} fill className="object-cover"/>
+                        </div>
+                        </section>
+                    </ScrollReveal>
+                    )}
                     {/* PROGRAMA ELEGANTE */}
                     <ScrollReveal direction="left" delay={400} duration={700}>
                         {/* <WeddingElegantEvents schedules={event.schedules}/> */}
