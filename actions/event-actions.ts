@@ -290,16 +290,13 @@ export async function createEvent(data: unknown) {
 
 export async function saveEventDetails(data: {
   eventId: string
-
   groomName?: string
   brideName?: string
   quinceaneraName?: string
   childName?: string
-
   phrase?: string
   description?: string
   dressCode?: string
-
   fatherName?: string
   motherName?: string
   godfatherName?: string
@@ -311,7 +308,8 @@ export async function saveEventDetails(data: {
   const event = await prisma.event.findFirst({
     where: {
       id: data.eventId,
-      userId: session.user.id,
+      // userId: session.user.id,
+      ...(session.user.role !== "ADMIN" ? { userId: session.user.id } : {}),
     },
   })
 

@@ -27,63 +27,22 @@ type Props = {
   details: EventDetails | null
 }
 
-export default function EventDetailsForm({
-  eventId,
-  eventType,
-  details,
-}: Props) {
-  const [groomName, setGroomName] = useState(
-    details?.groomName ?? ""
-  )
-
-  const [brideName, setBrideName] = useState(
-    details?.brideName ?? ""
-  )
-
-  const [quinceaneraName, setQuinceaneraName] = useState(
-    details?.quinceaneraName ?? ""
-  )
-
-  const [childName, setChildName] = useState(
-    details?.childName ?? ""
-  )
-
-  const [phrase, setPhrase] = useState(
-    details?.phrase ?? ""
-  )
-
-  const [description, setDescription] = useState(
-    details?.description ?? ""
-  )
-
-  const [dressCode, setDressCode] = useState(
-    details?.dressCode ?? ""
-  )
-
+export default function EventDetailsForm({eventId, eventType, details}: Props) {
+  const [groomName, setGroomName] = useState(details?.groomName ?? "")
+  const [brideName, setBrideName] = useState(details?.brideName ?? "")
+  const [quinceaneraName, setQuinceaneraName] = useState(details?.quinceaneraName ?? "")
+  const [childName, setChildName] = useState(details?.childName ?? "")
+  const [phrase, setPhrase] = useState(details?.phrase ?? "")
+  const [description, setDescription] = useState(details?.description ?? "")
+  const [dressCode, setDressCode] = useState(details?.dressCode ?? "")
   // ============================================================
   // PADRES Y PADRINOS
   // ============================================================
-
-  const [fatherName, setFatherName] = useState(
-    details?.fatherName ?? ""
-  )
-
-  const [motherName, setMotherName] = useState(
-    details?.motherName ?? ""
-  )
-
-  const [godfatherName, setGodfatherName] = useState(
-    details?.godfatherName ?? ""
-  )
-
-  const [godmotherName, setGodmotherName] = useState(
-    details?.godmotherName ?? ""
-  )
-
-  const [familyMessage, setFamilyMessage] = useState(
-    details?.familyMessage ?? ""
-  )
-
+  const [fatherName, setFatherName] = useState(details?.fatherName ?? "")
+  const [motherName, setMotherName] = useState(details?.motherName ?? "")
+  const [godfatherName, setGodfatherName] = useState(details?.godfatherName ?? "")
+  const [godmotherName, setGodmotherName] = useState(details?.godmotherName ?? "")
+  const [familyMessage, setFamilyMessage] = useState(details?.familyMessage ?? "")
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
@@ -97,16 +56,13 @@ export default function EventDetailsForm({
 
     const result = await saveEventDetails({
       eventId,
-
       groomName,
       brideName,
       quinceaneraName,
       childName,
-
       phrase,
       description,
       dressCode,
-
       fatherName,
       motherName,
       godfatherName,
@@ -125,134 +81,59 @@ export default function EventDetailsForm({
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mt-6 space-y-5"
-    >
+    <form onSubmit={handleSubmit} className="mt-6 space-y-5">
       {/* ===================================================== */}
       {/* NOMBRES PRINCIPALES                                  */}
       {/* ===================================================== */}
-
       {eventType === "WEDDING" && (
         <>
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700">
-              Nombre del novio
-            </label>
-
-            <input
-              type="text"
-              value={groomName}
-              onChange={(e) => setGroomName(e.target.value)}
-              placeholder="Carlos"
+            <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del novio</label>
+            <input type="text" value={groomName} onChange={(e) => setGroomName(e.target.value)} placeholder="Carlos"
               className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
             />
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-slate-700">
-              Nombre de la novia
-            </label>
-
-            <input
-              type="text"
-              value={brideName}
-              onChange={(e) => setBrideName(e.target.value)}
-              placeholder="Ana"
-              className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
-            />
+            <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la novia</label>
+            <input type="text" value={brideName} onChange={(e) => setBrideName(e.target.value)} placeholder="Ana" className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
           </div>
         </>
       )}
 
       {eventType === "QUINCEANOS" && (
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">
-            Nombre de la quinceañera
-          </label>
-
-          <input
-            type="text"
-            value={quinceaneraName}
-            onChange={(e) =>
-              setQuinceaneraName(e.target.value)
-            }
-            placeholder="María"
-            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
-          />
+          <label className="mb-2 block text-sm font-medium text-slate-700">Nombre de la quinceañera</label>
+          <input type="text" value={quinceaneraName} onChange={(e) => setQuinceaneraName(e.target.value)} placeholder="María" className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
         </div>
       )}
 
-      {(eventType === "BAUTIZO" ||
-        eventType === "COMUNION") && (
+      {(eventType === "BAUTIZO" || eventType === "COMUNION") && (
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">
-            Nombre del niño o niña
-          </label>
-
-          <input
-            type="text"
-            value={childName}
-            onChange={(e) =>
-              setChildName(e.target.value)
-            }
-            placeholder="Mateo"
-            className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
-          />
+          <label className="mb-2 block text-sm font-medium text-slate-700">Nombre del niño o niña</label>
+          <input type="text" value={childName} onChange={(e) => setChildName(e.target.value)} placeholder="Mateo" className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
         </div>
       )}
-
       {/* ===================================================== */}
       {/* FRASE                                                 */}
       {/* ===================================================== */}
-
       <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700">
-          Frase
-        </label>
-
-        <textarea
-          value={phrase}
-          onChange={(e) =>
-            setPhrase(e.target.value)
-          }
-          rows={3}
-          placeholder="El amor no consiste en mirarse el uno al otro..."
-          className="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
-        />
+        <label className="mb-2 block text-sm font-medium text-slate-700">Frase</label>
+        <textarea value={phrase} onChange={(e) => setPhrase(e.target.value)} rows={3} placeholder="El amor no consiste en mirarse el uno al otro..." className="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
       </div>
-
       {/* ===================================================== */}
       {/* DESCRIPCIÓN                                           */}
       {/* ===================================================== */}
-
       <div>
-        <label className="mb-2 block text-sm font-medium text-slate-700">
-          Descripción
-        </label>
-
-        <textarea
-          value={description}
-          onChange={(e) =>
-            setDescription(e.target.value)
-          }
-          rows={4}
-          placeholder="Queremos compartir este momento tan especial contigo..."
-          className="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
-        />
+        <label className="mb-2 block text-sm font-medium text-slate-700">Descripción</label>
+        <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={4} placeholder="Queremos compartir este momento tan especial contigo..." className="w-full resize-none rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none focus:border-slate-500 focus:ring-2 focus:ring-slate-200"/>
       </div>
-
       {/* ===================================================== */}
       {/* CÓDIGO DE VESTIMENTA                                  */}
       {/* ===================================================== */}
-
-      {(eventType === "QUINCEANOS" ||
-        eventType === "WEDDING") && (
+      {(eventType === "QUINCEANOS" || eventType === "WEDDING") && (
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">
-            Código de vestimenta
-          </label>
-
+          <label className="mb-2 block text-sm font-medium text-slate-700">Código de vestimenta</label>
           <input
             type="text"
             value={dressCode}
