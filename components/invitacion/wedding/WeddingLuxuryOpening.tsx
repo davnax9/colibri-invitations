@@ -47,9 +47,7 @@ export default function WeddingLuxuryOpening({brideName, groomName, eventDate, c
     }, 1500)
   }
 
-  if (isOpen) {
-    return <>{children}</>
-  }
+  if (isOpen) return <>{children}</>
 
   return (
     <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
@@ -74,13 +72,13 @@ export default function WeddingLuxuryOpening({brideName, groomName, eventDate, c
               <div className="relative flex h-[62%] w-[72%] flex-col items-center justify-center border text-center" style={{backgroundColor: "var(--theme-background)",borderColor: "var(--theme-accent)",}}>
                 <p className="text-[9px] uppercase tracking-[0.5em]" style={{color: "var(--theme-secondary)"}}>Nuestra boda</p>
                 <div className="mt-5 text-3xl" style={{color: "var(--theme-accent)"}}>♢</div>
-                <p className="mt-4 font-serif text-2xl italic" style={{color: "var(--theme-primary)"}}>{brideName}</p>
+                <p className="mt-4 font-wedding text-3xl italic" style={{color: "var(--theme-primary)"}}>{brideName}</p>
                 <div className="my-2 flex items-center gap-3">
                   <div className="h-px w-8" style={{backgroundColor: "var(--theme-accent)"}}/>
-                  <span className="font-serif text-xl" style={{color: "var(--theme-accent)"}}>&</span>
+                  <span className="font-wedding text-3xl" style={{color: "var(--theme-accent)"}}>&</span>
                   <div className="h-px w-8" style={{backgroundColor: "var(--theme-accent)"}}/>
                 </div>
-                <p className="font-serif text-2xl italic" style={{color: "var(--theme-primary)"}}>{groomName}</p>
+                <p className="font-wedding text-3xl italic mb-4" style={{color: "var(--theme-primary)"}}>{groomName}</p>
                 <p className="mt-5 text-[8px] uppercase tracking-[0.35em]" style={{color: "var(--theme-secondary)"}}>{formattedDate}</p>
               </div>
             </div>
@@ -89,7 +87,7 @@ export default function WeddingLuxuryOpening({brideName, groomName, eventDate, c
               <div className="absolute -inset-2.25 rounded-full border" style={{borderColor: "var(--theme-accent)", opacity: 0.35}}/>
               <button type="button" onClick={handleOpen} disabled={isOpening} aria-label="Abrir invitación" className={`wedding-luxury-seal relative flex h-19 w-19 items-center justify-center rounded-full border-2 transition-all duration-500 md:h-21 md:w-21 ${isOpening ? "scale-75 opacity-0" : "hover:scale-110 active:scale-95"}`} style={{backgroundColor: "var(--theme-primary)",borderColor: "var(--theme-accent)",color: "var(--theme-background)"}}>
                 <div className="text-center">
-                  <span className="block font-serif text-xl">{initials}</span>
+                  <span className="block font-wedding text-2xl">{initials}</span>
                   <span className="mt-1 block text-[7px] uppercase tracking-[0.2em] opacity-70">abrir</span>
                 </div>
               </button>

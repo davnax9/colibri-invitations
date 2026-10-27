@@ -1,10 +1,10 @@
+
 import BotanicalBackground from "./BotanicalBackground"
 
 type InvitationLocationsProps = {
   event: {
     name: string
     eventDate: Date
-
     details: {
       title: string | null
       subtitle: string | null
@@ -15,33 +15,26 @@ type InvitationLocationsProps = {
       quinceaneraName: string | null
       dressCode: string | null
     } | null
-
     locations: {
       id: string
       name: string
       address: string | null
       mapsUrl: string | null
     }[]
-
     schedules: {
       id: string
       title: string
       date: Date
       time: string | null
       description: string | null
-
-      location: {
-        name: string
-      } | null
+      location: { name: string } | null
     }[]
-
     photos: {
       id: string
       url: string
       title: string | null
       isCover: boolean
     }[]
-
     music: {
       url: string
       title: string | null
@@ -51,352 +44,260 @@ type InvitationLocationsProps = {
   }
 }
 
-export default function InvitationLocations({
+function PinIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="h-5 w-5"
+      stroke="currentColor"
+      strokeWidth="1.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
+  )
+}
+
+function MapArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </svg>
+  )
+}
+
+export default function InvitationLocationsEditorial({
   event,
 }: InvitationLocationsProps) {
   if (event.locations.length === 0) return null
 
-  const hasSingleLocation =
-    event.locations.length === 1
+  const locations = event.locations
 
   return (
     <section
-      className="relative overflow-hidden px-4 py-4 sm:px-6 sm:py-8 md:px-10 md:py-12"
+      className="relative isolate overflow-hidden px-5 py-12 sm:px-8 sm:py-16 md:py-20"
       style={{
-        backgroundColor:
-          "var(--theme-surface)",
+        backgroundColor: "var(--theme-surface)",
       }}
     >
       <BotanicalBackground />
+
+      {/* Decoración sutil de fondo */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-16 top-16 h-40 w-40 rounded-full opacity-[0.07] blur-3xl sm:h-56 sm:w-56"
+        style={{ backgroundColor: "var(--theme-accent)" }}
+      />
+
       <div className="relative z-10 mx-auto max-w-5xl">
-        {/* =================================================
-            ENCABEZADO
-        ================================================= */}
-        <div className="text-center">
-          <p
-            className="text-[9px] uppercase tracking-[0.25em] sm:text-sm sm:tracking-[0.3em]"
-            style={{
-              color:
-                "var(--theme-secondary)",
-            }}
-          >
-            ¿Dónde será?
-          </p>
+        {/* Encabezado editorial */}
+        <header className="mx-auto max-w-2xl text-center">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <span
+              className="h-px w-8 sm:w-12"
+              style={{ backgroundColor: "var(--theme-accent)" }}
+            />
+
+            <span
+              className="text-[9px] uppercase tracking-[0.3em] sm:text-[10px]"
+              style={{ color: "var(--theme-secondary)" }}
+            >
+              Los lugares
+            </span>
+
+            <span
+              className="h-px w-8 sm:w-12"
+              style={{ backgroundColor: "var(--theme-accent)" }}
+            />
+          </div>
 
           <h2
-            className="mt-2 font-serif text-2xl sm:mt-4 sm:text-4xl md:text-5xl"
-            style={{
-              color:
-                "var(--theme-primary)",
-            }}
+            className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl"
+            style={{ color: "var(--theme-primary)" }}
           >
-            Nuestras ubicaciones
+            Nos encontramos aquí
           </h2>
 
           <p
-            className="mx-auto mt-3 max-w-xl text-[11px] leading-5 sm:mt-5 sm:text-sm sm:leading-6"
-            style={{
-              color:
-                "var(--theme-secondary)",
-            }}
+            className="mx-auto mt-3 max-w-md text-xs leading-6 sm:mt-4 sm:text-sm"
+            style={{ color: "var(--theme-secondary)" }}
           >
-            Te compartimos lugares que te seran utiles para que nos acompañes en este momento tan especial.
+            Será un placer compartir contigo este día tan especial.
+            Aquí encontrarás los lugares para acompañarnos.
           </p>
 
-          {/* DETALLE DECORATIVO */}
-
-          <div
-            className="mx-auto mt-4 h-px w-12 sm:mt-6 sm:w-16"
-            style={{
-              backgroundColor:
-                "var(--theme-accent)",
-            }}
-          />
-
-        </div>
-
-
-        {/* =================================================
-            UBICACIONES
-        ================================================= */}
-
-        <div
-          className={
-            hasSingleLocation
-              ? "mt-7 flex justify-center sm:mt-10 md:mt-14"
-              : "mt-7 grid gap-4 sm:mt-10 sm:gap-6 md:grid-cols-2 md:mt-14"
-          }
-        >
-
-          {event.locations.map((location) => (
-
-            <div
-              key={location.id}
-              className={`
-                group
-                relative
-                overflow-hidden
-                rounded-3xl
-                border
-                p-4
-                text-center
-                transition
-                duration-300
-                hover:-translate-y-1
-                hover:shadow-lg
-
-                sm:p-6
-
-                ${
-                  hasSingleLocation
-                    ? "w-full max-w-2xl py-5 sm:px-8 sm:py-8 md:px-12 md:py-12"
-                    : ""
-                }
-              `}
-              style={{
-                backgroundColor:
-                  "var(--theme-background)",
-                borderColor:
-                  "var(--theme-accent)",
-              }}
+          {/* Ornamento central */}
+          <div className="mt-6 flex items-center justify-center gap-2">
+            <span
+              className="h-px w-10 opacity-60"
+              style={{ backgroundColor: "var(--theme-accent)" }}
+            />
+            <span
+              className="text-sm"
+              style={{ color: "var(--theme-accent)" }}
+              aria-hidden="true"
             >
+              ✦
+            </span>
+            <span
+              className="h-px w-10 opacity-60"
+              style={{ backgroundColor: "var(--theme-accent)" }}
+            />
+          </div>
+        </header>
 
-              {/* =================================================
-                  DECORACIÓN
-              ================================================= */}
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  -right-10
-                  -top-10
-                  h-24
-                  w-24
-                  rounded-full
-                  opacity-10
-                  blur-2xl
-                  sm:-right-16
-                  sm:-top-16
-                  sm:h-40
-                  sm:w-40
-                "
-                style={{
-                  backgroundColor:
-                    "var(--theme-accent)",
-                }}
-              />
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  -bottom-10
-                  -left-10
-                  h-24
-                  w-24
-                  rounded-full
-                  opacity-10
-                  blur-2xl
-                  sm:-bottom-20
-                  sm:-left-16
-                  sm:h-40
-                  sm:w-40
-                "
-                style={{
-                  backgroundColor:
-                    "var(--theme-secondary)",
-                }}
-              />
-
-
-              {/* =================================================
-                  CONTENIDO
-              ================================================= */}
-
-              <div className="relative">
-
-                {/* ETIQUETA */}
-
-                {hasSingleLocation && (
-                  <p
-                    className="mb-3 text-[8px] font-medium uppercase tracking-[0.25em] sm:mb-4 sm:text-[10px] sm:tracking-[0.35em]"
-                    style={{
-                      color:
-                        "var(--theme-secondary)",
-                    }}
-                  >
-                    Lugar de celebración
-                  </p>
-                )}
-
-
-                {/* =================================================
-                    ICONO
-                ================================================= */}
-
-                <div
-                  className="
-                    mx-auto
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    shadow-sm
-                    sm:h-14
-                    sm:w-14
-                  "
+        {/* Ubicaciones sin tarjetas */}
+        <div
+          className={`mt-9 grid grid-cols-1 sm:mt-12 ${
+            locations.length > 1
+              ? "md:grid-cols-2 md:gap-x-12"
+              : "mx-auto max-w-2xl"
+          }`}
+        >
+          {locations.map((location, index) => (
+            <article
+              key={location.id}
+              className="group relative flex gap-4 py-6 sm:gap-5 sm:py-8"
+            >
+              {/* Número decorativo */}
+              <div className="flex shrink-0 flex-col items-center">
+                <span
+                  className="font-serif text-3xl leading-none sm:text-4xl"
                   style={{
-                    backgroundColor:
-                      "var(--theme-surface)",
-                    borderColor:
-                      "var(--theme-accent)",
-                    color:
-                      "var(--theme-primary)",
+                    color: "var(--theme-accent)",
+                    opacity: 0.85,
                   }}
                 >
-                  <span className="text-lg sm:text-2xl">
-                    📍
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <span
+                  className="mt-3 h-full min-h-8 w-px"
+                  style={{
+                    backgroundColor: "var(--theme-accent)",
+                    opacity: 0.45,
+                  }}
+                />
+              </div>
+
+              {/* Contenido */}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span
+                    className="flex h-8 w-8 shrink-0 items-center justify-center"
+                    style={{
+                      color: "var(--theme-primary)",
+                      backgroundColor: "var(--theme-background)",
+                    }}
+                  >
+                    <PinIcon />
+                  </span>
+
+                  <span
+                    className="text-[9px] uppercase tracking-[0.2em] sm:text-[10px]"
+                    style={{ color: "var(--theme-secondary)" }}
+                  >
+                    {locations.length === 1
+                      ? "Lugar de celebración"
+                      : `Ubicación ${String(index + 1).padStart(2, "0")}`}
                   </span>
                 </div>
 
-
-                {/* =================================================
-                    NOMBRE
-                ================================================= */}
-
                 <h3
-                  className={`
-                    mt-3
-                    font-serif
-                    leading-tight
-                    sm:mt-5
-
-                    ${
-                      hasSingleLocation
-                        ? "text-xl sm:text-3xl md:text-4xl"
-                        : "text-lg sm:text-2xl"
-                    }
-                  `}
-                  style={{
-                    color:
-                      "var(--theme-primary)",
-                  }}
+                  className="mt-3 font-serif text-xl leading-snug sm:text-2xl"
+                  style={{ color: "var(--theme-primary)" }}
                 >
                   {location.name}
                 </h3>
 
-
-                {/* =================================================
-                    LÍNEA DECORATIVA
-                ================================================= */}
-
                 <div
-                  className="mx-auto mt-3 h-px w-8 sm:mt-5 sm:w-12"
-                  style={{
-                    backgroundColor:
-                      "var(--theme-accent)",
-                  }}
+                  className="mt-3 h-px w-10 transition-all duration-300 group-hover:w-16"
+                  style={{ backgroundColor: "var(--theme-accent)" }}
                 />
 
-
-                {/* =================================================
-                    DIRECCIÓN
-                ================================================= */}
-
-                {location.address ? (
-
-                  <p
-                    className={`
-                      mx-auto
-                      mt-3
-                      leading-5
-                      sm:mt-5
-                      sm:leading-6
-
-                      ${
-                        hasSingleLocation
-                          ? "max-w-lg text-xs sm:text-base"
-                          : "max-w-sm text-[11px] sm:text-sm"
-                      }
-                    `}
-                    style={{
-                      color:
-                        "var(--theme-secondary)",
-                    }}
-                  >
-                    {location.address}
-                  </p>
-
-                ) : (
-
-                  <p
-                    className="mt-3 text-[11px] italic sm:mt-5 sm:text-sm"
-                    style={{
-                      color:
-                        "var(--theme-secondary)",
-                    }}
-                  >
-                    Dirección no disponible
-                  </p>
-
-                )}
-
-
-                {/* =================================================
-                    MAPA
-                ================================================= */}
+                <p
+                  className="mt-3 max-w-md text-xs leading-6 sm:text-sm sm:leading-6"
+                  style={{ color: "var(--theme-secondary)" }}
+                >
+                  {location.address || "Consulta los detalles del lugar de celebración."}
+                </p>
 
                 {location.mapsUrl && (
-
                   <a
                     href={location.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="
-                      mt-5
-                      inline-flex
-                      items-center
-                      gap-1.5
-                      rounded-full
-                      px-4
-                      py-2
-                      text-[11px]
-                      font-medium
-                      text-white
-                      shadow-sm
-                      transition
-                      hover:-translate-y-0.5
-                      hover:opacity-90
-                      hover:shadow-md
-                      sm:mt-7
-                      sm:gap-2
-                      sm:px-7
-                      sm:py-3.5
-                      sm:text-sm
-                    "
-                    style={{
-                      backgroundColor:
-                        "var(--theme-primary)",
-                    }}
+                    className="group/link mt-4 inline-flex items-center gap-2 py-1 text-xs font-medium transition-opacity hover:opacity-70 sm:mt-5 sm:text-sm"
+                    style={{ color: "var(--theme-primary)" }}
                   >
-                    <span>🗺️</span>
-                    <span>Cómo llegar</span>
+                    <span
+                      className="border-b pb-1"
+                      style={{ borderColor: "var(--theme-accent)" }}
+                    >
+                      Cómo llegar
+                    </span>
+                    <MapArrowIcon />
                   </a>
-
                 )}
-
               </div>
 
-            </div>
+              {/* Separador inferior */}
+              {index < locations.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-0 right-0 h-px md:hidden"
+                  style={{
+                    backgroundColor: "var(--theme-accent)",
+                    opacity: 0.35,
+                  }}
+                />
+              )}
 
+              {index < locations.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-12 right-0 hidden h-px md:block"
+                  style={{
+                    backgroundColor: "var(--theme-accent)",
+                    opacity: 0.35,
+                  }}
+                />
+              )}
+            </article>
           ))}
-
         </div>
 
+        {/* Cierre decorativo */}
+        <div className="mt-5 flex flex-col items-center text-center sm:mt-8">
+          <span
+            className="font-serif text-2xl"
+            style={{ color: "var(--theme-accent)" }}
+            aria-hidden="true"
+          >
+            ❦
+          </span>
+
+          <p
+            className="mt-2 text-[9px] uppercase tracking-[0.22em] sm:text-[10px]"
+            style={{ color: "var(--theme-secondary)" }}
+          >
+            Gracias por ser parte de nuestra historia
+          </p>
+        </div>
       </div>
     </section>
   )

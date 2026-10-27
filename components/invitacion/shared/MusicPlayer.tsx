@@ -1,16 +1,7 @@
 "use client"
 
-import YouTube, {
-  YouTubeProps,
-  YouTubePlayer,
-} from "react-youtube"
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from "react"
+import YouTube, {YouTubeProps, YouTubePlayer} from "react-youtube"
+import {forwardRef,useCallback,useEffect,useImperativeHandle,useState} from "react"
 
 export type MusicPlayerRef = {
   play: () => void
@@ -26,29 +17,12 @@ type Props = {
   onReady?: () => void
 }
 
-type YouTubeReadyEvent = Parameters<
-  NonNullable<YouTubeProps["onReady"]>
->[0]
-
-type YouTubeStateChangeEvent = Parameters<
-  NonNullable<YouTubeProps["onStateChange"]>
->[0]
-
-type YouTubeErrorEvent = Parameters<
-  NonNullable<YouTubeProps["onError"]>
->[0]
+type YouTubeReadyEvent = Parameters<NonNullable<YouTubeProps["onReady"]>>[0]
+type YouTubeStateChangeEvent = Parameters<NonNullable<YouTubeProps["onStateChange"]>>[0]
+type YouTubeErrorEvent = Parameters<NonNullable<YouTubeProps["onError"]>>[0]
 
 const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
-  function MusicPlayer(
-    {
-      videoId,
-      title,
-      artist,
-      autoplay = false,
-      onReady
-    },
-    ref
-  ) {
+  function MusicPlayer({videoId,title,artist,autoplay = false,onReady},ref) {
     const [playing, setPlaying] = useState(false)
     const [player, setPlayer] = useState<YouTubePlayer | null>(null)
     const [ready, setReady] = useState(false)
@@ -68,11 +42,8 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
 
     const play = useCallback(() => {
       if (!player || !ready) {
-        console.log("YouTube todavía no está listo")
         return
       }
-
-      console.log("▶️ Reproduciendo música por interacción del usuario")
 
       player.playVideo()
     }, [player, ready])
@@ -95,15 +66,7 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
       }
     }, [player, ready])
 
-    useImperativeHandle(
-      ref,
-      () => ({
-        play,
-        pause,
-        toggle,
-      }),
-      [play, pause, toggle]
-    )
+    useImperativeHandle(ref,() => ({play,pause,toggle}),[play, pause, toggle])
 
     const handleReady: YouTubeProps["onReady"] = useCallback(
       (event: YouTubeReadyEvent) => {
@@ -120,13 +83,7 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
       [onReady]
     )
 
-    const handleStateChange: YouTubeProps["onStateChange"] =
-      useCallback((event: YouTubeStateChangeEvent) => {
-        console.log(
-          "Cambio de estado YouTube:",
-          event.data
-        )
-
+    const handleStateChange: YouTubeProps["onStateChange"] = useCallback((event: YouTubeStateChangeEvent) => {
         switch (event.data) {
           case 1:
             console.log("✅ YouTube está reproduciendo")
@@ -157,13 +114,7 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
         }
       }, [])
 
-    const handleError: YouTubeProps["onError"] =
-      useCallback((event: YouTubeErrorEvent) => {
-        console.error(
-          "❌ Error de YouTube:",
-          event.data
-        )
-
+    const handleError: YouTubeProps["onError"] = useCallback((event: YouTubeErrorEvent) => {
         setPlaying(false)
       }, [])
 
@@ -213,16 +164,17 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
         {/* ================================================= */}
 
         <div
-          className="
-            fixed
-            -left-[9999px]
-            top-0
-            h-[200px]
-            w-[200px]
-            overflow-hidden
-            pointer-events-none
-          "
           aria-hidden="true"
+          className="fixed pointer-events-none overflow-hidden"
+          style={{
+            width: "1px",
+            height: "1px",
+            opacity: 0,
+            left: 0,
+            top: 0,
+            clipPath: "inset(50%)",
+            contain: "strict",
+          }}
         >
           <YouTube
             videoId={videoId}
@@ -237,7 +189,15 @@ const MusicPlayer = forwardRef<MusicPlayerRef, Props>(
         {/* CONTROL DE MÚSICA */}
         {/* ================================================= */}
 
-        <div className="fixed bottom-5 right-5 z-[9998]">
+        {/* <div className="fixed bottom-5 right-5 z-[9998]"> */}
+        <div
+          className="fixed z-[99999]"
+          style={{
+            right: "max(16px, env(safe-area-inset-right))",
+            bottom: "max(16px, env(safe-area-inset-bottom))",
+            isolation: "isolate",
+          }}
+        >
           <div
             className="
               flex

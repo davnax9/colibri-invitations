@@ -23,6 +23,10 @@ import InvitationScheduleHelen from "./wedding/weddingHelen/InvitationScheduleHe
 import BotanicalBackground from "./shared/BotanicalBackground"
 import WeddingDateHelen from "./wedding/weddingHelen/WeddingDateHelen"
 import Image from "next/image"
+import WeddingDateRomanticArch from "./shared/WeddingDateRomanticArch"
+import InvitationScheduleRomanticArch from "./shared/InvitationScheduleRomanticArch"
+import InvitationChildsGoldenEditorial from "./shared/InvitationChildsGoldenEditorial"
+import WeddingDressCodeHelen from "./wedding/weddingHelen/WeddingDressCodeHelen"
 
 export default function WeddingElegant({event, guest}: InvitationTemplateProps) {
     const details = event.details
@@ -32,6 +36,7 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
 
     const coverPhoto = event.photos.find((photo) => photo.isCover) ?? event.photos[0]
     const featurePhoto = event.photos[2] ?? null
+    const featurePhoto2 = event.photos[3] ?? null
     const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
     return (
@@ -51,7 +56,8 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                     </ScrollReveal>
                     {/* FECHA */}
                     <ScrollReveal direction="left" delay={200} duration={700}>
-                        <WeddingDateHelen event={event} />
+                        {/* <WeddingDateHelen event={event} /> */}
+                        <WeddingDateRomanticArch event={event} /> 
                     </ScrollReveal>
                     {/* CONTADOR RETROCESO */}
                     <ScrollReveal direction="right" delay={300} duration={700}>
@@ -70,7 +76,7 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                     {/* PROGRAMA ELEGANTE */}
                     <ScrollReveal direction="left" delay={400} duration={700}>
                         {/* <WeddingElegantEvents schedules={event.schedules}/> */}
-                        <InvitationScheduleHelen event={event} />
+                        <InvitationScheduleRomanticArch event={event} />
                     </ScrollReveal>
                     {/* UBICACIONES */}
                     <ScrollReveal direction="right" delay={500} duration={700}>
@@ -94,7 +100,7 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                     </ScrollReveal>
                     {event.showChildsSection && (
                         <ScrollReveal direction="right" delay={850} duration={700}>
-                          <InvitationChilds />
+                          <InvitationChildsGoldenEditorial />
                         </ScrollReveal>
                     )}
                     <ScrollReveal direction="left" delay={800} duration={700}>
@@ -102,8 +108,18 @@ export default function WeddingElegant({event, guest}: InvitationTemplateProps) 
                     </ScrollReveal>
                     {/* VESTIMENTA */}
                     <ScrollReveal direction="right" delay={900} duration={700}>
-                        <WeddingDressCode details={details} />
+                        <WeddingDressCodeHelen details={details} />
                     </ScrollReveal>
+                    {/* FOTO DE LOS NOVIOS */}
+                    {featurePhoto2 && (
+                    <ScrollReveal direction="left" delay={200} duration={700}>
+                        <section className="w-full" style={{backgroundColor: "var(--theme-background)"}}>
+                        <div className="relative aspect-video w-full overflow-hidden">
+                            <Image src={featurePhoto2.url} alt={featurePhoto2.title ?? event.name} fill className="object-cover"/>
+                        </div>
+                        </section>
+                    </ScrollReveal>
+                    )}
                     {/* FOOTER */}
                     <ScrollReveal direction="left" delay={1000} duration={700}>
                         <WeddingFooter details={details} />

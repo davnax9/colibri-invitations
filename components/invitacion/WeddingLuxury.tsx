@@ -20,12 +20,19 @@ import InvitationChilds from "./shared/InvitationChilds"
 import QuinceanosFamilyHelen from "./wedding/weddingHelen/QuinceanosFamilyHelen"
 import WeddingDressCodeHelen from "./wedding/weddingHelen/WeddingDressCodeHelen"
 import BotanicalBackground from "./shared/BotanicalBackground"
+import Image from "next/image"
+import WeddingDateRomanticArch from "./shared/WeddingDateRomanticArch"
+import InvitationScheduleRomanticArch from "./shared/InvitationScheduleRomanticArch"
+import InvitationChildsOrnamentalFrame from "./shared/InvitationChildsOrnamentalFrame"
+import InvitationGiftsGoldenKeepsake from "./shared/InvitationGiftsGoldenKeepsake"
+import WeddingDressCodeLuxury from "./shared/WeddingDressCodeLuxury"
 
 export default function WeddingLuxury({event,guest}: InvitationTemplateProps) {
   const details = event.details
   const brideName = details?.brideName ?? ""
   const groomName = details?.groomName ?? ""
   const coverPhoto = event.photos.find((photo) => photo.isCover) ?? event.photos[0]
+  const featurePhoto = event.photos[3] ?? null
   const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
 return (
@@ -53,16 +60,28 @@ return (
             </section>
           </ScrollReveal>
 
-          {/* <ScrollReveal direction="left" delay={200} duration={700}>
-            <WeddingDate event={event} />
-          </ScrollReveal> */}
+          <ScrollReveal direction="left" delay={200} duration={700}>
+              {/* <WeddingDateHelen event={event} /> */}
+              <WeddingDateRomanticArch event={event} /> 
+          </ScrollReveal>
+
+          {featurePhoto && (
+            <ScrollReveal direction="left" delay={200} duration={700}>
+              <section className="w-full px-0" style={{backgroundColor: "var(--theme-background)"}}>
+                <div className="relative mx-auto w-full max-w-5xl">
+                  <Image src={featurePhoto.url} alt={featurePhoto.title ?? event.name} width={1200} height={800} sizes="(max-width: 768px) 100vw, 80vw" className="block h-auto w-full object-contain"/>
+                </div>
+              </section>
+            </ScrollReveal>
+          )}
 
           <ScrollReveal direction="right" delay={300} duration={700}>
             <Countdown targetDate={event.eventDate.toISOString()}/>
           </ScrollReveal>
           {/* CELEBRACIÓN */}
           <ScrollReveal direction="left" delay={400} duration={700}>
-            <WeddingLuxuryCelebration schedules={event.schedules} />
+            {/* <WeddingLuxuryCelebration schedules={event.schedules} /> */}
+            <InvitationScheduleRomanticArch event={event} />
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={500} duration={700}>
@@ -86,17 +105,17 @@ return (
 
           {event.showChildsSection && (
             <ScrollReveal direction="right" delay={850} duration={700}>
-              <InvitationChilds />
+              <InvitationChildsOrnamentalFrame />
             </ScrollReveal>
           )}
 
           <ScrollReveal direction="left" delay={800} duration={700}>
-            <InvitationGifts gifts={event.gifts} />
+            <InvitationGiftsGoldenKeepsake gifts={event.gifts} />
           </ScrollReveal>
 
           <ScrollReveal direction="right" delay={900} duration={700}>
             {/* <WeddingDressCode details={details} /> */}
-            <WeddingDressCodeHelen details={details} />
+            <WeddingDressCodeLuxury details={details} />
           </ScrollReveal>
 
           <ScrollReveal direction="left" delay={1000} duration={700}>

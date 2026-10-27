@@ -1,5 +1,6 @@
 import Image from "next/image"
 import BotanicalBackground from "../shared/BotanicalBackground"
+import { getCoupleInitials } from "@/utils"
 
 type Props = {
   coverPhoto?: {
@@ -27,10 +28,10 @@ export default function WeddingLuxuryHero({coverPhoto,details,event}: Props) {
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-16" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
       <BotanicalBackground />
       {/* MARCO EXTERIOR */}
-      <div className="absolute inset-5 border md:inset-10" style={{ borderColor: "var(--theme-accent)" }}/>
-      <div className="absolute inset-8 border md:inset-14" style={{ borderColor: "var(--theme-accent)" }}/>
+      {/* <div className="absolute inset-5 border md:inset-10" style={{ borderColor: "var(--theme-accent)" }}/> */}
+      {/* <div className="absolute inset-8 border md:inset-14" style={{ borderColor: "var(--theme-accent)" }}/> */}
       <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
-        <p className="text-xs uppercase tracking-[0.5em]" style={{ color: "var(--theme-secondary)" }}>The wedding of</p>
+        <p className="text-2xl font-serif uppercase tracking-[0.5em]" style={{ color: "var(--theme-secondary)" }}>{getCoupleInitials(details)}</p>
         <div className="mx-auto mt-6 flex h-10 w-10 items-center justify-center rounded-full border text-lg" style={{borderColor: "var(--theme-accent)",color: "var(--theme-primary)",}}>
           ✦
         </div>

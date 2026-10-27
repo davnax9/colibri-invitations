@@ -368,7 +368,7 @@ export default function WeddingDateHelen({event}: WeddingDateHelenProps) {
   const { hour: celebrationHour, period: celebrationPeriod } = format12HourTime(rawCelebrationTime)
 
   return (
-    <section className="relative overflow-hidden px-4 py-2 sm:px-6 sm:py-4 md:px-10 md:py-6"
+    <section className="relative overflow-hidden px-4 py-8 sm:px-6 sm:py-4 md:px-10 md:py-6"
       style={{
         backgroundColor: "var(--theme-background)",
         color: "var(--theme-primary)",

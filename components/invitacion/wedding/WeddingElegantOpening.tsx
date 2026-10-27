@@ -12,7 +12,6 @@ type Props = {
 export default function WeddingElegantOpening({brideName,groomName,eventDate,children}: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [isOpening, setIsOpening] = useState(false)
-
   const initials = useMemo(() => {
     const brideInitial = brideName.trim().charAt(0)
     const groomInitial = groomName.trim().charAt(0)
@@ -47,9 +46,7 @@ export default function WeddingElegantOpening({brideName,groomName,eventDate,chi
     }, 1400)
   }
 
-  if (isOpen) {
-    return <>{children}</>
-  }
+  if (isOpen) return <>{children}</>
 
   return (
     <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)",}}>
@@ -57,8 +54,8 @@ export default function WeddingElegantOpening({brideName,groomName,eventDate,chi
       <div className="pointer-events-none absolute inset-0" style={{background:"radial-gradient(circle at 50% 45%, var(--theme-secondary), transparent 60%)", opacity: 0.07,}}/>
       {/* DECORACIÓN SUPERIOR */}
       <div className={`absolute left-1/2 top-8 -translate-x-1/2 text-center transition-all duration-1000 ${isOpening ? "-translate-y-6 opacity-0" : "translate-y-0 opacity-100"}`}>
-        <p className="text-[9px] uppercase tracking-[0.5em]" style={{color: "var(--theme-secondary)"}}>Una historia de amor</p>
-        <div className="mx-auto mt-3 h-px w-12" style={{backgroundColor: "var(--theme-accent)"}}/>
+        {/* <p className="text-[9px] uppercase tracking-[0.5em]" style={{color: "var(--theme-secondary)"}}>Una historia de amor</p> 
+        <div className="mx-auto mt-3 h-px w-12" style={{backgroundColor: "var(--theme-accent)"}}/>*/}
       </div>
       {/* CARTA */}
       <div className={`relative z-10 w-full max-w-xl px-6 transition-all duration-1000 ${isOpening ? "scale-[1.03] opacity-0" : "scale-100 opacity-100"}`}>
@@ -72,7 +69,8 @@ export default function WeddingElegantOpening({brideName,groomName,eventDate,chi
             </div>
           </div>
           {/* CONTENIDO */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center">
+          {/* <div className="absolute inset-0 flex flex-col items-center justify-center px-8 py-10 text-center"> */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-8 pt-14 pb-10 text-center sm:pt-10 pb-2">
             <p className="text-[10px] uppercase tracking-[0.45em]" style={{color: "var(--theme-secondary)"}}>Con mucho amor</p>
             <p className="mt-5 font-serif text-xl italic sm:text-2xl" style={{color: "var(--theme-primary)"}}>Te invitamos a celebrar</p>
             {/* NOMBRES */}

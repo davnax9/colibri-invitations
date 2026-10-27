@@ -7,16 +7,8 @@ type Props = {
   children: React.ReactNode
 }
 
-export default function InvitationTheme({
-  theme,
-  event,
-  children,
-}: Props) {
-  const {
-    backgroundEnabled,
-    backgroundTexture,
-    backgroundOpacity,
-  } = event
+export default function InvitationTheme({theme,event,children}: Props) {
+  const { backgroundEnabled, backgroundTexture, backgroundOpacity} = event
 
   const currentTheme = theme ?? {
     primaryColor: "#292524",
@@ -27,8 +19,7 @@ export default function InvitationTheme({
     textColor: "#292524",
   }
 
-  const showBackgroundTexture =
-    backgroundEnabled === true && !!backgroundTexture
+  const showBackgroundTexture = backgroundEnabled === true && !!backgroundTexture
 
   return (
     <div
@@ -60,7 +51,7 @@ export default function InvitationTheme({
       {showBackgroundTexture && (
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-50 bg-repeat"
+          className="pointer-events-none fixed inset-0 z-[5] bg-repeat"
           style={{
             backgroundImage: `url("${backgroundTexture}")`,
             backgroundPosition: "center",
