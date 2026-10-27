@@ -19,12 +19,21 @@ import ColibriBranding from "./shared/ColibriBranding"
 import InvitationChilds from "./shared/InvitationChilds"
 import QuinceanosFamilyHelen from "./wedding/weddingHelen/QuinceanosFamilyHelen"
 import BotanicalBackground from "./shared/BotanicalBackground"
+import WeddingDateHelen from "./wedding/weddingHelen/WeddingDateHelen"
+import Image from "next/image"
+import CountdownHelen from "./wedding/weddingHelen/CountDownHelen"
+import InvitationChildsGoldenEditorial from "./shared/InvitationChildsGoldenEditorial"
+import WeddingBotanicalLuxury from "./shared/WeddingBotanicalLuxury"
+import WeddingDressCodeLuxury from "./shared/WeddingDressCodeLuxury"
+import InvitationGiftsGoldenKeepsake from "./shared/InvitationGiftsGoldenKeepsake"
 
 export default function WeddingModern({event,guest}: InvitationTemplateProps) {
   const details = event.details
   const brideName = details?.brideName ?? ""
   const groomName = details?.groomName ?? ""
   const coverPhoto = event.photos.find((photo) => photo.isCover) ?? event.photos[0]
+  const featurePhoto = event.photos[2] ?? null
+  const featurePhoto2 = event.photos[3] ?? null
   const invitationUrl = guest ? `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}/${guest.token}` : `${process.env.NEXT_PUBLIC_APP_URL}/invitacion/${event.slug}`
 
   return (
@@ -41,7 +50,7 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
           {/* NOMBRES */}
           <ScrollReveal direction="right" delay={100} duration={700}>
             <section className="px-6 py-12" style={{backgroundColor: "var(--theme-surface)"}}>
-              <BotanicalBackground />
+              <WeddingBotanicalLuxury />
               <div className="mx-auto max-w-6xl">
                 <div className="grid gap-10 md:grid-cols-2 md:items-end">
                   <div>
@@ -61,11 +70,21 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
           </ScrollReveal>
           {/* FECHA */}
           <ScrollReveal direction="right" delay={300} duration={700}>
-            <WeddingDate event={event} />
+            <WeddingDateHelen event={event} />
           </ScrollReveal>
+          {/* FOTO DEL EVENTO */}
+          {featurePhoto && (
+            <ScrollReveal direction="left" delay={200} duration={700}>
+              <section className="w-full" style={{backgroundColor: "var(--theme-background)"}}>
+                <div className="relative aspect-video w-full overflow-hidden">
+                  <Image src={featurePhoto.url} alt={featurePhoto.title ?? event.name} fill className="object-cover"/>
+                </div>
+              </section>
+            </ScrollReveal>
+          )}
           {/* COUNTDOWN */}
           <ScrollReveal direction="left" delay={400} duration={700}>
-            <Countdown targetDate={event.eventDate.toISOString()}/>
+            <CountdownHelen targetDate={event.eventDate.toISOString()}/>
           </ScrollReveal>
           {/* TIMELINE */}
           <ScrollReveal direction="right" delay={500} duration={700}>
@@ -81,20 +100,29 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
           </ScrollReveal>
           {event.showChildsSection && (
             <ScrollReveal direction="right" delay={850} duration={700}>
-              <InvitationChilds />
+              <InvitationChildsGoldenEditorial />
             </ScrollReveal>
           )}
           <ScrollReveal direction="left" delay={800} duration={700}>
-            <InvitationGifts gifts={event.gifts} />
+            <InvitationGiftsGoldenKeepsake gifts={event.gifts} />
           </ScrollReveal>
           {/* DRESS CODE */}
           <ScrollReveal direction="right" delay={900} duration={700}>
-            <WeddingDressCode details={details} />
+            <WeddingDressCodeLuxury details={details} />
           </ScrollReveal>
+          {featurePhoto2 && (
+            <ScrollReveal direction="left" delay={200} duration={700}>
+              <section className="w-full px-0" style={{backgroundColor: "var(--theme-background)"}}>
+                <div className="relative mx-auto w-full max-w-5xl">
+                  <Image src={featurePhoto2.url} alt={featurePhoto2.title ?? event.name} width={1200} height={800} sizes="(max-width: 768px) 100vw, 80vw" className="block h-auto w-full object-contain"/>
+                </div>
+              </section>
+            </ScrollReveal>
+          )}
           {/* CALENDARIO */}
           <ScrollReveal direction="left" delay={1000} duration={700}>
             <section className="px-6 py-20 text-center" style={{backgroundColor: "var(--theme-background)"}}>
-              <BotanicalBackground />
+              <WeddingBotanicalLuxury />
               <h2 className="text-4xl font-light md:text-5xl" style={{color: "var(--theme-primary)"}}>Reserva la fecha</h2>
               <div className="mt-8">
                 <AddToCalendar title={`${brideName} & ${groomName}`} eventDate={event.eventDate} schedules={event.schedules} invitationUrl={invitationUrl}/>
@@ -109,9 +137,7 @@ export default function WeddingModern({event,guest}: InvitationTemplateProps) {
             <ColibriBranding />
           </ScrollReveal>
           {event.music && (
-            <ScrollReveal direction="left" delay={1200} duration={700}>
-              <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>
-            </ScrollReveal>
+            <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay}/>
           )}
         </main>
       </WeddingModernOpening>

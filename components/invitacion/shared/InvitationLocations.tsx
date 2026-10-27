@@ -1,5 +1,6 @@
 
 import BotanicalBackground from "./BotanicalBackground"
+import WeddingBotanicalLuxury from "./WeddingBotanicalLuxury"
 
 type InvitationLocationsProps = {
   event: {
@@ -94,7 +95,7 @@ export default function InvitationLocationsEditorial({
         backgroundColor: "var(--theme-surface)",
       }}
     >
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
 
       {/* Decoración sutil de fondo */}
       <div

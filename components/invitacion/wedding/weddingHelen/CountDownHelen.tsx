@@ -3,6 +3,7 @@
 
 import { useEffect, useState } from "react"
 import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
+import WeddingBotanicalLuxury from "../../shared/WeddingBotanicalLuxury"
 
 type Props = {
   targetDate: string
@@ -109,7 +110,7 @@ export default function CountdownHelen({ targetDate }: Props) {
         backgroundColor: "var(--theme-background)",
       }}
     >
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
       {/* BRILLO CENTRAL */}
       <div
         aria-hidden="true"

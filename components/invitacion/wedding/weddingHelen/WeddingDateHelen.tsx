@@ -1,3 +1,4 @@
+import WeddingBotanicalLuxury from "../../shared/WeddingBotanicalLuxury"
 
 type WeddingDateHelenProps = {
   event: {
@@ -384,7 +385,7 @@ export default function WeddingDateHelen({event}: WeddingDateHelenProps) {
         }}
       />
 
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
 
       {/* <div className="relative mx-auto max-w-4xl"> */}
       <div className="relative z-10 mx-auto max-w-4xl">

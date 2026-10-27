@@ -1,6 +1,7 @@
 
 import { HeartIcon, SparklesIcon } from "@heroicons/react/24/outline"
 import BotanicalBackground from "./BotanicalBackground"
+import WeddingBotanicalLuxury from "./WeddingBotanicalLuxury"
 
 const GOLD = "#B89455"
 const GOLD_LIGHT = "#D8C08A"
@@ -13,7 +14,7 @@ export default function InvitationChildsGoldenEditorial() {
         backgroundColor: "var(--theme-background)",
       }}
     >
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
 
       {/* Resplandor central */}
       <div

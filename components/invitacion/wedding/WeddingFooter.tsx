@@ -1,4 +1,5 @@
 import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
+import WeddingBotanicalLuxury from "../shared/WeddingBotanicalLuxury";
 
 type WeddingFooterProps = {
   details: {
@@ -20,7 +21,7 @@ export default function WeddingFooter({ details }: WeddingFooterProps) {
 
   return (
     <footer className="relative overflow-hidden px-6 py-20 text-center" style={{backgroundColor: "var(--theme-primary)",color: "white"}}>
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
       <div className="relative z-10 mx-auto max-w-2xl">
         <p className="text-4xl font-serif">{brideName} & {groomName}</p>
         <div className="mx-auto mt-6 h-px w-16" style={{backgroundColor: "var(--theme-accent)"}}/>

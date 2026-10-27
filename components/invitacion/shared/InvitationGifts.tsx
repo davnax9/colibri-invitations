@@ -6,6 +6,7 @@ import {
   CreditCardIcon,
 } from "@heroicons/react/24/outline"
 import BotanicalBackground from "./BotanicalBackground"
+import WeddingBotanicalLuxury from "./WeddingBotanicalLuxury"
 
 type Gift = {
   id: string
@@ -58,7 +59,7 @@ export default function InvitationGifts({
       }}
     >
 
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
 
       {/* BRILLO */}
 

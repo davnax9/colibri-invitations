@@ -1,4 +1,5 @@
 import BotanicalBackground from "@/components/invitacion/shared/BotanicalBackground"
+import WeddingBotanicalLuxury from "../../shared/WeddingBotanicalLuxury"
 
 type Props = {
   details: {
@@ -34,7 +35,7 @@ export default function QuinceanosFamilyHelen({details, type}: Props) {
       }}
     >
 
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
 
       {/* ============================================
           DECORACIÓN DE FONDO

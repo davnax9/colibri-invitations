@@ -1,4 +1,5 @@
 import BotanicalBackground from "../shared/BotanicalBackground"
+import WeddingBotanicalLuxury from "../shared/WeddingBotanicalLuxury"
 
 type Props = {
   details: {
@@ -15,7 +16,7 @@ export default function WeddingModernStory({ details }: Props) {
 
   return (
     <section className="px-6 py-24 sm:py-32" style={{backgroundColor: "var(--theme-surface)", color: "var(--theme-text)"}}>
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[180px_1fr]">
         {/* NUMERO */}
         <div>

@@ -17,7 +17,7 @@ export default function WeddingRomanticTimeline({ schedules }: Props) {
   if (!schedules.length) return null
 
   return (
-    <section className="px-6 py-24" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
+    <section className="px-6 py-8" style={{backgroundColor: "var(--theme-background)",color: "var(--theme-text)"}}>
       <div className="mx-auto max-w-4xl">
         {/* ENCABEZADO */}
         <div className="text-center">

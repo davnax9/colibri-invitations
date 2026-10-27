@@ -34,7 +34,7 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
           </ScrollReveal>
           {/* FRASE */}
           <ScrollReveal direction="right" delay={100} duration={700}>
-            <section className="px-6 py-24 text-center" style={{ backgroundColor: "var(--theme-surface)",}}>
+            <section className="px-6 py-12 text-center" style={{ backgroundColor: "var(--theme-surface)",}}>
               <div className="mx-auto max-w-3xl">
                 <p className="text-xs uppercase tracking-[0.4em]" style={{color: "var(--theme-secondary)"}}>Nuestra historia</p>
                 <div className="mx-auto mt-6 h-px w-12" style={{backgroundColor: "var(--theme-accent)"}}/>
@@ -96,9 +96,7 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
             <ColibriBranding />
           </ScrollReveal>
           {event.music && (
-            <ScrollReveal direction="left" delay={1200} duration={700}>
-              <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />
-            </ScrollReveal>
+            <MusicPlayer videoId={event.music.url} title={event.music.title} artist={event.music.artist} autoplay={event.music.autoplay} />
           )}
         </main>
       </WeddingRomanticOpening>

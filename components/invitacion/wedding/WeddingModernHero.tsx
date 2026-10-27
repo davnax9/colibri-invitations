@@ -1,5 +1,6 @@
 import Image from "next/image"
 import BotanicalBackground from "../shared/BotanicalBackground"
+import WeddingBotanicalLuxury from "../shared/WeddingBotanicalLuxury"
 
 type Props = {
   coverPhoto?: {
@@ -25,11 +26,11 @@ export default function WeddingModernHero({coverPhoto,details,event}: Props) {
 
   return (
     <section className="relative min-h-screen overflow-hidden" style={{backgroundColor: "var(--theme-background)", color: "var(--theme-text)"}}>
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
       <div className="mx-auto grid min-h-screen max-w-7xl lg:grid-cols-2">
         {/* INFORMACIÓN */}
         <div className="flex flex-col justify-center px-8 py-12 lg:px-16">
-          <p className="text-xs font-medium uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>Save the date</p>
+          {/* <p className="text-xs font-medium uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>Save the date</p> */}
           <h1 className="mt-8 text-6xl font-wedding leading-[0.9] tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{brideName}</h1>
           <div className="my-2 text-5xl font-wedding" style={{ color: "var(--theme-accent)" }}>&</div>
           <h1 className="text-6xl font-wedding leading-[0.9] tracking-tight md:text-8xl" style={{ color: "var(--theme-primary)" }}>{groomName}</h1>

@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useRef, useState } from "react"
 import { ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/24/outline"
 import BotanicalBackground from "./BotanicalBackground"
+import WeddingBotanicalLuxury from "./WeddingBotanicalLuxury"
 
 type InvitationGalleryProps = {
   event: {
@@ -98,7 +99,7 @@ export default function InvitationGallery({event}: InvitationGalleryProps) {
 
   return (
     <section className="relative w-full max-w-full overflow-hidden px-4 py-8 sm:px-6 sm:py-12" style={{backgroundColor: "var(--theme-background)"}}>
-      <BotanicalBackground />
+      <WeddingBotanicalLuxury />
       <div className="relative z-10 mx-auto w-full max-w-5xl min-w-0">
         {/* ENCABEZADO */}
         <div className="text-center">
