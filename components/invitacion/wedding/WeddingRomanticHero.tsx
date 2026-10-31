@@ -28,7 +28,7 @@ export default function WeddingRomanticHero({coverPhoto,details,event}: Props) {
       <div className="absolute -left-20 top-20 h-48 w-48 rounded-full border" style={{ borderColor: "var(--theme-accent)" }}/>
       <div className="absolute -right-24 bottom-20 h-64 w-64 rounded-full border" style={{ borderColor: "var(--theme-accent)" }}/>
       <div className="relative z-10 mx-auto flex min-h-[85vh] max-w-6xl flex-col items-center justify-center">
-        <p className="text-xs uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>El comienzo de nuestro para siempre</p>
+        <p className="text-xs text-center uppercase tracking-[0.4em]" style={{ color: "var(--theme-secondary)" }}>El comienzo de nuestro para siempre</p>
         <div className="mt-8 grid w-full items-center gap-10 md:grid-cols-2">
           {/* FOTO */}
           <div className="relative mx-auto w-full max-w-lg">

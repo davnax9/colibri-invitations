@@ -61,7 +61,6 @@ return (
           </ScrollReveal>
 
           <ScrollReveal direction="left" delay={200} duration={700}>
-              {/* <WeddingDateHelen event={event} /> */}
               <WeddingDateRomanticArch event={event} /> 
           </ScrollReveal>
 

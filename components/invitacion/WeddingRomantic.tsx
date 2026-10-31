@@ -16,6 +16,10 @@ import WeddingRomanticOpening from "./wedding/WeddingRomanticOpening"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
 import ColibriBranding from "./shared/ColibriBranding"
 import InvitationChilds from "./shared/InvitationChilds"
+import WeddingDateRomanticArch from "./shared/WeddingDateRomanticArch"
+import CountdownHelen from "./wedding/weddingHelen/CountDownHelen"
+import InvitationChildsLuxury from "./shared/InvitationChildsLuxury"
+import WeddingDressCodeLuxury from "./shared/WeddingDressCodeLuxury"
 
 export default function WeddingRomantic({event,guest}: InvitationTemplateProps) {
   const details = event.details
@@ -48,11 +52,12 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
           </ScrollReveal>
           {/* FECHA */}
           <ScrollReveal direction="right" delay={300} duration={700}>
-            <WeddingDate event={event} />
+            {/* <WeddingDate event={event} /> */}
+            <WeddingDateRomanticArch event={event} /> 
           </ScrollReveal>
           {/* COUNTDOWN */}
           <ScrollReveal direction="left" delay={400} duration={700}>
-            <Countdown targetDate={event.eventDate.toISOString()}/>
+            <CountdownHelen targetDate={event.eventDate.toISOString()}/>
           </ScrollReveal>
           {/* TIMELINE */}
           <ScrollReveal direction="right" delay={500} duration={700}>
@@ -78,7 +83,7 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
           </ScrollReveal>
           {event.showChildsSection && (
             <ScrollReveal direction="right" delay={850} duration={700}>
-              <InvitationChilds />
+              <InvitationChildsLuxury />
             </ScrollReveal>
           )}
           <ScrollReveal direction="right" delay={900} duration={700}>
@@ -86,7 +91,7 @@ export default function WeddingRomantic({event,guest}: InvitationTemplateProps) 
           </ScrollReveal>
           {/* VESTIMENTA */}
           <ScrollReveal direction="left" delay={1000} duration={700}>
-            <WeddingDressCode details={details} />
+            <WeddingDressCodeLuxury details={details} />
           </ScrollReveal>
           {/* FOOTER */}
           <ScrollReveal direction="right" delay={1100} duration={700}>
