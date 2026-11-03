@@ -221,7 +221,7 @@ export default function KpopWarriorsIntro({
           Nuestra pequeña estrella Bianca cumple 8 años.✨
           <br />
           <br />
-          Queremos compartir con usteedes una noche muy especial, llena de musica, luces, magia y diversión. 
+          Queremos compartir con ustedes una noche muy especial, llena de musica, luces, magia y diversión. 
           <br /><br />
           {/* Una noche
           <br />
