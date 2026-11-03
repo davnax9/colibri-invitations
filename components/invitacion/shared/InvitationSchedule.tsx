@@ -206,7 +206,7 @@ function TimelineContent({schedule}: {schedule: InvitationScheduleProps["event"]
       {/* TÍTULO */}
       <h3 className="mt-2 text-2xl font-serif" style={{color: "var(--theme-primary)"}}>{schedule.title}</h3>
       {/* FECHA */}
-      <p className="mt-2 text-sm" style={{color: "var(--theme-secondary)"}}>{schedule.date.toLocaleDateString("es-MX", {day: "numeric", month: "long", year: "numeric"})}</p>
+      {/*<p className="mt-2 text-sm" style={{color: "var(--theme-secondary)"}}>{schedule.date.toLocaleDateString("es-MX", {day: "numeric", month: "long", year: "numeric"})}</p> */}
       {/* UBICACIÓN */}
       {schedule.location && (<p className="mt-2 text-sm font-medium" style={{color: "var(--theme-text)"}}>📍 {schedule.location.name}</p>)}
       {/* DESCRIPCIÓN */}
