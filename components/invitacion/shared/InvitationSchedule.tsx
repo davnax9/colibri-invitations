@@ -202,7 +202,17 @@ function TimelineContent({schedule}: {schedule: InvitationScheduleProps["event"]
   return (
     <div className="py-2">
       {/* HORA */}
-      {schedule.time && (<p className="text-xs font-semibold uppercase tracking-[0.25em]" style={{color: "var(--theme-secondary)"}}>{schedule.time}</p>)}
+      {schedule.time && (
+  <p
+    className="text-xs font-semibold uppercase tracking-[0.25em]"
+    style={{ color: "var(--theme-secondary)" }}
+  >
+    {(() => {
+      const [hours, minutes] = schedule.time.split(":").map(Number);
+      return `${String((hours + 1) % 24).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+    })()}
+  </p>
+)}
       {/* TÍTULO */}
       <h3 className="mt-2 text-2xl font-serif" style={{color: "var(--theme-primary)"}}>{schedule.title}</h3>
       {/* FECHA */}
