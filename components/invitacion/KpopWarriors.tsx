@@ -14,6 +14,7 @@ import Image from "next/image"
 import KpopWarriorsVipPass from "./kpop/KpopWarriorsVipPass"
 import KpopWarriorsDressCode from "./kpop/KpopWarriorsDressCode"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
+import ColibriBranding from "./shared/ColibriBranding"
 
 export default function KpopWarriors({
   event,

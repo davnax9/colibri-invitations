@@ -15,7 +15,7 @@ export default function HomePage() {
       {/* ===================================================== */}
       {/* NAVBAR */}
       {/* ===================================================== */}
-      <header className="relative border-b border-[#E5E9E5]/80 bg-[#FAF8F3]">
+      <header className="relative border-b border-[#E5E9E5]/80 bg-[#E6DDCA]">
         <div className="mx-auto grid max-w-7xl grid-cols-3 items-center px-6 py-5 lg:px-8">
           {/* LOGO - IZQUIERDA */}
           <div className="flex justify-start">
@@ -193,7 +193,7 @@ export default function HomePage() {
             <p className="mt-4 text-[#687A72]">Comienza con lo esencial o disfruta de todas las herramientas para administrar tu evento.</p>
           </div>
           {/* OFERTA */}
-          <PromotionBanner endDate="2026-10-30T23:59:59" />
+          <PromotionBanner endDate="2026-12-12T23:59:59" />
           {/* PLANES */}
           <div className="mx-auto mt-12 grid max-w-4xl gap-6 md:grid-cols-2">
             {/* ================================================= */}
