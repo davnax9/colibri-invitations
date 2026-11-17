@@ -87,7 +87,7 @@ export default function KuromiHero({
         </div>
 
         <p className="font-serif text-3xl text-pink-200 sm:text-4xl">
-          Mis cumpleaños
+          Mi cumpleaños
         </p>
 
         <p className="mt-6 text-sm font-semibold uppercase tracking-[0.3em] text-purple-100/70">
