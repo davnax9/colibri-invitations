@@ -22,7 +22,7 @@ export default function ColibriBranding() {
         >
           Invitación realizada por
         </span>
-        <span className="font-serif text-sm tracking-[0.18em] text-white/85 transition-colors group-hover:text-white">
+        <span className="font-serif text-sm tracking-[0.18em] text-emerald-600 transition-colors group-hover:text-white">
           Colibrí Invitaciones
         </span>
       </a>

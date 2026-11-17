@@ -149,13 +149,16 @@ export async function createEvent(data: unknown) {
   // NORMALIZAR FECHA DEL EVENTO
   // =========================================================
 
-  // El input type="date" entrega una fecha como YYYY-MM-DD.
-  // Extraemos sus componentes sin convertirla a hora local.
-  const eventDateString = String(eventDate).slice(0, 10)
+  // Zod ya convirtió eventDate en un objeto Date
+  const parsedDate = eventDate
 
-  const [year, month, day] = eventDateString.split("-").map(Number)
+  const year = parsedDate.getUTCFullYear()
+  const month = parsedDate.getUTCMonth() + 1
+  const day = parsedDate.getUTCDate()
 
   const isValidDate =
+    parsedDate instanceof Date &&
+    !Number.isNaN(parsedDate.getTime()) &&
     Number.isInteger(year) &&
     Number.isInteger(month) &&
     Number.isInteger(day) &&
