@@ -17,6 +17,7 @@ import KuromiDecorations from "./kuromi/KuromiDecorations"
 import ScrollReveal from "@/app/components/ui/ScrollReveal"
 import KuromiCountdown from "./kuromi/KuromiCountdown"
 import KuromiSchedule from "./kuromi/KuromiSchedule"
+import KuromiGifts from "./kuromi/KuromiGifts"
 
 export default function Kuromi({
   event,
@@ -146,8 +147,10 @@ export default function Kuromi({
           </ScrollReveal>
 
           {/* REGALOS */}
-          {event.gifts.length > 0 && (
-            <InvitationGifts gifts={event.gifts} />
+          {event.gifts?.length > 0 && (
+            <ScrollReveal direction="up" delay={200} duration={700}>
+              <KuromiGifts gifts={event.gifts} />
+            </ScrollReveal>
           )}
 
           {/* MÚSICA */}

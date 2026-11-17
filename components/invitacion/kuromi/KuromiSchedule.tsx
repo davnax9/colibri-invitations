@@ -202,9 +202,21 @@ function KuromiScheduleBow({
 function formatScheduleTime(time: string) {
   const [hours, minutes] = time.split(":").map(Number)
 
-  // Conservamos el ajuste de una hora que utilizaba
-  // el componente InvitationSchedule original.
-  return `${String((hours + 1) % 24).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`
+  if (
+    !Number.isInteger(hours) ||
+    !Number.isInteger(minutes) ||
+    hours < 0 ||
+    hours > 23 ||
+    minutes < 0 ||
+    minutes > 59
+  ) {
+    return time
+  }
+
+  const period = hours >= 12 ? "PM" : "AM"
+  const hour12 = hours % 12 || 12
+
+  return `${String(hour12).padStart(2, "0")}:${String(minutes).padStart(2, "0")} ${period}`
 }
 
 function TimelineContent({
